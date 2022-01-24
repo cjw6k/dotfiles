@@ -10,7 +10,7 @@
 {{- $ephemeral := promptBool "ephemeral" -}}
 
 [data]
-ephemeral = {{ $ephemeral }}
+is.ephemeral = {{ $ephemeral }}
 is.wsl = {{ $wsl }}
 
 {{ if eq .chezmoi.os "windows" -}}
