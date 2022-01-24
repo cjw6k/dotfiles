@@ -9,17 +9,17 @@ $git_metrics\
 $line_break\
 $jobs\
 $line_break\
-{{- if eq .chezmoi.os "windows" -}}
+{{ if eq .chezmoi.os "windows" -}}
 $directory\
-{{- end -}}
+{{- end }}
 $character\
 """
 
-{{- if ne .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.os "windows" -}}
 right_format = """
 $directory
 """
-{{- end -}}
+{{- end }}
 
 [shell]
 disabled = false
