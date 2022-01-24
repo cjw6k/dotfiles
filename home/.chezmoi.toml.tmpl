@@ -1,7 +1,17 @@
+{{/* detect infos */}}
+{{ $wsl := false }}
+{{ if eq .chezmoi.os "linux" }}
+{{   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+{{     $wsl = true }}
+{{   end }}
+{{ end }}
+
+{{/* prompt for infos */}}
 {{- $ephemeral := promptBool "ephemeral" -}}
 
 [data]
 ephemeral = {{ $ephemeral }}
+is.wsl = {{ $wsl }}
 
 {{ if eq .chezmoi.os "windows" -}}
 [cd]
