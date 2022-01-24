@@ -1,3 +1,26 @@
+format = """
+$shell\
+$cmd_duration\
+$git_status\
+$git_branch\
+$git_commit\
+$git_state\
+$git_metrics\
+$line_break\
+$jobs\
+$line_break\
+{{- if eq .chezmoi.os "windows" -}}
+$directory\
+{{- end -}}
+$character\
+"""
+
+{{- if ne .chezmoi.os "windows" -}}
+right_format = """
+$directory
+"""
+{{- end -}}
+
 [shell]
 disabled = false
 fish_indicator = '🐟'
