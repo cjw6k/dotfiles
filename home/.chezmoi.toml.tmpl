@@ -1,4 +1,4 @@
-{{- $ephemeral := promptString "ephemeral" -}}
+{{- $ephemeral := promptBool "ephemeral" -}}
 
 [data]
 ephemeral = {{ $ephemeral }}
