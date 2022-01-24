@@ -1,0 +1,4 @@
+{{- $ephemeral := promptString "ephemeral" -}}
+
+[data]
+ephemeral = {{ $ephemeral }}
