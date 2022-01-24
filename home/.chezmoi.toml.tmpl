@@ -2,3 +2,8 @@
 
 [data]
 ephemeral = {{ $ephemeral }}
+
+[cjw]
+{{- if eq os.windows "windows" -}}
+foo
+{{end}}
