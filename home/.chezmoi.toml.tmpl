@@ -3,7 +3,8 @@
 [data]
 ephemeral = {{ $ephemeral }}
 
-[cjw]
-{{- if eq os.windows "windows" -}}
-foo
+{{ if eq .chezmoi.os "windows" -}}
+[cd]
+command = "pwsh"
+args = "-nologo"
 {{end}}
