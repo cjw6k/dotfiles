@@ -14,7 +14,7 @@ if [[ $- != *i* ]] ; then
 	return
 fi
 
-{{ if stat /bin/fish }}
+{{ if stat "/bin/fish" }}
 # ghoti
 [ -x /bin/fish ] && SHELL=/bin/fish exec fish
 {{ end }}
