@@ -85,7 +85,7 @@ format = '[$symbol$number]($style) '
 {{ if ne .chezmoi.os "windows" }}
 [custom.ghist_shortdomain]
 when = "git rev-parse --git-dir && git config ghist.shortdomain"
-command = "echo -n 'http://'; git config ghist.shorturl | tr -d '\n'; echo -n '/'"
+command = "echo -n 'http://'; git config ghist.shortdomain | tr -d '\n'; echo -n '/'"
 format = "[$symbol($output)]($style)"
 style = 'fg:#002000'
 
