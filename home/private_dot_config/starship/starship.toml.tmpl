@@ -1,7 +1,7 @@
 format = """
 {{ if .is.wsl -}}
 ${custom.wsl}\
-{{- end -}}
+{{ end -}}
 $shell\
 $cmd_duration\
 $git_status\
@@ -14,21 +14,21 @@ $jobs\
 $line_break\
 {{ if eq .chezmoi.os "windows" -}}
 $directory\
-{{- end }}
+{{ end -}}
 $character\
 """
 
-{{- if ne .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.os "windows" -}}
 right_format = """
 $directory
 """
-{{- end -}}
+{{ end -}}
 
-{{ if .is.wsl }}
+{{ if .is.wsl -}}
 [custom.wsl]
 when = "true"
 symbol = "🛰️"
-{{ end }}
+{{ end -}}
 
 [shell]
 disabled = false
