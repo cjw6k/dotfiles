@@ -11,7 +11,8 @@ $fill\
 [$git_commit$git_state$git_metrics](bg:#1d1d1d)\
 [](fg:#1d1d1d) \
 $line_break\
-$jobs\
+[        ]()\
+([](fg:#18191e)$jobs[](fg:#18191e))\
 $line_break\
 {{- if eq .chezmoi.os "windows" }}
 $directory\
@@ -73,3 +74,7 @@ error_symbol = "[](bold red)"
 [directory]
 truncation_symbol = "📌…/"
 home_symbol = "🌱"
+
+[jobs]
+style = 'bg:#18191e fg:#6b6140'
+format = '[$symbol$number]($style)'
