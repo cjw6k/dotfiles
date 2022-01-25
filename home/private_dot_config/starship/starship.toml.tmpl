@@ -13,7 +13,9 @@ $fill\
 $line_break\
 [        ]()\
 ([](fg:#18191e)$jobs[](fg:#18191e))\
+{{- if ne .chezmoi.os "windows" }}
 ${custom.ghist}\
+{{- end }}
 $line_break\
 {{- if eq .chezmoi.os "windows" }}
 $directory\
@@ -80,11 +82,9 @@ home_symbol = "🌱"
 style = 'bg:#18191e fg:#6b6140'
 format = '[$symbol$number]($style)'
 
+{{ if ne .chezmoi.os "windows" }}
 [custom.ghist]
 when = "git rev-parse --git-dir"
-{{ if eq .chezmoi.os "windows" }}
-command = "git log --pretty=format:'%C(#002000)%h%Creset %C(dim white)%ar%Creset %C(cyan)%al%Creset %C(bold dim white)%<(72,mtrunc)%s%Creset' --color=always -n 1"
-{{ else }}
 command = "git log --pretty=format:'%C(#002000)%h%Creset %C(dim white)%ar%Creset %C(cyan)%al%Creset %C(bold dim white)%<(72,mtrunc)%s%Creset' --color=always -n 1 | awk '{ gsub(/ {9,}/, \"\"); print }'"
-{{ end }}
 format = "[($output)]($style)"
+{{ end }}
