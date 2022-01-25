@@ -3,12 +3,13 @@ format = """
 ${custom.wsl}\
 {{- end }}
 $shell\
+[](fg:#3c3c3c bg:#0c0c0c)\
 $cmd_duration\
 $git_status\
-$git_branch\
-$git_commit\
-$git_state\
-$git_metrics\
+[ ](fg:#3c3c3c bg:#333333)$git_branch[](bg:#1d1d1d fg:#333333)\
+$fill\
+[$git_commit$git_state$git_metrics](bg:#1d1d1d)\
+[](fg:#1d1d1d)\
 $line_break\
 $jobs\
 $line_break\
@@ -38,13 +39,26 @@ powershell_indicator = '🚜'
 [cmd_duration]
 min_time = 400
 show_milliseconds = true
-style = "fg:#fff8dc"
-format = "[[Δ](fg:red)$duration ]($style)"
+style = "bg:#3c3c3c fg:#bbaabb"
+format = "[ [Δ](fg:#ffaabb bg:#3c3c3c)$duration ]($style)"
+
+[fill]
+symbol = ' '
+style = 'bg:#1d1d1d'
+
+[git_status]
+style = 'bg:#3c3c3c fg:#6874f2'
+format = "([{[$all_status](fg:bold #32cd32 bg:#3c3c3c)$ahead_behind}]($style))"
+
+[git_branch]
+style = 'bg:#333333 fg:bold #999999'
+format = '[[$symbol](bg:#333333 fg:#999999)$branch ]($style)'
+truncation_length = 42
 
 [git_metrics]
 disabled = false
-added_style = 'fg:bold green'
-deleted_style = 'fg:bold red'
+added_style = 'bg:#1d1d1d fg:bold green'
+deleted_style = 'bg:#1d1d1d fg:bold red'
 
 [character]
 success_symbol = "[](bold #32cd32)"
