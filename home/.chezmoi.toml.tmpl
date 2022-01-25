@@ -1,20 +1,23 @@
-{{/* detect infos */}}
-{{ $isWsl := false }}
-{{ if eq .chezmoi.os "linux" }}
-{{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
-{{-     $isWsl = true }}
-{{-   end }}
-{{- end }}
+{{-
 
-{{- /* prompt for infos */}}
-{{- $isEphemeral := promptBool "ephemeral" -}}
+/* detect infos */
+$isWsl := false
+if eq .chezmoi.os "linux"
+   if .chezmoi.kernel.osrelease | lower | contains "microsoft"
+     $isWsl = true
+   end
+end
 
+/* prompt for infos */
+$isEphemeral := promptBool "ephemeral"
+
+-}}
 [data]
 is.ephemeral = {{ $isEphemeral }}
 is.wsl = {{ $isWsl }}
 
-{{ if eq .chezmoi.os "windows" -}}
+{{- if eq .chezmoi.os "windows" -}}
 [cd]
 command = "pwsh"
 args = "-nologo"
-{{end}}
+{{- end -}}
