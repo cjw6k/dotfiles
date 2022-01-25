@@ -14,7 +14,7 @@ $line_break\
 [        ]()\
 ([](fg:#18191e)$jobs[](fg:#18191e))\
 {{- if ne .chezmoi.os "windows" }}
-${custom.ghist}\
+${custom.ghist_shortdomain}${custom.ghist}\
 {{- end }}
 $line_break\
 {{- if eq .chezmoi.os "windows" }}
@@ -83,6 +83,12 @@ style = 'bg:#18191e fg:#6b6140'
 format = '[$symbol$number]($style) '
 
 {{ if ne .chezmoi.os "windows" }}
+[custom.ghist_shortdomain]
+when = "git rev-parse --git-dir && git config ghist.shortdomain"
+command = "echo -n 'http://'; git config ghist.shorturl | tr -d '\n'; echo -n '/'"
+format = "[$symbol($output)]($style)"
+style = 'fg:#002000'
+
 [custom.ghist]
 when = "git rev-parse --git-dir"
 command = "git log --pretty=format:'%C(#002000)%h%Creset %C(dim white)%ar%Creset %C(cyan)%al%Creset %C(bold dim white)%<(72,mtrunc)%s%Creset' --color=always -n 1 | awk '{ gsub(/ {9,}/, \"\"); print }'"
