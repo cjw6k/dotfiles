@@ -1,0 +1,23 @@
+{{- if eq .chezmoi.os "windows" -}}
+Param (
+    [Parameter(Mandatory=$False)] $distro
+)
+
+if (!$distro) {
+    $distro = "gentoo"
+}
+
+Switch ($distro) {
+    "gentoo" {
+        wsl ~ -d gentoo
+    }
+    
+    "ubuntu" {
+        wsl ~ -d ubuntu
+    }
+    
+    default {
+        "that's not a thing"
+    }
+}
+{{- end -}}
