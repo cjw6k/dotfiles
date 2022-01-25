@@ -1,6 +1,6 @@
-{{/* detect infos */}}
-{{ $isWsl := false }}
-{{ if eq .chezmoi.os "linux" }}
+{{- /* detect infos */}}
+{{-  $isWsl := false }}
+{{-  if eq .chezmoi.os "linux" }}
 {{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
 {{-     $isWsl = true }}
 {{-   end }}
