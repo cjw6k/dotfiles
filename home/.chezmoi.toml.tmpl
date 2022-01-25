@@ -1,12 +1,12 @@
 {{/* detect infos */}}
 {{ $isWsl := false }}
 {{ if eq .chezmoi.os "linux" }}
-{{   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
-{{     $isWsl = true }}
-{{   end }}
-{{ end }}
+{{-   if .chezmoi.kernel.osrelease | lower | contains "microsoft" }}
+{{-     $isWsl = true }}
+{{-   end }}
+{{- end }}
 
-{{/* prompt for infos */}}
+{{- /* prompt for infos */ }}
 {{- $isEphemeral := promptBool "ephemeral" -}}
 
 [data]
