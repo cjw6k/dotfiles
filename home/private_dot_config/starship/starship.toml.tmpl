@@ -1,5 +1,5 @@
 format = """
-{{- if .is.wsl -}}
+{{ if .is.wsl -}}
 ${custom.wsl}\
 {{- end -}}
 $shell\
@@ -24,11 +24,11 @@ $directory
 """
 {{- end -}}
 
-{{- if .is.wsl -}}
+{{ if .is.wsl }}
 [custom.wsl]
 when = "true"
 symbol = "🛰️"
-{{- end -}}
+{{ end }}
 
 [shell]
 disabled = false
