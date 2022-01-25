@@ -1,0 +1,3 @@
+function hist
+        history --show-time=(tput setaf 235)"[%Y-%m-%d %H:%M:%S] "(tput sgr0) $argv | $PAGER
+end
