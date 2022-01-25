@@ -1,4 +1,5 @@
 {{- if eq .chezmoi.os "windows" -}}
-$env:STARSHIP_CONFIG="{{- .chezmoi.homeDir -}}\.config\starship\starship.toml"
+$env:PATH += ";{{- .chezmoi.homedir -}}\bin"
+$env:STARSHIP_CONFIG = "{{- .chezmoi.homeDir -}}\.config\starship\starship.toml"
 Invoke-Expression (&starship init powershell)
 {{- end -}}
