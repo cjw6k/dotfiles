@@ -1,4 +1,3 @@
-{{- if eq .chezmoi.os "windows" -}}
 Param (
     [Parameter(Mandatory=$False)] $distro
 )
@@ -20,4 +19,3 @@ Switch ($distro) {
         "that's not a thing"
     }
 }
-{{- end -}}
