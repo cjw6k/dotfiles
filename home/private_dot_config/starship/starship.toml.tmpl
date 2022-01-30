@@ -12,7 +12,7 @@ $fill\
 [](fg:#1d1d1d) \
 $line_break\
 [        ]()\
-([](fg:#18191e)$jobs[](fg:#18191e))\
+([](fg:#18191e)$jobs[] (fg:#18191e))\
 {{- if ne .chezmoi.os "windows" }}
 ${custom.ghist_shortdomain}${custom.ghist}\
 {{- end }}
@@ -80,7 +80,7 @@ home_symbol = "🌱"
 
 [jobs]
 style = 'bg:#18191e fg:#6b6140'
-format = '[$symbol$number]($style) '
+format = '[$symbol$number]($style)'
 
 {{ if ne .chezmoi.os "windows" }}
 [custom.ghist_shortdomain]
