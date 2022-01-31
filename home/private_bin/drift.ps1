@@ -15,6 +15,10 @@ Switch ($distro) {
         wsl ~ -d ubuntu
     }
     
+    "rocky" {
+        wsl ~ -d rocky
+    }
+    
     default {
         "that's not a thing"
     }
