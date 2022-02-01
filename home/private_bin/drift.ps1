@@ -1,10 +1,28 @@
 Param (
-    [Parameter(Mandatory=$False)] $distro
+    [Parameter()] $distro,
+    [Parameter()] $opAccount
 )
 
 if (!$distro) {
     $distro = "gentoo"
 }
+
+$env:HOST_IP4=(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias 'vEthernet (WSL)').IPAddress
+$env:WSLENV += ":HOST_IP4"
+
+if ($opAccount) {
+	try {
+		$opSessionVar = (Get-Item -Path "Env:OP_SESSION_$opAccount" -ErrorAction stop).value
+	} catch {
+		"op session $opAccount unavailable"
+	}
+
+	if ($opSessionVar) {
+		$env:WSLENV += ":OP_SESSION_$opAccount"
+	}
+}
+
+$env:WSLENV = ($env:WSLENV.split(':') | Where {$_ -ne $null -and $_ -ne ''} | Sort | Get-Unique) -join ':'
 
 Switch ($distro) {
     "gentoo" {
@@ -28,6 +46,6 @@ Switch ($distro) {
     }
 
     default {
-        "that's not a thing"
+        "${distro}? that's not a thing"
     }
 }
