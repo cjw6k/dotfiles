@@ -10,15 +10,19 @@ Switch ($distro) {
     "gentoo" {
         wsl ~ -d gentoo
     }
-    
+
+    "debian" {
+        wsl ~ -d debian
+    }
+
     "ubuntu" {
         wsl ~ -d ubuntu
     }
-    
+
     "rocky" {
         wsl ~ -d rocky
     }
-    
+
     "kali" {
         wsl ~ -d kali-linux
     }
