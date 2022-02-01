@@ -19,6 +19,10 @@ Switch ($distro) {
         wsl ~ -d rocky
     }
     
+    "kali" {
+        wsl ~ -d kali-linux
+    }
+
     default {
         "that's not a thing"
     }
