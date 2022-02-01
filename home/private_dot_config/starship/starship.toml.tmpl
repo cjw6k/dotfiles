@@ -1,6 +1,17 @@
 format = """
 {{- if .is.wsl }}
 ${custom.wsl}\
+{{- if eq .chezmoi.osRelease.id "gentoo" }}
+[]()\
+{{- else if eq .chezmoi.osRelease.id "debian" }}
+[]()\
+{{- else if eq .chezmoi.osRelease.id "ubuntu" }}
+[]()\
+{{- else if eq .chezmoi.osRelease.id "rocky" }}
+[]()\
+{{- else if eq .chezmoi.osRelease.id "kali" }}
+[理]()\
+{{- end }}
 {{- end }}
 $shell\
 [](fg:#3c3c3c bg:#0c0c0c)\
