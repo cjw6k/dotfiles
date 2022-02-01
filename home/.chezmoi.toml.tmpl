@@ -8,10 +8,15 @@
 
 {{- /* prompt for infos */}}
 {{- $isEphemeral := promptBool "ephemeral" -}}
+{{- $isWorkstation := false -}}
+{{- if not $isEphemeral }}
+{{-   $isWorkstation = promptBool "workstation" }}
+{{- end }}
 
 [data]
 is.ephemeral = {{ $isEphemeral }}
 is.wsl = {{ $isWsl }}
+is.workstation = {{ $isWorkstation }}
 
 {{ if eq .chezmoi.os "windows" -}}
 [cd]
