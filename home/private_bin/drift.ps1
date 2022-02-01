@@ -11,14 +11,14 @@ $env:HOST_IP4=(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias 'vEthernet (
 $env:WSLENV += ":HOST_IP4"
 
 if ($opAccount) {
-	try {
-		$opSessionVar = (Get-Item -Path "Env:OP_SESSION_$opAccount" -ErrorAction stop).value
-		if ($opSessionVar) {
-			$env:WSLENV += ":OP_SESSION_$opAccount"
-		}
-	} catch {
-		"op session $opAccount unavailable"
-	}
+    try {
+        $opSessionVar = (Get-Item -Path "Env:OP_SESSION_$opAccount" -ErrorAction stop).value
+        if ($opSessionVar) {
+            $env:WSLENV += ":OP_SESSION_$opAccount"
+        }
+    } catch {
+        "op session $opAccount unavailable"
+    }
 }
 
 $env:WSLENV = ($env:WSLENV.split(':') | Where {$_ -ne $null -and $_ -ne ''} | Sort | Get-Unique) -join ':'
