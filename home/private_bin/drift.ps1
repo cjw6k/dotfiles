@@ -13,12 +13,11 @@ $env:WSLENV += ":HOST_IP4"
 if ($opAccount) {
 	try {
 		$opSessionVar = (Get-Item -Path "Env:OP_SESSION_$opAccount" -ErrorAction stop).value
+		if ($opSessionVar) {
+			$env:WSLENV += ":OP_SESSION_$opAccount"
+		}
 	} catch {
 		"op session $opAccount unavailable"
-	}
-
-	if ($opSessionVar) {
-		$env:WSLENV += ":OP_SESSION_$opAccount"
 	}
 }
 
