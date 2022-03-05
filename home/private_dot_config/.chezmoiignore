@@ -1,4 +1,5 @@
 {{- if ne .chezmoi.os "windows" }}
 {{- else }}
 fish
+nano
 {{- end }}
