@@ -1,0 +1,22 @@
+set autoindent
+set backup
+set backupdir ~/.backup-nano/
+set emptyline
+set linenumbers
+set nohelp
+set numbercolor lightblack,black
+set positionlog
+set tabsize 4
+set tabstospaces
+set saveonexit
+set trimblanks
+
+include /usr/share/nano/css.nanorc
+include /usr/share/nano/html.nanorc
+include /usr/share/nano/gentoo.nanorc
+include /usr/share/nano/javascript.nanorc
+include /usr/share/nano/php.nanorc
+include /usr/share/nano/patch.nanorc
+include /usr/share/nano/sh.nanorc
+include /usr/share/nano/xml.nanorc
+include /usr/share/nano/twig.nanorc
