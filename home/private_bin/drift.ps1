@@ -7,8 +7,12 @@ if (!$distro) {
     $distro = "gentoo"
 }
 
-$env:HOST_IP4=(Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias 'vEthernet (WSL)').IPAddress
-$env:WSLENV += ":HOST_IP4"
+$env:HOST_IP4 = (Get-NetIPAddress -AddressFamily IPV4 -InterfaceAlias 'vEthernet (WSL)').IPAddress
+$env:BROWSER = [regex]::matches(
+    (Get-ItemProperty -Path HKCU:\Software\Classes\http\shell\open\command\)."(default)", 
+    '"[^"]+"|[^\s]+'
+)[0].value.trim('"')
+$env:WSLENV += ":HOST_IP4:BROWSER/p"
 
 if ($opAccount) {
     try {
