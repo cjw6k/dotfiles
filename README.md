@@ -12,6 +12,7 @@ I have published dotfiles in a few iterations over many years. I'm making a fres
 * I am working on cloud in my free time.
 * I use Windows: 10 as my main workstation and 11 on a laptop. 
 * I use Linux: alpine, gentoo, debian, and ubuntu. In Docker, WSL2, VM, VPS, and on bare metal. 
+* I use BSD.
 * I do not use MacOS. I will someday.
 
 I need these dotfiles to work everywhere. They will cover a lot.
