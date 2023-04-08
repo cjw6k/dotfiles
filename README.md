@@ -25,8 +25,8 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 
 1. Get [Powershell 7](https://aka.ms/PSWindows).
    * Run `terminal`.
-   * Settings > Startup > Default profile: PowerShell.
-   * Settings > Profiles > PowerShell > Command line: add `-NoLogo`
+     * Settings > Startup > Default profile: PowerShell.
+     * Settings > Profiles > PowerShell > Command line: add `-NoLogo`
 3. Get [Scoop](https://github.com/ScoopInstaller/Install#scoop-uninstaller).
 4. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
    * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`. 
