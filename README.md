@@ -24,7 +24,10 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 > While building out these dotfiles I'm focused on the windows deployment and run everything in a Windows virtual machine. If the reader would like to try out these dotfiles in Windows without messing around creating test users and without mixing up the home folder, [try a windows VM](https://developer.microsoft.com/en-us/windows/downloads/virtual-machines/)!
 
 1. Get [Powershell 7](https://aka.ms/PSWindows).
-1. Get [Scoop](https://github.com/ScoopInstaller/Install#scoop-uninstaller).
-1. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
+   * Run `terminal`.
+   * Settings > Startup > Default profile: PowerShell.
+   * Settings > Profiles > PowerShell > Command line: add `-NoLogo`
+3. Get [Scoop](https://github.com/ScoopInstaller/Install#scoop-uninstaller).
+4. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
    * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`. 
-1. Get chezmoi w/ `shovel install chezmoi`.
+5. Get chezmoi w/ `shovel install chezmoi`.
