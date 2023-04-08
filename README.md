@@ -33,3 +33,37 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 5. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
    * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`. 
 6. Get chezmoi w/ `shovel install chezmoi`.
+
+## Features
+
+### Installed Utilities
+
+> Items marked with * are recent additions and may be removed after eval.
+
+| Utility | Description | Windows | 
+|---------|-------------|---------|
+| [7zip](https://sourceforge.net/projects/sevenzip/) | A file archiver with a high compression ratio. | : heavy_check_mark: |
+| actionlint |
+| [ag](https://geoff.greer.fm/ag/) | A code-searching tool similar to ack, but faster. |
+| ah |
+| [chezmoi](https://chezmoi.io) | Manage your dotfiles across multiple diverse machines, securely. | :heavy_check_mark: |
+| cmake |
+| [delta](https://dandavison.github.io/delta/) | A viewer for git and diff output |
+| dive |
+| doctl |
+| dua* |
+| dust* |
+| ffmpeg |
+| gh |
+| git | | :heavy_check_mark: |
+| go |
+| grep |
+| grex |
+| hadolint |
+| helm |
+| hexyl |
+| hyperfine |
+| jq |
+| kate* |
+| kind |
+| ... |
