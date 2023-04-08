@@ -28,6 +28,8 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
      * Settings > Startup > Default profile: PowerShell.
      * Settings > Profiles > PowerShell > Command line: add `-NoLogo`
 3. Get [Scoop](https://github.com/ScoopInstaller/Install#scoop-uninstaller).
-4. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
+   * _Don't change the execution policy as in the example there!_
+     *  Too late? We don't know what it may have been before, but restoring the default is: `Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser`
+5. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
    * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`. 
-5. Get chezmoi w/ `shovel install chezmoi`.
+6. Get chezmoi w/ `shovel install chezmoi`.
