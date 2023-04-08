@@ -42,7 +42,7 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 
 | Utility | Description | Windows | 
 |---------|-------------|---------|
-| [7zip](https://sourceforge.net/projects/sevenzip/) | A file archiver with a high compression ratio. | : heavy_check_mark: |
+| [7zip](https://sourceforge.net/projects/sevenzip/) | A file archiver with a high compression ratio. | :heavy_check_mark: |
 | actionlint |
 | [ag](https://geoff.greer.fm/ag/) | A code-searching tool similar to ack, but faster. |
 | ah |
