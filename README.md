@@ -108,11 +108,11 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [touch](https://manned.org/man/freebsd-13.1/touch) | Create files and set access/modification times.
 | [yarn](https://yarnpkg.com) | JavaScript and Node.js package manager alternative.
 
-Cygwin
+##### Cygwin
 A collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
 
-LLVM
+##### LLVM
 A collection of modular and reusable compiler and toolchain technologies.
 
-w64devkit
+##### w64devkit
 Portable C and C++ Development Kit for x64 Windows.
