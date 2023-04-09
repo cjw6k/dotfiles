@@ -1,0 +1,50 @@
+name: Continuous Integration
+
+on: push
+
+jobs:
+  experiment:
+    runs-on: windows-latest
+    name: Maybe this works
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: setup profile
+        run: |
+          if ( -not (Test-Path $PROFILE) ) {
+            New-Item -Path $PROFILE -Type File -Force
+          }
+          Get-ChildItem '.github/windows/profile/' -File `
+            | Select-Object -ExpandProperty Fullname `
+            | Foreach-Object -Process {Add-Content $PROFILE "Import-Module $_"}
+
+      - name: restore shovel cache
+        uses: actions/cache@v3
+        env:
+          cache-name: cache-shovel-assets
+        with:
+          path: ~/scoop/cache/
+          key: ${{ env.cache-name }}-${{ github.run_id }}
+          restore-keys:
+            ${{ env.cache-name }}-
+
+      - name: install shovel
+        run: |
+          Install-Shovel
+          shovel --version
+
+      - name: shovel checkup
+        run: shovel checkup
+
+      - name: install chezmoi
+        run: shovel install chezmoi
+
+      - name: init dotfiles
+        run: chezmoi init cjw6k --apply --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: Confirm-InstalledUtils
+
+      - name: shovel list
+        run: shovel list

@@ -1,0 +1,9 @@
+# ~/.config/dotfiles/utils.json hash:
+# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+
+$utils = Get-Content '~/.config/dotfiles/utils.json' `
+  | ConvertFrom-Json `
+  | Where-Object {$_.installer -eq "default"} `
+  | Foreach-Object {$_.name}
+
+shovel install @utils
