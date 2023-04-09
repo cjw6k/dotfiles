@@ -49,16 +49,16 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [actionlint](https://github.com/rhysd/actionlint) | A linter for GitHub Actions workflow files.
 | [ag](https://geoff.greer.fm/ag/) | A code-searching tool similar to ack, but faster.
 | [alacritty*](https://github.com/alacritty/alacritty) | Cross-platform, GPU-accelerated terminal emulator.
-| ah | Artifact Hub command line tool
+| [ah](https://github.com/artifacthub/hub) | Artifact Hub command line tool
 | [chezmoi](https://chezmoi.io) | Manage your dotfiles across multiple diverse machines, securely. | :heavy_check_mark:
 | [cmake](https://cmake.org/cmake/help/latest/manual/cmake.1.html) | Cross-platform build automation system.
 | [composer](https://getcomposer.org/) | A package-based dependency manager for PHP projects.
-| cousine-nf | Nerd Fonts patched 'Cousine' Font family.
-| cousine-nf-mono | Nerd Fonts patched 'Cousine' Font family. Monospaced version.
-| csview* | CSV viewer with cjk/emoji support.
+| cousine-nf | [Nerd Fonts](https://www.nerdfonts.com/#home) patched '[Cousine](https://www.programmingfonts.org/#cousine)' Font family.
+| cousine-nf-mono | [Nerd Fonts](https://www.nerdfonts.com/#home) patched '[Cousine](https://www.programmingfonts.org/#cousine)' Font family. Monospaced version.
+| [csview*](https://github.com/wfxr/csview) | CSV viewer with cjk/emoji support.
 | [delta](https://dandavison.github.io/delta/) | A viewer for git and diff output
 | [dive](https://github.com/wagoodman/dive) | A tool for exploring a Docker image, layer contents, and discovering ways to shrink it.
-| doctl | CLI for the DigitalOcean API.
+| [doctl](https://github.com/digitalocean/doctl) | Official command line interface for the DigitalOcean API.
 | [dua*](https://github.com/Byron/dua-cli) | Disk Usage Analyzer
 | [dust*](https://github.com/bootandy/dust) | Overview of which directories are using disk space.
 | [ffmpeg](https://ffmpeg.org) | Audio/Video conversion tool.
@@ -79,36 +79,40 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [kubectl](https://kubernetes.io/docs/reference/kubectl/) | Command-line interface for running commands against Kubernetes clusters.
 | [kubescape*](https://github.com/kubescape/kubescape) | A tool for testing Kubernetes security posture.
 | [kubeseal](https://github.com/bitnami-labs/sealed-secrets) | Asymmetric crypto to encrypt secrets for kubernetes.
-| llvm
 | [lsd*](https://github.com/Peltoche/lsd) | List directory contents.
 | [lua](https://www.lua.org) | A powerful, light-weight embeddable programming language.
-| luarocks
-| lychee
+| [luarocks](https://luarocks.org/) | The package manager for Lua modules.
+| [lychee](https://github.com/lycheeverse/lychee) | Async, stream-based link checker.
 | [make](https://www.gnu.org/software/make/manual/make.html) | Task runner for targets described in Makefile.
 | [micro](https://micro-editor.github.io) | A modern and intuitive terminal-based text editor.
 | [nano](https://nano-editor.org) | Command-line text editor.
 | [neofetch](https://github.com/dylanaraps/neofetch) | display information about your operating system, software and hardware.
-| nerdctl*
+| [nerdctl*](https://github.com/containerd/nerdctl) | contaiNERD CTL - Docker-compatible CLI for containerd.
 | [nodejs](https://nodejs.org) | Server-side JavaScript platform.
-| okteto
-| onefetch
+| [okteto](https://github.com/okteto/okteto) | Develop your applications directly in your Kubernetes Cluster.
+| [onefetch](https://onefetch.dev/) | Command-line Git information tool.
 | [openssl](https://www.openssl.org) | OpenSSL cryptographic toolkit.
 | [php-nts](https://php.net) | PHP command-line interface.
-| posh-git
+| [posh-git](http://dahlbyk.github.io/posh-git/) | A PowerShell environment for Git.
 | [procs*](https://github.com/dalance/procs) | Display information about the active processes.
 | [python](https://www.python.org) | Python language interpreter.
 | [sass](https://sass-lang.com) | Converts SCSS or Sass files to CSS.
 | [shellcheck](https://www.shellcheck.net) | Shell script static analysis tool.
-| shfmt
-| stylua
+| [shfmt](https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd) | Format shell programs.
+| [stylua*](https://github.com/JohnnyMorganz/StyLua) | An opinionated Lua code formatter. 
 | [sudo](https://www.sudo.ws/) | Executes a single command as the superuser or another user.
-| task
-| tealdeer
+| [task](https://taskfile.dev/) | A task runner / simpler Make alternative.
+| [tealdeer](https://tldr.sh) | Display simple help pages for command-line tools from the tldr-pages project.
 | [terraform](https://www.terraform.io/) | Create and deploy infrastructure as code to cloud providers.
 | [tokei*](https://github.com/XAMPPRocky/tokei) | Print out statistics about code.
 | [touch](https://manned.org/man/freebsd-13.1/touch) | Create files and set access/modification times.
 | [yarn](https://yarnpkg.com) | JavaScript and Node.js package manager alternative.
 
 Cygwin
+A collection of GNU and Open Source tools which provide functionality similar to a Linux distribution on Windows.
+
+LLVM
+A collection of modular and reusable compiler and toolchain technologies.
 
 w64devkit
+Portable C and C++ Development Kit for x64 Windows.
