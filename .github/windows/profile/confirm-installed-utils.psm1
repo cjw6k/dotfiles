@@ -20,8 +20,8 @@ function Confirm-InstalledUtils {
   $allConfirmed = $true
   Write-Host "Commands"
   foreach ($command in $commands) {
-    ($hasShim = shovel which $command) *>$null
-    
+    $hasShim = shovel which $command 6>$null
+
     $allConfirmed = $allConfirmed -and $hasShim
 
     if ($hasShim) {
@@ -30,7 +30,7 @@ function Confirm-InstalledUtils {
       Write-Host -NoNewLine "❌ "
     }
 
-    Write-Host $command
+    Write-Host "$command is $hasShim"
   }
 
   Write-Host "Modules"
@@ -48,9 +48,12 @@ function Confirm-InstalledUtils {
     Write-Host $module
   }
 
-  if ($allConfirmed -eq $false) {
+  if ($allConfirmed -ne $true) {
     throw "Required utilities are not present."
   }
+
+  # dumb hack
+  cmd /c exit 0
 }
 
 Export-ModuleMember -Function Confirm-InstalledUtils
