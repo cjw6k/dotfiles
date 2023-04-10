@@ -24,16 +24,6 @@
     "installer": "default"
   },
   {
-    "name": "The Silver Searcher",
-    "alias": "ag",
-    "description": "A code-searching tool similar to ack, but faster.",
-    "url": "https://geoff.greer.fm/ag/",
-    "installer": "default",
-    "provides": [
-      "ag"
-    ]
-  },
-  {
     "name": "chezmoi",
     "description": "Manage your dotfiles across multiple diverse machines, securely.",
     "url": "https://chezmoi.io/",
@@ -324,6 +314,16 @@
     "description": "Create and deploy infrastructure as code to cloud providers.",
     "url": "https://www.terraform.io/",
     "installer": "default"
+  },
+  {
+    "name": "The Silver Searcher",
+    "alias": "ag",
+    "description": "A code-searching tool similar to ack, but faster.",
+    "url": "https://geoff.greer.fm/ag/",
+    "installer": "default",
+    "provides": [
+      "ag"
+    ]
   },
   {
     "name": "tokei",
