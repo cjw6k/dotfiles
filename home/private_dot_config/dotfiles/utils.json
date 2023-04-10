@@ -43,7 +43,14 @@
     "name": "cmake",
     "description": "Cross-platform build automation system.",
     "url": "https://cmake.org/cmake/help/latest/manual/cmake.1.html",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "cmake",
+      "cmcldeps",
+      "cpack",
+      "ctest",
+      "cmake-gui"
+    ]
   },
   {
     "name": "composer",
@@ -73,7 +80,12 @@
     "name": "ffmpeg",
     "description": "Audio/Video conversion tool.",
     "url": "https://ffmpeg.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "ffmpeg",
+      "ffplay",
+      "ffprobe"
+    ]
   },
   {
     "name": "gh",
@@ -85,13 +97,27 @@
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "installer": "builtin"
+    "installer": "builtin",
+    "provides": [
+      "sh",
+      "bash",
+      "git",
+      "gitk",
+      "git-gui",
+      "scalar",
+      "tig",
+      "git-bash"
+    ]
   },
   {
     "name": "go",
     "description": "Tool for managing go source code.",
     "url": "https://golang.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "go",
+      "gofmt"
+    ]
   },
   {
     "name": "gource",
@@ -151,13 +177,21 @@
     "name": "lua",
     "description": "A powerful, light-weight embeddable programming language.",
     "url": "https://www.lua.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "lua",
+      "luac"
+    ]
   },
   {
     "name": "luarocks",
     "description": "The package manager for Lua modules.",
     "url": "https://luarocks.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "luarocks",
+      "luarocks-admin"
+    ]
   },
   {
     "name": "lychee",
@@ -193,7 +227,12 @@
     "name": "nodejs",
     "description": "Server-side JavaScript platform.",
     "url": "https://nodejs.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "node",
+      "npm",
+      "npx"
+    ]
   },
   {
     "name": "okteto",
@@ -214,16 +253,22 @@
     "installer": "default"
   },
   {
-    "name": "php-nts",
+    "name": "php",
+    "alias": "php-nts",
     "description": "PHP command-line interface.",
     "url": "https://php.net/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "php",
+      "php-cgi",
+      "phpdbg"
+    ]
   },
   {
     "name": "posh-git",
     "description": "A PowerShell environment for Git.",
     "url": "http://dahlbyk.github.io/posh-git/",
-    "installer": "default"
+    "installer": "psmodule"
   },
   {
     "name": "python",
@@ -235,7 +280,11 @@
     "name": "sass",
     "description": "Converts SCSS or Sass files to CSS.",
     "url": "https://sass-lang.com/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "sass",
+      "dart-sass"
+    ]
   },
   {
     "name": "shellcheck",
