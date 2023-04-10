@@ -3,9 +3,9 @@ name: Continuous Integration
 on: push
 
 jobs:
-  experiment:
+  windows:
     runs-on: windows-latest
-    name: Maybe this works
+    name: Install and Test Windows
     steps:
       - name: checkout
         uses: actions/checkout@v3
