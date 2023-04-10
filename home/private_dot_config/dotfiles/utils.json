@@ -18,6 +18,11 @@
     "installer": "builtin"
   },
   {
+    "name": "git",
+    "description": "Distributed version control system.",
+    "installer": "builtin"
+  },
+  {
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "installer": "default"
