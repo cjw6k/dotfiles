@@ -8,7 +8,7 @@ $utils = Get-Content '~/.config/dotfiles/utils.json' `
 $toInstall = @()
 foreach ($util in $utils) {
   if ($util.alias -ne $null) {
-    $toInstall += $util.name
+    $toInstall += $util.alias
     continue
   }
 
