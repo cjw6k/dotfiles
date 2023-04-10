@@ -3,7 +3,10 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "op"
+    ]
   },
   {
     "name": "7zip",
