@@ -3,7 +3,7 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "op"
     ]
@@ -12,7 +12,7 @@
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
-    "installer": "builtin",
+    "type": "builtin",
     "provides": [
       "7z"
     ]
@@ -21,19 +21,19 @@
     "name": "actionlint",
     "description": "A linter for GitHub Actions workflow files.",
     "url": "https://github.com/rhysd/actionlint",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "chezmoi",
     "description": "Manage your dotfiles across multiple diverse machines, securely.",
     "url": "https://chezmoi.io/",
-    "installer": "builtin"
+    "type": "builtin"
   },
   {
     "name": "cmake",
     "description": "Cross-platform build automation system.",
     "url": "https://cmake.org/cmake/help/latest/manual/cmake.1.html",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "cmake",
       "cmcldeps",
@@ -46,31 +46,31 @@
     "name": "composer",
     "description": "A package-based dependency manager for PHP projects.",
     "url": "https://getcomposer.org/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "delta",
     "description": "A viewer for git and diff output.",
     "url": "https://dandavison.github.io/delta/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "dive",
     "description": "A tool for exploring a Docker image, layer contents, and discovering ways to shrink it.",
     "url": "https://github.com/wagoodman/dive",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "doctl",
     "description": "Official command line interface for the DigitalOcean API.",
     "url": "https://github.com/digitalocean/doctl",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "ffmpeg",
     "description": "Audio/Video conversion tool.",
     "url": "https://ffmpeg.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "ffmpeg",
       "ffplay",
@@ -81,13 +81,13 @@
     "name": "gh",
     "description": "Work seamlessly with GitHub from the command line.",
     "url": "https://cli.github.com/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "installer": "builtin",
+    "type": "builtin",
     "provides": [
       "sh",
       "bash",
@@ -103,7 +103,7 @@
     "name": "go",
     "description": "Tool for managing go source code.",
     "url": "https://golang.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "go",
       "gofmt"
@@ -113,61 +113,61 @@
     "name": "gource",
     "description": "Renders an animated tree diagram of Git, SVN, Mercurial and Bazaar repositories.",
     "url": "https://gource.io/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "hadolint",
     "description": "Dockerfile linter.",
     "url": "https://github.com/hadolint/hadolint",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "helm",
     "description": "A package manager for Kubernetes.",
     "url": "https://helm.sh/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "hexyl",
     "description": "Hex viewer for the terminal.",
     "url": "https://github.com/sharkdp/hexyl",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "hyperfine",
     "description": "A command-line benchmarking tool.",
     "url": "https://github.com/sharkdp/hyperfine/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "kind",
     "description": "Tool for running local Kubernetes clusters using Docker container \"nodes\".",
     "url": "https://github.com/kubernetes-sigs/kind",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "kubectl",
     "description": "Command-line interface for running commands against Kubernetes clusters.",
     "url": "https://kubernetes.io/docs/reference/kubectl/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "kubeseal",
     "description": "Asymmetric crypto to encrypt secrets for kubernetes.",
     "url": "https://github.com/bitnami-labs/sealed-secrets",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "lua",
     "description": "A powerful, light-weight embeddable programming language.",
     "url": "https://www.lua.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "lua",
       "luac"
@@ -177,7 +177,7 @@
     "name": "luarocks",
     "description": "The package manager for Lua modules.",
     "url": "https://luarocks.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "luarocks",
       "luarocks-admin"
@@ -187,37 +187,37 @@
     "name": "lychee",
     "description": "Async, stream-based link checker.",
     "url": "https://github.com/lycheeverse/lychee",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "make",
     "description": "Task runner for targets described in Makefile.",
     "url": "https://www.gnu.org/software/make/manual/make.html",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "micro",
     "description": "A modern and intuitive terminal-based text editor.",
     "url": "https://micro-editor.github.io/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "nano",
     "description": "Command-line text editor.",
     "url": "https://nano-editor.org/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "neofetch",
     "description": "Display information about your operating system, software and hardware.",
     "url": "https://github.com/dylanaraps/neofetch",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "nodejs",
     "description": "Server-side JavaScript platform.",
     "url": "https://nodejs.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "node",
       "npm",
@@ -228,26 +228,26 @@
     "name": "okteto",
     "description": "Develop your applications directly in your Kubernetes Cluster.",
     "url": "https://github.com/okteto/okteto",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "onefetch",
     "description": "Command-line Git information tool.",
     "url": "https://onefetch.dev/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "openssl",
     "description": "OpenSSL cryptographic toolkit.",
     "url": "https://www.openssl.org/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "php",
     "alias": "php-nts",
     "description": "PHP command-line interface.",
     "url": "https://php.net/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "php",
       "php-cgi",
@@ -258,13 +258,13 @@
     "name": "posh-git",
     "description": "A PowerShell environment for Git.",
     "url": "http://dahlbyk.github.io/posh-git/",
-    "installer": "psmodule"
+    "type": "psmodule"
   },
   {
     "name": "python",
     "description": "Python language interpreter.",
     "url": "https://www.python.org/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "py",
       "python",
@@ -284,7 +284,7 @@
     "name": "sass",
     "description": "Converts SCSS or Sass files to CSS.",
     "url": "https://sass-lang.com/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "sass",
       "dart-sass"
@@ -294,31 +294,31 @@
     "name": "shellcheck",
     "description": "Shell script static analysis tool.",
     "url": "https://www.shellcheck.net/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "shfmt",
     "description": "Format shell programs.",
     "url": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "sudo",
     "description": "Executes a single command as the superuser or another user.",
     "url": "https://www.sudo.ws/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "task",
     "description": "A task runner / simpler Make alternative.",
     "url": "https://taskfile.dev/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "tealdeer",
     "description": "Display simple help pages for command-line tools from the tldr-pages project.",
     "url": "https://tldr.sh/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "tldr"
     ]
@@ -327,14 +327,14 @@
     "name": "terraform",
     "description": "Create and deploy infrastructure as code to cloud providers.",
     "url": "https://www.terraform.io/",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "The Silver Searcher",
     "alias": "ag",
     "description": "A code-searching tool similar to ack, but faster.",
     "url": "https://geoff.greer.fm/ag/",
-    "installer": "default",
+    "type": "default",
     "provides": [
       "ag"
     ]
@@ -343,18 +343,18 @@
     "name": "tokei",
     "description": "Print out statistics about code.",
     "url": "https://github.com/XAMPPRocky/tokei",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "touch",
     "description": "Create files and set access/modification times.",
     "url": "https://manned.org/man/freebsd-13.1/touch",
-    "installer": "default"
+    "type": "default"
   },
   {
     "name": "yarn",
     "description": "JavaScript and Node.js package manager alternative.",
     "url": "https://yarnpkg.com/",
-    "installer": "default"
+    "type": "default"
   }
 ]

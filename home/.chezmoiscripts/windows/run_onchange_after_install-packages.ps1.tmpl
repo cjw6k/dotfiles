@@ -3,7 +3,7 @@
 
 $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
-  | Where-Object {$_.installer -eq "default"}
+  | Where-Object {$_.type -eq "default"}
 
 $toInstall = @()
 foreach ($util in $utils) {
