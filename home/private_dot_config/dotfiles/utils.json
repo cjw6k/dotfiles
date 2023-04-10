@@ -1,0 +1,40 @@
+[
+  {
+    "name": "7zip",
+    "description": "A file archiver with a high compression ratio.",
+    "installer": "builtin",
+    "provides": [
+      "7z"
+    ]
+  },
+  {
+    "name": "ag",
+    "description": "A code-searching tool similar to ack, but faster.",
+    "installer": "default"
+  },
+  {
+    "name": "chezmoi",
+    "description": "Manage your dotfiles across multiple diverse machines, securely.",
+    "installer": "builtin"
+  },
+  {
+    "name": "git",
+    "description": "Distributed version control system.",
+    "installer": "builtin"
+  },
+  {
+    "name": "jq",
+    "description": "A command-line JSON processor that uses a domain-specific language.",
+    "installer": "default"
+  },
+  {
+    "name": "nano",
+    "description": "Command-line text editor.",
+    "installer": "default"
+  },
+  {
+    "name": "task",
+    "description": "A task runner / simpler Make alternative.",
+    "installer": "default"
+  }
+]

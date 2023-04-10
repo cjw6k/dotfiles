@@ -47,7 +47,7 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [1password-cli](https://developer.1password.com/docs/cli/) | Provision secrets across development environments.
 | [7zip](https://www.7-zip.org) | A file archiver with a high compression ratio. | :heavy_check_mark:
 | [actionlint](https://github.com/rhysd/actionlint) | A linter for GitHub Actions workflow files.
-| [ag](https://geoff.greer.fm/ag/) | A code-searching tool similar to ack, but faster.
+| [ag](https://geoff.greer.fm/ag/) | A code-searching tool similar to ack, but faster. | :heavy_check_mark:
 | [alacritty*](https://github.com/alacritty/alacritty) | Cross-platform, GPU-accelerated terminal emulator.
 | [ah](https://github.com/artifacthub/hub) | Artifact Hub command line tool
 | [chezmoi](https://chezmoi.io) | Manage your dotfiles across multiple diverse machines, securely. | :heavy_check_mark:
@@ -72,7 +72,7 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [helm](https://helm.sh/) | A package manager for Kubernetes.
 | [hexyl](https://github.com/sharkdp/hexyl) | Hex viewer for the terminal.
 | [hyperfine](https://github.com/sharkdp/hyperfine/) | A command-line benchmarking tool.
-| [jq](https://stedolan.github.io/jq/) | A command-line JSON processor that uses a domain-specific language.
+| [jq](https://stedolan.github.io/jq/) | A command-line JSON processor that uses a domain-specific language. | :heavy_check_mark:
 | [kate*](https://kate-editor.org/) | KDE's advanced text editor.
 | [kind](https://github.com/kubernetes-sigs/kind) | Tool for running local Kubernetes clusters using Docker container "nodes".
 | [kompose*](https://github.com/kubernetes/kompose) | A tool to convert docker-compose applications to Kubernetes.
@@ -85,7 +85,7 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [lychee](https://github.com/lycheeverse/lychee) | Async, stream-based link checker.
 | [make](https://www.gnu.org/software/make/manual/make.html) | Task runner for targets described in Makefile.
 | [micro](https://micro-editor.github.io) | A modern and intuitive terminal-based text editor.
-| [nano](https://nano-editor.org) | Command-line text editor.
+| [nano](https://nano-editor.org) | Command-line text editor. | :heavy_check_mark:
 | [neofetch](https://github.com/dylanaraps/neofetch) | display information about your operating system, software and hardware.
 | [nerdctl*](https://github.com/containerd/nerdctl) | contaiNERD CTL - Docker-compatible CLI for containerd.
 | [nodejs](https://nodejs.org) | Server-side JavaScript platform.
@@ -101,7 +101,7 @@ Get [`chezmoi`](https://chezmoi.io/install/) and install these dotfiles with `ch
 | [shfmt](https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd) | Format shell programs.
 | [stylua*](https://github.com/JohnnyMorganz/StyLua) | An opinionated Lua code formatter. 
 | [sudo](https://www.sudo.ws/) | Executes a single command as the superuser or another user.
-| [task](https://taskfile.dev/) | A task runner / simpler Make alternative.
+| [task](https://taskfile.dev/) | A task runner / simpler Make alternative. | :heavy_check_mark:
 | [tealdeer](https://tldr.sh) | Display simple help pages for command-line tools from the tldr-pages project.
 | [terraform](https://www.terraform.io/) | Create and deploy infrastructure as code to cloud providers.
 | [tokei*](https://github.com/XAMPPRocky/tokei) | Print out statistics about code.
