@@ -9,7 +9,7 @@ function Confirm-InstalledUtils {
       continue
     }
 
-    if ($util.provides -eq $null) {
+    if ($null -eq $util.provides) {
       $commands += $util.name
       continue
     }
