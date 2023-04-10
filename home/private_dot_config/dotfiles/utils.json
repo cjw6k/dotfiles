@@ -264,7 +264,21 @@
     "name": "python",
     "description": "Python language interpreter.",
     "url": "https://www.python.org/",
-    "installer": "default"
+    "installer": "default",
+    "provides": [
+      "py",
+      "python",
+      "python3",
+      "pythonw",
+      "pyw",
+      "idle",
+      "identify-cli",
+      "nodeenv",
+      "pip",
+      "pip3",
+      "pre-commit",
+      "virtualenv"
+    ]
   },
   {
     "name": "sass",
