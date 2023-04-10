@@ -1,3 +1,4 @@
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $env:SCOOP = Join-Path $env:USERPROFILE 'scoop'
 [System.Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
 
