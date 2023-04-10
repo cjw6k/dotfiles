@@ -5,7 +5,7 @@ function Confirm-InstalledUtils {
   $modules = @()
   foreach ($util in $utils) {
     if ($util.type -eq "psmodule") {
-      $modules += $util.provides
+      $modules += $util.name
       continue
     }
 
