@@ -22,6 +22,7 @@
   },
   {
     "name": "The Silver Searcher",
+    "alias": "ag",
     "description": "A code-searching tool similar to ack, but faster.",
     "url": "https://geoff.greer.fm/ag/",
     "installer": "default",
