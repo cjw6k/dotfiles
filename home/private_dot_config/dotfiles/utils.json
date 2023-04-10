@@ -272,12 +272,8 @@
       "pythonw",
       "pyw",
       "idle",
-      "identify-cli",
-      "nodeenv",
       "pip",
-      "pip3",
-      "pre-commit",
-      "virtualenv"
+      "pip3"
     ]
   },
   {
