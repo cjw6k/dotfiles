@@ -3,7 +3,16 @@
 
 $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
-  | Where-Object {$_.installer -eq "default"} `
-  | Foreach-Object {$_.name}
+  | Where-Object {$_.type -eq "default"}
 
-shovel install @utils
+$toInstall = @()
+foreach ($util in $utils) {
+  if ($null -ne $util.alias) {
+    $toInstall += $util.alias
+    continue
+  }
+
+  $toInstall += $util.name
+}
+
+shovel install @toInstall

@@ -1,9 +1,10 @@
+[Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
 $env:SCOOP = Join-Path $env:USERPROFILE 'scoop'
 [System.Environment]::SetEnvironmentVariable('SCOOP', $env:SCOOP, 'User')
 
 function Install-Shovel {
-    iex "& {$(irm get.scoop.sh)} -RunAsAdmin"
-    echo "$Env:USERPROFILE\scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
+    Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)} -RunAsAdmin"
+    Write-Output "$Env:USERPROFILE\scoop\shims" | Out-File -FilePath $env:GITHUB_PATH -Encoding utf8 -Append
 
     Add-MpPreference -ExclusionPath "$env:SCOOP"
     Add-MpPreference -ExclusionPath "$env:ProgramData\scoop"

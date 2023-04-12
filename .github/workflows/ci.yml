@@ -43,8 +43,8 @@ jobs:
       - name: init dotfiles
         run: chezmoi init cjw6k --apply --branch ${{ github.ref_name }}
 
-      - name: verify utilities are present
-        run: Confirm-InstalledUtils
-
       - name: shovel list
         run: shovel list
+
+      - name: verify utilities are present
+        run: Confirm-InstalledUtils
