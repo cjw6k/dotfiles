@@ -6,6 +6,9 @@ jobs:
   windows:
     runs-on: windows-latest
     name: Install and Test Windows
+    concurrency:
+      group: ci-${{ github.ref }}
+      cancel_in_progress: true
     steps:
       - name: checkout
         uses: actions/checkout@v3
