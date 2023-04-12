@@ -29,5 +29,11 @@
       "tig",
       "git-bash"
     ]
+  },
+  {
+    "name": "nano",
+    "description": "Command-line text editor.",
+    "url": "https://nano-editor.org/",
+    "type": "default"
   }
 ]
