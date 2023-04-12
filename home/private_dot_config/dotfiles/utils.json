@@ -164,6 +164,26 @@
     "type": "default"
   },
   {
+    "name": "lua",
+    "description": "A powerful, light-weight embeddable programming language.",
+    "url": "https://www.lua.org/",
+    "type": "default",
+    "provides": [
+        "lua",
+        "luac"
+      ]
+  },
+  {
+    "name": "luarocks",
+    "description": "The package manager for Lua modules.",
+    "url": "https://luarocks.org/",
+    "type": "default",
+    "provides": [
+        "luarocks",
+        "luarocks-admin"
+      ]
+  },
+  {
     "name": "lychee",
     "description": "Async, stream-based link checker.",
     "url": "https://github.com/lycheeverse/lychee",
