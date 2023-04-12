@@ -31,6 +31,12 @@
     ]
   },
   {
+    "name": "jq",
+    "description": "A command-line JSON processor that uses a domain-specific language.",
+    "url": "https://stedolan.github.io/jq/",
+    "type": "default"
+  },
+  {
     "name": "nano",
     "description": "Command-line text editor.",
     "url": "https://nano-editor.org/",
