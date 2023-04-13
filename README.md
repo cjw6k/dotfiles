@@ -64,7 +64,7 @@ openssh installs don't support ED25519 keys stored in PKCS #8 format, so we'll s
 Alternatively, if you generate the ssh key yourself on the cli e.g. `ssh-keygen -t ed25519 -a 100` you can copy that
 content directly into the "openssh private key" field.
 
-### Installed Utilities
+## Installed Utilities
 
 | Utility                       | Description                                                      | Windows            |
 |-------------------------------|------------------------------------------------------------------|--------------------|
