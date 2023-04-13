@@ -1,5 +1,14 @@
 [
   {
+    "name": "1password-cli",
+    "description": "Provision secrets across development environments.",
+    "url": "https://developer.1password.com/docs/cli/",
+    "type": "default",
+    "provides": [
+      "op"
+    ]
+  },
+  {
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",

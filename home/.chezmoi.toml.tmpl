@@ -1,9 +1,21 @@
-{{- if eq .chezmoi.os "windows" -}}
+{{- writeToStdout "dotfiles by cjw6k - see https://github.com/cjw6k/dotfiles/ for usage\n\n" -}}
+
+{{/* feature flags */}}
+{{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+
+{{ if stdinIsATTY -}}
+{{-   $personal = promptBoolOnce . "personal" "Should this machine have personal secrets" false -}}
+{{- end -}}
+
+[data.is]
+    personal = {{ $personal }}
+
+{{ if eq .chezmoi.os "windows" -}}
 [cd]
-command = "pwsh"
-args = "-NoLogo"
+    command = "pwsh"
+    args = "-NoLogo"
 
 [interpreters.ps1]
-command = "pwsh"
-args = ["-NoLogo"]
+    command = "pwsh"
+    args = ["-NoLogo"]
 {{- end -}}
