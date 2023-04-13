@@ -68,6 +68,9 @@ content directly into the "openssh private key" field.
 
 | Utility                       | Description                                                      | Windows            |
 |-------------------------------|------------------------------------------------------------------|--------------------|
+| 1password-cli                 |                                                                  | :heavy_check_mark: |
 | [7zip](https://www.7-zip.org) | A file archiver with a high compression ratio.                   | :heavy_check_mark: |
 | [chezmoi](https://chezmoi.io) | Manage your dotfiles across multiple diverse machines, securely. | :heavy_check_mark: |
 | [git](https://git-scm.com/)   | Distributed version control system.                              | :heavy_check_mark: |
+| jq                            |                                                                  | :heavy_check_mark: |
+| nano                          |                                                                  | :heavy_check_mark: |
