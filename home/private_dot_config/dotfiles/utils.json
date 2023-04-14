@@ -68,5 +68,21 @@
     "description": "Command-line text editor.",
     "url": "https://nano-editor.org/",
     "type": "default"
+  },
+  {
+    "name": "openssh",
+    "description": "Connectivity tool for remote login with the SSH protocol",
+    "url": "https://www.openssh.com/",
+    "type": "matrix",
+    "matrix": {
+      "linux": {
+        "alpine": "default"
+      },
+      "windows": "builtin"
+    },
+    "provides": [
+      "ssh",
+      "ssh-keygen"
+    ]
   }
 ]
