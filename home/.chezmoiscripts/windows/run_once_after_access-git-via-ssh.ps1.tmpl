@@ -1,0 +1,5 @@
+$remote = git -C "{{ .chezmoi.workingTree }}" remote get-url origin
+if ($remote.StartsWith("https://github.com/") -and $remote.EndsWith(".git")) {
+  $remote = $remote -replace "^https://github.com/", "git@github.com:" -replace ".git$"
+  git -C "{{ .chezmoi.workingTree }}" remote set-url origin $remote
+}
