@@ -3,11 +3,11 @@
 
 $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
-  | Where-Object {
-    ($_.type -eq "default")
-    -or (
-      ($_.type -eq "matrix") -and ($_.matrix.windows -eq "default")
-    )
+  | Where-Object { `
+    ($_.type -eq "default") `
+    -or ( `
+      ($_.type -eq "matrix") -and ($_.matrix.windows -eq "default") `
+    ) `
   }
 
 $toInstall = @()
