@@ -1,8 +1,19 @@
 {{- if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
+.chezmoiscripts/personal/windows/**
+{{ end -}}
+
+{{- if ne .chezmoi.os "linux" -}}
+.chezmoiscripts/linux/**
+.chezmoiscripts/personal/linux/**
+{{ else -}}
+{{   if ne .chezmoi.osRelease.id "alpine" -}}
+    .chezmoiscripts/linux/alpine/**
+    .chezmoiscripts/personal/linux/alpine/**
+{{   end -}}
 {{ end -}}
 
 {{ if not .is.personal -}}
-.chezmoiscripts/windows/personal/**
+.chezmoiscripts/personal/**
 .ssh
 {{ end -}}
