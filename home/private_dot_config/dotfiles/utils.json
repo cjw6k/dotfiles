@@ -12,7 +12,11 @@
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
-    "type": "builtin",
+    "type": "matrix",
+    "matrix": {
+      "alpine": "default",
+      "windows": "builtin"
+    },
     "provides": [
       "7z"
     ]
@@ -27,7 +31,11 @@
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "type": "builtin",
+    "type": "matrix",
+    "matrix": {
+      "alpine": "default",
+      "windows": "builtin"
+    },
     "provides": [
       "sh",
       "bash",
@@ -43,7 +51,11 @@
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
-    "type": "default"
+    "type": "matrix",
+    "matrix": {
+      "alpine": "custom",
+      "windows": "default"
+    }
   },
   {
     "name": "nano",
