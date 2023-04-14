@@ -3,3 +3,6 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
+apk add $(jq -r '.[] | select(.type == "default" or (.type == "matrix" and .matrix.linux.alpine == "default")) | .name' \
+  ~/.config/dotfiles/utils.json)
+

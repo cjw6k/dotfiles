@@ -14,7 +14,9 @@
     "url": "https://www.7-zip.org/",
     "type": "matrix",
     "matrix": {
-      "alpine": "default",
+      "linux": {
+        "alpine": "default"
+      },
       "windows": "builtin"
     },
     "provides": [
@@ -33,7 +35,9 @@
     "url": "https://git-scm.com/",
     "type": "matrix",
     "matrix": {
-      "alpine": "default",
+      "linux": {
+        "alpine": "default"
+      },
       "windows": "builtin"
     },
     "provides": [
@@ -53,7 +57,9 @@
     "url": "https://stedolan.github.io/jq/",
     "type": "matrix",
     "matrix": {
-      "alpine": "custom",
+      "linux": {
+        "alpine": "custom"
+      },
       "windows": "default"
     }
   },
