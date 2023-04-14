@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
+#!/usr/bin/env sh
 
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
