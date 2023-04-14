@@ -3,7 +3,7 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "type": "custom",
+    "type": "personal",
     "provides": [
       "op"
     ]
