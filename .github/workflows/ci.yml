@@ -58,14 +58,11 @@ jobs:
     runs-on: ubuntu-latest
     name: Install and Test on Alpine
     steps:
-      - name: setup alpine
+      - name: setup alpine w/ chezmoi
         uses: jirutka/setup-alpine@v1
         with:
           branch: edge
-
-      - name: install chezmoi
-        shell: alpine.sh {0}
-        run: apk add chezmoi
+          packages: chezmoi
 
       - name: init dotfiles
         shell: alpine.sh {0}
