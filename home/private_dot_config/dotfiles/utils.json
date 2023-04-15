@@ -4,9 +4,11 @@
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
     "type": "personal",
-    "provides": [
-      "op"
-    ]
+    "provides": {
+      "shared": [
+        "op"
+      ]
+    }
   },
   {
     "name": "7zip",
@@ -19,9 +21,11 @@
       },
       "windows": "builtin"
     },
-    "provides": [
-      "7z"
-    ]
+    "provides": {
+      "shared": [
+        "7z"
+      ]
+    }
   },
   {
     "name": "chezmoi",
@@ -40,16 +44,20 @@
       },
       "windows": "builtin"
     },
-    "provides": [
-      "sh",
-      "bash",
-      "git",
-      "gitk",
-      "git-gui",
-      "scalar",
-      "tig",
-      "git-bash"
-    ]
+    "provides": {
+      "shared": [
+        "git"
+      ],
+      "windows": [
+        "sh",
+        "bash",
+        "gitk",
+        "git-gui",
+        "scalar",
+        "tig",
+        "git-bash"
+      ]
+    }
   },
   {
     "name": "jq",
@@ -80,9 +88,11 @@
       },
       "windows": "builtin"
     },
-    "provides": [
-      "ssh",
-      "ssh-keygen"
-    ]
+    "provides": {
+      "shared": [
+        "ssh",
+        "ssh-keygen"
+      ]
+    }
   }
 ]
