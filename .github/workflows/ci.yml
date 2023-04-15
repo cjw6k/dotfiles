@@ -96,3 +96,15 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v2
+
+      - name: install wget
+        run: apt-get update && apt-get install -y wget
+
+      - name: install chezmoi
+        run: sh -c "$(wget -qO- get.chezmoi.io)"
+
+      - name: init dotfiles
+        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh
