@@ -1,3 +1,4 @@
+{{/* .tmpl suffix allowed on this file since v2.29.0 */}}
 {{- if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
 .chezmoiscripts/personal/windows/**
