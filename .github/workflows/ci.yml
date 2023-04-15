@@ -64,9 +64,9 @@ jobs:
           branch: edge
 
       - name: install chezmoi
-        shell: alpine.sh {0}
+        shell: alpine.sh --root {0}
         run: apk add chezmoi
 
       - name: init dotfiles
-        shell: alpine.sh {0}
+        shell: alpine.sh --root {0}
         run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
