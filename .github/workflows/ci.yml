@@ -103,6 +103,12 @@ jobs:
       - name: install chezmoi
         run: sh -c "$(wget -qO- get.chezmoi.io)"
 
+      - name: check path
+        run: echo $PATH
+
+      - name: debug
+        run: which chezmoi
+
       - name: init dotfiles
         run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
 
