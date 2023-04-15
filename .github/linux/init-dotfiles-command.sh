@@ -33,9 +33,9 @@ case $1 in
         ;;
 
       v3.17)
-        ;;&
+        ;&
       v3.16)
-        chezmoi --guess-repo-url=false https://github.com/cjw6k/dotfiles.git
+        chezmoi "--guess-repo-url=false https://github.com/cjw6k/dotfiles.git"
         ;;
 
       *)
