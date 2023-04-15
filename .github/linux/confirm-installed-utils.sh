@@ -28,7 +28,7 @@ for i in $(echo "$partial" | jq -r '. | select(.provides == null) | .name'); do
   fi
 done
 
-for i in $(echo "$partial" | jq -r '. | select(.provides != null) | .provides.shared[]'); do
+for i in $(echo "$partial" | jq -r '. | select(.provides != null) | .provides.common[]'); do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))

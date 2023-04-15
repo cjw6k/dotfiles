@@ -5,7 +5,7 @@
     "url": "https://developer.1password.com/docs/cli/",
     "type": "personal",
     "provides": {
-      "shared": [
+      "common": [
         "op"
       ]
     }
@@ -22,7 +22,7 @@
       "windows": "builtin"
     },
     "provides": {
-      "shared": [
+      "common": [
         "7z"
       ]
     }
@@ -45,7 +45,7 @@
       "windows": "builtin"
     },
     "provides": {
-      "shared": [
+      "common": [
         "git"
       ],
       "windows": [
@@ -89,7 +89,7 @@
       "windows": "builtin"
     },
     "provides": {
-      "shared": [
+      "common": [
         "ssh",
         "ssh-keygen"
       ]

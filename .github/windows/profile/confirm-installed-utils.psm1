@@ -18,7 +18,7 @@ function Confirm-InstalledUtils {
       continue
     }
 
-    $commands += $util.provides.shared
+    $commands += $util.provides.common
     $commands += $util.provides.windows
   }
 
