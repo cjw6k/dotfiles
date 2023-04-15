@@ -2,13 +2,14 @@ name: Continuous Integration
 
 on: push
 
+concurrency:
+  group: ${{ github.workflow }}-${{ github.pull_request.url || github.run_id }}
+  cancel-in-progress: true
+
 jobs:
   windows:
     runs-on: windows-latest
-    name: Install and Test Windows
-    concurrency:
-      group: ci-${{ github.ref }}
-      cancel-in-progress: true
+    name: Install and Test on Windows
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -51,3 +52,21 @@ jobs:
 
       - name: verify utilities are present
         run: Confirm-InstalledUtils
+
+  alpine:
+    # todo: matrix of branches for current releases, see https://alpinelinux.org/releases/
+    runs-on: ubuntu-latest
+    name: Install and Test on Alpine
+    steps:
+      - name: setup alpine
+        uses: jirutka/setup-alpine@v1
+        with:
+          branch: edge
+
+      - name: install chezmoi
+        shell: alpine.sh {0}
+        run: apk add chezmoi
+
+      - name: init dotfiles
+        shell: alpine.sh {0}
+        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
