@@ -57,6 +57,9 @@ jobs:
     # todo: matrix of branches for current releases, see https://alpinelinux.org/releases/
     runs-on: ubuntu-latest
     name: Install and Test on Alpine
+    strategy:
+      matrix:
+        branch: [edge, v3.17]
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -64,16 +67,21 @@ jobs:
       - name: setup alpine
         uses: jirutka/setup-alpine@v1
         with:
-          branch: edge
+          branch: ${{ matrix.branch }}
 
       - name: install chezmoi
         shell: alpine.sh --root {0}
         run: apk add chezmoi
 
+      - name: detect version-safe command to init dotfiles
+        id: init-dotfiles-command
+        run: echo command="$(.github/linux/init-dotfiles-command.sh alpine ${{ matrix.branch }})" >> $GITHUB_OUTPUT
+
       - name: init dotfiles
         shell: alpine.sh --root {0}
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+        # modern install: chezmoi init --apply cjw6k --branch ...
+        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.ref_name }}
 
       - name: verify utilities are present
         shell: alpine.sh --root {0}
-        run: sh .github/linux/confirm-installed-utils.sh
+        run: .github/linux/confirm-installed-utils.sh

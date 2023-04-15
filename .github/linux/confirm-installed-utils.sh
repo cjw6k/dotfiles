@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+which jq >> /dev/null
+if [ $? -ne 0 ]; then
+  exit 1
+fi
+
 partial=$(jq '.[] | select(.type != "personal" and .type != "psmodule")' \
   ~/.config/dotfiles/utils.json)
 
