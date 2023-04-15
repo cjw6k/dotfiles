@@ -57,6 +57,9 @@ jobs:
     # todo: matrix of branches for current releases, see https://alpinelinux.org/releases/
     runs-on: ubuntu-latest
     name: Install and Test on Alpine
+    strategy:
+      matrix:
+        branch: [edge, v3.17, v3.16, v3.15, v3.14]
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -64,7 +67,7 @@ jobs:
       - name: setup alpine
         uses: jirutka/setup-alpine@v1
         with:
-          branch: edge
+          branch: ${{ matrix.branch }}
 
       - name: install chezmoi
         shell: alpine.sh --root {0}
