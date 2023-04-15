@@ -75,7 +75,7 @@ jobs:
 
       - name: detect version-safe command to init dotfiles
         id: init-dotfiles-command
-        run: echo command="$(.github/linux/init-dotfiles-command.sh alpine ${{ matrix.branch }})" >> $GITHUB_OUTPUT
+        run: echo command="$(bash -c .github/linux/init-dotfiles-command.sh alpine ${{ matrix.branch }})" >> $GITHUB_OUTPUT
 
       - name: init dotfiles
         shell: alpine.sh --root {0}
