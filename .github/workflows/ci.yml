@@ -73,13 +73,14 @@ jobs:
         shell: alpine.sh --root {0}
         run: apk add chezmoi
 
+      - name: detect version-safe command to init dotfiles
+        id: init-dotfiles-command
+        run: echo command="$(.github/linux/init-dotfiles-command.sh alpine ${{ matrix.branch }})" >> $GITHUB_OUTPUT
+
       - name: init dotfiles
         shell: alpine.sh --root {0}
         # modern install: chezmoi init --apply cjw6k --branch ...
-        # back-compat: avoid repo auto-detected with user@github.com requiring tty for auth
-        run: |
-          chezmoi init --apply --guess-repo-url=false https://github.com/cjw6k/dotfiles.git \
-            --branch ${{ github.ref_name }}
+        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.ref_name }}
 
       - name: verify utilities are present
         shell: alpine.sh --root {0}
