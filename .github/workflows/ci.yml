@@ -97,17 +97,17 @@ jobs:
       - name: checkout
         uses: actions/checkout@v2
 
-      - name: install wget
-        run: apt-get update && apt-get install -y wget
+      - name: install curl
+        run: apt-get update && apt-get install -y curl
 
       - name: install chezmoi
-        run: sh -c "$(wget -qO- get.chezmoi.io)"
+        run: sh -c "$(curl -fsLS get.chezmoi.io)"
 
       - name: check path
         run: echo $PATH
 
       - name: debug
-        run: which chezmoi
+        run: ls /bin/chezmoi
 
       - name: init dotfiles
         run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
