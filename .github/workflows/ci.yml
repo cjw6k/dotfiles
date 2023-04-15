@@ -54,7 +54,6 @@ jobs:
         run: Confirm-InstalledUtils
 
   alpine:
-    # todo: matrix of branches for current releases, see https://alpinelinux.org/releases/
     runs-on: ubuntu-latest
     name: Install and Test on Alpine
     strategy:
@@ -85,3 +84,15 @@ jobs:
       - name: verify utilities are present
         shell: alpine.sh --root {0}
         run: .github/linux/confirm-installed-utils.sh
+
+  ubuntu:
+    runs-on: ubuntu-latest
+    name: Install and Test on Ubuntu
+    strategy:
+      matrix:
+        tag: [latest]
+        #tag: [latest, kinetic, jammy, focal, bionic, xenial, trusty]
+    container: ubuntu:${{ matrix.tag }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
