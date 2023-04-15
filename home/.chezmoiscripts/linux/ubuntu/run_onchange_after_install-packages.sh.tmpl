@@ -3,6 +3,6 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-sudo apt-get install -y $(jq -r '.[] | select(.type == "default" or (.type == "matrix" and .matrix.linux.ubuntu == "default")) | .name' \
+sudo apt-get install -y $(jq -r '.[] | select(.install == "default" or (.install == "matrix" and .matrix.linux.ubuntu == "default")) | .name' \
   ~/.config/dotfiles/utils.json)
 

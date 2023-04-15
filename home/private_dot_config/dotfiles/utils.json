@@ -3,7 +3,7 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "type": "personal",
+    "install": "personal",
     "provides": {
       "common": [
         "op"
@@ -14,7 +14,7 @@
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
-    "type": "matrix",
+    "install": "matrix",
     "matrix": {
       "linux": {
         "alpine": "default"
@@ -31,13 +31,13 @@
     "name": "chezmoi",
     "description": "Manage your dotfiles across multiple diverse machines, securely.",
     "url": "https://chezmoi.io/",
-    "type": "builtin"
+    "install": "builtin"
   },
   {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "type": "matrix",
+    "install": "matrix",
     "matrix": {
       "linux": {
         "alpine": "default"
@@ -63,7 +63,7 @@
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
-    "type": "matrix",
+    "install": "matrix",
     "matrix": {
       "linux": {
         "alpine": "custom"
@@ -75,13 +75,13 @@
     "name": "nano",
     "description": "Command-line text editor.",
     "url": "https://nano-editor.org/",
-    "type": "default"
+    "install": "default"
   },
   {
     "name": "openssh",
     "description": "Connectivity tool for remote login with the SSH protocol",
     "url": "https://www.openssh.com/",
-    "type": "matrix",
+    "install": "matrix",
     "matrix": {
       "linux": {
         "alpine": "default"

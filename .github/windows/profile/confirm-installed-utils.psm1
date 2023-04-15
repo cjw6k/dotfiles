@@ -4,11 +4,11 @@ function Confirm-InstalledUtils {
   $commands = @()
   $modules = @()
   foreach ($util in $utils) {
-    if ($util.type -eq "personal") {
+    if ($util.install -eq "personal") {
       continue
     }
 
-    if ($util.type -eq "psmodule") {
+    if ($util.install -eq "psmodule") {
       $modules += $util.name
       continue
     }

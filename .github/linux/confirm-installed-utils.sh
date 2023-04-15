@@ -5,7 +5,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-partial=$(jq '.[] | select(.type != "personal" and .type != "psmodule")' \
+partial=$(jq '.[] | select(.install != "personal" and .install != "psmodule")' \
   ~/.config/dotfiles/utils.json)
 
 check () {
