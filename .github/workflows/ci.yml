@@ -59,7 +59,7 @@ jobs:
     name: Install and Test on Alpine
     strategy:
       matrix:
-        branch: [edge, v3.17, v3.16]
+        branch: [edge, v3.17]
     steps:
       - name: checkout
         uses: actions/checkout@v3

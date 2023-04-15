@@ -22,20 +22,17 @@ distro () {
 
 alpine () {
   usage
-  echo " when DISTRO is alpine, VERSION must be one of: edge, v3.17, v3.16"
+  echo " when DISTRO is alpine, VERSION must be one of: edge, or v3.17"
 }
 
 case $1 in
   alpine)
     case $2 in
-      v3.14) ;&
-      v3.15) ;&
       edge)
         chezmoi cjw6k
         ;;
 
-      v3.17) ;&
-      v3.16)
+      v3.17)
         chezmoi "--guess-repo-url=false https://github.com/cjw6k/dotfiles.git"
         ;;
 
