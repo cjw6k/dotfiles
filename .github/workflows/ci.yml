@@ -75,7 +75,7 @@ jobs:
 
       - name: init dotfiles
         shell: alpine.sh --root {0}
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+        run: chezmoi init --apply https://github.com/cjw6k/dotfiles.git --branch ${{ github.ref_name }}
 
       - name: verify utilities are present
         shell: alpine.sh --root {0}
