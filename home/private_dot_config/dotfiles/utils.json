@@ -22,6 +22,9 @@
           "bullseye": "p7zip",
           "buster": "p7zip"
         },
+        "gentoo": {
+          "common": "app-arch/p7zip"
+        },
         "ubuntu": {
           "common": "7zip",
           "focal": "p7zip",
@@ -42,6 +45,11 @@
           "bullseye": ["7zr"],
           "buster": ["7zr"]
         },
+        "gentoo": [
+          "7z",
+          "7za",
+          "7zr"
+        ],
         "ubuntu": {
           "latest": ["7zz"],
           "kinetic": ["7zz"],
@@ -67,6 +75,11 @@
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
     "install": {
+      "linux": {
+        "gentoo": {
+          "common": "dev-vcs/git"
+        }
+      },
       "windows": "#builtin"
     },
     "provides": {
@@ -95,7 +108,14 @@
   {
     "name": "nano",
     "description": "Command-line text editor.",
-    "url": "https://nano-editor.org/"
+    "url": "https://nano-editor.org/",
+    "install": {
+      "linux": {
+        "gentoo": {
+          "common": "app-editors/nano"
+        }
+      }
+    }
   },
   {
     "name": "openssh",
@@ -105,6 +125,9 @@
       "linux": {
         "debian": {
           "common": "openssh-server"
+        },
+        "gentoo": {
+          "common": "#builtin"
         },
         "ubuntu": {
           "common": "openssh-server"

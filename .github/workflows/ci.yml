@@ -100,3 +100,30 @@ jobs:
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh ${{ matrix.distro }} ${{ matrix.tag }}
+
+  linux-gentoo:
+    runs-on: ubuntu-latest
+    name: Install and Test on Linux (gentoo)
+    services:
+      portage:
+        image: gentoo/portage:latest
+        volumes:
+          - /var/db/repos/gentoo
+
+    container:
+      image: gentoo/stage3:latest
+      options:
+        - --volumes-from portage
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: init dotfiles
+        run: chezmoi init --apply --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh gentoo latest
