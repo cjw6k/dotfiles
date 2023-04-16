@@ -29,8 +29,12 @@
     },
     "provides": {
       "linux": {
-        "alpine": ["7z"],
-        "ubuntu": ["7zz"]
+        "alpine": {
+          "common": ["7z"]
+        },
+        "ubuntu": {
+          "common": ["7zz"]
+        }
       },
       "windows": ["7z"]
     }

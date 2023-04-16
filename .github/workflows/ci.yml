@@ -83,7 +83,7 @@ jobs:
 
       - name: verify utilities are present
         shell: alpine.sh --root {0}
-        run: .github/linux/confirm-installed-utils.sh alpine
+        run: .github/linux/confirm-installed-utils.sh alpine ${{ matrix.branch }}
 
   ubuntu:
     runs-on: ubuntu-latest
@@ -107,4 +107,4 @@ jobs:
         run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
 
       - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh ubuntu
+        run: .github/linux/confirm-installed-utils.sh ubuntu ${{ matrix.tag }}
