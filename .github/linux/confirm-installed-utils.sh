@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-if [ $# -ne 2 ]; then
+if [ $# -ne 1 ]; then
   echo "usage: confirm-installed-utils.sh DISTRO"
   exit 1
 fi
