@@ -17,7 +17,7 @@ fi
 
 distro () {
   usage
-  echo " DISTRO must be one of: alpine"
+  echo " DISTRO must be one of: alpine, or ubuntu"
 }
 
 alpine () {
@@ -42,6 +42,10 @@ case $1 in
         ;;
 
     esac
+    ;;
+
+  ubuntu)
+    chemzoi cjw6k
     ;;
 
   *)

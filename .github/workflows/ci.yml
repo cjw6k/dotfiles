@@ -53,57 +53,46 @@ jobs:
       - name: verify utilities are present
         run: Confirm-InstalledUtils
 
-  alpine:
+  linux:
     runs-on: ubuntu-latest
-    name: Install and Test on Alpine
+    name: Install and Test on Linux
     strategy:
       matrix:
-        branch: [edge, v3.17]
+        include:
+          - {distro: alpine, tag: edge}
+          - {distro: alpine, tag: v3.17}
+          - {distro: ubuntu, tag: latest}
+          - {distro: ubuntu, tag: kinetic}
+          - {distro: ubuntu, tag: jammy}
+          - {distro: ubuntu, tag: focal}
+          - {distro: ubuntu, tag: bionic}
+          - {distro: ubuntu, tag: xenial}
+
+    container: ${{ matrix.distro }}:${{ matrix.tag }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: setup alpine
-        uses: jirutka/setup-alpine@v1
-        with:
-          branch: ${{ matrix.branch }}
+      - name: install dependencies on ubuntu
+        if: ${{ matrix.distro == 'ubuntu' }}
+        run: apt-get update && apt-get install -y curl sudo
 
-      - name: install chezmoi
-        shell: alpine.sh --root {0}
+      - name: install chezmoi on alpine
+        if: ${{ matrix.distro == 'alpine' }}
         run: apk add chezmoi
 
-      - name: detect version-safe command to init dotfiles
+      - name: install chezmoi on ubuntu
+        if: ${{ matrix.distro == 'ubuntu' }}
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: detect distro-and-version-safe command to init dotfiles
         id: init-dotfiles-command
-        run: echo command="$(.github/linux/init-dotfiles-command.sh alpine ${{ matrix.branch }})" >> $GITHUB_OUTPUT
+        run: |
+          echo command="$(.github/linux/init-dotfiles-command.sh ${{ matrix.distro }} ${{ matrix.tag }})" \
+            >> $GITHUB_OUTPUT
 
       - name: init dotfiles
-        shell: alpine.sh --root {0}
-        # modern install: chezmoi init --apply cjw6k --branch ...
         run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.ref_name }}
 
       - name: verify utilities are present
-        shell: alpine.sh --root {0}
-        run: .github/linux/confirm-installed-utils.sh alpine ${{ matrix.branch }}
-
-  ubuntu:
-    runs-on: ubuntu-latest
-    name: Install and Test on Ubuntu
-    strategy:
-      matrix:
-        tag: [latest, kinetic, jammy, focal, bionic, xenial]
-    container: ubuntu:${{ matrix.tag }}
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: install dependencies
-        run: apt-get update && apt-get install -y curl sudo
-
-      - name: install chezmoi
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-
-      - name: init dotfiles
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-
-      - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh ubuntu ${{ matrix.tag }}
+        run: .github/linux/confirm-installed-utils.sh ${{ matrix.distro }} ${{ matrix.tag }}
