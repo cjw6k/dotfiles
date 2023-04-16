@@ -112,8 +112,7 @@ jobs:
 
     container:
       image: gentoo/stage3:latest
-      options:
-        volumes-from: portage
+      options: --volumes-from portage
 
     steps:
       - name: checkout
