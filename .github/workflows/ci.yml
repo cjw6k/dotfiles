@@ -90,8 +90,7 @@ jobs:
     name: Install and Test on Ubuntu
     strategy:
       matrix:
-        tag: [latest]
-        #tag: [latest, kinetic, jammy, focal, bionic, xenial, trusty]
+        tag: [latest, kinetic, jammy, focal, bionic, xenial, trusty]
     container: ubuntu:${{ matrix.tag }}
     steps:
       - name: checkout
