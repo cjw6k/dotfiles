@@ -116,8 +116,12 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
-      - name: check arch
-        run: gcc -march=native -E -v - </dev/null 2>&1 | grep cc1
+      - name: enable buildpkg feature
+        run: |
+          echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
+          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"'
+          tee </etc/portage/make.conf
+
 #      - name: checkout
 #        uses: actions/checkout@v3
 #
