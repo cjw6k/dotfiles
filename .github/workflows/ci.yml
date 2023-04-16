@@ -150,7 +150,7 @@ jobs:
         run: |
           echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
 
-      - name: DO NOT build jq
+      - name: 💪 DO NOT build jq
         run: emerge -n app-misc/jq
 
 #      - name: checkout
