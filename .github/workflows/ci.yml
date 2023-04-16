@@ -78,7 +78,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: install dependencies via apt
-        if: ${{ contains(['debian', 'ubuntu'], matrix.distro }}
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
         run: apt-get update && apt-get install -y curl sudo
 
       - name: install chezmoi on alpine
@@ -86,7 +86,7 @@ jobs:
         run: apk add chezmoi
 
       - name: install chezmoi on ubuntu; debian
-        if: ${{ contains(['debian', 'ubuntu'], matrix.distro }}
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
       - name: detect distro-and-version-safe command to init dotfiles
