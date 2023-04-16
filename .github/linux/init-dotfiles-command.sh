@@ -7,7 +7,7 @@ chezmoi () {
 }
 
 usage () {
-  echo "usage: install-dotfiles-command.sh DISTRO VERSION"
+  echo "usage: init-dotfiles-command.sh DISTRO VERSION"
 }
 
 if [[ $# -lt 2 ]]; then
