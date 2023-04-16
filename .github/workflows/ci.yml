@@ -132,7 +132,7 @@ jobs:
         id: cache
         uses: actions/cache/restore@v3
         env:
-          cache-name: cache-binpkgs-{{ steps.arch.outputs.arch }}-{{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
         with:
           path: /var/cache/binpkgs
           key: ${{ env.cache-name }}-latest
@@ -174,7 +174,7 @@ jobs:
         if: ${{ !cancelled() && (steps.initial-binpkgs.outputs.packages != steps.final-binpkgs.outputs.packages) }}
         uses: actions/cache/save@v3
         env:
-          cache-name: cache-binpkgs-{{ steps.arch.outputs.arch }}-{{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
         with:
           path: /var/cache/binpkgs
           key: ${{ env.cache-name }}-${{ hashFiles('/var/cache/binpkgs/Packages') }}
