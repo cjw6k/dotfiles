@@ -100,12 +100,6 @@ jobs:
       - name: install dependencies
         run: apt-get update && apt-get install -y curl sudo
 
-      - name: patch ubuntu:trusty
-        if: ${{ matrix.tag == 'trusty' }}
-        run: |
-          sed -i -e 's=^mozilla/DST_Root_CA_X3.crt=!mozilla/DST_Root_CA_X3.crt=' /etc/ca-certificates.conf
-          update-ca-certificates
-
       - name: install chezmoi
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
