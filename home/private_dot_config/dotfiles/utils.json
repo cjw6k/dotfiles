@@ -5,7 +5,12 @@
     "url": "https://developer.1password.com/docs/cli/",
     "personal": true,
     "install": {
-      "common": "#custom"
+      "common": "#custom",
+      "linux": {
+        "gentoo": {
+          "common": "app-admin/op-cli-bin"
+        }
+      }
     },
     "provides": {
       "common": ["op"]
