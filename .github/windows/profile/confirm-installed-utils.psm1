@@ -3,7 +3,6 @@ function Confirm-InstalledUtils {
 
   $commands = @()
   foreach ($util in $utils) {
-    echo $util.name
     if ($util.personal) {
       continue
     }
