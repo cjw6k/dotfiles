@@ -3,51 +3,46 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "type": "personal",
+    "personal": true,
+    "install": {
+      "common": "#custom"
+    },
     "provides": {
-      "shared": [
-        "op"
-      ]
+      "common": ["op"]
     }
   },
   {
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
-    "type": "matrix",
-    "matrix": {
-      "linux": {
-        "alpine": "default"
-      },
-      "windows": "builtin"
+    "install": {
+      "windows": "#builtin"
     },
     "provides": {
-      "shared": [
-        "7z"
-      ]
+      "linux": {
+        "alpine": ["7z"],
+        "ubuntu": ["7zz"]
+      },
+      "windows": ["7z"]
     }
   },
   {
     "name": "chezmoi",
     "description": "Manage your dotfiles across multiple diverse machines, securely.",
     "url": "https://chezmoi.io/",
-    "type": "builtin"
+    "install": {
+      "common": "#builtin"
+    }
   },
   {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "type": "matrix",
-    "matrix": {
-      "linux": {
-        "alpine": "default"
-      },
-      "windows": "builtin"
+    "install": {
+      "windows": "#builtin"
     },
     "provides": {
-      "shared": [
-        "git"
-      ],
+      "common": ["git"],
       "windows": [
         "sh",
         "bash",
@@ -63,33 +58,29 @@
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
-    "type": "matrix",
-    "matrix": {
+    "install": {
       "linux": {
-        "alpine": "custom"
-      },
-      "windows": "default"
+        "common": "#custom"
+      }
     }
   },
   {
     "name": "nano",
     "description": "Command-line text editor.",
-    "url": "https://nano-editor.org/",
-    "type": "default"
+    "url": "https://nano-editor.org/"
   },
   {
     "name": "openssh",
     "description": "Connectivity tool for remote login with the SSH protocol",
     "url": "https://www.openssh.com/",
-    "type": "matrix",
-    "matrix": {
+    "install": {
       "linux": {
-        "alpine": "default"
+        "ubuntu": "openssh-server"
       },
-      "windows": "builtin"
+      "windows": "#builtin"
     },
     "provides": {
-      "shared": [
+      "common": [
         "ssh",
         "ssh-keygen"
       ]

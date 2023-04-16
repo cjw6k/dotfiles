@@ -12,6 +12,10 @@
     .chezmoiscripts/linux/alpine/**
     .chezmoiscripts/personal/linux/alpine/**
 {{   end -}}
+{{   if ne .chezmoi.osRelease.id "ubuntu" -}}
+    .chezmoiscripts/linux/ubuntu/**
+    .chezmoiscripts/personal/linux/ubuntu/**
+{{   end -}}
 {{ end -}}
 
 {{ if not .is.personal -}}

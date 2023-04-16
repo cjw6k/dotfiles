@@ -54,7 +54,6 @@ jobs:
         run: Confirm-InstalledUtils
 
   alpine:
-    # todo: matrix of branches for current releases, see https://alpinelinux.org/releases/
     runs-on: ubuntu-latest
     name: Install and Test on Alpine
     strategy:
@@ -84,4 +83,28 @@ jobs:
 
       - name: verify utilities are present
         shell: alpine.sh --root {0}
-        run: .github/linux/confirm-installed-utils.sh
+        run: .github/linux/confirm-installed-utils.sh alpine
+
+  ubuntu:
+    runs-on: ubuntu-latest
+    name: Install and Test on Ubuntu
+    strategy:
+      matrix:
+        tag: [latest]
+        #tag: [latest, kinetic, jammy, focal, bionic, xenial, trusty]
+    container: ubuntu:${{ matrix.tag }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v2
+
+      - name: install dependencies
+        run: apt-get update && apt-get install -y curl sudo
+
+      - name: install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: init dotfiles
+        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh ubuntu
