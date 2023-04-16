@@ -119,7 +119,7 @@ jobs:
       - name: enable buildpkg feature
         run: |
           echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
-          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"'
+          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
           tee </etc/portage/make.conf
 
 #      - name: checkout
