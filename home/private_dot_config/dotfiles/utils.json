@@ -45,11 +45,13 @@
           "bullseye": ["7zr"],
           "buster": ["7zr"]
         },
-        "gentoo": [
-          "7z",
-          "7za",
-          "7zr"
-        ],
+        "gentoo": {
+          "common": [
+            "7z",
+            "7za",
+            "7zr"
+          ]
+        },
         "ubuntu": {
           "latest": ["7zz"],
           "kinetic": ["7zz"],
