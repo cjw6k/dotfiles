@@ -168,7 +168,7 @@ jobs:
           echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
 
       - name: save binpkg cache
-        if: {{ !cancelled() && (steps.initial-binpkg.outputs.packages != steps.final-binpkg.outputs.packages) }}
+        if: ${{ !cancelled() && (steps.initial-binpkg.outputs.packages != steps.final-binpkg.outputs.packages) }}
         uses: actions/cache/save@v3
         with:
           path: /var/cache/binpkgs
