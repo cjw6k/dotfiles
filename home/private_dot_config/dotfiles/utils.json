@@ -21,8 +21,7 @@
           "common": "7zip",
           "focal": "p7zip",
           "bionic": "p7zip",
-          "xenial": "p7zip",
-          "trusty": "p7zip"
+          "xenial": "p7zip"
         }
       },
       "windows": "#builtin"
@@ -38,8 +37,7 @@
           "jammy": ["7zz"],
           "focal": ["7zr"],
           "bionic": ["7zr"],
-          "xenial": ["7zr"],
-          "trusty": ["7zr"]
+          "xenial": ["7zr"]
         }
       },
       "windows": ["7z"]
