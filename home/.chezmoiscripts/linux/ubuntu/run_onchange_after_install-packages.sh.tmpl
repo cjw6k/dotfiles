@@ -16,4 +16,5 @@ def filter(field):
   | .install.linux.ubuntu.{{ .chezmoi.osRelease.ubuntuCodename }} // .install.linux.ubuntu.common // .name
 JQ
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommend \
+  $(jq -r "$script" ~/.config/dotfiles/utils.json)
