@@ -2,8 +2,8 @@ function Confirm-InstalledUtils {
   $utils = Get-Content "~/.config/dotfiles/utils.json" | ConvertFrom-Json
 
   $commands = @()
-  $modules = @()
   foreach ($util in $utils) {
+    echo $util.name
     if ($util.personal) {
       continue
     }
@@ -13,8 +13,13 @@ function Confirm-InstalledUtils {
       continue
     }
 
-    $commands += $util.provides.common
-    $commands += $util.provides.windows
+    if ($null -ne $util.provides.common) {
+      $commands += $util.provides.common
+    }
+
+    if ($null -ne $util.provides.windows) {
+      $commands += $util.provides.windows
+    }
   }
 
   $allConfirmed = $true
@@ -31,21 +36,6 @@ function Confirm-InstalledUtils {
     }
 
     Write-Host "$command is $hasShim"
-  }
-
-  Write-Host "Modules"
-  foreach ($module in $modules) {
-    ($isFound = Find-Package $module) *>$null
-
-    $allConfirmed = $allConfirmed -and $isFound
-
-    if ($isFound) {
-      Write-Host -NoNewLine "✔️ "
-    } else {
-      Write-Host -NoNewLine "❌ "
-    }
-
-    Write-Host $module
   }
 
   if ($allConfirmed -ne $true) {
