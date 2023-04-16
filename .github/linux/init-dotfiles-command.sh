@@ -1,6 +1,4 @@
-#!/usr/bin/env bash
-
-set -euo pipefail
+#!/usr/bin/env sh
 
 chezmoi () {
   echo "chezmoi init --apply $1"
@@ -10,7 +8,7 @@ usage () {
   echo "usage: init-dotfiles-command.sh DISTRO VERSION"
 }
 
-if [[ $# -lt 2 ]]; then
+if [ $# -lt 2 ]; then
   usage
   exit 1
 fi
@@ -22,7 +20,7 @@ distro () {
 
 alpine () {
   usage
-  echo " when DISTRO is alpine, VERSION must be one of: edge, or v3.17"
+  echo " when DISTRO is alpine, VERSION must be one of: edge, or 3.17"
 }
 
 case $1 in
@@ -32,7 +30,7 @@ case $1 in
         chezmoi cjw6k
         ;;
 
-      v3.17)
+      3.17)
         chezmoi "--guess-repo-url=false https://github.com/cjw6k/dotfiles.git"
         ;;
 
@@ -45,7 +43,7 @@ case $1 in
     ;;
 
   ubuntu)
-    chemzoi cjw6k
+    chezmoi cjw6k
     ;;
 
   *)

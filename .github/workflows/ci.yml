@@ -60,7 +60,7 @@ jobs:
       matrix:
         include:
           - {distro: alpine, tag: edge}
-          - {distro: alpine, tag: v3.17}
+          - {distro: alpine, tag: 3.17}
           - {distro: ubuntu, tag: latest}
           - {distro: ubuntu, tag: kinetic}
           - {distro: ubuntu, tag: jammy}
