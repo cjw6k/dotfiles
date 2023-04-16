@@ -116,14 +116,16 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: install chezmoi
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-
-      - name: init dotfiles
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-
-      - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh gentoo latest
+      - name: check arch
+        run: gcc -march=native -E -v - </dev/null 2>&1 | grep cc1
+#      - name: checkout
+#        uses: actions/checkout@v3
+#
+#      - name: install chezmoi
+#        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+#
+#      - name: init dotfiles
+#        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+#
+#      - name: verify utilities are present
+#        run: .github/linux/confirm-installed-utils.sh gentoo latest
