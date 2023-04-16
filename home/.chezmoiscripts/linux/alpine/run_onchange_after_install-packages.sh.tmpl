@@ -3,6 +3,6 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-apk add $(jq -r 'def filter(field): select(field as $in | [\"#builtin\", \"#custom\"] | index($in) | not); .[] | select(.personal != true) | filter(.install.common) | filter(.install.linux.common) | filter(.install.linux.alpine) | .install.linux.alpine // .name' \
+apk add $(jq -r 'def filter(field): select(field as $in | ["#builtin", "#custom"] | index($in) | not); .[] | select(.personal != true) | filter(.install.common) | filter(.install.linux.common) | filter(.install.linux.alpine) | .install.linux.alpine // .name' \
   ~/.config/dotfiles/utils.json)
 
