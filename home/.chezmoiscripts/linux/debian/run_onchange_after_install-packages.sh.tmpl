@@ -11,9 +11,9 @@ def filter(field):
   | select(.personal != true)
   | filter(.install.common)
   | filter(.install.linux.common)
-  | filter(.install.linux.ubuntu.common)
-  | filter(.install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }})
-  | .install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }} // .install.linux.ubuntu.common // .name
+  | filter(.install.linux.debian.common)
+  | filter(.install.linux.debian.{{ .chezmoi.osRelease.versionCodename }})
+  | .install.linux.debian.{{ .chezmoi.osRelease.versionCodename }} // .install.linux.debian.common // .name
 JQ
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \

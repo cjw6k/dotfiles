@@ -17,6 +17,11 @@
     "url": "https://www.7-zip.org/",
     "install": {
       "linux": {
+        "debian": {
+          "common": "7zip",
+          "bullseye": "p7zip",
+          "buster": "p7zip"
+        },
         "ubuntu": {
           "common": "7zip",
           "focal": "p7zip",
@@ -30,6 +35,11 @@
       "linux": {
         "alpine": {
           "common": ["7z"]
+        },
+        "debian": {
+          "common": ["7zz"],
+          "bullseye": ["7zr"],
+          "buster": ["7zr"]
         },
         "ubuntu": {
           "latest": ["7zz"],
@@ -92,6 +102,9 @@
     "url": "https://www.openssh.com/",
     "install": {
       "linux": {
+        "debian": {
+          "common": "openssh-server"
+        },
         "ubuntu": {
           "common": "openssh-server"
         }
