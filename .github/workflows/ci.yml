@@ -95,7 +95,7 @@ jobs:
     container: ubuntu:${{ matrix.tag }}
     steps:
       - name: checkout
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: install dependencies
         run: apt-get update && apt-get install -y curl sudo
