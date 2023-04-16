@@ -108,12 +108,12 @@ jobs:
       portage:
         image: gentoo/portage:latest
         volumes:
-          - /var/db/repos/gentoo
+          - portage:/var/db/repos/gentoo
 
     container:
       image: gentoo/stage3:latest
       volumes:
-        - /var/db/repos/gentoo
+        - portage:/var/db/repos/gentoo
 
     steps:
       - name: sync portage
