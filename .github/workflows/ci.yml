@@ -3,7 +3,7 @@ name: Continuous Integration
 on: push
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.pull_request.url || github.run_id }}
+  group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
@@ -61,6 +61,10 @@ jobs:
         include:
           - {distro: alpine, tag: edge}
           - {distro: alpine, tag: 3.17}
+          - {distro: debian, tag: sid}
+          - {distro: debian, tag: bookworm}
+          - {distro: debian, tag: bullseye}
+          - {distro: debian, tag: buster}
           - {distro: ubuntu, tag: latest}
           - {distro: ubuntu, tag: kinetic}
           - {distro: ubuntu, tag: jammy}
@@ -73,16 +77,16 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: install dependencies on ubuntu
-        if: ${{ matrix.distro == 'ubuntu' }}
+      - name: install dependencies via apt
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
         run: apt-get update && apt-get install -y curl sudo
 
       - name: install chezmoi on alpine
         if: ${{ matrix.distro == 'alpine' }}
         run: apk add chezmoi
 
-      - name: install chezmoi on ubuntu
-        if: ${{ matrix.distro == 'ubuntu' }}
+      - name: install chezmoi on ubuntu; debian
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
       - name: detect distro-and-version-safe command to init dotfiles

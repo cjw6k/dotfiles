@@ -16,6 +16,10 @@
     .chezmoiscripts/linux/ubuntu/**
     .chezmoiscripts/personal/linux/ubuntu/**
 {{   end -}}
+{{   if ne .chezmoi.osRelease.id "debian" -}}
+    .chezmoiscripts/linux/debian/**
+    .chezmoiscripts/personal/linux/debian/**
+{{   end -}}
 {{ end -}}
 
 {{ if not .is.personal -}}
