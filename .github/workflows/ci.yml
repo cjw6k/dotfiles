@@ -116,11 +116,39 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
+      - name: identify instruction set architecture
+        id: arch
+        run: |
+          echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
+            >> $GITHUB_OUTPUT
+
+      - name: identify microarchitecture
+        id: march
+        run: |
+          echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
+            >> $GITHUB_OUTPUT
+
+      - name: restore binpkg cache
+        id: cache
+        uses: actions/cache/restore@v3
+        env:
+          cache-name: cache-binpkg-{{ steps.arch.outputs.arch }}-{{ steps.march.outputs.march }}
+        with:
+          path: /var/cache/binpkg
+          key: ${{ env.cache-name }}-latest
+          restore-keys:
+            ${{ env.cache-name }}-
+
       - name: enable buildpkg feature
         run: |
           echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
           echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
           tee </etc/portage/make.conf
+
+      - name: note initial binpkgs info
+        id: initial-binpkg
+        run: |
+          echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
 
 #      - name: checkout
 #        uses: actions/checkout@v3
@@ -133,3 +161,15 @@ jobs:
 #
 #      - name: verify utilities are present
 #        run: .github/linux/confirm-installed-utils.sh gentoo latest
+
+      - name: note final binpkgs info
+        id: final-binpkg
+        run: |
+          echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
+
+      - name: save binpkg cache
+        if: {{ !cancelled() && (steps.initial-binpkg.outputs.packages != steps.final-binpkg.outputs.packages) }}
+        uses: actions/cache/save@v3
+        with:
+          path: /var/cache/binpkgs
+          key: ${{ env.cache-name }}-{{ hashFiles('/var/cache/binpkgs/Packages') }}
