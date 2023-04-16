@@ -16,12 +16,29 @@
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
     "install": {
+      "linux": {
+        "ubuntu": {
+          "common": "7zip",
+          "focal": "p7zip",
+          "bionic": "p7zip",
+          "xenial": "p7zip"
+        }
+      },
       "windows": "#builtin"
     },
     "provides": {
       "linux": {
-        "alpine": ["7z"],
-        "ubuntu": ["7zz"]
+        "alpine": {
+          "common": ["7z"]
+        },
+        "ubuntu": {
+          "latest": ["7zz"],
+          "kinetic": ["7zz"],
+          "jammy": ["7zz"],
+          "focal": ["7zr"],
+          "bionic": ["7zr"],
+          "xenial": ["7zr"]
+        }
       },
       "windows": ["7z"]
     }
@@ -75,7 +92,9 @@
     "url": "https://www.openssh.com/",
     "install": {
       "linux": {
-        "ubuntu": "openssh-server"
+        "ubuntu": {
+          "common": "openssh-server"
+        }
       },
       "windows": "#builtin"
     },

@@ -3,6 +3,18 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-sudo apt-get install -y $(jq -r 'def filter(field): select(field as $in | ["#builtin", "#custom"] | index($in) | not); .[] | select(.personal != true) | filter(.install.common) | filter(.install.linux.common) | filter(.install.linux.ubuntu) | .install.linux.ubuntu // .name' \
-  ~/.config/dotfiles/utils.json)
+read -r -d '' script << 'JQ'
+def filter(field):
+  select(field as $in | ["#builtin", "#custom"] | index($in) | not);
 
+.[]
+  | select(.personal != true)
+  | filter(.install.common)
+  | filter(.install.linux.common)
+  | filter(.install.linux.ubuntu.common)
+  | filter(.install.linux.ubuntu.{{ .chezmoi.osRelease.ubuntuCodename }})
+  | .install.linux.ubuntu.{{ .chezmoi.osRelease.ubuntuCodename }} // .install.linux.ubuntu.common // .name
+JQ
+
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
+  $(jq -r "$script" ~/.config/dotfiles/utils.json)
