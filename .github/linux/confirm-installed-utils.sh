@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+if [ $# -ne 2 ]; then
+  echo "usage: confirm-installed-utils.sh DISTRO"
+  exit 1
+fi
+
 which jq >> /dev/null
 if [ $? -ne 0 ]; then
   exit 1
@@ -27,7 +32,21 @@ for i in $(echo "$partial" | jq -r '. | select(.provides == null) | .name'); do
   fi
 done
 
-for i in $(echo "$partial" | jq -r '. | select(.provides != null) | .provides.common[]'); do
+for i in $(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]'); do
+  check "$i"
+  if [ $? -ne 0 ]; then
+    missed=$((missed + 1))
+  fi
+done
+
+for i in $(echo "$partial" | jq -r '. | select(.provides.linux.common != null) | .provides.lilnux.common[]'); do
+  check "$i"
+  if [ $? -ne 0 ]; then
+    missed=$((missed + 1))
+  fi
+done
+
+for i in $(echo "$partial" | jq -r ". | select(.provides.linux.$2 != null) | .provides.linux.$2[]"); do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
