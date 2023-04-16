@@ -46,7 +46,7 @@ for i in $(echo "$partial" | jq -r '. | select(.provides.linux.common != null) |
   fi
 done
 
-for i in $(echo "$partial" | jq -r ". | select(.provides.linux.$2 != null) | .provides.linux.$2[]"); do
+for i in $(echo "$partial" | jq -r ". | select(.provides.linux.$1 != null) | .provides.linux.$1[]"); do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
