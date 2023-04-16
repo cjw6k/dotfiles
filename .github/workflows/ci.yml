@@ -116,9 +116,6 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
-      - name: sync portage
-        run: emerge --sync
-
       - name: checkout
         uses: actions/checkout@v3
 
