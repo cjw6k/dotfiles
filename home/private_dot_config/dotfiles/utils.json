@@ -8,9 +8,7 @@
       "common": "#custom"
     },
     "provides": {
-      "common": [
-        "op"
-      ]
+      "common": ["op"]
     }
   },
   {
@@ -21,9 +19,11 @@
       "windows": "#builtin"
     },
     "provides": {
-      "common": [
-        "7z"
-      ]
+      "linux": {
+        "alpine": ["7z"],
+        "ubuntu": ["7zz"]
+      },
+      "windows": ["7z"]
     }
   },
   {
@@ -42,9 +42,7 @@
       "windows": "#builtin"
     },
     "provides": {
-      "common": [
-        "git"
-      ],
+      "common": ["git"],
       "windows": [
         "sh",
         "bash",
