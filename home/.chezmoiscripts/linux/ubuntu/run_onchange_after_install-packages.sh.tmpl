@@ -3,6 +3,6 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-sudo apt-get install -y $(jq -r '.[] | select(.install == "default" or (.install == "matrix" and .matrix.linux.ubuntu == "default")) | .name' \
+sudo apt-get install -y $(jq -r 'def filter(field): select(field as $in | [\"#builtin\", \"#custom\"] | index($in) | not); .[] | select(.personal != true) | filter(.install.common) | filter(.install.linux.common) | filter(.install.linux.ubuntu) | .install.linux.ubuntu // .name' \
   ~/.config/dotfiles/utils.json)
 

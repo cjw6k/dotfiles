@@ -3,7 +3,10 @@
     "name": "1password-cli",
     "description": "Provision secrets across development environments.",
     "url": "https://developer.1password.com/docs/cli/",
-    "install": "personal",
+    "personal": true,
+    "install": {
+      "common": "#custom"
+    },
     "provides": {
       "common": [
         "op"
@@ -14,12 +17,8 @@
     "name": "7zip",
     "description": "A file archiver with a high compression ratio.",
     "url": "https://www.7-zip.org/",
-    "install": "matrix",
-    "matrix": {
-      "linux": {
-        "alpine": "default"
-      },
-      "windows": "builtin"
+    "install": {
+      "windows": "#builtin"
     },
     "provides": {
       "common": [
@@ -31,18 +30,16 @@
     "name": "chezmoi",
     "description": "Manage your dotfiles across multiple diverse machines, securely.",
     "url": "https://chezmoi.io/",
-    "install": "builtin"
+    "install": {
+      "common": "#builtin"
+    }
   },
   {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
-    "install": "matrix",
-    "matrix": {
-      "linux": {
-        "alpine": "default"
-      },
-      "windows": "builtin"
+    "install": {
+      "windows": "#builtin"
     },
     "provides": {
       "common": [
@@ -63,30 +60,26 @@
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
-    "install": "matrix",
-    "matrix": {
+    "install": {
       "linux": {
-        "alpine": "custom"
-      },
-      "windows": "default"
+        "common": "#custom"
+      }
     }
   },
   {
     "name": "nano",
     "description": "Command-line text editor.",
-    "url": "https://nano-editor.org/",
-    "install": "default"
+    "url": "https://nano-editor.org/"
   },
   {
     "name": "openssh",
     "description": "Connectivity tool for remote login with the SSH protocol",
     "url": "https://www.openssh.com/",
-    "install": "matrix",
-    "matrix": {
+    "install": {
       "linux": {
-        "alpine": "default"
+        "ubuntu": "openssh-server"
       },
-      "windows": "builtin"
+      "windows": "#builtin"
     },
     "provides": {
       "common": [
