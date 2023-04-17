@@ -169,14 +169,14 @@ jobs:
         run: .github/linux/confirm-installed-utils.sh gentoo latest
 
       - name: note final binpkgs info
-        if: ${{ !cancelled() }}
+        if: ${{ always() }}
         id: final-binpkgs
         run: |
           echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
             >> $GITHUB_OUTPUT
 
       - name: save binpkgs cache
-        if: ${{ !cancelled() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
+        if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
         uses: actions/cache/save@v3
         env:
           cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
