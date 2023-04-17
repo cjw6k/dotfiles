@@ -189,8 +189,8 @@ jobs:
     name: Install and Test on FreeBSD
     strategy:
       matrix:
-        release: [13.1]
-        #release: [13.1, 13.0, 12.3]
+#        release: [13.1]
+        release: [13.1, 13.0, 12.3]
 
     steps:
       - name: test bundle
@@ -201,8 +201,4 @@ jobs:
             pkg install -y chezmoi
 
           run: |
-            pwd
-            env
-            ls -lah
-            whoami
-            freebsd-version
+            chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
