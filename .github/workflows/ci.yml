@@ -194,7 +194,7 @@ jobs:
 
     steps:
       - name: test bundle
-        uses: vmactions/freebsd-vm@0
+        uses: vmactions/freebsd-vm@v0
         with:
           release: ${{ matrix.release }}
           prepare: |
