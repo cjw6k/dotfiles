@@ -139,6 +139,10 @@ jobs:
           restore-keys:
             ${{ env.cache-name }}-
 
+      - name: build architecture optimized binaries
+        run: |
+          sed -i 's/COMMON_FLAGS="-O2/COMMON_FLAGS="-march=native -O2/' /etc/portage/make.conf
+
       - name: enable buildpkg feature
         run: |
           echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
@@ -151,7 +155,7 @@ jobs:
           echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
             >> $GITHUB_OUTPUT
 
-      - name: install jq (bumpity bump)
+      - name: install jq
         run: emerge -n app-misc/jq
 
 #      - name: checkout
