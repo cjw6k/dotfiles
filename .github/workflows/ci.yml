@@ -189,8 +189,7 @@ jobs:
     name: Install and Test on FreeBSD
     strategy:
       matrix:
-#        release: [13.1]
-        release: [13.1, 13.0, 12.3]
+        release: ['13.1', '13.0', '12.3']
 
     steps:
       - name: test bundle
