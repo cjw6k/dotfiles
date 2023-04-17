@@ -192,6 +192,9 @@ jobs:
         release: ['13.1', '13.0', '12.3']
 
     steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
       - name: test bundle
         uses: vmactions/freebsd-vm@v0
         with:
@@ -201,3 +204,4 @@ jobs:
 
           run: |
             chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+            .github/freebsd/confirm-installed-utils.sh
