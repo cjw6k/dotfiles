@@ -84,7 +84,7 @@
     "install": {
       "linux": {
         "gentoo": {
-          "common": "#builtin"
+          "common": "dev-vcs/git"
         }
       },
       "windows": "#builtin"
