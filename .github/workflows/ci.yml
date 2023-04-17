@@ -148,7 +148,8 @@ jobs:
       - name: note initial binpkgs info
         id: initial-binpkgs
         run: |
-          echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
+          echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
+            >> $GITHUB_OUTPUT
 
       - name: 💪 DO NOT build jq
         run: emerge -n app-misc/jq
@@ -168,13 +169,14 @@ jobs:
       - name: note final binpkgs info
         id: final-binpkgs
         run: |
-          echo packages="$(du /var/cache/binpkgs/Packages --time=ctime 2>/dev/null)" >> $GITHUB_OUTPUT
+          echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
+            >> $GITHUB_OUTPUT
 
       - name: save binpkgs cache
-        if: ${{ !cancelled() && (steps.initial-binpkgs.outputs.packages != steps.final-binpkgs.outputs.packages) }}
+        if: ${{ !cancelled() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
         uses: actions/cache/save@v3
         env:
           cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
         with:
           path: /var/cache/binpkgs
-          key: ${{ env.cache-name }}-${{ hashFiles('/var/cache/binpkgs/Packages') }}
+          key: ${{ env.cache-name }}-${{ steps.final-binpkgs.outputs.sha1 }}
