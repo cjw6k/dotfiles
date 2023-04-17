@@ -20,6 +20,10 @@
     .chezmoiscripts/linux/debian/**
     .chezmoiscripts/personal/linux/debian/**
 {{   end -}}
+{{   if ne .chezmoi.osRelease.id "gentoo" -}}
+    .chezmoiscripts/linux/gentoo/**
+    .chezmoiscripts/personal/linux/gentoo/**
+{{   end -}}
 {{ end -}}
 
 {{ if not .is.personal -}}

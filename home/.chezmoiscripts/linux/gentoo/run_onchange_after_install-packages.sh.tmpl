@@ -1,0 +1,18 @@
+#!/usr/bin/env sh
+
+# ~/.config/dotfiles/utils.json hash:
+# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+
+read -r -d '' script << 'JQ'
+def filter(field):
+  select(field as $in | ["#builtin", "#custom"] | index($in) | not);
+
+.[]
+  | select(.personal != true)
+  | filter(.install.common)
+  | filter(.install.linux.common)
+  | filter(.install.linux.gentoo.common)
+  | .install.linux.gentoo.common // .name
+JQ
+
+emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
