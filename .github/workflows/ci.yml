@@ -204,4 +204,4 @@ jobs:
 
           run: |
             chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-            .github/freebsd/confirm-installed-utils.sh
+            sh .github/freebsd/confirm-installed-utils.sh
