@@ -114,6 +114,7 @@ jobs:
       image: gentoo/stage3:latest
       volumes:
         - portage:/var/db/repos/gentoo
+      options: --cap-add=SYS_ADMIN
 
     steps:
       - name: identify instruction set architecture
