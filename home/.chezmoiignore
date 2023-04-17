@@ -26,6 +26,11 @@
 {{   end -}}
 {{ end -}}
 
+{{- if ne .chezmoi.os "freebsd" -}}
+.chezmoiscripts/freebsd/**
+.chezmoiscripts/personal/freebsd/**
+{{ end -}}
+
 {{ if not .is.personal -}}
 .chezmoiscripts/personal/**
 .ssh
