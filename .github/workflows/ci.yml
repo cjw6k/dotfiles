@@ -183,3 +183,23 @@ jobs:
         with:
           path: /var/cache/binpkgs
           key: ${{ env.cache-name }}-${{ steps.final-binpkgs.outputs.sha1 }}
+
+  freebsd:
+    runs-on: macos-12
+    name: Install and Test on FreeBSD
+    strategy:
+      matrix:
+        release: [13.1, 13.0, 12.3]
+
+    steps:
+      - name: test bundle
+        uses: vmactions/freebsd-vm@0
+        prepare: |
+          pkg install -y chezmoi
+
+        run: |
+          pwd
+          env
+          ls -lah
+          whoami
+          freebsd-version
