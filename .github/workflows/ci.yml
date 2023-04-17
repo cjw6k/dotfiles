@@ -156,20 +156,17 @@ jobs:
           echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
             >> $GITHUB_OUTPUT
 
-      - name: install jq (bump)
-        run: emerge -n app-misc/jq
+      - name: checkout
+        uses: actions/checkout@v3
 
-#      - name: checkout
-#        uses: actions/checkout@v3
-#
-#      - name: install chezmoi
-#        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-#
-#      - name: init dotfiles
-#        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-#
-#      - name: verify utilities are present
-#        run: .github/linux/confirm-installed-utils.sh gentoo latest
+      - name: install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: init dotfiles
+        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh gentoo latest
 
       - name: note final binpkgs info
         id: final-binpkgs
