@@ -151,7 +151,7 @@ jobs:
           echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
             >> $GITHUB_OUTPUT
 
-      - name: install jq (bump)
+      - name: install jq (bumpity bump)
         run: emerge -n app-misc/jq
 
 #      - name: checkout
