@@ -28,7 +28,7 @@ jobs:
     uses: ./.github/workflows/ci-linux-common.yml
     strategy:
       matrix:
-        - tag: ['latest', 'kinetic', 'jammy', 'focal', 'bionic', 'xenial']
+        tag: ['latest', 'kinetic', 'jammy', 'focal', 'bionic', 'xenial']
 
     with:
       distro: ubuntu

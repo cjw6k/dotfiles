@@ -28,7 +28,7 @@ jobs:
     uses: ./.github/workflows/ci-linux-common.yml
     strategy:
       matrix:
-        - tag: ['sid', 'bookworm', 'bullseye', 'buster']
+        tag: ['sid', 'bookworm', 'bullseye', 'buster']
 
     with:
       distro: debian
