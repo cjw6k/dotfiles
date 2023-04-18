@@ -4,9 +4,6 @@ on:
   workflow_call:
   workflow_dispatch:
   pull_request:
-    branches-ignore:
-      - main
-
     paths:
       - '.github/linux/**'
       - '.github/workflows/ci-linux-common.yml'
