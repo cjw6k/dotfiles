@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-apk add jq
+pkg install -y jq

@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+
+# ~/.config/dotfiles/utils.json hash:
+# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+
+script="
+def filter(field):
+  select(field as \$in | [\"#builtin\", \"#custom\"] | index(\$in) | not);
+
+.[]
+  | select(.personal != true)
+  | filter(.install.common)
+  | filter(.install.freebsd.common)
+  | .install.freebsd.common // .name"
+
+pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
