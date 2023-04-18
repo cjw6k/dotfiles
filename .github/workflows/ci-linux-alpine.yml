@@ -25,7 +25,7 @@ concurrency:
 
 jobs:
   call-common-linux:
-    uses: cjw6k/dotfiles/.github/workflows/ci-linux-common.yml
+    uses: ./.github/workflows/ci-linux-common.yml
     strategy:
       matrix:
         - tag: ['edge', '3.17']

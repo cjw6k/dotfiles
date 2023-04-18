@@ -11,24 +11,24 @@ concurrency:
 
 jobs:
   call-linux-alpine:
-    uses: cjw6k/dotfiles/.github/workflows/ci-linux-alpine.yml
+    uses: ./.github/workflows/ci-linux-alpine.yml
 
   call-freebsd:
     needs: call-linux-alpine
-    uses: cjw6k/dotfiles/.github/workflows/ci-freebsd.yml
+    uses: ./.github/workflows/ci-freebsd.yml
 
   call-windows:
     needs: call-linux-alpine
-    uses: cjw6k/dotfiles/.github/workflows/ci-windows.yml
+    uses: ./.github/workflows/ci-windows.yml
 
   call-linux-gentoo:
     needs: call-linux-alpine
-    uses: cjw6k/dotfiles/.github/workflows/ci-linux-gentoo.yml
+    uses: ./.github/workflows/ci-linux-gentoo.yml
 
   call-linux-debian:
     needs: call-linux-alpine
-    uses: cjw6k/dotfiles/.github/workflows/ci-linux-debian.yml
+    uses: ./.github/workflows/ci-linux-debian.yml
 
   call-linux-ubuntu:
     needs: call-linux-alpine
-    uses: cjw6k/dotfiles/.github/workflows/ci-linux-ubuntu.yml
+    uses: ./.github/workflows/ci-linux-ubuntu.yml
