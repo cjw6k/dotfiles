@@ -16,7 +16,7 @@ on:
       - 'home/.chezmoiscripts/personal/linux/gentoo/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-gentoo
   cancel-in-progress: true
 
 jobs:

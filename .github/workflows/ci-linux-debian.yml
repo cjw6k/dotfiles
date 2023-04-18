@@ -17,7 +17,7 @@ on:
       - 'home/.chezmoiscripts/personal/linux/debian/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-debian
   cancel-in-progress: true
 
 jobs:

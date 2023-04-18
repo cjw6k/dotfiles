@@ -17,7 +17,7 @@ on:
       - 'home/.chezmoiscripts/personal/linux/alpine/**'
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}
+  group: ${{ github.workflow }}-${{ github.ref }}-alpine
   cancel-in-progress: true
 
 jobs:

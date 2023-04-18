@@ -1,14 +1,13 @@
 name: Continuous Integration
-
 on:
   workflow_dispatch:
   push:
     branches:
       - main
 
-#concurrency:
-#  group: ${{ github.workflow }}-${{ github.ref }}
-#  cancel-in-progress: true
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   call-linux-alpine:
