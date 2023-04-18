@@ -1,5 +1,5 @@
 name: Continuous Integration - Debian
-run-name: CI / Linux / Debian on ${{ github.ref_name }}
+run-name: CI / Linux / Debian on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:
   workflow_dispatch:
