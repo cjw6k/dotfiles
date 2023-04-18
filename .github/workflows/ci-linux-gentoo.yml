@@ -1,0 +1,109 @@
+name: Continuous Integration
+run-name: CI / Linux / Gentoo on ${{ github.ref_name }}
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - 'main'
+
+    paths:
+      - '.github/linux/**'
+      - '.github/workflows/ci-linux-gentoo.yml'
+      - 'home/private_dot_config/utils.json'
+      - 'home/.chezmoiscripts/linux/*.sh'
+      - 'home/.chezmoiscripts/linux/*.sh.tmpl'
+      - 'home/.chezmoiscripts/linux/gentoo/**'
+      - 'home/.chezmoiscripts/personal/linux/*.sh'
+      - 'home/.chezmoiscripts/personal/linux/*.sh.tmpl'
+      - 'home/.chezmoiscripts/personal/linux/gentoo/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  linux-gentoo:
+    runs-on: ubuntu-latest
+    name: Install and Test on Linux (gentoo)
+    services:
+      portage:
+        image: gentoo/portage:latest
+        volumes:
+          - portage:/var/db/repos/gentoo
+
+    container:
+      image: gentoo/stage3:latest
+      options: --privileged
+      volumes:
+        - portage:/var/db/repos/gentoo
+
+    steps:
+      - name: identify instruction set architecture
+        id: arch
+        run: |
+          echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
+            >> $GITHUB_OUTPUT
+
+      - name: identify microarchitecture
+        id: march
+        run: |
+          echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
+            >> $GITHUB_OUTPUT
+
+      - name: restore binpkgs cache
+        id: cache
+        uses: actions/cache/restore@v3
+        env:
+          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+
+        with:
+          path: /var/cache/binpkgs
+          key: ${{ env.cache-name }}-latest
+          restore-keys:
+            ${{ env.cache-name }}-
+
+      - name: build architecture optimized binaries
+        run: |
+          sed -i 's/COMMON_FLAGS="-O2/COMMON_FLAGS="-march=native -O2/' /etc/portage/make.conf
+
+      - name: enable buildpkg feature
+        run: |
+          echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
+          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
+          tee </etc/portage/make.conf
+
+      - name: note initial binpkgs info
+        id: initial-binpkgs
+        run: |
+          echo sha1="$(sha1sum /var/cache/binpkgs/Packages | cut -d' ' -f1)" \
+            >> $GITHUB_OUTPUT
+
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install chezmoi
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: init dotfiles
+        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh gentoo latest
+
+      - name: note final binpkgs info
+        if: ${{ always() }}
+        id: final-binpkgs
+        run: |
+          echo sha1="$(sha1sum /var/cache/binpkgs/Packages | cut -d' ' -f1)" \
+            >> $GITHUB_OUTPUT
+
+      - name: save binpkgs cache
+        if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
+        uses: actions/cache/save@v3
+        env:
+          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+
+        with:
+          path: /var/cache/binpkgs
+          key: ${{ env.cache-name }}-${{ steps.final-binpkgs.outputs.sha1 }}

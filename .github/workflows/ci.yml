@@ -1,207 +1,34 @@
 name: Continuous Integration
 
-on: push
+on:
+  push:
+    branches:
+      - 'main'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  windows:
-    runs-on: windows-latest
-    name: Install and Test on Windows
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
+  call-linux-alpine:
+    uses: cjw6k/dotfiles/.github/workflows/ci-linux-alpine.yml
 
-      - name: setup profile
-        run: |
-          if ( -not (Test-Path $PROFILE) ) {
-            New-Item -Path $PROFILE -Type File -Force
-          }
-          Get-ChildItem '.github/windows/profile/' -File `
-            | Select-Object -ExpandProperty Fullname `
-            | Foreach-Object -Process {Add-Content $PROFILE "Import-Module $_"}
+  call-freebsd:
+    needs: call-linux-alpine
+    uses: cjw6k/dotfiles/.github/workflows/ci-freebsd.yml
 
-      - name: restore shovel cache
-        uses: actions/cache@v3
-        env:
-          cache-name: cache-shovel-assets
-        with:
-          path: ~/scoop/cache/
-          key: ${{ env.cache-name }}-${{ github.run_id }}
-          restore-keys:
-            ${{ env.cache-name }}-
+  call-windows:
+    needs: call-linux-alpine
+    uses: cjw6k/dotfiles/.github/workflows/ci-windows.yml
 
-      - name: install shovel
-        run: |
-          Install-Shovel
-          shovel --version
+  call-linux-gentoo:
+    needs: call-linux-alpine
+    uses: cjw6k/dotfiles/.github/workflows/ci-linux-gentoo.yml
 
-      - name: shovel checkup
-        run: shovel checkup
+  call-linux-debian:
+    needs: call-linux-alpine
+    uses: cjw6k/dotfiles/.github/workflows/ci-linux-debian.yml
 
-      - name: install chezmoi
-        run: shovel install chezmoi
-
-      - name: init dotfiles
-        run: chezmoi init cjw6k --apply --branch ${{ github.ref_name }}
-
-      - name: shovel list
-        run: shovel list
-
-      - name: verify utilities are present
-        run: Confirm-InstalledUtils
-
-  linux:
-    runs-on: ubuntu-latest
-    name: Install and Test on Linux
-    strategy:
-      matrix:
-        include:
-          - {distro: alpine, tag: edge}
-          - {distro: alpine, tag: 3.17}
-          - {distro: debian, tag: sid}
-          - {distro: debian, tag: bookworm}
-          - {distro: debian, tag: bullseye}
-          - {distro: debian, tag: buster}
-          - {distro: ubuntu, tag: latest}
-          - {distro: ubuntu, tag: kinetic}
-          - {distro: ubuntu, tag: jammy}
-          - {distro: ubuntu, tag: focal}
-          - {distro: ubuntu, tag: bionic}
-          - {distro: ubuntu, tag: xenial}
-
-    container: ${{ matrix.distro }}:${{ matrix.tag }}
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: install dependencies via apt
-        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
-        run: apt-get update && apt-get install -y curl sudo
-
-      - name: install chezmoi on alpine
-        if: ${{ matrix.distro == 'alpine' }}
-        run: apk add chezmoi
-
-      - name: install chezmoi on ubuntu; debian
-        if: ${{ contains(fromJson('["debian", "ubuntu"]'), matrix.distro) }}
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-
-      - name: detect distro-and-version-safe command to init dotfiles
-        id: init-dotfiles-command
-        run: |
-          echo command="$(.github/linux/init-dotfiles-command.sh ${{ matrix.distro }} ${{ matrix.tag }})" \
-            >> $GITHUB_OUTPUT
-
-      - name: init dotfiles
-        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.ref_name }}
-
-      - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh ${{ matrix.distro }} ${{ matrix.tag }}
-
-  linux-gentoo:
-    runs-on: ubuntu-latest
-    name: Install and Test on Linux (gentoo)
-    services:
-      portage:
-        image: gentoo/portage:latest
-        volumes:
-          - portage:/var/db/repos/gentoo
-
-    container:
-      image: gentoo/stage3:latest
-      volumes:
-        - portage:/var/db/repos/gentoo
-      options: --privileged
-
-    steps:
-      - name: identify instruction set architecture
-        id: arch
-        run: |
-          echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
-            >> $GITHUB_OUTPUT
-
-      - name: identify microarchitecture
-        id: march
-        run: |
-          echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
-            >> $GITHUB_OUTPUT
-
-      - name: restore binpkgs cache
-        id: cache
-        uses: actions/cache/restore@v3
-        env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
-        with:
-          path: /var/cache/binpkgs
-          key: ${{ env.cache-name }}-latest
-          restore-keys:
-            ${{ env.cache-name }}-
-
-      - name: build architecture optimized binaries
-        run: |
-          sed -i 's/COMMON_FLAGS="-O2/COMMON_FLAGS="-march=native -O2/' /etc/portage/make.conf
-
-      - name: enable buildpkg feature
-        run: |
-          echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
-          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
-          tee </etc/portage/make.conf
-
-      - name: note initial binpkgs info
-        id: initial-binpkgs
-        run: |
-          echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
-            >> $GITHUB_OUTPUT
-
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: install chezmoi
-        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
-
-      - name: init dotfiles
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-
-      - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh gentoo latest
-
-      - name: note final binpkgs info
-        if: ${{ always() }}
-        id: final-binpkgs
-        run: |
-          echo sha1="$(du /var/cache/binpkgs/Packages --time 2>/dev/null | sha1sum | cut -d' ' -f1)" \
-            >> $GITHUB_OUTPUT
-
-      - name: save binpkgs cache
-        if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
-        uses: actions/cache/save@v3
-        env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
-        with:
-          path: /var/cache/binpkgs
-          key: ${{ env.cache-name }}-${{ steps.final-binpkgs.outputs.sha1 }}
-
-  freebsd:
-    runs-on: macos-12
-    name: Install and Test on FreeBSD
-    strategy:
-      matrix:
-        release: ['13.1', '13.0', '12.3']
-
-    steps:
-      - name: checkout
-        uses: actions/checkout@v3
-
-      - name: test bundle
-        uses: vmactions/freebsd-vm@v0
-        with:
-          release: ${{ matrix.release }}
-          prepare: |
-            pkg install -y chezmoi
-
-          run: |
-            chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
-            sh .github/freebsd/confirm-installed-utils.sh
+  call-linux-ubuntu:
+    needs: call-linux-alpine
+    uses: cjw6k/dotfiles/.github/workflows/ci-linux-ubuntu.yml

@@ -1,0 +1,42 @@
+name: Continuous Integration
+run-name: CI / FreeBSD on ${{ github.ref_name }}
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - 'main'
+
+    paths:
+      - '.github/freebsd/**'
+      - '.github/workflows/ci-freebsd.yml'
+      - 'home/private_dot_config/utils.json'
+      - 'home/.chezmoiscripts/freebsd/**'
+      - 'home/.chezmoiscripts/personal/freebsd/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  freebsd:
+    runs-on: macos-12
+    name: Install and Test on FreeBSD
+    strategy:
+      matrix:
+        release: ['13.1', '13.0', '12.3']
+
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: test bundle
+        uses: vmactions/freebsd-vm@v0
+        with:
+          release: ${{ matrix.release }}
+          prepare: |
+            pkg install -y chezmoi
+
+          run: |
+            chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+            sh .github/freebsd/confirm-installed-utils.sh

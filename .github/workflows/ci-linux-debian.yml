@@ -1,0 +1,35 @@
+name: Continuous Integration
+run-name: CI / Linux / Debian on ${{ github.ref_name }}
+on:
+  workflow_call:
+  workflow_dispatch:
+  push:
+    branches-ignore:
+      - 'main'
+
+    paths:
+      - '.github/linux/**'
+      - '.github/workflows/ci-linux-common.yml'
+      - '.github/workflows/ci-linux-debian.yml'
+      - 'home/private_dot_config/utils.json'
+      - 'home/.chezmoiscripts/linux/*.sh'
+      - 'home/.chezmoiscripts/linux/*.sh.tmpl'
+      - 'home/.chezmoiscripts/linux/debian/**'
+      - 'home/.chezmoiscripts/personal/linux/*.sh'
+      - 'home/.chezmoiscripts/personal/linux/*.sh.tmpl'
+      - 'home/.chezmoiscripts/personal/linux/debian/**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  call-common-linux:
+    uses: cjw6k/dotfiles/.github/workflows/ci-linux-common.yml
+    strategy:
+      matrix:
+        - tag: ['sid', 'bookworm', 'bullseye', 'buster']
+
+    with:
+      distro: debian
+      tag: ${{ matrix.tag }}
