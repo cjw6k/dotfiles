@@ -1,0 +1,44 @@
+name: Continuous Integration - Common
+on:
+  workflow_call:
+    inputs:
+      distro:
+        required: true
+        type: string
+
+      tag:
+        required: true
+        type: string
+
+jobs:
+  linux:
+    runs-on: ubuntu-latest
+    name: Install and Test on Linux
+    container: ${{ inputs.distro }}:${{ inputs.tag }}
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: install dependencies via apt
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), inputs.distro) }}
+        run: apt-get update && apt-get install -y curl sudo
+
+      - name: install chezmoi on alpine
+        if: ${{ inputs.distro == 'alpine' }}
+        run: apk add chezmoi
+
+      - name: install chezmoi on ubuntu; debian
+        if: ${{ contains(fromJson('["debian", "ubuntu"]'), inputs.distro) }}
+        run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+      - name: detect distro-and-version-safe command to init dotfiles
+        id: init-dotfiles-command
+        run: |
+          echo command="$(.github/linux/init-dotfiles-command.sh ${{ inputs.distro }} ${{ inputs.tag }})" \
+            >> $GITHUB_OUTPUT
+
+      - name: init dotfiles
+        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.head_ref || github.ref_name }}
+
+      - name: verify utilities are present
+        run: .github/linux/confirm-installed-utils.sh ${{ inputs.distro }} ${{ inputs.tag }}
