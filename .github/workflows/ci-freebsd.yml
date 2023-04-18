@@ -35,5 +35,5 @@ jobs:
             pkg install -y chezmoi
 
           run: |
-            chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+            chezmoi init --apply cjw6k --branch ${{ default github.head_ref github.ref_name }}
             sh .github/freebsd/confirm-installed-utils.sh

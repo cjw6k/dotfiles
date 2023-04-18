@@ -83,7 +83,7 @@ jobs:
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
       - name: init dotfiles
-        run: chezmoi init --apply cjw6k --branch ${{ github.ref_name }}
+        run: chezmoi init --apply cjw6k --branch ${{ default github.head_ref github.ref_name }}
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh gentoo latest

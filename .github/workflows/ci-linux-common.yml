@@ -38,7 +38,7 @@ jobs:
             >> $GITHUB_OUTPUT
 
       - name: init dotfiles
-        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ github.head_ref }}
+        run: ${{ steps.init-dotfiles-command.outputs.command}} --branch ${{ default github.head_ref github.ref_name }}
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh ${{ inputs.distro }} ${{ inputs.tag }}
