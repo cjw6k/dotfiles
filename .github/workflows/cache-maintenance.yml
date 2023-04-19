@@ -19,7 +19,7 @@ jobs:
       - name: Cleanup
         run: |
           gh extension install actions/gh-actions-cache
-          
+
           REPO=${{ github.repository }}
           PUSH_CACHE=refs/heads/${{ github.head_ref }}
           PR_CACHE=refs/pull/${{ github.event.pull_request.number }}/merge
@@ -28,7 +28,7 @@ jobs:
           cacheKeysForPR=$(gh actions-cache list -R $REPO -B $PR_CACHE | cut -f 1 )
           cacheKeysForPush=$(gh actions-cache list -R $REPO -B $PUSH_CACHE | cut -f 1 )
 
-          ## Setting this to not fail the workflow while deleting cache keys. 
+          ## Setting this to not fail the workflow while deleting cache keys.
           set +e
           echo "Deleting caches..."
           for cacheKey in $cacheKeysForPR; do
