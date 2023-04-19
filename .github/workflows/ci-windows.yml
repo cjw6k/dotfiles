@@ -19,6 +19,8 @@ jobs:
   windows:
     runs-on: windows-latest
     name: Install and Test on Windows
+    env:
+      BRANCH: ${{ github.head_ref || github.ref_name }}
     steps:
       - name: checkout
         uses: actions/checkout@v3
@@ -55,8 +57,6 @@ jobs:
         run: shovel install chezmoi
 
       - name: init dotfiles
-        env:
-          BRANCH: ${{ github.head_ref || github.ref_name }}
         run: chezmoi init cjw6k --apply --branch "$BRANCH"
 
       - name: shovel list
