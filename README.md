@@ -10,8 +10,8 @@ I have published dotfiles in a few iterations over many years. I'm making a fres
 * I do admin, ops, networks, hardware, and software.
 * I do not do ai, crypto, or mobile.
 * I am working on cloud in my free time.
-* I use Windows: 10 as my main workstation and 11 on a laptop. 
-* I use Linux: alpine, gentoo, debian, and ubuntu. In Docker, WSL2, VM, VPS, and on bare metal. 
+* I use Windows: 10 as my main workstation and 11 on a laptop.
+* I use Linux: alpine, gentoo, debian, and ubuntu. In Docker, WSL2, VM, VPS, and on bare metal.
 * I use BSD.
 * I do not use macOS. I will someday.
 
@@ -35,7 +35,7 @@ Install and apply my dotfiles with `chezmoi init --apply cjw6k`. Better yet, [fo
    * _Don't change the execution policy as in the example there!_
      * Too late? We don't know what it may have been before, but restoring the default is: `Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser`
 3. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
-   * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`. 
+   * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`.
 4. Get chezmoi w/ `shovel install chezmoi`.
 
 ## Features
