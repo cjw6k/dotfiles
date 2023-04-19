@@ -29,11 +29,13 @@ jobs:
 
       - name: test bundle
         uses: vmactions/freebsd-vm@v0
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
         with:
           release: ${{ matrix.release }}
           prepare: |
             pkg install -y chezmoi
 
           run: |
-            chezmoi init --apply cjw6k --branch ${{ github.head_ref || github.ref_name }}
+            chezmoi init --apply cjw6k --branch "$BRANCH"
             sh .github/freebsd/confirm-installed-utils.sh

@@ -55,7 +55,9 @@ jobs:
         run: shovel install chezmoi
 
       - name: init dotfiles
-        run: chezmoi init cjw6k --apply --branch ${{ github.head_ref || github.ref_name }}
+        env:
+          BRANCH: ${{ github.head_ref || github.ref_name }}
+        run: chezmoi init cjw6k --apply --branch "$BRANCH"
 
       - name: shovel list
         run: shovel list
