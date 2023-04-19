@@ -33,6 +33,7 @@ jobs:
           BRANCH: ${{ github.head_ref || github.ref_name }}
         with:
           release: ${{ matrix.release }}
+          envs: "BRANCH"
           prepare: |
             pkg install -y chezmoi
 
