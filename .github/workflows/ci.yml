@@ -4,6 +4,12 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - .taskfiles/**
+      - .gitignore
+      - .pre-commit-config.yaml
+      - README.md
+      - Taskfile.yaml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
