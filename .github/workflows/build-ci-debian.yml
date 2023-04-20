@@ -1,0 +1,16 @@
+name: Build CI Images Debian
+on: workflow_dispatch
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-debian
+  cancel-in-progress: true
+
+jobs:
+  call-build-ci-common:
+    uses: ./.github/workflows/build-ci-common.yml
+    strategy:
+      matrix:
+        tag: ['sid', 'bookworm', 'bullseye', 'buster']
+
+    with:
+      image: debian
+      tag: ${{ matrix.tag }}

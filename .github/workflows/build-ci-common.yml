@@ -1,0 +1,37 @@
+name: Build CI Images Common
+on:
+  workflow_call:
+    inputs:
+      image:
+        required: true
+        type: string
+
+      tag:
+        required: true
+        type: string
+
+jobs:
+  build-ubuntu-images:
+    runs-on: ubuntu-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v3
+
+      - name: build image
+        run: |
+          docker build - < .github/Dockerfile \
+            --build-arg SOURCE_IMAGE="${{ inputs.image }}" \
+            --build-arg SOURCE_TAG="${{ inputs.tag }}" \
+            --tag "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}" \
+            --label "org.opencontainers.image.source=https://github.com/cjw6k/dotfiles" \
+            --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} configured for dotfiles CI"
+
+      - name: login to ghcr.io
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: push image to ghcr.io
+        run: docker push "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}"
