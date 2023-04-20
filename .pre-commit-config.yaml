@@ -21,8 +21,14 @@ repos:
     hooks:
       - id: actionlint
 
+  - repo: https://github.com/hadolint/hadolint
+    rev: v2.12.1-beta
+    hooks:
+      - id: hadolint
+
 ci:
   autofix_commit_msg: "⚙ auto fixes [pre-commit.ci]"
   autoupdate_commit_msg: "⚙ auto updates [pre-commit.ci]"
   skip:
     - actionlint
+    - hadolint
