@@ -1,4 +1,4 @@
-name: Continuous Integration - FreeBSD
+name: CI - FreeBSD
 run-name: CI / FreeBSD on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:

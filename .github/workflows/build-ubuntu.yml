@@ -1,0 +1,19 @@
+name: Build CI Images - Ubuntu
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-ubuntu
+  cancel-in-progress: true
+
+jobs:
+  call-build-ci-common:
+    uses: ./.github/workflows/build-common.yml
+    strategy:
+      matrix:
+        tag: ['latest', 'kinetic', 'jammy', 'focal', 'bionic', 'xenial']
+
+    with:
+      image: ubuntu
+      tag: ${{ matrix.tag }}

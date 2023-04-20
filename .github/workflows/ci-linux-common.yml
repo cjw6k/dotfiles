@@ -1,4 +1,4 @@
-name: Continuous Integration - Common
+name: CI - Common
 on:
   workflow_call:
     inputs:
@@ -35,7 +35,7 @@ jobs:
         id: init-dotfiles-command
         run: |
           echo command="$(.github/linux/init-dotfiles-command.sh ${{ inputs.distro }} ${{ inputs.tag }})" \
-            >> $GITHUB_OUTPUT
+            >> "$GITHUB_OUTPUT"
 
       - name: init dotfiles
         env:
