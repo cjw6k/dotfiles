@@ -1,4 +1,4 @@
-name: Build CI Images Ubuntu
+name: Build CI Images - Ubuntu
 on: workflow_dispatch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-ubuntu

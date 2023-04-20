@@ -1,4 +1,4 @@
-name: Continuous Integration - Gentoo
+name: CI - Gentoo
 run-name: CI / Linux / Gentoo on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: Build CI Images Debian
+name: Build CI Images - Debian
 on: workflow_dispatch
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-debian

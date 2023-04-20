@@ -1,4 +1,4 @@
-name: Continuous Integration - Common
+name: CI - Common
 on:
   workflow_call:
     inputs:

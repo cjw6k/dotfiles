@@ -1,4 +1,4 @@
-name: Continuous Integration - Windows
+name: CI - Windows
 run-name: CI / Windows on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:

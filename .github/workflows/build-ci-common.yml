@@ -1,4 +1,4 @@
-name: Build CI Images Common
+name: Build CI Images - Common
 on:
   workflow_call:
     inputs:

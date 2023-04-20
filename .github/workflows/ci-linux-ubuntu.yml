@@ -1,4 +1,4 @@
-name: Continuous Integration - Ubuntu
+name: CI - Ubuntu
 run-name: CI / Linux / Ubuntu on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:

@@ -1,4 +1,4 @@
-name: Continuous Integration - Alpine
+name: CI - Alpine
 run-name: CI / Linux / Alpine on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:
