@@ -10,6 +10,10 @@ on:
         required: true
         type: string
 
+      target:
+        required: true
+        type: string
+
 permissions:
   packages: write
 
@@ -25,6 +29,7 @@ jobs:
           docker build - < .github/Dockerfile \
             --build-arg SOURCE_IMAGE="${{ inputs.image }}" \
             --build-arg SOURCE_TAG="${{ inputs.tag }}" \
+            --target "${{ inputs.target }}" \
             --tag "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}" \
             --label "org.opencontainers.image.source=https://github.com/cjw6k/dotfiles" \
             --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} configured for dotfiles CI"

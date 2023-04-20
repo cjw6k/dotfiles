@@ -17,3 +17,4 @@ jobs:
     with:
       image: debian
       tag: ${{ matrix.tag }}
+      target: apt
