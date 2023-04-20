@@ -14,6 +14,9 @@ permissions:
   packages: write
 
 jobs:
+  call-build-alpine:
+    uses: ./.github/workflows/build-alpine.yml
+
   call-build-debian:
     uses: ./.github/workflows/build-debian.yml
 
