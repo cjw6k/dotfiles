@@ -40,13 +40,13 @@ jobs:
         id: arch
         run: |
           echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
-            >> $GITHUB_OUTPUT
+            >> "$GITHUB_OUTPUT"
 
       - name: identify microarchitecture
         id: march
         run: |
           echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
-            >> $GITHUB_OUTPUT
+            >> "$GITHUB_OUTPUT"
 
       - name: restore binpkgs cache
         id: cache
@@ -67,6 +67,7 @@ jobs:
       - name: enable buildpkg feature
         run: |
           echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
+          # shellcheck disable=SC2016
           echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
           tee </etc/portage/make.conf
 
@@ -74,7 +75,7 @@ jobs:
         id: initial-binpkgs
         run: |
           echo sha1="$(sha1sum /var/cache/binpkgs/Packages | cut -d' ' -f1)" \
-            >> $GITHUB_OUTPUT
+            >> "$GITHUB_OUTPUT"
 
       - name: checkout
         uses: actions/checkout@v3
@@ -95,7 +96,7 @@ jobs:
         id: final-binpkgs
         run: |
           echo sha1="$(sha1sum /var/cache/binpkgs/Packages | cut -d' ' -f1)" \
-            >> $GITHUB_OUTPUT
+            >> "$GITHUB_OUTPUT"
 
       - name: save binpkgs cache
         if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
