@@ -1,10 +1,10 @@
-name: Build CI Images - Debian
+name: Build CI Images - Alpine
 on:
   workflow_dispatch:
   workflow_call:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}-debian
+  group: ${{ github.workflow }}-${{ github.ref }}-alpine
   cancel-in-progress: true
 
 jobs:
@@ -12,9 +12,9 @@ jobs:
     uses: ./.github/workflows/build-common.yml
     strategy:
       matrix:
-        tag: ['sid', 'bookworm', 'bullseye', 'buster']
+        tag: ['edge', '3.17']
 
     with:
-      image: debian
+      image: alpine
       tag: ${{ matrix.tag }}
-      target: apt
+      target: apk

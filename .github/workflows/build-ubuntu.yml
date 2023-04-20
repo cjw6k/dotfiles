@@ -17,3 +17,4 @@ jobs:
     with:
       image: ubuntu
       tag: ${{ matrix.tag }}
+      target: apt
