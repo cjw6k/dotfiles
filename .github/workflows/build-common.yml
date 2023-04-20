@@ -34,4 +34,5 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: push image to ghcr.io
+        if: ${{ github.ref == 'refs/heads/main' }}
         run: docker push "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}"

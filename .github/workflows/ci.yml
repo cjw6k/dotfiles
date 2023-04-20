@@ -5,6 +5,8 @@ on:
     branches:
       - main
     paths-ignore:
+      - .github/Dockerfile
+      - .github/build*
       - .taskfiles/**
       - .gitignore
       - .pre-commit-config.yaml
