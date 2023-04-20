@@ -10,8 +10,11 @@ on:
         required: true
         type: string
 
+permissions:
+  packages: write
+
 jobs:
-  build-ubuntu-images:
+  build-and-push-image:
     runs-on: ubuntu-latest
     steps:
       - name: checkout
