@@ -27,6 +27,7 @@ jobs:
             --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} configured for dotfiles CI"
 
       - name: login to ghcr.io
+        if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/login-action@v1
         with:
           registry: ghcr.io
