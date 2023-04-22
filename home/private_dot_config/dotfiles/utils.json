@@ -69,7 +69,7 @@
           ]
         },
         "ubuntu": {
-          "latest": ["7zz"],
+          "lunar": ["7zz"],
           "kinetic": ["7zz"],
           "jammy": ["7zz"],
           "focal": ["7zr"],
