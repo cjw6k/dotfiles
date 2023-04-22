@@ -56,36 +56,66 @@ jobs:
   # alpine completes very quickly, if it doesn't pass skip the others
   ci-alpine:
     needs: [paths-filter, build-alpine]
-    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-any == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-any == 'true'
+
     uses: ./.github/workflows/ci-linux-alpine.yml
     with:
       suffix: ${{ needs.paths-filter.outputs.build-alpine == 'true' && format('-{0}', github.sha) || '' }}
 
   ci-freebsd:
     needs: [paths-filter, ci-alpine]
-    if: ${{ needs.paths-filter.outputs.ci-freebsd == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-freebsd == 'true'
+
     uses: ./.github/workflows/ci-freebsd.yml
 
   ci-debian:
     needs: [paths-filter, ci-alpine, build-debian]
-    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-debian == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-debian == 'true'
+
     uses: ./.github/workflows/ci-linux-debian.yml
     with:
       suffix: ${{ needs.paths-filter.outputs.build-debian == 'true' && format('-{0}', github.sha) || ''}}
 
   ci-gentoo:
     needs: [paths-filter, ci-alpine]
-    if: ${{ needs.paths-filter.outputs.ci-gentoo == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-gentoo == 'true'
+
     uses: ./.github/workflows/ci-linux-gentoo.yml
 
   ci-ubuntu:
     needs: [paths-filter, ci-alpine, build-ubuntu]
-    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-ubuntu == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-ubuntu == 'true'
+
     uses: ./.github/workflows/ci-linux-ubuntu.yml
     with:
       suffix: ${{ needs.paths-filter.outputs.build-ubuntu == 'true' && format('-{0}', github.sha) || ''}}
 
   ci-windows:
     needs: [paths-filter, ci-alpine]
-    if: ${{ needs.paths-filter.outputs.ci-windows == 'true' }}
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-windows == 'true'
+
     uses: ./.github/workflows/ci-windows.yml
