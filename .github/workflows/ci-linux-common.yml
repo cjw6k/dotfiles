@@ -14,7 +14,7 @@ jobs:
   linux:
     runs-on: ubuntu-latest
     name: Install and Test on Linux
-    container: ghcr.io/cjw6k/dotfiles:ci-${{ inputs.distro }}-${{ inputs.tag }}
+    container: ghcr.io/${{ github.repository }}:ci-${{ inputs.distro }}-${{ inputs.tag }}
     steps:
       - name: checkout
         uses: actions/checkout@v3

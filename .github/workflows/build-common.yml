@@ -25,12 +25,14 @@ jobs:
         uses: actions/checkout@v3
 
       - name: build image
+        env:
+          REPO: ${{ github.repository }}
         run: |
           docker build - < .github/${{ inputs.dockerfile }}.Dockerfile \
             --build-arg SOURCE_IMAGE="${{ inputs.image }}" \
             --build-arg SOURCE_TAG="${{ inputs.tag }}" \
-            --tag "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}" \
-            --label "org.opencontainers.image.source=https://github.com/cjw6k/dotfiles" \
+            --tag "ghcr.io/$REPO:ci-${{ inputs.image }}-${{ inputs.tag }}" \
+            --label "org.opencontainers.image.source=https://github.com/$REPO" \
             --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} configured for dotfiles CI"
 
       - name: login to ghcr.io
@@ -43,4 +45,6 @@ jobs:
 
       - name: push image to ghcr.io
         if: ${{ github.ref == 'refs/heads/main' }}
-        run: docker push "ghcr.io/cjw6k/dotfiles:ci-${{ inputs.image }}-${{ inputs.tag }}"
+        env:
+          REPO: ${{ github.repository }}
+        run: docker push "ghcr.io/$REPO:ci-${{ inputs.image }}-${{ inputs.tag }}"
