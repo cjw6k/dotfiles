@@ -1,0 +1,168 @@
+# This file is configuration for use with https://github.com/dorny/paths-filter
+
+#
+# files used in building the CI images
+#
+build-common: &build-common
+  - '.github/workflows/build-common.yml'
+
+build-alpine: &build-alpine
+  - *build-common
+  - '.github/apk.Dockerfile'
+  - '.github/workflows/build-alpine.yml'
+
+build-debian: &build-debian
+  - *build-common
+  - '.github/apt.Dockerfile'
+  - '.github/workflows/build-debian.yml'
+  -
+build-gentoo: &build-gentoo
+  - *build-common
+  - '.github/portage.Dockerfile'
+  - '.github/workflows/build-gentoo.yml'
+
+build-ubuntu: &build-ubuntu
+  - *build-common
+  - '.github/apt.Dockerfile'
+  - '.github/workflows/build-ubuntu.yml'
+
+#
+# configuration of chezmoi
+#
+chezmoi-config: &chezmoi-config
+  - 'home/.chezmoi-toml.tmpl'
+  - 'home/.chezmoiignore'
+  - '.chezmoiroot'
+  - '.chezmoiversion'
+
+#
+# utilities installed by dotfiles
+#
+utils: &utils
+  - 'home/private_dot_config/dotfiles/utils.json'
+
+#
+# scripts that run when chezmoi is initialized
+#
+dotfiles-scripts-freebsd: &dotfiles-scripts-freebsd
+  - 'home/.chezmoiscripts/freebsd/**'
+
+dotfiles-scripts-alpine: &dotfiles-scripts-alpine
+  - 'home/.chezmoiscripts/linux/alpine/**'
+
+dotfiles-scripts-debian: &dotfiles-scripts-debian
+  - 'home/.chezmoiscripts/linux/debian/**'
+
+dotfiles-scripts-gentoo: &dotfiles-scripts-gentoo
+  - 'home/.chezmoiscripts/linux/gentoo/**'
+
+dotfiles-scripts-ubuntu: &dotfiles-scripts-ubuntu
+  - 'home/.chezmoiscripts/linux/ubuntu/**'
+
+dotfiles-scripts-windows: &dotfiles-scripts-windows
+  - 'home/.chezmoiscripts/windows/**'
+
+#
+# files used in installing and testing dotfiles in CI
+#
+test-common: &test-common
+  - '.github/workflows/ci.yml'
+
+test-freebsd: &test-freebsd
+  - *test-common
+  - '.github/freebsd/*'
+  - '.github/workflows/ci-freebsd.yml'
+
+test-alpine: &test-alpine
+  - *test-common
+  - '.github/linux/*'
+  - '.github/workflows/ci-linux-alpine.yml'
+  - '.github/workflows/ci-linux-common.yml'
+
+test-debian: &test-debian
+  - *test-common
+  - '.github/linux/*'
+  - '.github/workflows/ci-linux-common.yml'
+  - '.github/workflows/ci-linux-debian.yml'
+
+test-gentoo: &test-gentoo
+  - *test-common
+  - '.github/linux/*'
+  - '.github/workflows/ci-linux-gentoo.yml'
+
+test-ubuntu: &test-ubuntu
+  - *test-common
+  - '.github/linux/*'
+  - '.github/workflows/ci-linux-common.yml'
+  - '.github/workflows/ci-linux-ubuntu.yml'
+
+test-windows: &test-windows
+  - *test-common
+  - '.github/windows/**'
+  - '.github/workflows/ci-windows.yml'
+
+test-any:
+  - *test-freebsd
+  - *test-alpine
+  - *test-debian
+  - *test-gentoo
+  - *test-ubuntu
+  - *test-windows
+
+#
+# combinations which determine which environments need to be run through CI
+#
+dotfiles-core: &dotfiles-core
+  - *utils
+  - *chezmoi-config
+
+ci-freebsd: &ci-freebsd
+  - *dotfiles-core
+  - *dotfiles-scripts-freebsd
+  - *test-freebsd
+
+ci-alpine: &ci-alpine
+  - *dotfiles-core
+  - *dotfiles-scripts-alpine
+  - *build-alpine
+  - *test-alpine
+
+ci-debian: &ci-debian
+  - *dotfiles-core
+  - *dotfiles-scripts-debian
+  - *build-debian
+  - *test-debian
+
+ci-gentoo: &ci-gentoo
+  - *dotfiles-core
+  - *dotfiles-scripts-gentoo
+  - *build-gentoo
+  - *test-gentoo
+
+ci-ubuntu: &ci-ubuntu
+  - *dotfiles-core
+  - *dotfiles-scripts-ubuntu
+  - *build-ubuntu
+  - *test-ubuntu
+
+ci-windows: &ci-windows
+  - *dotfiles-core
+  - *dotfiles-scripts-windows
+  - *test-windows
+
+ci-any:
+  - *ci-freebsd
+  - *ci-alpine
+  - *ci-debian
+  - *ci-gentoo
+  - *ci-ubuntu
+  - *ci-windows
+
+#
+# sources that are copied to the user home directory by chezmoi on apply
+#
+dotfiles-sources:
+  - 'home/**'
+  - '!home/.chezmoiscripts/**'
+  - '!home/.chezmoi.toml.tmpl'
+  - '!home/.chezmoiignore'

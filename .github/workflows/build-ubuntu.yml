@@ -15,6 +15,6 @@ jobs:
         tag: ['latest', 'kinetic', 'jammy', 'focal', 'bionic', 'xenial']
 
     with:
+      dockerfile: apt
       image: ubuntu
       tag: ${{ matrix.tag }}
-      target: apt

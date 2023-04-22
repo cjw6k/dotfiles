@@ -15,6 +15,6 @@ jobs:
         tag: ['sid', 'bookworm', 'bullseye', 'buster']
 
     with:
+      dockerfile: apt
       image: debian
       tag: ${{ matrix.tag }}
-      target: apt
