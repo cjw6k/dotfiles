@@ -172,7 +172,17 @@
     "url": "https://taskfile.dev/",
     "install": {
       "common": "#custom",
+      "linux": {
+        "alpine": {
+          "common": "go-task"
+        }
+      },
       "windows": "default"
+    },
+    "provides": {
+      "linux": {
+        "alpine": ["go-task"]
+      }
     }
   }
 ]
