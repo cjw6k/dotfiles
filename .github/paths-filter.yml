@@ -17,7 +17,6 @@ build-debian: &build-debian
   - '.github/workflows/build-debian.yml'
 
 build-gentoo: &build-gentoo
-  - *build-common
   - '.github/portage.Dockerfile'
   - '.github/workflows/build-gentoo.yml'
 
