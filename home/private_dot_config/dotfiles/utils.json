@@ -165,5 +165,14 @@
         "ssh-keygen"
       ]
     }
+  },
+  {
+    "name": "task",
+    "description": "A task runner / simpler Make alternative.",
+    "url": "https://taskfile.dev/",
+    "install": {
+      "common": "#custom",
+      "windows": "default"
+    }
   }
 ]
