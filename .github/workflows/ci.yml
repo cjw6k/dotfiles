@@ -1,42 +1,85 @@
 name: CI
 on:
   workflow_dispatch:
+  pull_request:
   push:
     branches:
       - main
-    paths-ignore:
-      - .github/Dockerfile
-      - .github/build*
-      - .taskfiles/**
-      - .gitignore
-      - .pre-commit-config.yaml
-      - README.md
-      - Taskfile.yaml
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
 jobs:
-  call-linux-alpine:
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      build-alpine: ${{ steps.filter.outputs.build-alpine }}
+      build-debian: ${{ steps.filter.outputs.build-debian }}
+      build-ubuntu: ${{ steps.filter.outputs.build-ubuntu }}
+      ci-freebsd: ${{ steps.filter.outputs.ci-freebsd }}
+      ci-debian: ${{ steps.filter.outputs.ci-debian }}
+      ci-gentoo: ${{ steps.filter.outputs.ci-gentoo }}
+      ci-ubuntu: ${{ steps.filter.outputs.ci-ubuntu }}
+      ci-windows: ${{ steps.filter.outputs.ci-windows }}
+      ci-any: ${{ steps.filter.outputs.ci-any }}
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: '.github/paths-filter.yml'
+
+  build-alpine:
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.build-alpine == 'true' }}
+    uses: ./.github/workflows/build-alpine.yml
+    permissions:
+      packages: write
+
+  build-debian:
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.build-debian == 'true' }}
+    uses: ./.github/workflows/build-debian.yml
+    permissions:
+      packages: write
+
+  build-ubuntu:
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.build-ubuntu == 'true' }}
+    uses: ./.github/workflows/build-ubuntu.yml
+    permissions:
+      packages: write
+
+  # alpine completes very quickly, if it doesn't pass skip the others
+  ci-alpine:
+    needs: [paths-filter, build-alpine]
+    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-any == 'true' }}
     uses: ./.github/workflows/ci-linux-alpine.yml
 
-  call-freebsd:
-    needs: call-linux-alpine
+  ci-freebsd:
+    needs: [paths-filter, ci-alpine]
+    if: ${{ needs.paths-filter.outputs.ci-freebsd == 'true' }}
     uses: ./.github/workflows/ci-freebsd.yml
 
-  call-windows:
-    needs: call-linux-alpine
-    uses: ./.github/workflows/ci-windows.yml
-
-  call-linux-gentoo:
-    needs: call-linux-alpine
-    uses: ./.github/workflows/ci-linux-gentoo.yml
-
-  call-linux-debian:
-    needs: call-linux-alpine
+  ci-debian:
+    needs: [paths-filter, ci-alpine, build-debian]
+    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-debian == 'true' }}
     uses: ./.github/workflows/ci-linux-debian.yml
 
-  call-linux-ubuntu:
-    needs: call-linux-alpine
+  ci-gentoo:
+    needs: [paths-filter, ci-alpine]
+    if: ${{ needs.paths-filter.outputs.ci-gentoo == 'true' }}
+    uses: ./.github/workflows/ci-linux-gentoo.yml
+
+  ci-ubuntu:
+    needs: [paths-filter, ci-alpine, build-ubuntu]
+    if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-ubuntu == 'true' }}
     uses: ./.github/workflows/ci-linux-ubuntu.yml
+
+  ci-windows:
+    needs: [paths-filter, ci-alpine]
+    if: ${{ needs.paths-filter.outputs.ci-windows == 'true' }}
+    uses: ./.github/workflows/ci-windows.yml

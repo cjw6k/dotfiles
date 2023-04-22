@@ -15,6 +15,6 @@ jobs:
         tag: ['edge', '3.17']
 
     with:
+      dockerfile: apk
       image: alpine
       tag: ${{ matrix.tag }}
-      target: apk
