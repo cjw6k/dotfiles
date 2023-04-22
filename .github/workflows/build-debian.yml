@@ -7,6 +7,9 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-debian
   cancel-in-progress: true
 
+permissions:
+  packages: write
+
 jobs:
   call-build-ci-common:
     uses: ./.github/workflows/build-common.yml
