@@ -8,19 +8,6 @@ on:
         required: false
         type: string
 
-  pull_request:
-    paths:
-      - '.github/linux/**'
-      - '.github/workflows/ci-linux-common.yml'
-      - '.github/workflows/ci-linux-alpine.yml'
-      - 'home/private_dot_config/utils.json'
-      - 'home/.chezmoiscripts/linux/*.sh'
-      - 'home/.chezmoiscripts/linux/*.sh.tmpl'
-      - 'home/.chezmoiscripts/linux/alpine/**'
-      - 'home/.chezmoiscripts/personal/linux/*.sh'
-      - 'home/.chezmoiscripts/personal/linux/*.sh.tmpl'
-      - 'home/.chezmoiscripts/personal/linux/alpine/**'
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-alpine
   cancel-in-progress: true

@@ -3,13 +3,6 @@ run-name: CI / Windows on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:
   workflow_dispatch:
-  pull_request:
-    paths:
-      - '.github/windows/**'
-      - '.github/workflows/ci-windows.yml'
-      - 'home/private_dot_config/utils.json'
-      - 'home/.chezmoiscripts/windows/**'
-      - 'home/.chezmoiscripts/personal/windows/**'
 
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-windows

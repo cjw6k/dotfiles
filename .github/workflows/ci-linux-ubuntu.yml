@@ -8,19 +8,6 @@ on:
         required: false
         type: string
 
-  pull_request:
-    paths:
-      - '.github/linux/**'
-      - '.github/workflows/ci-linux-common.yml'
-      - '.github/workflows/ci-linux-ubuntu.yml'
-      - 'home/private_dot_config/utils.json'
-      - 'home/.chezmoiscripts/linux/*.sh'
-      - 'home/.chezmoiscripts/linux/*.sh.tmpl'
-      - 'home/.chezmoiscripts/linux/ubuntu/**'
-      - 'home/.chezmoiscripts/personal/linux/*.sh'
-      - 'home/.chezmoiscripts/personal/linux/*.sh.tmpl'
-      - 'home/.chezmoiscripts/personal/linux/ubuntu/**'
-
 concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}-ubuntu
   cancel-in-progress: true
