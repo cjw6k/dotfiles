@@ -10,11 +10,17 @@ on:
         required: true
         type: string
 
+      suffix:
+        required: false
+        type: string
+        default: ''
+
 jobs:
   linux:
     runs-on: ubuntu-latest
     name: Install and Test on Linux
-    container: ghcr.io/${{ github.repository }}:ci-${{ inputs.distro }}-${{ inputs.tag }}
+    # must match env.DOTFILES_TAG in the build-*.yml workflows
+    container: ${{ format('ghcr.io/{0}:ci-{1}-{2}{3}', github.repository, inputs.distro, inputs.tag, inputs.suffix) }}
     steps:
       - name: checkout
         uses: actions/checkout@v3

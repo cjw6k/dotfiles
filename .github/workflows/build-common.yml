@@ -17,6 +17,12 @@ on:
 permissions:
   packages: write
 
+env:
+  DOTFILES_REPO: ${{ github.repository }}
+  # the DOTFILES_TAG must match the container in the ci-linux-*.yml workflows
+  DOTFILES_TAG: ${{ format('ghcr.io/{0}:ci-{1}-{2}', github.repository, inputs.image, inputs.tag) }}
+  DOTFILES_SHA_TAG: ${{ format('ghcr.io/{0}:ci-{1}-{2}-{3}', github.repository, inputs.image, inputs.tag, github.sha) }}
+
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
@@ -25,18 +31,15 @@ jobs:
         uses: actions/checkout@v3
 
       - name: build image
-        env:
-          REPO: ${{ github.repository }}
         run: |
           docker build - < .github/${{ inputs.dockerfile }}.Dockerfile \
             --build-arg SOURCE_IMAGE="${{ inputs.image }}" \
             --build-arg SOURCE_TAG="${{ inputs.tag }}" \
-            --tag "ghcr.io/$REPO:ci-${{ inputs.image }}-${{ inputs.tag }}" \
-            --label "org.opencontainers.image.source=https://github.com/$REPO" \
-            --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} configured for dotfiles CI"
+            --tag "$DOTFILES_SHA_TAG" \
+            --label "org.opencontainers.image.source=https://github.com/$DOTFILES_REPO" \
+            --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} for $DOTFILES_REPO CI"
 
       - name: login to ghcr.io
-        if: ${{ github.ref == 'refs/heads/main' }}
         uses: docker/login-action@v2
         with:
           registry: ghcr.io
@@ -44,7 +47,10 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: push image to ghcr.io
-        if: ${{ github.ref == 'refs/heads/main' }}
-        env:
-          REPO: ${{ github.repository }}
-        run: docker push "ghcr.io/$REPO:ci-${{ inputs.image }}-${{ inputs.tag }}"
+        run: docker push "$DOTFILES_SHA_TAG"
+
+      - name: tag and push default image on main
+        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+        run: |
+          docker tag "$DOTFILES_SHA_TAG" "$DOTFILES_TAG"
+          docker push "$DOTFILES_TAG"

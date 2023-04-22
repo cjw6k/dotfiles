@@ -1,8 +1,13 @@
 name: CI - Ubuntu
 run-name: CI / Linux / Ubuntu on ${{ github.head_ref || github.ref_name }}
 on:
-  workflow_call:
   workflow_dispatch:
+  workflow_call:
+    inputs:
+      suffix:
+        required: false
+        type: string
+
   pull_request:
     paths:
       - '.github/linux/**'
@@ -30,3 +35,4 @@ jobs:
     with:
       distro: ubuntu
       tag: ${{ matrix.tag }}
+      suffix: ${{ inputs.suffix }}

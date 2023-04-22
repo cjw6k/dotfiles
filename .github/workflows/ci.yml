@@ -58,6 +58,8 @@ jobs:
     needs: [paths-filter, build-alpine]
     if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-any == 'true' }}
     uses: ./.github/workflows/ci-linux-alpine.yml
+    with:
+      suffix: ${{ needs.paths-filter.outputs.build-alpine == 'true' && format('-{0}', github.sha) }}
 
   ci-freebsd:
     needs: [paths-filter, ci-alpine]
@@ -68,6 +70,8 @@ jobs:
     needs: [paths-filter, ci-alpine, build-debian]
     if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-debian == 'true' }}
     uses: ./.github/workflows/ci-linux-debian.yml
+    with:
+      suffix: ${{ needs.paths-filter.outputs.build-debian == 'true' && format('-{0}', github.sha) }}
 
   ci-gentoo:
     needs: [paths-filter, ci-alpine]
@@ -78,6 +82,8 @@ jobs:
     needs: [paths-filter, ci-alpine, build-ubuntu]
     if: ${{ !cancelled() && !failure() && needs.paths-filter.outputs.ci-ubuntu == 'true' }}
     uses: ./.github/workflows/ci-linux-ubuntu.yml
+    with:
+      suffix: ${{ needs.paths-filter.outputs.build-ubuntu == 'true' && format('-{0}', github.sha) }}
 
   ci-windows:
     needs: [paths-filter, ci-alpine]
