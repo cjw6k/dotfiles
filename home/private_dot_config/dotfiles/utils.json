@@ -174,7 +174,7 @@
       "common": "#custom",
       "linux": {
         "alpine": {
-          "common": ["go-task"]
+          "common": "go-task"
         }
       },
       "windows": "default"
