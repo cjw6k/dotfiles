@@ -176,7 +176,8 @@
         "alpine": {
           "common": "go-task"
         }
-      }
+      },
+      "windows": "task"
     },
     "provides": {
       "linux": {
