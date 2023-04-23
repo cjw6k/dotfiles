@@ -4,15 +4,13 @@
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
 read -r -d '' script << 'JQ'
-def filter(field):
-  select(field as $in | ["#builtin", "#custom"] | index($in) | not);
-
 .[]
   | select(.personal != true)
-  | filter(.install.common)
-  | filter(.install.linux.common)
-  | filter(.install.linux.alpine)
-  | .install.linux.alpine // .name
+  | .install.linux.alpine.common
+    // .install.linux.common
+    // .install.common
+    // .name
+  | select(. as $in | ["#builtin", "#custom"] | index($in) | not)
 JQ
 
 apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)

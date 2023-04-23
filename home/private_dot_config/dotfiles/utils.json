@@ -165,5 +165,39 @@
         "ssh-keygen"
       ]
     }
+  },
+  {
+    "name": "task",
+    "description": "A task runner / simpler Make alternative.",
+    "url": "https://taskfile.dev/",
+    "install": {
+      "common": "#custom",
+      "freebsd": {
+        "common": "#na"
+      },
+      "linux": {
+        "alpine": {
+          "common": "go-task"
+        }
+      },
+      "windows": "task"
+    },
+    "provides": {
+      "linux": {
+        "alpine": {
+          "common": ["go-task"]
+        },
+        "debian": {
+          "common": ["task"]
+        },
+        "gentoo": {
+          "common": ["task"]
+        },
+        "ubuntu": {
+          "common": ["task"]
+        }
+      },
+      "windows": ["task"]
+    }
   }
 ]

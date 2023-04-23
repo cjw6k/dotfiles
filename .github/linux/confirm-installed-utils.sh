@@ -25,35 +25,60 @@ check () {
 
 missed=0
 
-for i in $(echo "$partial" | jq -r '. | select(.provides == null) | .name'); do
+selection=$(echo "$partial" | jq -r '. | select(.provides == null) | .name')
+if [ $? -ne 0 ]; then
+  echo 'Failed parsing .[].provides from utils.json'
+  exit 1
+fi
+for i in $selection; do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
   fi
 done
 
-for i in $(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]'); do
+selection=$(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]')
+if [ $? -ne 0 ]; then
+  echo 'Failed parsing .[].provides.commmon from utils.json'
+  exit 1
+fi
+for i in $selection; do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
   fi
 done
 
-for i in $(echo "$partial" | jq -r '. | select(.provides.linux.common != null) | .provides.linux.common[]'); do
+selection=$(echo "$partial" | jq -r '. | select(.provides.linux.common != null) | .provides.linux.common[]')
+if [ $? -ne 0 ]; then
+  echo 'Failed parsing .[].provides.linux.common from utils.json'
+  exit 1
+fi
+for i in $selection; do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
   fi
 done
 
-for i in $(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]"); do
+selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]")
+if [ $? -ne 0 ]; then
+  echo "Failed parsing .[].provides.linux.\"$1\".common from utils.json"
+  exit 1
+fi
+for i in $selection; do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
   fi
 done
 
-for i in $(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]"); do
+selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]")
+if [ $? -ne 0 ]; then
+  echo "Failed parsing .[].provides.linux.\"$1\".\"$2\" from utils.json"
+  exit 1
+fi
+for i in $selection; do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))
