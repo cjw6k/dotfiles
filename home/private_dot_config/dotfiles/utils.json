@@ -173,7 +173,9 @@
     "install": {
       "common": "#custom",
       "linux": {
-        "alpine": "go-task"
+        "alpine": {
+          "common": ["go-task"]
+        }
       },
       "windows": "default"
     },

@@ -4,16 +4,14 @@
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
 read -r -d '' script << 'JQ'
-def filter(field):
-  select(field as $in | ["#builtin", "#custom"] | index($in) | not);
-
 .[]
   | select(.personal != true)
-  | filter(.install.common)
-  | filter(.install.linux.common)
-  | filter(.install.linux.ubuntu.common)
-  | filter(.install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }})
-  | .install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }} // .install.linux.ubuntu.common // .name
+  | .install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }}
+    // .install.linux.ubuntu.common
+    // .install.linux.common
+    // .install.common
+    // .name
+  | select(. as $in | ["#builtin", "#custom"] | index($in) | not)
 JQ
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
