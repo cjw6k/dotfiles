@@ -14,3 +14,6 @@ read -r -d '' script << 'JQ'
 JQ
 
 emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
+
+# better as an ebuild & overlay
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin

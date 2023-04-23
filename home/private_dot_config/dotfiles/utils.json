@@ -176,8 +176,7 @@
         "alpine": {
           "common": "go-task"
         }
-      },
-      "windows": "default"
+      }
     },
     "provides": {
       "linux": {
@@ -187,10 +186,14 @@
         "debian": {
           "common": ["task"]
         },
+        "gentoo": {
+          "common": ["task"]
+        },
         "ubuntu": {
           "common": ["task"]
         }
-      }
+      },
+      "windows": ["task"]
     }
   }
 ]
