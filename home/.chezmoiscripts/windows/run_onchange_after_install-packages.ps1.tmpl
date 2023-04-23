@@ -10,7 +10,7 @@ $utils = Get-Content '~/.config/dotfiles/utils.json' `
 $toInstall = @()
 foreach ($util in $utils) {
   $name = $util.install.windows ?? $util.install.common ?? $util.name
-  if ($name -in @skipInstall) {
+  if ($name -in $skipInstall) {
     continue
   }
 
