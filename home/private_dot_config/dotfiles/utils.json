@@ -181,7 +181,9 @@
     },
     "provides": {
       "linux": {
-        "alpine": ["go-task"]
+        "alpine": ["go-task"],
+        "debian": ["task"],
+        "ubuntu": ["task"]
       }
     }
   }
