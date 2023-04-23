@@ -89,6 +89,27 @@
     }
   },
   {
+    "name": "delta",
+    "description": "A viewer for git and diff output.",
+    "url": "https://dandavison.github.io/delta/",
+    "install": {
+      "freebsd": {
+        "common": "git-delta"
+      },
+      "linux": {
+        "debian": {
+          "common": "#custom"
+        },
+        "gentoo": {
+          "common": "dev-util/git-delta"
+        },
+        "ubuntu": {
+          "common": "#custom"
+        }
+      }
+    }
+  },
+  {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
