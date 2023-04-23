@@ -6,8 +6,7 @@
 script="
 .[]
   | select(.personal != true)
-  | .install.linux.alpine.common
-    // .install.linux.common
+  | .install.freebsd.common
     // .install.common
     // .name
   | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\"] | index(\$in) | not)"
