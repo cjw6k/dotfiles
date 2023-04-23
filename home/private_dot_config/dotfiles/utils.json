@@ -172,6 +172,9 @@
     "url": "https://taskfile.dev/",
     "install": {
       "common": "#custom",
+      "freebsd": {
+        "common": "#na"
+      },
       "linux": {
         "alpine": {
           "common": "go-task"
