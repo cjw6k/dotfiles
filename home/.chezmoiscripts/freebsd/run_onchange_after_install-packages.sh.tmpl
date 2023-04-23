@@ -4,13 +4,12 @@
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
 script="
-def filter(field):
-  select(field as \$in | [\"#builtin\", \"#custom\"] | index(\$in) | not);
-
 .[]
   | select(.personal != true)
-  | filter(.install.common)
-  | filter(.install.freebsd.common)
-  | .install.freebsd.common // .name"
+  | .install.linux.alpine.common
+    // .install.linux.common
+    // .install.common
+    // .name
+  | select(. as \$in | [\"#builtin\", \"#custom\"] | index(\$in) | not)"
 
 pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
