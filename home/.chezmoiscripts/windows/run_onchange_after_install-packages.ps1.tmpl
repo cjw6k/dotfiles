@@ -1,7 +1,7 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-$skipInstall = @("#builtin", "#custom")
+$skipInstall = @("#builtin", "#custom", "#na")
 
 $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
@@ -10,7 +10,7 @@ $utils = Get-Content '~/.config/dotfiles/utils.json' `
 $toInstall = @()
 foreach ($util in $utils) {
   $name = $util.install.windows ?? $util.install.common ?? $util.name
-  if ($name -in "#builtin", "#custom") {
+  if ($name -in @skipInstall) {
     continue
   }
 

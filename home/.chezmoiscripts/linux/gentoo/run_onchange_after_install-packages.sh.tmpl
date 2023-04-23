@@ -10,7 +10,7 @@ read -r -d '' script << 'JQ'
     // .install.linux.common
     // .install.common
     // .name
-  | select(. as $in | ["#builtin", "#custom"] | index($in) | not)
+  | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
 JQ
 
 emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
