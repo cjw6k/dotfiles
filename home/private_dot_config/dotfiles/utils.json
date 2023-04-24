@@ -112,6 +112,29 @@
           "xenial": "#na"
         }
       }
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["delta"]
+      },
+      "linux": {
+        "alpine": {
+          "common": ["delta"]
+        },
+        "debian": {
+          "sid": ["delta"],
+          "bookworm": ["delta"]
+        },
+        "gentoo": {
+          "common": ["delta"]
+        },
+        "ubuntu": {
+          "lunar": ["delta"],
+          "kinetic": ["delta"],
+          "jammy": ["delta"]
+        }
+      },
+      "windows": ["delta"]
     }
   },
   {
