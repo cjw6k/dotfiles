@@ -66,6 +66,10 @@ jobs:
           echo sha1="$(sha1sum /var/cache/binpkgs/Packages | cut -d' ' -f1)" \
             >> "$GITHUB_OUTPUT"
 
+      - name: install pre-requisites
+        run: |
+          emerge dev-lang/rust-bin
+
       - name: checkout
         uses: actions/checkout@v3
 
