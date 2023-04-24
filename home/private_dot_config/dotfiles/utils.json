@@ -98,7 +98,9 @@
       },
       "linux": {
         "debian": {
-          "common": "#custom"
+          "common": "#custom",
+          "bullseye": "#na",
+          "buster": "#na"
         },
         "gentoo": {
           "common": "dev-util/git-delta"
