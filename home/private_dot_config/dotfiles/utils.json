@@ -104,7 +104,10 @@
           "common": "dev-util/git-delta"
         },
         "ubuntu": {
-          "common": "#custom"
+          "common": "#custom",
+          "focal": "#na",
+          "bionic": "#na",
+          "xenial": "#na"
         }
       }
     }
