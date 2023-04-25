@@ -8,7 +8,7 @@
 {{- $gitEmail := "user@localhost.localdomain" -}}
 
 {{ if stdinIsATTY -}}
-{{-   $personal = promptBoolOnce . "personal" "Should this machine have personal secrets" false -}}
+{{-   $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
 {{-   $gitUsername = promptStringOnce . "user.git.name" "Git global user name" -}}
 {{-   $gitEmail = promptStringOnce . "user.git.email" "Git global user email address" -}}
 {{- end -}}
