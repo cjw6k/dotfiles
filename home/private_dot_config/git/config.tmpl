@@ -1,0 +1,26 @@
+[user]
+    name = {{ .user.git.name }}
+    email = {{ .user.git.email }}
+
+[core]
+    autocrlf = input
+    eol = lf
+    editor = nano
+    pager = delta{{/* todo: not always! */}}
+
+[pull]
+    rebase = true
+
+[interactive]
+    diffFilter = delta --color-only{{/* todo: not always! */}}
+
+[delta]
+    navigate = true
+
+[init]
+    defaultBranch = main
+
+{{ if eq .user.git.name "cjw6k" }}
+[url "git@github.com:cjw6k"]
+    insteadOf = https://github.com/cjw6k
+{{- end }}

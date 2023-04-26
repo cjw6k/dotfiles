@@ -1,7 +1,0 @@
-#!/usr/bin/env sh
-
-git -C "{{ .chezmoi.workingTree }}" remote get-url origin  | grep -qe '^https://github.com/.*\.git$'
-if [ $? -eq 0 ]; then
-  git -C "{{ .chezmoi.workingTree }}" remote set-url origin \
-    $(git -C "{{ .chezmoi.workingTree }}" remote get-url origin | sed -E 's/^https:\/\/github\.com\/(.*)\.git$/git@github.com:\1/')
-fi

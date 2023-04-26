@@ -3,12 +3,22 @@
 {{/* feature flags */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
 
+{{/* personalization */}}
+{{- $gitUsername := "user" -}}
+{{- $gitEmail := "user@localhost.localdomain" -}}
+
 {{ if stdinIsATTY -}}
-{{-   $personal = promptBoolOnce . "personal" "Should this machine have personal secrets" false -}}
+{{-   $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
+{{-   $gitUsername = promptStringOnce . "user.git.name" "Git global user name" -}}
+{{-   $gitEmail = promptStringOnce . "user.git.email" "Git global user email address" -}}
 {{- end -}}
 
 [data.is]
     personal = {{ $personal }}
+
+[data.user.git]
+    name = {{ $gitUsername | quote }}
+    email = {{ $gitEmail | quote }}
 
 {{ if eq .chezmoi.os "windows" -}}
 [cd]

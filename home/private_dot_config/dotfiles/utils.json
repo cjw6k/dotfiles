@@ -176,9 +176,19 @@
     }
   },
   {
+    "name": "less",
+    "description": "A terminal pager program used to view (but not change) the contents of a text file one screen at a time.",
+    "url": "https://www.greenwoodsoftware.com/less/",
+    "install": {
+      "freebsd": {
+        "common": "#builtin"
+      }
+    }
+  },
+  {
     "name": "nano",
     "description": "Command-line text editor.",
-    "url": "https://nano-editor.org/",
+    "url": "https://github.com/gwsw/less",
     "install": {
       "linux": {
         "gentoo": {
