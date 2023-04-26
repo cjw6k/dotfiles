@@ -10,5 +10,5 @@ FROM ${SOURCE_IMAGE}:${SOURCE_TAG}
 RUN apk --update add chezmoi sudo
 
 RUN addgroup -S ci \
- && adduser -S ci -G ci \
+ && adduser -S ci -G ci -s /bin/sh \
  && echo 'ci ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ci
