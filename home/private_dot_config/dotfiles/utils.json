@@ -138,6 +138,23 @@
     }
   },
   {
+    "name": "fish-shell",
+    "description": "The user-friendly command line shell.",
+    "url": "https://github.com/fish-shell/fish-shell",
+    "install": {
+      "common": "fish",
+      "windows": "#na"
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["fish"]
+      },
+      "linux": {
+        "common": ["fish"]
+      }
+    }
+  },
+  {
     "name": "git",
     "description": "Distributed version control system.",
     "url": "https://git-scm.com/",
