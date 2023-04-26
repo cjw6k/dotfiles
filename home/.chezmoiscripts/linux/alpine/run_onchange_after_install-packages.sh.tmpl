@@ -13,4 +13,4 @@ read -r -d '' script << 'JQ'
   | select(. as $in | ["#builtin", "#custom"] | index($in) | not)
 JQ
 
-apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
+sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)

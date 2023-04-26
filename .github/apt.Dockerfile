@@ -10,3 +10,7 @@ FROM ${SOURCE_IMAGE}:${SOURCE_TAG}
 RUN apt-get update && apt-get install -y ca-certificates curl sudo --no-install-recommends
 
 RUN sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
+
+RUN groupadd -r ci \
+ && useradd -r ci -g ci -m \
+ && echo 'ci ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ci
