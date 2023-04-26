@@ -34,7 +34,7 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: sudo -u ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
+        run: sudo -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
