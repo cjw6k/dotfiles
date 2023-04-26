@@ -182,6 +182,11 @@
     "install": {
       "freebsd": {
         "common": "#builtin"
+      },
+      "linux": {
+        "gentoo": {
+          "common": "#builtin"
+        }
       }
     }
   },
