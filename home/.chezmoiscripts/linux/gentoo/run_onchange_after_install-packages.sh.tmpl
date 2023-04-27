@@ -13,7 +13,7 @@ read -r -d '' script << 'JQ'
   | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
 JQ
 
-emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
+sudo emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
 
 # better as an ebuild & overlay
-sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin

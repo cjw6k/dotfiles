@@ -143,6 +143,11 @@
     "url": "https://github.com/fish-shell/fish-shell",
     "install": {
       "common": "fish",
+      "linux": {
+        "gentoo": {
+          "common": "#custom"
+        }
+      },
       "windows": "#na"
     },
     "provides": {

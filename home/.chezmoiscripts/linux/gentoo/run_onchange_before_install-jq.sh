@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-emerge -n app-misc/jq
+sudo emerge -n app-misc/jq
