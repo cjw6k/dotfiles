@@ -91,6 +91,10 @@ jobs:
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh gentoo latest
 
+      - name: verify ci user has fish-shell
+        run: |
+          test "$(cat /etc/passwd | grep ^ci: | grep -oP '[^:]+$')" = "$(which fish)"
+
       - name: note final binpkgs info
         if: ${{ always() }}
         id: final-binpkgs
