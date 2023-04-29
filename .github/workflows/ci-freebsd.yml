@@ -28,8 +28,11 @@ jobs:
           release: ${{ matrix.release }}
           envs: "BRANCH"
           prepare: |
-            pkg install -y chezmoi
+            pkg install -y sudo chezmoi
 
           run: |
-            chezmoi init --apply cjw6k --branch "$BRANCH"
+            pw groupadd -n ci
+            pw useradd -n ci -g ci -m
+            echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
+            sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
             sh .github/freebsd/confirm-installed-utils.sh
