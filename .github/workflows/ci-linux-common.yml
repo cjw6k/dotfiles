@@ -38,3 +38,7 @@ jobs:
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
+
+      - name: verify ci user has fish-shell
+        run: |
+          test "$(tee </etc/passwd | grep ^ci: | grep -o '[^:]*$')" = "$(which fish)"
