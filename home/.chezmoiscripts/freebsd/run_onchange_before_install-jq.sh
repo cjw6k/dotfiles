@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-pkg install -y jq
+sudo pkg install -y jq

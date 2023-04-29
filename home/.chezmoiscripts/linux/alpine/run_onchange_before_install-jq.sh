@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-apk add jq
+sudo apk add jq

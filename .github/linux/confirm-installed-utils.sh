@@ -10,7 +10,7 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
-partial=$(jq '.[] | select(.personal != true)' ~/.config/dotfiles/utils.json)
+partial=$(jq '.[] | select(.personal != true)' /home/ci/.config/dotfiles/utils.json)
 
 check () {
     ident=$(which "$1")

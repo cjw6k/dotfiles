@@ -11,4 +11,4 @@ script="
     // .name
   | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\"] | index(\$in) | not)"
 
-pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
+sudo pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)

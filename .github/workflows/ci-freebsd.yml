@@ -28,8 +28,19 @@ jobs:
           release: ${{ matrix.release }}
           envs: "BRANCH"
           prepare: |
-            pkg install -y chezmoi
+            pkg install -y sudo chezmoi
 
           run: |
-            chezmoi init --apply cjw6k --branch "$BRANCH"
+            # add ci user
+            pw groupadd -n ci
+            pw useradd -n ci -g ci -m
+            echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
+
+            # init chezmoi
+            sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+
+            # confirm installed utils
             sh .github/freebsd/confirm-installed-utils.sh
+
+            # confirm ci user has fish shell
+            test `tee </etc/passwd | grep ^ci: | grep -o '[^:]*$'` = `which fish`

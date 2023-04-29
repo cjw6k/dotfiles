@@ -68,7 +68,7 @@ jobs:
 
       - name: install pre-requisites
         run: |
-          emerge dev-lang/rust-bin
+          emerge dev-lang/rust-bin app-admin/sudo
 
       - name: checkout
         uses: actions/checkout@v3
@@ -76,13 +76,24 @@ jobs:
       - name: install chezmoi
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
 
+      - name: add ci user
+        run: |
+          groupadd -r ci
+          useradd -r ci -g ci -m
+          [ ! -d /etc/sudoers.d ] && mkdir /etc/sudoers.d
+          echo 'ci ALL=(ALL) NOPASSWD: ALL' > /etc/sudoers.d/ci
+
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: chezmoi init --apply cjw6k --branch "$BRANCH"
+        run: sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh gentoo latest
+
+      - name: verify ci user has fish-shell
+        run: |
+          test "$(cat /etc/passwd | grep ^ci: | grep -oP '[^:]+$')" = "$(which fish)"
 
       - name: note final binpkgs info
         if: ${{ always() }}
