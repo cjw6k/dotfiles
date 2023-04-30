@@ -44,3 +44,6 @@ jobs:
 
             # confirm ci user has fish shell
             test `tee </etc/passwd | grep ^ci: | grep -o '[^:]*$'` = `which fish`
+
+            # run tests
+            sudo -iu ci fishtape /home/ci/.config/dotfiles/tests.fish

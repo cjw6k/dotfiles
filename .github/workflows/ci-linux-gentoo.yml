@@ -93,7 +93,10 @@ jobs:
 
       - name: verify ci user has fish-shell
         run: |
-          test "$(cat /etc/passwd | grep ^ci: | grep -oP '[^:]+$')" = "$(which fish)"
+          test "$(tee </etc/passwd | grep ^ci: | grep -oP '[^:]+$')" = "$(which fish)"
+
+      - name: run tests
+        run: sudo -iu ci fishtape /home/ci/.config/dotfiles/tests.fish
 
       - name: note final binpkgs info
         if: ${{ always() }}
