@@ -89,6 +89,24 @@
     }
   },
   {
+    "name": "curl",
+    "description": "A command line tool and library for transferring data with URL syntax.",
+    "url": "https://curl.se/",
+    "install": {
+      "freebsd": {
+        "common": "#builtin"
+      },
+      "linux": {
+        "gentoo": {
+          "common": "#builtin"
+        }
+      },
+      "windows": {
+        "common": "#builtin"
+      }
+    }
+  },
+  {
     "name": "delta",
     "description": "A viewer for git and diff output.",
     "url": "https://dandavison.github.io/delta/",
