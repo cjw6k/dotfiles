@@ -38,9 +38,7 @@
         },
         "ubuntu": {
           "common": "7zip",
-          "focal": "p7zip",
-          "bionic": "p7zip",
-          "xenial": "p7zip"
+          "focal": "p7zip"
         }
       },
       "windows": "#builtin"
@@ -72,9 +70,7 @@
           "lunar": ["7zz"],
           "kinetic": ["7zz"],
           "jammy": ["7zz"],
-          "focal": ["7zr"],
-          "bionic": ["7zr"],
-          "xenial": ["7zr"]
+          "focal": ["7zr"]
         }
       },
       "windows": ["7z"]
@@ -125,9 +121,7 @@
         },
         "ubuntu": {
           "common": "#custom",
-          "focal": "#na",
-          "bionic": "#na",
-          "xenial": "#na"
+          "focal": "#na"
         }
       }
     },
