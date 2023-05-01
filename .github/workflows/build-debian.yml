@@ -1,0 +1,23 @@
+name: Build Final Images - Debian
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-debian
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+
+jobs:
+  call-build-common:
+    uses: ./.github/workflows/build-common.yml
+    strategy:
+      matrix:
+        tag: ['sid', 'bookworm', 'bullseye', 'buster']
+
+    with:
+      dockerfile: apt
+      image: debian
+      tag: ${{ matrix.tag }}

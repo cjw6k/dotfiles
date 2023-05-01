@@ -23,6 +23,10 @@ jobs:
       ci-ubuntu: ${{ steps.filter.outputs.ci-ubuntu }}
       ci-windows: ${{ steps.filter.outputs.ci-windows }}
       ci-any: ${{ steps.filter.outputs.ci-any }}
+      dotfiles-sources: ${{ steps.filter.outputs.dotfiles-sources }}
+      build-alpine: ${{ steps.filter.outputs.build-alpine }}
+      build-debian: ${{ steps.filter.outputs.build-debian }}
+      build-ubuntu: ${{ steps.filter.outputs.build-ubuntu }}
 
     steps:
       - uses: actions/checkout@v3
@@ -118,3 +122,39 @@ jobs:
       && needs.paths-filter.outputs.ci-windows == 'true'
 
     uses: ./.github/workflows/ci-windows.yml
+
+  build-alpine:
+    needs: [paths-filter, ci-alpine]
+    if: |
+      github.event_name == 'push'
+      && github.ref_name == 'main'
+      && !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.build-alpine == 'true'
+
+    uses: ./.github/workflows/build-alpine.yml
+
+  build-debian:
+    needs: [paths-filter, ci-debian]
+    if: |
+      github.event_name == 'push'
+      && github.ref_name == 'main'
+      && !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.build-debian == 'true'
+
+    uses: ./.github/workflows/build-debian.yml
+
+  build-ubuntu:
+    needs: [paths-filter, ci-ubuntu]
+    if: |
+      github.event_name == 'push'
+      && github.ref_name == 'main'
+      && !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.build-ubuntu == 'true'
+
+    uses: ./.github/workflows/build-ubuntu.yml

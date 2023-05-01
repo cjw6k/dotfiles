@@ -1,4 +1,4 @@
-name: Build CI Images - Common
+name: Build Final Images - Common
 on:
   workflow_call:
     inputs:
@@ -18,10 +18,10 @@ permissions:
   packages: write
 
 env:
+  DOTFILES_OWNER: ${{ github.repository_owner }}
   DOTFILES_REPO: ${{ github.repository }}
-  # the DOTFILES_TAG must match the container in the linux ci-{distro}-*.yml workflows
-  DOTFILES_TAG: ${{ format('ghcr.io/{0}:ci-{1}-{2}', github.repository, inputs.image, inputs.tag) }}
-  DOTFILES_SHA_TAG: ${{ format('ghcr.io/{0}:ci-{1}-{2}-{3}', github.repository, inputs.image, inputs.tag, github.sha) }}
+  # the DOTFILES_TAG must match the container in the linux build-{distro}-*.yml workflows
+  DOTFILES_TAG: ${{ format('ghcr.io/{0}:{1}-{2}', github.repository, inputs.image, inputs.tag) }}
 
 jobs:
   build-and-push-image:
@@ -30,18 +30,19 @@ jobs:
       - name: checkout
         uses: actions/checkout@v3
 
-      - name: build ci image
+      - name: build image
         env:
           DOCKER_BUILDKIT: 1
-
         run: |
           docker build - < .github/${{ inputs.dockerfile }}.Dockerfile \
             --build-arg SOURCE_IMAGE="${{ inputs.image }}" \
             --build-arg SOURCE_TAG="${{ inputs.tag }}" \
-            --target ci \
-            --tag "$DOTFILES_SHA_TAG" \
+            --build-arg OWNER="$DOTFILES_OWNER" \
+            --build-arg REPO="$DOTFILES_REPO" \
+            --target final \
+            --tag "$DOTFILES_TAG" \
             --label "org.opencontainers.image.source=https://github.com/$DOTFILES_REPO" \
-            --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} for $DOTFILES_REPO CI"
+            --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} for $DOTFILES_REPO"
 
       - name: login to ghcr.io
         uses: docker/login-action@v2
@@ -50,11 +51,5 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: push ci image to ghcr.io
-        run: docker push "$DOTFILES_SHA_TAG"
-
-      - name: tag and push default ci image on main
-        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
-        run: |
-          docker tag "$DOTFILES_SHA_TAG" "$DOTFILES_TAG"
-          docker push "$DOTFILES_TAG"
+      - name: push image to ghcr.io
+        run: docker push "$DOTFILES_TAG"

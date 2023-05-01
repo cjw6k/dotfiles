@@ -1,0 +1,23 @@
+name: Build Final Images - Alpine
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-alpine
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+
+jobs:
+  call-build-common:
+    uses: ./.github/workflows/build-common.yml
+    strategy:
+      matrix:
+        tag: ['edge', '3.17']
+
+    with:
+      dockerfile: apk
+      image: alpine
+      tag: ${{ matrix.tag }}

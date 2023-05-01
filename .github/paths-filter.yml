@@ -3,24 +3,24 @@
 #
 # files used in building the CI images
 #
-build-common: &ci-build-common
+ci-build-common: &ci-build-common
   - '.github/workflows/ci-build-common.yml'
 
-build-alpine: &ci-build-alpine
+ci-build-alpine: &ci-build-alpine
   - *ci-build-common
   - '.github/apk.Dockerfile'
   - '.github/workflows/ci-build-alpine.yml'
 
-build-debian: &ci-build-debian
+ci-build-debian: &ci-build-debian
   - *ci-build-common
   - '.github/apt.Dockerfile'
   - '.github/workflows/ci-build-debian.yml'
 
-build-gentoo: &ci-build-gentoo
+ci-build-gentoo: &ci-build-gentoo
   - '.github/portage.Dockerfile'
-  - '.github/workflows/build-gentoo.yml'
+  - '.github/workflows/ci-build-gentoo.yml'
 
-build-ubuntu: &ci-build-ubuntu
+ci-build-ubuntu: &ci-build-ubuntu
   - *ci-build-common
   - '.github/apt.Dockerfile'
   - '.github/workflows/ci-build-ubuntu.yml'
@@ -160,8 +160,38 @@ ci-any:
 #
 # sources that are copied to the user home directory by chezmoi on apply
 #
-dotfiles-sources:
+dotfiles-sources: &dotfiles-sources
   - 'home/**'
   - '!home/.chezmoiscripts/**'
   - '!home/.chezmoi.toml.tmpl'
   - '!home/.chezmoiignore'
+
+#
+# files used in building the final images
+#
+build-common: &build-common
+  - *dotfiles-sources
+  - '.github/workflows/build-common.yml'
+
+build-alpine: &build-alpine
+  - *build-common
+  - *ci-alpine
+  - '.github/apk.Dockerfile'
+  - '.github/workflows/build-alpine.yml'
+
+build-debian: &build-debian
+  - *build-common
+  - *ci-debian
+  - '.github/apt.Dockerfile'
+  - '.github/workflows/build-debian.yml'
+
+build-gentoo: &build-gentoo
+  - *ci-gentoo
+  - '.github/portage.Dockerfile'
+  - '.github/workflows/build-gentoo.yml'
+
+build-ubuntu: &build-ubuntu
+  - *build-common
+  - *ci-ubuntu
+  - '.github/apt.Dockerfile'
+  - '.github/workflows/build-ubuntu.yml'

@@ -1,0 +1,23 @@
+name: Build Final Images - Ubuntu
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-ubuntu
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+
+jobs:
+  call-build-common:
+    uses: ./.github/workflows/build-common.yml
+    strategy:
+      matrix:
+        tag: ['lunar', 'kinetic', 'jammy', 'focal']
+
+    with:
+      dockerfile: apt
+      image: ubuntu
+      tag: ${{ matrix.tag }}
