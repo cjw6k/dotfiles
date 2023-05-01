@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   call-build-ci-common:
-    uses: ./.github/workflows/build-common.yml
+    uses: ./.github/workflows/ci-build-common.yml
     strategy:
       matrix:
         tag: ['sid', 'bookworm', 'bullseye', 'buster']

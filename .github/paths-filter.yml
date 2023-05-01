@@ -3,27 +3,27 @@
 #
 # files used in building the CI images
 #
-build-common: &build-common
-  - '.github/workflows/build-common.yml'
+build-common: &ci-build-common
+  - '.github/workflows/ci-build-common.yml'
 
-build-alpine: &build-alpine
-  - *build-common
+build-alpine: &ci-build-alpine
+  - *ci-build-common
   - '.github/apk.Dockerfile'
-  - '.github/workflows/build-alpine.yml'
+  - '.github/workflows/ci-build-alpine.yml'
 
-build-debian: &build-debian
-  - *build-common
+build-debian: &ci-build-debian
+  - *ci-build-common
   - '.github/apt.Dockerfile'
-  - '.github/workflows/build-debian.yml'
+  - '.github/workflows/ci-build-debian.yml'
 
-build-gentoo: &build-gentoo
+build-gentoo: &ci-build-gentoo
   - '.github/portage.Dockerfile'
   - '.github/workflows/build-gentoo.yml'
 
-build-ubuntu: &build-ubuntu
-  - *build-common
+build-ubuntu: &ci-build-ubuntu
+  - *ci-build-common
   - '.github/apt.Dockerfile'
-  - '.github/workflows/build-ubuntu.yml'
+  - '.github/workflows/ci-build-ubuntu.yml'
 
 #
 # configuration of chezmoi
@@ -123,25 +123,25 @@ ci-freebsd: &ci-freebsd
 ci-alpine: &ci-alpine
   - *dotfiles-core
   - *dotfiles-scripts-alpine
-  - *build-alpine
+  - *ci-build-alpine
   - *test-alpine
 
 ci-debian: &ci-debian
   - *dotfiles-core
   - *dotfiles-scripts-debian
-  - *build-debian
+  - *ci-build-debian
   - *test-debian
 
 ci-gentoo: &ci-gentoo
   - *dotfiles-core
   - *dotfiles-scripts-gentoo
-  - *build-gentoo
+  - *ci-build-gentoo
   - *test-gentoo
 
 ci-ubuntu: &ci-ubuntu
   - *dotfiles-core
   - *dotfiles-scripts-ubuntu
-  - *build-ubuntu
+  - *ci-build-ubuntu
   - *test-ubuntu
 
 ci-windows: &ci-windows
