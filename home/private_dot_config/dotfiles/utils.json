@@ -273,6 +273,9 @@
         "debian": {
           "common": "#custom"
         },
+        "gentoo": {
+          "common": "#na"
+        },
         "ubuntu": {
           "common": "#custom"
         }
