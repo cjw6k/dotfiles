@@ -1,4 +1,4 @@
-name: Build Final Images - Alpine
+name: Build CI Images - Alpine
 on:
   workflow_dispatch:
   workflow_call:
@@ -11,8 +11,8 @@ permissions:
   packages: write
 
 jobs:
-  call-build-common:
-    uses: ./.github/workflows/build-common.yml
+  call-build-ci-common:
+    uses: ./.github/workflows/ci-build-common.yml
     strategy:
       matrix:
         tag: ['edge', '3.17']

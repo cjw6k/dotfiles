@@ -14,48 +14,51 @@ jobs:
   paths-filter:
     runs-on: ubuntu-latest
     outputs:
-      build-alpine: ${{ steps.filter.outputs.build-alpine }}
-      build-debian: ${{ steps.filter.outputs.build-debian }}
-      build-ubuntu: ${{ steps.filter.outputs.build-ubuntu }}
+      ci-build-alpine: ${{ steps.filter.outputs.ci-build-alpine }}
+      ci-build-debian: ${{ steps.filter.outputs.ci-build-debian }}
+      ci-build-ubuntu: ${{ steps.filter.outputs.ci-build-ubuntu }}
       ci-freebsd: ${{ steps.filter.outputs.ci-freebsd }}
       ci-debian: ${{ steps.filter.outputs.ci-debian }}
       ci-gentoo: ${{ steps.filter.outputs.ci-gentoo }}
       ci-ubuntu: ${{ steps.filter.outputs.ci-ubuntu }}
       ci-windows: ${{ steps.filter.outputs.ci-windows }}
       ci-any: ${{ steps.filter.outputs.ci-any }}
+      dotfiles-sources: ${{ steps.filter.outputs.dotfiles-sources }}
+      build-alpine: ${{ steps.filter.outputs.build-alpine }}
+      build-debian: ${{ steps.filter.outputs.build-debian }}
+      build-ubuntu: ${{ steps.filter.outputs.build-ubuntu }}
 
     steps:
       - uses: actions/checkout@v3
-
       - uses: dorny/paths-filter@v2
         id: filter
         with:
           filters: '.github/paths-filter.yml'
 
-  build-alpine:
+  ci-build-alpine:
     needs: paths-filter
-    if: ${{ needs.paths-filter.outputs.build-alpine == 'true' }}
-    uses: ./.github/workflows/build-alpine.yml
+    if: ${{ needs.paths-filter.outputs.ci-build-alpine == 'true' }}
+    uses: ./.github/workflows/ci-build-alpine.yml
     permissions:
       packages: write
 
-  build-debian:
+  ci-build-debian:
     needs: paths-filter
-    if: ${{ needs.paths-filter.outputs.build-debian == 'true' }}
-    uses: ./.github/workflows/build-debian.yml
+    if: ${{ needs.paths-filter.outputs.ci-build-debian == 'true' }}
+    uses: ./.github/workflows/ci-build-debian.yml
     permissions:
       packages: write
 
-  build-ubuntu:
+  ci-build-ubuntu:
     needs: paths-filter
-    if: ${{ needs.paths-filter.outputs.build-ubuntu == 'true' }}
-    uses: ./.github/workflows/build-ubuntu.yml
+    if: ${{ needs.paths-filter.outputs.ci-build-ubuntu == 'true' }}
+    uses: ./.github/workflows/ci-build-ubuntu.yml
     permissions:
       packages: write
 
   # alpine completes very quickly, if it doesn't pass skip the others
   ci-alpine:
-    needs: [paths-filter, build-alpine]
+    needs: [paths-filter, ci-build-alpine]
     if: |
       !cancelled()
       && !contains(needs.*.result, 'failed')
@@ -64,7 +67,7 @@ jobs:
 
     uses: ./.github/workflows/ci-linux-alpine.yml
     with:
-      suffix: ${{ needs.paths-filter.outputs.build-alpine == 'true' && format('-{0}', github.sha) || '' }}
+      suffix: ${{ needs.paths-filter.outputs.ci-build-alpine == 'true' && format('-{0}', github.sha) || '' }}
 
   ci-freebsd:
     needs: [paths-filter, ci-alpine]
@@ -77,7 +80,7 @@ jobs:
     uses: ./.github/workflows/ci-freebsd.yml
 
   ci-debian:
-    needs: [paths-filter, ci-alpine, build-debian]
+    needs: [paths-filter, ci-alpine, ci-build-debian]
     if: |
       !cancelled()
       && !contains(needs.*.result, 'failed')
@@ -86,7 +89,7 @@ jobs:
 
     uses: ./.github/workflows/ci-linux-debian.yml
     with:
-      suffix: ${{ needs.paths-filter.outputs.build-debian == 'true' && format('-{0}', github.sha) || ''}}
+      suffix: ${{ needs.paths-filter.outputs.ci-build-debian == 'true' && format('-{0}', github.sha) || ''}}
 
   ci-gentoo:
     needs: [paths-filter, ci-alpine]
@@ -99,7 +102,7 @@ jobs:
     uses: ./.github/workflows/ci-linux-gentoo.yml
 
   ci-ubuntu:
-    needs: [paths-filter, ci-alpine, build-ubuntu]
+    needs: [paths-filter, ci-alpine, ci-build-ubuntu]
     if: |
       !cancelled()
       && !contains(needs.*.result, 'failed')
@@ -108,7 +111,7 @@ jobs:
 
     uses: ./.github/workflows/ci-linux-ubuntu.yml
     with:
-      suffix: ${{ needs.paths-filter.outputs.build-ubuntu == 'true' && format('-{0}', github.sha) || ''}}
+      suffix: ${{ needs.paths-filter.outputs.ci-build-ubuntu == 'true' && format('-{0}', github.sha) || ''}}
 
   ci-windows:
     needs: [paths-filter, ci-alpine]
@@ -119,3 +122,34 @@ jobs:
       && needs.paths-filter.outputs.ci-windows == 'true'
 
     uses: ./.github/workflows/ci-windows.yml
+
+  build-alpine:
+    needs: [paths-filter, ci-alpine]
+    if: |
+      github.event_name == 'push'
+      && github.ref_name == 'main'
+      && !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.build-alpine == 'true'
+
+    uses: ./.github/workflows/build-alpine.yml
+    permissions:
+      packages: write
+
+  build-debian-and-ubuntu:
+    needs: [paths-filter, ci-debian, ci-ubuntu]
+    if: |
+      github.event_name == 'push'
+      && github.ref_name == 'main'
+      && !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && (
+        needs.paths-filter.outputs.build-debian == 'true'
+        || needs.paths-filter.outputs.build-ubuntu == 'true'
+      )
+
+    uses: ./.github/workflows/build-debian-and-ubuntu.yml
+    permissions:
+      packages: write
