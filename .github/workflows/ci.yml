@@ -134,6 +134,8 @@ jobs:
       && needs.paths-filter.outputs.build-alpine == 'true'
 
     uses: ./.github/workflows/build-alpine.yml
+    permissions:
+      packages: write
 
   build-debian-and-ubuntu:
     needs: [paths-filter, ci-debian, ci-ubuntu]
@@ -149,3 +151,5 @@ jobs:
       )
 
     uses: ./.github/workflows/build-debian-and-ubuntu.yml
+    permissions:
+      packages: write
