@@ -135,26 +135,17 @@ jobs:
 
     uses: ./.github/workflows/build-alpine.yml
 
-  build-debian:
-    needs: [paths-filter, ci-debian]
+  build-debian-and-ubuntu:
+    needs: [paths-filter, ci-debian, ci-ubuntu]
     if: |
       github.event_name == 'push'
       && github.ref_name == 'main'
       && !cancelled()
       && !contains(needs.*.result, 'failed')
       && !contains(needs.*.result, 'cancelled')
-      && needs.paths-filter.outputs.build-debian == 'true'
+      && (
+        needs.paths-filter.outputs.build-debian == 'true'
+        || needs.paths-filter.outputs.build-ubuntu == 'true'
+      )
 
-    uses: ./.github/workflows/build-debian.yml
-
-  build-ubuntu:
-    needs: [paths-filter, ci-ubuntu]
-    if: |
-      github.event_name == 'push'
-      && github.ref_name == 'main'
-      && !cancelled()
-      && !contains(needs.*.result, 'failed')
-      && !contains(needs.*.result, 'cancelled')
-      && needs.paths-filter.outputs.build-ubuntu == 'true'
-
-    uses: ./.github/workflows/build-ubuntu.yml
+    uses: ./.github/workflows/build-debian-and-ubuntu.yml

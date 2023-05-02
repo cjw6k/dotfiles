@@ -14,7 +14,7 @@ ci-build-alpine: &ci-build-alpine
 ci-build-debian: &ci-build-debian
   - *ci-build-common
   - '.github/apt.Dockerfile'
-  - '.github/workflows/ci-build-debian.yml'
+  - '.github/workflows/ci-build-debian-and-ubuntu.yml'
 
 ci-build-gentoo: &ci-build-gentoo
   - '.github/portage.Dockerfile'
@@ -173,25 +173,20 @@ build-common: &build-common
   - *dotfiles-sources
   - '.github/workflows/build-common.yml'
 
-build-alpine: &build-alpine
+build-alpine:
   - *build-common
   - *ci-alpine
   - '.github/apk.Dockerfile'
   - '.github/workflows/build-alpine.yml'
 
-build-debian: &build-debian
+build-debian-and-ubuntu:
   - *build-common
   - *ci-debian
+  - *ci-ubuntu
   - '.github/apt.Dockerfile'
-  - '.github/workflows/build-debian.yml'
+  - '.github/workflows/build-debian-and-ubuntu.yml'
 
-build-gentoo: &build-gentoo
+build-gentoo:
   - *ci-gentoo
   - '.github/portage.Dockerfile'
   - '.github/workflows/build-gentoo.yml'
-
-build-ubuntu: &build-ubuntu
-  - *build-common
-  - *ci-ubuntu
-  - '.github/apt.Dockerfile'
-  - '.github/workflows/build-ubuntu.yml'
