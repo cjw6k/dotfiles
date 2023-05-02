@@ -68,6 +68,7 @@ jobs:
 
       - name: install pre-requisites
         run: |
+          # rust-bin is here to speed up compilation time in CI, it's not strictly a pre-req
           emerge dev-lang/rust-bin app-admin/sudo
 
       - name: checkout

@@ -2,6 +2,9 @@
 {{- if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
 .chezmoiscripts/personal/windows/**
+Documents
+{{ else -}}
+.config/fish
 {{ end -}}
 
 {{- if ne .chezmoi.os "linux" -}}
