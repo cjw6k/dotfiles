@@ -25,8 +25,7 @@ jobs:
       ci-any: ${{ steps.filter.outputs.ci-any }}
       dotfiles-sources: ${{ steps.filter.outputs.dotfiles-sources }}
       build-alpine: ${{ steps.filter.outputs.build-alpine }}
-      build-debian: ${{ steps.filter.outputs.build-debian }}
-      build-ubuntu: ${{ steps.filter.outputs.build-ubuntu }}
+      build-debian-and-ubuntu: ${{ steps.filter.outputs.build-debian-and-ubuntu }}
 
     steps:
       - uses: actions/checkout@v3
@@ -145,10 +144,7 @@ jobs:
       && !cancelled()
       && !contains(needs.*.result, 'failed')
       && !contains(needs.*.result, 'cancelled')
-      && (
-        needs.paths-filter.outputs.build-debian == 'true'
-        || needs.paths-filter.outputs.build-ubuntu == 'true'
-      )
+      && needs.paths-filter.outputs.build-debian-and-ubuntu == 'true'
 
     uses: ./.github/workflows/build-debian-and-ubuntu.yml
     permissions:
