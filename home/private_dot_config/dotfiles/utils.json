@@ -279,7 +279,25 @@
         "ubuntu": {
           "common": "#custom"
         }
-      }
+      },
+      "windows": "#custom"
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["starship"]
+      },
+      "linux": {
+        "alpine": {
+          "common": ["starship"]
+        },
+        "debian": {
+          "common": ["starship"]
+        },
+        "ubuntu": {
+          "common": ["starship"]
+        }
+      },
+      "windows": ["starship"]
     }
   },
   {
