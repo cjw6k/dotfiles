@@ -20,7 +20,7 @@ jobs:
 
     container:
       image: gentoo/stage3:latest
-      options: --privileged
+      options: --privileged --cap-add=SYS_PTRACE
       volumes:
         - portage:/var/db/repos/gentoo
 
@@ -68,6 +68,7 @@ jobs:
 
       - name: install pre-requisites
         run: |
+          # rust-bin is here to speed up compilation time in CI, it's not strictly a pre-req
           emerge dev-lang/rust-bin app-admin/sudo
 
       - name: checkout

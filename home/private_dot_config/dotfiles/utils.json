@@ -85,6 +85,26 @@
     }
   },
   {
+    "name": "cmake",
+    "description": "An open-source, cross-platform family of tools designed to build, test and package software.",
+    "url": "https://cmake.org/",
+    "install": {
+      "common": "#na",
+      "linux": {
+        "gentoo": {
+          "common": "#custom"
+        }
+      }
+    },
+    "provides": {
+      "linux": {
+        "gentoo": {
+          "common": ["cmake"]
+        }
+      }
+    }
+  },
+  {
     "name": "curl",
     "description": "A command line tool and library for transferring data with URL syntax.",
     "url": "https://curl.se/",
@@ -262,6 +282,22 @@
         "ssh",
         "ssh-keygen"
       ]
+    }
+  },
+  {
+    "name": "starship",
+    "description": "The minimal, blazing-fast, and infinitely customizable prompt for any shell!",
+    "url": "https://starship.rs/",
+    "install": {
+      "linux": {
+        "debian": {
+          "common": "#custom"
+        },
+        "ubuntu": {
+          "common": "#custom"
+        }
+      },
+      "windows": "#custom"
     }
   },
   {
