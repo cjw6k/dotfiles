@@ -85,6 +85,26 @@
     }
   },
   {
+    "name": "cmake",
+    "description": "An open-source, cross-platform family of tools designed to build, test and package software.",
+    "url": "https://cmake.org/",
+    "install": {
+      "common": "#na",
+      "linux": {
+        "gentoo": {
+          "common": "#custom"
+        }
+      }
+    },
+    "provides": {
+      "linux": {
+        "gentoo": {
+          "common": ["cmake"]
+        }
+      }
+    }
+  },
+  {
     "name": "curl",
     "description": "A command line tool and library for transferring data with URL syntax.",
     "url": "https://curl.se/",
@@ -273,31 +293,11 @@
         "debian": {
           "common": "#custom"
         },
-        "gentoo": {
-          "common": "#na"
-        },
         "ubuntu": {
           "common": "#custom"
         }
       },
       "windows": "#custom"
-    },
-    "provides": {
-      "freebsd": {
-        "common": ["starship"]
-      },
-      "linux": {
-        "alpine": {
-          "common": ["starship"]
-        },
-        "debian": {
-          "common": ["starship"]
-        },
-        "ubuntu": {
-          "common": ["starship"]
-        }
-      },
-      "windows": ["starship"]
     }
   },
   {

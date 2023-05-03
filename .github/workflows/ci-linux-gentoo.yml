@@ -20,7 +20,7 @@ jobs:
 
     container:
       image: gentoo/stage3:latest
-      options: --privileged
+      options: --privileged --cap-add=SYS_PTRACE
       volumes:
         - portage:/var/db/repos/gentoo
 
