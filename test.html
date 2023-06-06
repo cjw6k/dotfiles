@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Test</title>
+    <style>
+
+:root {
+    --global-bg: #0c0c0c;
+    --spacer-bg: #1d1d1d;
+    --git-branch-bg: #333333;
+    --git-branch-fg: #999999;
+    --git-status-bg: #3c3c3c;
+    --prompt-color: #32cd32;
+    --main-text-color: #cccccc;
+    --ahead-color: #16c60c;
+    --path-text: #61d6d6;
+    --git-status-brace: #6874f2;
+
+    --git-conflicted: #ff1313;
+    --git-ahead: #d1b166;
+    --git-behind: #ff69b4;
+    --git-diverged: #896dff;
+    --git-up-to-date: #9d9c9c;
+    --git-untracked: #a88847;
+    --git-stashed: #24ffa0;
+    --git-modified: #da6633;
+    --git-staged: #f2d166;
+    --git-renamed: #6495ed;
+    --git-deleted: #c00000;
+
+    --ghist-hash: #336633;
+    --ghist-time: var(--git-branch-fg);
+    --ghist-author: #3b78ff;
+    --ghist-message: var(--git-branch-fg);
+}
+
+body {
+    background-color: var(--global-bg);
+    color: var(--main-text-color);
+    font-family: "Cousine Nerd Font Mono";
+    padding: 2em;
+}
+
+div {
+    font-size: 0;
+    line-height: 24px;
+    margin: 0;
+}
+
+p {
+    display: inline-block;
+    height: 24px;
+    padding: 0;
+    margin: 0.05em 0;
+    vertical-align: middle;
+    white-space: nowrap;
+}
+
+span {
+    font-size: 16px;
+}
+
+.spacer {
+    background-color: var(--spacer-bg);
+    white-space: pre;
+}
+
+.git-status {
+    background-color: var(--git-status-bg);
+}
+
+.git-status .open {
+    background-color: var(--global-bg);
+    color: var(--git-status-bg);
+}
+
+.git-status .close {
+    background-color: var(--git-branch-bg);
+    color: var(--git-status-bg);
+}
+
+.git-status .fg-bracket {
+    color: var(--git-status-brace);
+    display: none;
+}
+
+.git-status .git-conflicted {
+    color: var(--git-conflicted);
+}
+.git-status .git-ahead {
+    color: var(--git-ahead);
+}
+.git-status .git-behind {
+    color: var(--git-behind);
+}
+.git-status .git-diverged {
+    color: var(--git-diverged);
+}
+.git-status .git-up-to-date {
+    color: var(--git-up-to-date);
+}
+.git-status .git-untracked {
+    color: var(--git-untracked);
+}
+.git-status .git-stashed {
+    color: var(--git-stashed);
+}
+.git-status .git-modified {
+    color: var(--git-modified);
+}
+.git-status .git-staged {
+    color: var(--git-staged);
+}
+.git-status .git-renamed {
+    color: var(--git-renamed);
+}
+.git-status .git-deleted {
+    color: var(--git-deleted);
+}
+
+.git-branch {
+    background-color: var(--git-branch-bg);
+    color: var(--git-branch-fg);
+}
+
+.git-branch .close {
+    background-color: var(--spacer-bg);
+    color: var(--git-branch-bg);
+}
+
+.git-metrics {
+    background-color: var(--spacer-bg);
+}
+
+.ahead-count {
+    color: var(--ahead-color);
+}
+
+.line-closer {
+    color: var(--spacer-bg);
+}
+
+.ghist-hash {
+    color: var(--ghist-hash);
+}
+
+.ghist-time {
+    color: var(--ghist-time);
+}
+
+.ghist-author {
+    color: var(--ghist-author);
+}
+
+.ghist-message {
+    color: var(--ghist-message);
+}
+
+.path {
+    color: var(--path-text);
+}
+
+.prompt {
+    color: var(--prompt-color);
+}
+
+    </style>
+</head>
+<body>
+<h1>Starship</h1>
+<hr>
+<h2>pwsh</h2>
+<div>
+    <p>
+        <span class="os">🪟 </span>
+        <span class="git-status"><span class="open"></span><span class="fg-bracket"></span><span class="git-conflicted">=</span><span class="git-ahead">ﲗ</span><span class="git-behind">ﲔ</span><span class="git-diverged">⇕</span><span class="git-up-to-date">&amp;</span><span class="git-untracked">ﲹ</span><span class="git-stashed">ﭸ</span><span class="git-modified">ﳝ</span><span class="git-staged">ﰉ</span><span class="git-renamed">»</span><span class="git-deleted">✘</span><span class="fg-bracket"></span><span class="close"></span></span>
+        <span class="git-branch">&nbsp; starship-config <span class="close"></span></span>
+        <span class="spacer">                                                          </span>
+        <span class="git-metrics"><span class="ahead-count">+2</span> </span>
+        <span class="line-closer"></span>
+    </p>
+</div>
+<div>
+    <p>&nbsp;</p>
+</div>
+<div>
+    <p>
+        <span class="path">📌…\dotfiles</span>
+        <span class="prompt">&nbsp;</span>
+    </p>
+</div>
+<hr>
+<h2>fish in wsl (gentoo)</h2>
+<div>
+    <p>
+        <span class="os">📎🐟 </span>
+        <span class="git-status"><span class="open"></span><span class="fg-bracket"></span><span class="git-conflicted">=</span><span class="git-ahead">ﲗ</span><span class="git-behind">ﲔ</span><span class="git-diverged">⇕</span><span class="git-up-to-date">&amp;</span><span class="git-untracked">ﲹ</span><span class="git-stashed">ﭸ</span><span class="git-modified">ﳝ</span><span class="git-staged">ﰉ</span><span class="git-renamed">»</span><span class="git-deleted">✘</span><span class="fg-bracket"></span><span class="close"></span></span>
+        <span class="git-branch">&nbsp; starship-config <span class="close"></span></span>
+        <span class="spacer">                                                        </span>
+        <span class="git-metrics"><span class="ahead-count">+2</span> </span>
+        <span class="line-closer"></span>
+    </p>
+</div>
+<div>
+    <p>
+        <span style="white-space: pre">          </span>
+        <span class="ghist-hash">c0b082c </span>
+        <span class="ghist-time">5 days ago </span>
+        <span class="ghist-author">68166329+cjw6k </span>
+        <span class="ghist-message">Merge pull request #47 from cjw6k/starship</span>
+    </p>
+</div>
+<div>
+    <p style="width: 100%; max-width: 968px">
+        <span class="path" style="float: right;">📌…\dotfiles</span>
+        <span class="prompt">&nbsp;</span>
+    </p>
+</div>
+<div><p></p></div>
+<hr>
+<h2>fish in docker (gentoo)</h2>
+<div>
+    <p>
+        <span class="os">📦🐟 </span>
+        <span class="git-status"><span class="open"></span><span class="fg-bracket"></span><span class="git-conflicted">=</span><span class="git-ahead">ﲗ</span><span class="git-behind">ﲔ</span><span class="git-diverged">⇕</span><span class="git-up-to-date">&amp;</span><span class="git-untracked">ﲹ</span><span class="git-stashed">ﭸ</span><span class="git-modified">ﳝ</span><span class="git-staged">ﰉ</span><span class="git-renamed">»</span><span class="git-deleted">✘</span><span class="fg-bracket"></span><span class="close"></span></span>
+        <span class="git-branch">&nbsp; starship-config <span class="close"></span></span>
+        <span class="spacer">                                                        </span>
+        <span class="git-metrics"><span class="ahead-count">+2</span> </span>
+        <span class="line-closer"></span>
+    </p>
+</div>
+<div>
+    <p>
+        <span style="white-space: pre">          </span>
+        <span class="ghist-hash">c0b082c </span>
+        <span class="ghist-time">5 days ago </span>
+        <span class="ghist-author">68166329+cjw6k </span>
+        <span class="ghist-message">Merge pull request #47 from cjw6k/starship</span>
+    </p>
+</div>
+<div>
+    <p style="width: 100%; max-width: 968px">
+        <span class="path" style="float: right;">📌…\dotfiles</span>
+        <span class="prompt">&nbsp;</span>
+    </p>
+</div>
+<div><p></p></div>
+<hr>
+<div>
+    <p><span class="prompt">❯ ➜ ✗   ► ▸ ▷ ▻ ▹ ↠ ↛ ⇏ ⇒ ⇥ ⇝ ⇨ ⇢ ⇛ ⇰ ⇾ ⇸ ⇶ ⇻ ⇴ ▶ ► ▷ ▻ ▹ ≫ ≻ ≿ ⊳ ⊢ ⊨ ⊫ ⊣ ⊩ ⊸ ⋗ ⋺ ⨠ ⩥ ⪢ ⪧ ⪫ ⪼ ⫸</span></p>
+</div>
+<div><p></p></div>
+<div>
+    <p><span class="prompt">        </span></p>
+</div>
+<div><p></p></div>
+<div>
+    <p><span class="prompt">                              </span></p>
+</div>
+</body>
+</html>

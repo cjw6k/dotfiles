@@ -1,0 +1,220 @@
+"$schema" = "https://starship.rs/config-schema.json"
+
+format = """
+($os$container{{ if .is.wsl }}${custom.wsl}{{ end }} )\
+([$memory_usage](bg:#0d0d0d fg:#da0000) )\
+[](fg:#444444)\
+([ ](bg:#444444)\
+[\
+($username$hostname)\
+($shlvl )\
+($cmd_duration )\
+](bg:#444444)\
+)\
+[ ](fg:#444444 bg:#3c3c3c)\
+($git_status)[ ](fg:#3c3c3c bg:#333333)\
+[( $git_branch$git_commit )](fg:#3c3c3c bg:#333333)[](fg:#333333 bg:#1d1d1d)\
+($package )\
+$fill\
+( $git_state)( $git_metrics)\
+[](fg:#1d1d1d) \
+$line_break\
+($jobs$kubernetes\n)\
+$line_break\
+{{ if eq .chezmoi.os "windows" -}}
+$directory\
+{{ end -}}
+$shell\
+$status\
+$character"""
+
+{{ if ne .chezmoi.os "windows" -}}
+right_format = '$directory'
+{{ end -}}
+continuation_prompt = '[∙](#da0000) '
+
+scan_timeout = 30
+command_timeout = 400
+add_newline = true
+
+#
+# https://starship.rs/config/#os
+#
+[os]
+disabled = false
+
+[os.symbols]
+Alpine = ""
+Debian = ""
+FreeBSD = ""
+Gentoo = ""
+Ubuntu = ""
+Windows = ""
+
+#
+# https://starship.rs/config/#container
+#
+[container]
+symbol = "🐳"
+format = "[$symbol]($style)"
+
+{{ if .is.wsl -}}
+#
+# https://starship.rs/config/#custom-commands
+#
+[custom.wsl]
+when = true
+symbol = "📎"
+
+{{ end -}}
+
+#
+# https://starship.rs/config/#memory-usage
+#
+[memory_usage]
+style = "bg:#da0000 fg:#e8e8e8"
+format = "[$ram_pct|$swap_pct]($style)"
+threshold = 85
+disabled = false
+
+#
+# https://starship.rs/config/#username
+#
+[username]
+style_user = "fg:#666600 bg:#444444"
+style_root = "fg:#660000 bg:#444444"
+format = "[$user]($style)"
+
+#
+# https://starship.rs/config/#hostname
+#
+[hostname]
+style = "bg:#444444 fg:#006666"
+ssh_symbol = "@"
+format = "($ssh_symbol[$hostname]($style) )"
+
+#
+# https://starship.rs/config/#shlvl
+#
+[shlvl]
+disabled = false
+style = "bg:#444444"
+symbol = "🐚"
+format = "[$shlvl$symbol]($style)"
+
+#
+# https://starship.rs/config/#command-duration
+#
+[cmd_duration]
+min_time = 400
+show_milliseconds = true
+style = "bg:#444444 fg:#bbbbbb"
+format = "[[Δ](bg:#444444 fg:red)$duration]($style)"
+
+#
+# https://starship.rs/config/#git-status
+#
+[git_status]
+conflicted = "[=](bg:#3c3c3c fg:#ff1313)"
+ahead = "[󰞙](bg:#3c3c3c fg:#d1b166)"
+behind = "[󰞖](bg:#3c3c3c fg:#ff69b4)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](bg:#3c3c3c fg:#896dff)"
+untracked = "[󱃅](bg:#3c3c3c fg:#a88847)"
+stashed = "[󰙺](bg:#3c3c3c fg:#24ffa0)"
+modified = "[󰟟](bg:#3c3c3c fg:#da6633)"
+staged = "[󰜋](bg:#3c3c3c fg:#f2d166)"
+renamed = "[»](bg:#3c3c3c fg:#6495ed)"
+deleted = "[✘](bg:#3c3c3c fg:#c00000)"
+# as of 1.15.0
+#typechanged = "[󰠱](bg:#3c3c3c fg:#da0000)"
+style = "bg:#3c3c3c"
+format = "([$all_status$ahead_behind]($style))"
+
+#
+# https://starship.rs/config/#git-branch
+#
+[git_branch]
+format = "[$symbol $branch(:$remote_branch)]($style)"
+style = "bg:#333333 fg:#999999"
+symbol = ""
+truncation_length = 42
+
+#
+# https://starship.rs/config/#git-commit
+#
+[git_commit]
+format = "[$hash$tag]($style)"
+
+#
+# https://starship.rs/config/#package-version
+#
+[package]
+format = "[$symbol$version]($style)"
+symbol = "📦"
+
+#
+# https://starship.rs/config/#fill
+#
+[fill]
+symbol = " "
+style = "bg:#1d1d1d"
+
+#
+# https://starship.rs/config/#git-state
+#
+[git_state]
+rebase = "RBS"
+merge = "MRG"
+revert = "RVR"
+cherry_pick = "CHP"
+bisect = "BSC"
+am = "AM"
+am_or_rebase = "AM/R"
+format = "[$state($progress_current/$progress_total)]($style)"
+
+#
+# https://starship.rs/config/#git-metrics
+#
+[git_metrics]
+added_style = "bg:#333333"
+deleted_style = "bg:#333333"
+disabled = false
+
+#
+# https://starship.rs/config/#jobs
+#
+[jobs]
+
+#
+# https://starship.rs/config/#kubernetes
+#
+[kubernetes]
+# needs more setup for testing it out
+# use aliases if is.personal
+
+#
+# https://starship.rs/config/#directory
+#
+[directory]
+truncation_symbol = "📌…/"
+home_symbol = "🌱"
+
+#
+# https://starship.rs/config/#shell
+#
+[shell]
+disabled = false
+fish_indicator = '🐟'
+powershell_indicator = '🚜'
+
+#
+# https://starship.rs/config/#status
+#
+[status]
+disabled = false
+map_symbol = true
+
+#
+# https://starship.rs/config/#character
+#
+[character]
