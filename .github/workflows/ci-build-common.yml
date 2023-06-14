@@ -58,7 +58,7 @@ jobs:
           github.ref_name == 'main'
           && (
             github.event_name == 'push'
-            || github.event_name == "workflow_dispatch"
+            || github.event_name == 'workflow_dispatch'
           )
         run: |
           docker tag "$DOTFILES_SHA_TAG" "$DOTFILES_TAG"
