@@ -217,6 +217,18 @@
     }
   },
   {
+    "name": "JetBrains Toolbox App",
+    "description": "Install and manage 15+ IDEs for different languages and technologies.",
+    "url": "https://www.jetbrains.com/toolbox-app/",
+    "install": {
+      "common": "#na",
+      "windows": "jetbrains-toolbox"
+    },
+    "provides": {
+      "windows": ["jetbrains-toolbox"]
+    }
+  },
+  {
     "name": "jq",
     "description": "A command-line JSON processor that uses a domain-specific language.",
     "url": "https://stedolan.github.io/jq/",
