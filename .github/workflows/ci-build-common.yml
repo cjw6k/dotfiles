@@ -54,7 +54,12 @@ jobs:
         run: docker push "$DOTFILES_SHA_TAG"
 
       - name: tag and push default ci image on main
-        if: ${{ github.event_name == 'push' && github.ref_name == 'main' }}
+        if: |
+          github.ref_name == 'main'
+          && (
+            github.event_name == 'push'
+            || github.event_name == "workflow_dispatch"
+          )
         run: |
           docker tag "$DOTFILES_SHA_TAG" "$DOTFILES_TAG"
           docker push "$DOTFILES_TAG"
