@@ -222,7 +222,7 @@
     "url": "https://www.jetbrains.com/toolbox-app/",
     "install": {
       "common": "#na",
-      "windows": "jetbrains-toolbox",
+      "windows": "jetbrains-toolbox"
     },
     "provides": {
       "windows": ["jetbrains-toolbox"]
