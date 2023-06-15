@@ -2,6 +2,7 @@
 
 {{/* feature flags */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $wsl := false -}}{{/* true if this machine is a WSL distro */}}
 
 {{/* personalization */}}
 {{- $gitUsername := "user" -}}
@@ -13,8 +14,16 @@
 {{-   $gitEmail = promptStringOnce . "user.git.email" "Git global user email address" -}}
 {{- end -}}
 
+{{/* WSL detection */}}
+{{ if eq .chezmoi.os "linux" -}}
+{{-  if stat "/proc/sys/fs/binfmt_misc/WSLInterop" -}}
+{{-    $wsl = true -}}
+{{-  end -}}
+{{- end -}}
+
 [data.is]
     personal = {{ $personal }}
+    wsl = {{ $wsl }}
 
 [data.user.git]
     name = {{ $gitUsername | quote }}
