@@ -14,6 +14,7 @@
     --prompt-color: #32cd32;
     --main-text-color: #cccccc;
     --ahead-color: #16c60c;
+    --behind-color: #c52020;
     --path-text: #61d6d6;
     --git-status-brace: #6874f2;
 
@@ -137,6 +138,10 @@ span {
     color: var(--ahead-color);
 }
 
+.behind-count {
+    color: var(--behind-color);
+}
+
 .line-closer {
     color: var(--spacer-bg);
 }
@@ -173,11 +178,11 @@ span {
 <h2>pwsh</h2>
 <div>
     <p>
-        <span class="os">🪟 </span>
+        <span class="os"> </span>
         <span class="git-status"><span class="open"></span><span class="fg-bracket"></span><span class="git-conflicted">=</span><span class="git-ahead">ﲗ</span><span class="git-behind">ﲔ</span><span class="git-diverged">⇕</span><span class="git-up-to-date">&amp;</span><span class="git-untracked">ﲹ</span><span class="git-stashed">ﭸ</span><span class="git-modified">ﳝ</span><span class="git-staged">ﰉ</span><span class="git-renamed">»</span><span class="git-deleted">✘</span><span class="fg-bracket"></span><span class="close"></span></span>
         <span class="git-branch">&nbsp; starship-config <span class="close"></span></span>
         <span class="spacer">                                                          </span>
-        <span class="git-metrics"><span class="ahead-count">+2</span> </span>
+        <span class="git-metrics"><span class="ahead-count">+2</span> <span class="behind-count">-1</span> </span>
         <span class="line-closer"></span>
     </p>
 </div>
