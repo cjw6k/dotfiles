@@ -297,6 +297,27 @@
     }
   },
   {
+    "name": "python",
+    "description": "The Python programming language.",
+    "url": "https://python.org/",
+    "devtools": true,
+    "install": {
+      "linux": {
+        "alpine": {
+          "common": "python3"
+        }
+      }
+    },
+    "provides": {
+      "common": [
+        "python",
+        "python3",
+        "pip",
+        "pip3"
+      ]
+    }
+  },
+  {
     "name": "starship",
     "description": "The minimal, blazing-fast, and infinitely customizable prompt for any shell!",
     "url": "https://starship.rs/",
