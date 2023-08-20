@@ -297,6 +297,25 @@
     }
   },
   {
+    "name": "pip",
+    "description": "The PyPA recommended tool for installing Python packages.",
+    "url": "https://pip.pypa.io/en/stable/",
+    "devtools": true,
+    "install": {
+      "linux": {
+        "alpine": {
+          "common": "py-pip"
+        }
+      }
+    },
+    "provides": {
+      "common": [
+        "pip",
+        "pip3"
+      ]
+    }
+  },
+  {
     "name": "python",
     "description": "The Python programming language.",
     "url": "https://python.org/",
@@ -311,9 +330,7 @@
     "provides": {
       "common": [
         "python",
-        "python3",
-        "pip",
-        "pip3"
+        "python3"
       ]
     }
   },
