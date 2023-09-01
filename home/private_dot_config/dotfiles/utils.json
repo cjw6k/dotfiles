@@ -305,6 +305,9 @@
       "linux": {
         "alpine": {
           "common": "py-pip"
+        },
+        "gentoo": {
+          "common": "dev-python/pip"
         }
       },
       "freebsd": {
@@ -330,6 +333,9 @@
         },
         "debian": {
           "common": "python-is-python3"
+        },
+        "gentoo": {
+          "common": "dev-lang/python"
         },
         "ubuntu": {
           "common": "python-is-python3"
