@@ -306,8 +306,14 @@
         "alpine": {
           "common": "py-pip"
         },
+        "debian": {
+          "common": "python3-pip"
+        },
         "gentoo": {
           "common": "dev-python/pip"
+        },
+        "ubuntu": {
+          "common": "python3-pip"
         }
       },
       "freebsd": {
