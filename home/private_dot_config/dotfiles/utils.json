@@ -324,6 +324,12 @@
       "linux": {
         "alpine": {
           "common": "python3"
+        },
+        "debian": {
+          "common": "python-is-python3"
+        },
+        "ubuntu": {
+          "common": "python-is-python3"
         }
       }
     },
