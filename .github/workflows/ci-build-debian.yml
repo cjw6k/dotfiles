@@ -15,7 +15,7 @@ jobs:
     uses: ./.github/workflows/ci-build-common.yml
     strategy:
       matrix:
-        tag: ['sid', 'bookworm', 'bullseye', 'buster']
+        tag: ['sid', 'trixie', 'bookworm', 'bullseye', 'buster']
 
     with:
       dockerfile: apt

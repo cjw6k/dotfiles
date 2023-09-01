@@ -55,6 +55,7 @@
         },
         "debian": {
           "sid": ["7z", "7za", "7zr"],
+          "trixie": ["7zz"],
           "bookworm": ["7zz"],
           "bullseye": ["7zr"],
           "buster": ["7zr"]
@@ -155,6 +156,7 @@
         },
         "debian": {
           "sid": ["delta"],
+          "trixie": ["delta"],
           "bookworm": ["delta"]
         },
         "gentoo": {
@@ -334,6 +336,7 @@
           "common": ["pip3"],
           "bullseye": ["pip"],
           "bookworm": ["pip"],
+          "trixie": ["pip"],
           "sid": ["pip"]
         },
         "gentoo": {
@@ -386,6 +389,7 @@
           "common": ["python3"],
           "bullseye": ["python"],
           "bookworm": ["python"],
+          "trixie": ["python"],
           "sid": ["python"]
         },
         "gentoo": {
