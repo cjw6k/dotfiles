@@ -14,7 +14,7 @@ ci-build-alpine: &ci-build-alpine
 ci-build-debian: &ci-build-debian
   - *ci-build-common
   - '.github/apt.Dockerfile'
-  - '.github/workflows/ci-build-debian-and-ubuntu.yml'
+  - '.github/workflows/ci-build-debian.yml'
 
 ci-build-gentoo: &ci-build-gentoo
   - '.github/portage.Dockerfile'
