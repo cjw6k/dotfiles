@@ -322,9 +322,25 @@
     },
     "provides": {
       "common": [
-        "pip",
         "pip3"
-      ]
+      ],
+      "linux": {
+        "alpine": {
+          "common": ["pip"]
+        },
+        "debian": {
+          "bullseye": ["pip"],
+          "bookworm": ["pip"],
+          "sid": ["pip"]
+        },
+        "gentoo": {
+          "common": ["pip"]
+        },
+        "ubuntu": {
+          "common": ["pip"]
+        }
+      },
+      "windows": ["pip"]
     }
   },
   {
