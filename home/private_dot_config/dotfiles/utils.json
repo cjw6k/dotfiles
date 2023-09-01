@@ -54,7 +54,7 @@
           "common": ["7z"]
         },
         "debian": {
-          "sid": ["7zz"],
+          "sid": ["7z", "7za", "7zr"],
           "bookworm": ["7zz"],
           "bullseye": ["7zr"],
           "buster": ["7zr"]
