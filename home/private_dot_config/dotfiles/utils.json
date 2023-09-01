@@ -338,6 +338,7 @@
           "common": "python3"
         },
         "debian": {
+          "buster": "python3",
           "common": "python-is-python3"
         },
         "gentoo": {
@@ -353,9 +354,25 @@
     },
     "provides": {
       "common": [
-        "python",
         "python3"
-      ]
+      ],
+      "linux": {
+        "alpine": {
+          "common": ["python"]
+        },
+        "debian": {
+          "bullseye": ["python"],
+          "bookworm": ["python"],
+          "sid": ["python"]
+        },
+        "gentoo": {
+          "common": ["python"]
+        },
+        "ubuntu": {
+          "common": ["python"]
+        }
+      },
+      "windows": ["task"]
     }
   },
   {
