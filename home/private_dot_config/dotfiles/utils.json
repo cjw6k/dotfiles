@@ -321,26 +321,29 @@
       }
     },
     "provides": {
-      "common": [
-        "pip3"
-      ],
+      "freebsd": {
+        "common": ["pip"],
+        "13.2": ["pip3"],
+        "13.1": ["pip3"]
+      },
       "linux": {
         "alpine": {
-          "common": ["pip"]
+          "common": ["pip", "pip3"]
         },
         "debian": {
+          "common": ["pip3"],
           "bullseye": ["pip"],
           "bookworm": ["pip"],
           "sid": ["pip"]
         },
         "gentoo": {
-          "common": ["pip"]
+          "common": ["pip", "pip3"]
         },
         "ubuntu": {
-          "common": ["pip"]
+          "common": ["pip", "pip3"]
         }
       },
-      "windows": ["pip"]
+      "windows": ["pip", "pip3"]
     }
   },
   {
@@ -369,26 +372,29 @@
       }
     },
     "provides": {
-      "common": [
-        "python3"
-      ],
+      "freebsd": {
+        "common": ["python"],
+        "13.2": ["python3"],
+        "13.1": ["python3"]
+      },
       "linux": {
         "alpine": {
-          "common": ["python"]
+          "common": ["python", "python3"]
         },
         "debian": {
+          "common": ["python3"],
           "bullseye": ["python"],
           "bookworm": ["python"],
           "sid": ["python"]
         },
         "gentoo": {
-          "common": ["python"]
+          "common": ["python", "python3"]
         },
         "ubuntu": {
-          "common": ["python"]
+          "common": ["python", "python3"]
         }
       },
-      "windows": ["python"]
+      "windows": ["python", "python3"]
     }
   },
   {
