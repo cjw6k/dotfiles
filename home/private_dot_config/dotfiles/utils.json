@@ -306,6 +306,9 @@
         "alpine": {
           "common": "py-pip"
         }
+      },
+      "freebsd": {
+        "common": "py39-pip"
       }
     },
     "provides": {
@@ -331,6 +334,9 @@
         "ubuntu": {
           "common": "python-is-python3"
         }
+      },
+      "freebsd": {
+        "common": "python39"
       }
     },
     "provides": {
