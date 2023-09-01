@@ -55,7 +55,7 @@
         },
         "debian": {
           "sid": ["7z", "7za", "7zr"],
-          "trixie": ["7zz"],
+          "trixie": ["7z", "7za", "7zr"],
           "bookworm": ["7zz"],
           "bullseye": ["7zr"],
           "buster": ["7zr"]
