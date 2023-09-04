@@ -20,7 +20,7 @@
 [init]
     defaultBranch = main
 
-{{ if and .is.personal (eq .user.git.name "cjw6k") -}}
-[url "git@github.com:cjw6k"]
-    insteadOf = https://github.com/cjw6k
+{{ if .is.personal -}}
+[url "git@github.com:{{ .user.git.name }}"]
+    insteadOf = https://github.com/{{ .user.git.name }}
 {{- end }}
