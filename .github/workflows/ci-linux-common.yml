@@ -34,7 +34,10 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: sudo -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH" --promptBool "Should this machine have development tools"=true
+        shell: bash
+        run: |
+          sudo -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH" \
+            --promptBool "Should this machine have development tools"=true
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
