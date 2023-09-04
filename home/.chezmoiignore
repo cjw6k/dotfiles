@@ -1,6 +1,7 @@
 {{/* .tmpl suffix allowed on this file since v2.29.0 */}}
 {{- if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
+.chezmoiscripts/devtools/windows/**
 .chezmoiscripts/personal/windows/**
 Documents
 {{ else -}}
@@ -9,32 +10,42 @@ Documents
 
 {{- if ne .chezmoi.os "linux" -}}
 .chezmoiscripts/linux/**
+.chezmoiscripts/devtools/linux/**
 .chezmoiscripts/personal/linux/**
 {{ else -}}
 {{   if ne .chezmoi.osRelease.id "alpine" -}}
     .chezmoiscripts/linux/alpine/**
+    .chezmoiscripts/devtools/linux/alpine/**
     .chezmoiscripts/personal/linux/alpine/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "ubuntu" -}}
     .chezmoiscripts/linux/ubuntu/**
+    .chezmoiscripts/devtools/linux/ubuntu/**
     .chezmoiscripts/personal/linux/ubuntu/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "debian" -}}
     .chezmoiscripts/linux/debian/**
+    .chezmoiscripts/devtools/linux/debian/**
     .chezmoiscripts/personal/linux/debian/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "gentoo" -}}
     .chezmoiscripts/linux/gentoo/**
+    .chezmoiscripts/devtools/linux/gentoo/**
     .chezmoiscripts/personal/linux/gentoo/**
 {{   end -}}
 {{ end -}}
 
 {{- if ne .chezmoi.os "freebsd" -}}
 .chezmoiscripts/freebsd/**
+.chezmoiscripts/devtools/freebsd/**
 .chezmoiscripts/personal/freebsd/**
 {{ end -}}
 
 {{ if not .is.personal -}}
 .chezmoiscripts/personal/**
 .ssh
+{{ end -}}
+
+{{ if not .is.devtools -}}
+.chezmoiscripts/devtools/**
 {{ end -}}
