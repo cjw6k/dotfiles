@@ -34,7 +34,7 @@ Documents
 .chezmoiscripts/personal/freebsd/**
 {{ end -}}
 
-{{ if not .personal -}}
+{{ if not .is.personal -}}
 .chezmoiscripts/personal/**
 .ssh
 {{ end -}}
