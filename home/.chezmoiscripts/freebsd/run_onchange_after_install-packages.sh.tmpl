@@ -6,6 +6,7 @@
 script="
 .[]
   | select(.personal != true)
+  | select(.devtools != true)
   | .install.freebsd.common
     // .install.common
     // .name
