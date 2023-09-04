@@ -50,9 +50,7 @@ jobs:
         run: shovel install chezmoi
 
       - name: init dotfiles
-        run: |
-          chezmoi init --apply cjw6k --branch "$env:BRANCH" \
-            --promptBool "Should this machine have development tools"=true
+        run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
       - name: shovel list
         run: shovel list

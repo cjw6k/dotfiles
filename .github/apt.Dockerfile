@@ -27,7 +27,6 @@ WORKDIR /home/ci
 
 # hadolint ignore=DL3004
 RUN chezmoi init --apply "${OWNER}" \
-    --promptBool "Should this machine have development tools"=true \
  && sudo rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/bin/fish"]
