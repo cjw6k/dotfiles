@@ -2,6 +2,7 @@
 
 {{/* feature flags */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $devtools := false -}}{{/* true if this machine should have development tools */}}
 {{- $wsl := false -}}{{/* true if this machine is a WSL distro */}}
 
 {{/* personalization */}}
@@ -9,7 +10,8 @@
 {{- $gitEmail := "user@localhost.localdomain" -}}
 
 {{ if stdinIsATTY -}}
-{{-   $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
+{{-   $personal = promptBoolOnce . "personal" "Should this machine have personal secrets" false -}}
+{{-   $devtools = promptBoolOnce . "devtools" "Should this machine have development tools" false -}}
 {{-   $gitUsername = promptStringOnce . "user.git.name" "Git global user name" -}}
 {{-   $gitEmail = promptStringOnce . "user.git.email" "Git global user email address" -}}
 {{- end -}}
@@ -21,8 +23,9 @@
 {{-  end -}}
 {{- end -}}
 
-[data.is]
+[data]
     personal = {{ $personal }}
+    devtools = {{ $devtools }}
     wsl = {{ $wsl }}
 
 [data.user.git]
