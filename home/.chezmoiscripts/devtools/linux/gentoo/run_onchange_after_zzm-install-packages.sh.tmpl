@@ -5,7 +5,7 @@
 
 read -r -d '' script << 'JQ'
 .[]
-  | select(.devtools = true)
+  | select(.devtools == true)
   | .install.linux.gentoo.common
     // .install.linux.common
     // .install.common
