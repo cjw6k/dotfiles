@@ -45,21 +45,31 @@ utils: &utils
 #
 dotfiles-scripts-freebsd: &dotfiles-scripts-freebsd
   - 'home/.chezmoiscripts/freebsd/**'
+  - 'home/.chezmoiscripts/devtools/freebsd/**'
 
 dotfiles-scripts-alpine: &dotfiles-scripts-alpine
   - 'home/.chezmoiscripts/linux/alpine/**'
+  - 'home/.chezmoiscripts/linux/devtools/alpine/**'
 
 dotfiles-scripts-debian: &dotfiles-scripts-debian
   - 'home/.chezmoiscripts/linux/debian/**'
+  - 'home/.chezmoiscripts/linux/devtools/debian/**'
 
 dotfiles-scripts-gentoo: &dotfiles-scripts-gentoo
   - 'home/.chezmoiscripts/linux/gentoo/**'
+  - 'home/.chezmoiscripts/linux/devtools/gentoo/**'
 
 dotfiles-scripts-ubuntu: &dotfiles-scripts-ubuntu
   - 'home/.chezmoiscripts/linux/ubuntu/**'
+  - 'home/.chezmoiscripts/linux/devtools/ubuntu/**'
 
 dotfiles-scripts-windows: &dotfiles-scripts-windows
+  - 'home/.chezmoiscripts/devtools/windows/**'
   - 'home/.chezmoiscripts/windows/**'
+
+dotfiles-scripts-linux-common: &dotfiles-scripts-linux-common
+  - 'home/.chezmoiscripts/devtools/linux/*'
+  - 'home/.chezmoiscripts/linux/*'
 
 #
 # files used in installing and testing dotfiles in CI
@@ -123,24 +133,28 @@ ci-freebsd: &ci-freebsd
 ci-alpine: &ci-alpine
   - *dotfiles-core
   - *dotfiles-scripts-alpine
+  - *dotfiles-scripts-linux-common
   - *ci-build-alpine
   - *test-alpine
 
 ci-debian: &ci-debian
   - *dotfiles-core
   - *dotfiles-scripts-debian
+  - *dotfiles-scripts-linux-common
   - *ci-build-debian
   - *test-debian
 
 ci-gentoo: &ci-gentoo
   - *dotfiles-core
   - *dotfiles-scripts-gentoo
+  - *dotfiles-scripts-linux-common
   - *ci-build-gentoo
   - *test-gentoo
 
 ci-ubuntu: &ci-ubuntu
   - *dotfiles-core
   - *dotfiles-scripts-ubuntu
+  - *dotfiles-scripts-linux-common
   - *ci-build-ubuntu
   - *test-ubuntu
 
