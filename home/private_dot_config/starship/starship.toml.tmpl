@@ -1,7 +1,7 @@
 "$schema" = "https://starship.rs/config-schema.json"
 
 format = """
-($os$container{{ if .wsl }}${custom.wsl}{{ end }} )\
+($os$container{{ if .is.wsl }}${custom.wsl}{{ end }} )\
 ([$memory_usage](bg:#0d0d0d fg:#da0000) )\
 [](fg:#444444)\
 ([ ](bg:#444444)\
@@ -58,7 +58,7 @@ Windows = ""
 symbol = "🐳"
 format = "[$symbol]($style)"
 
-{{ if .wsl -}}
+{{ if .is.wsl -}}
 #
 # https://starship.rs/config/#custom-commands
 #
@@ -190,7 +190,7 @@ disabled = false
 #
 [kubernetes]
 # needs more setup for testing it out
-# use aliases if .personal, etc.
+# use aliases if is.personal
 
 #
 # https://starship.rs/config/#directory
