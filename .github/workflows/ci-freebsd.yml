@@ -37,7 +37,8 @@ jobs:
             echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
 
             # init chezmoi
-            sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+            sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH" \
+              --promptBool "Should this machine have development tools"=true
 
             # confirm installed utils
             sh .github/freebsd/confirm-installed-utils.sh

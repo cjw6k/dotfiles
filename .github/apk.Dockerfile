@@ -27,9 +27,11 @@ WORKDIR /home/ci
 
 # hadolint ignore=DL3004
 RUN if [ "${SOURCE_TAG}" = "3.17" ]; then \
-      chezmoi init --apply --guess-repo-url=false "https://github.com/${REPO}.git"; \
+      chezmoi init --apply --guess-repo-url=false "https://github.com/${REPO}.git" \
+        --promptBool "Should this machine have development tools"=true; \
     else \
-      chezmoi init --apply "${OWNER}"; \
+      chezmoi init --apply "${OWNER}" \
+        --promptBool "Should this machine have development tools"=true; \
     fi \
  && sudo rm -rf /var/cache/apk/*
 
