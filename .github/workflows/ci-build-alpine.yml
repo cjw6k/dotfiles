@@ -15,7 +15,7 @@ jobs:
     uses: ./.github/workflows/ci-build-common.yml
     strategy:
       matrix:
-        tag: ['edge', '3.17']
+        tag: ['edge', '3.18', '3.17']
 
     with:
       dockerfile: apk

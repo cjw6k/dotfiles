@@ -5,8 +5,7 @@
 
 read -r -d '' script << 'JQ'
 .[]
-  | select(.personal != true)
-  | select(.devtools != true)
+  | select(.devtools == true)
   | .install.linux.alpine.common
     // .install.linux.common
     // .install.common

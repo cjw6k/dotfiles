@@ -5,13 +5,15 @@
 
 read -r -d '' script << 'JQ'
 .[]
-  | select(.personal != true)
-  | select(.devtools != true)
-  | .install.linux.alpine.common
+  | select(.devtools == true)
+  | .install.linux.gentoo.common
     // .install.linux.common
     // .install.common
     // .name
   | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
 JQ
 
-sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
+sudo emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
+
+# better as an ebuild & overlay
+sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin

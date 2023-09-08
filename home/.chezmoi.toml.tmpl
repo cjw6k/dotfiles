@@ -2,14 +2,30 @@
 
 {{/* feature flags */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
+{{- $devtools := false -}}{{/* true if this machine should have development tools */}}
 {{- $wsl := false -}}{{/* true if this machine is a WSL distro */}}
 
 {{/* personalization */}}
 {{- $gitUsername := "user" -}}
 {{- $gitEmail := "user@localhost.localdomain" -}}
 
+{{ if or (empty (env "DOTFILES_PERSONAL")) (not (has (env "DOTFILES_PERSONAL") (list "0" "1" "true" "false"))) -}}
+{{    if stdinIsATTY -}}
+{{-     $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
+{{-   end -}}
+{{- else -}}
+{{-   $personal = has (env "DOTFILES_PERSONAL") (list "1" "true") -}}
+{{- end -}}
+
+{{ if or (empty (env "DOTFILES_DEVTOOLS")) (not (has (env "DOTFILES_DEVTOOLS") (list "0" "1" "true" "false"))) -}}
+{{    if stdinIsATTY -}}
+{{-     $devtools = promptBoolOnce . "is.personal" "Should this machine have development tools" false -}}
+{{-   end -}}
+{{- else -}}
+{{-   $devtools = has (env "DOTFILES_DEVTOOLS") (list "1" "true") -}}
+{{- end -}}
+
 {{ if stdinIsATTY -}}
-{{-   $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
 {{-   $gitUsername = promptStringOnce . "user.git.name" "Git global user name" -}}
 {{-   $gitEmail = promptStringOnce . "user.git.email" "Git global user email address" -}}
 {{- end -}}
@@ -23,6 +39,7 @@
 
 [data.is]
     personal = {{ $personal }}
+    devtools = {{ $devtools }}
     wsl = {{ $wsl }}
 
 [data.user.git]

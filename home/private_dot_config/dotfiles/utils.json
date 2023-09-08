@@ -54,7 +54,8 @@
           "common": ["7z"]
         },
         "debian": {
-          "sid": ["7zz"],
+          "sid": ["7z", "7za", "7zr"],
+          "trixie": ["7z", "7za", "7zr"],
           "bookworm": ["7zz"],
           "bullseye": ["7zr"],
           "buster": ["7zr"]
@@ -67,6 +68,7 @@
           ]
         },
         "ubuntu": {
+          "mantic": ["7zz"],
           "lunar": ["7zz"],
           "kinetic": ["7zz"],
           "jammy": ["7zz"],
@@ -155,12 +157,14 @@
         },
         "debian": {
           "sid": ["delta"],
+          "trixie": ["delta"],
           "bookworm": ["delta"]
         },
         "gentoo": {
           "common": ["delta"]
         },
         "ubuntu": {
+          "mantic": ["delta"],
           "lunar": ["delta"],
           "kinetic": ["delta"],
           "jammy": ["delta"]
@@ -294,6 +298,109 @@
         "ssh",
         "ssh-keygen"
       ]
+    }
+  },
+  {
+    "name": "pip",
+    "description": "The PyPA recommended tool for installing Python packages.",
+    "url": "https://pip.pypa.io/en/stable/",
+    "devtools": true,
+    "install": {
+      "linux": {
+        "alpine": {
+          "common": "py-pip"
+        },
+        "debian": {
+          "common": "python3-pip"
+        },
+        "gentoo": {
+          "common": "dev-python/pip"
+        },
+        "ubuntu": {
+          "common": "python3-pip"
+        }
+      },
+      "freebsd": {
+        "common": "py39-pip"
+      }
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["pip"],
+        "13.2": ["pip3"],
+        "13.1": ["pip3"]
+      },
+      "linux": {
+        "alpine": {
+          "common": ["pip", "pip3"]
+        },
+        "debian": {
+          "common": ["pip3"],
+          "bullseye": ["pip"],
+          "bookworm": ["pip"],
+          "trixie": ["pip"],
+          "sid": ["pip"]
+        },
+        "gentoo": {
+          "common": ["pip", "pip3"]
+        },
+        "ubuntu": {
+          "common": ["pip", "pip3"]
+        }
+      },
+      "windows": ["pip", "pip3"]
+    }
+  },
+  {
+    "name": "python",
+    "description": "The Python programming language.",
+    "url": "https://python.org/",
+    "devtools": true,
+    "install": {
+      "linux": {
+        "alpine": {
+          "common": "python3"
+        },
+        "debian": {
+          "buster": "python3",
+          "common": "python-is-python3"
+        },
+        "gentoo": {
+          "common": "dev-lang/python"
+        },
+        "ubuntu": {
+          "common": "python-is-python3"
+        }
+      },
+      "freebsd": {
+        "common": "python39"
+      }
+    },
+    "provides": {
+      "freebsd": {
+        "13.2": ["python3"],
+        "13.1": ["python3"],
+        "12.3": ["python"]
+      },
+      "linux": {
+        "alpine": {
+          "common": ["python", "python3"]
+        },
+        "debian": {
+          "common": ["python3"],
+          "bullseye": ["python"],
+          "bookworm": ["python"],
+          "trixie": ["python"],
+          "sid": ["python"]
+        },
+        "gentoo": {
+          "common": ["python", "python3"]
+        },
+        "ubuntu": {
+          "common": ["python", "python3"]
+        }
+      },
+      "windows": ["python", "python3"]
     }
   },
   {

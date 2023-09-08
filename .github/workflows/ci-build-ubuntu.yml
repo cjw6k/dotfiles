@@ -15,7 +15,7 @@ jobs:
     uses: ./.github/workflows/ci-build-common.yml
     strategy:
       matrix:
-        tag: ['lunar', 'kinetic', 'jammy', 'focal']
+        tag: ['mantic', 'lunar', 'kinetic', 'jammy', 'focal']
 
     with:
       dockerfile: apt
