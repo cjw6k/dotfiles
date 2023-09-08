@@ -9,20 +9,20 @@
 {{- $gitUsername := "user" -}}
 {{- $gitEmail := "user@localhost.localdomain" -}}
 
-{{ if or (empty (env "DOTFILES_PERSONAL")) (not (has (env "DOTFILES_PERSONAL") (list "0" "1" "true" "false"))) -}}
+{{ if or (empty (env "DOTFILES_PERSONAL")) (not (has (env "DOTFILES_PERSONAL") (list true "true" false "false" 0 "0" 1 "1"))) -}}
 {{    if stdinIsATTY -}}
 {{-     $personal = promptBoolOnce . "is.personal" "Should this machine have personal secrets" false -}}
 {{-   end -}}
 {{- else -}}
-{{-   $personal = has (env "DOTFILES_PERSONAL") (list "1" "true") -}}
+{{-   $personal = has (env "DOTFILES_PERSONAL") (list true "true" 1 "1") -}}
 {{- end -}}
 
-{{ if or (empty (env "DOTFILES_DEVTOOLS")) (not (has (env "DOTFILES_DEVTOOLS") (list "0" "1" "true" "false"))) -}}
+{{ if or (empty (env "DOTFILES_DEVTOOLS")) (not (has (env "DOTFILES_DEVTOOLS") (list true "true" false "false" 0 "0" 1 "1"))) -}}
 {{    if stdinIsATTY -}}
 {{-     $devtools = promptBoolOnce . "is.personal" "Should this machine have development tools" false -}}
 {{-   end -}}
 {{- else -}}
-{{-   $devtools = has (env "DOTFILES_DEVTOOLS") (list "1" "true") -}}
+{{-   $devtools = has (env "DOTFILES_DEVTOOLS") (list true "true" 1 "1") -}}
 {{- end -}}
 
 {{ if stdinIsATTY -}}
