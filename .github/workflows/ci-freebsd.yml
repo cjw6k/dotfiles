@@ -24,9 +24,10 @@ jobs:
         uses: vmactions/freebsd-vm@v0
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
+          DOTFILES_DEVTOOLS: true
         with:
           release: ${{ matrix.release }}
-          envs: "BRANCH"
+          envs: "BRANCH DOTFILES_DEVTOOLS"
           prepare: |
             pkg install -y sudo chezmoi
 

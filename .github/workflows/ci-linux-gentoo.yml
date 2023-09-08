@@ -87,6 +87,7 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
+          DOTFILES_DEVTOOLS: true
         run: sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
       - name: verify utilities are present

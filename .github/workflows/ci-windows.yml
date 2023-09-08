@@ -50,6 +50,8 @@ jobs:
         run: shovel install chezmoi
 
       - name: init dotfiles
+        env:
+          DOTFILES_DEVTOOLS: true
         run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
       - name: shovel list
