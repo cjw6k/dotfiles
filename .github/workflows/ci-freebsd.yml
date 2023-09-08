@@ -24,10 +24,9 @@ jobs:
         uses: vmactions/freebsd-vm@v0
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-          DOTFILES_DEVTOOLS: true
         with:
           release: ${{ matrix.release }}
-          envs: "BRANCH DOTFILES_DEVTOOLS"
+          envs: "BRANCH"
           prepare: |
             pkg install -y sudo chezmoi
 
@@ -38,7 +37,7 @@ jobs:
             echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
 
             # init chezmoi
-            sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+            sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
             # confirm installed utils
             sh .github/freebsd/confirm-installed-utils.sh

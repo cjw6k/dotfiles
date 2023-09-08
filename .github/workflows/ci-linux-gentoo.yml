@@ -87,8 +87,7 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-          DOTFILES_DEVTOOLS: true
-        run: sudo -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+        run: sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh gentoo latest
