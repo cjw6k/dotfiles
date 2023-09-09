@@ -21,12 +21,13 @@ RUN groupadd -r ci \
 FROM ci as final
 
 ARG OWNER
+ARG DEVTOOLS=""
 
 USER ci
 WORKDIR /home/ci
 
 # hadolint ignore=DL3004
-RUN chezmoi init --apply "${OWNER}" \
+RUN DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply "${OWNER}" \
  && sudo rm -rf /var/lib/apt/lists/*
 
 ENTRYPOINT ["/usr/bin/fish"]
