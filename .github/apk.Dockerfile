@@ -21,15 +21,16 @@ FROM ci as final
 ARG SOURCE_TAG
 ARG REPO
 ARG OWNER
+ARG DEVTOOLS=""
 
 USER ci
 WORKDIR /home/ci
 
 # hadolint ignore=DL3004
 RUN if [ "${SOURCE_TAG}" = "3.17" ]; then \
-      chezmoi init --apply --guess-repo-url=false "https://github.com/${REPO}.git"; \
+      DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply --guess-repo-url=false "https://github.com/${REPO}.git"; \
     else \
-      chezmoi init --apply "${OWNER}"; \
+      DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply "${OWNER}"; \
     fi \
  && sudo rm -rf /var/cache/apk/*
 

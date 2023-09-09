@@ -39,6 +39,7 @@ jobs:
             --build-arg SOURCE_TAG="${{ inputs.tag }}" \
             --build-arg OWNER="$DOTFILES_OWNER" \
             --build-arg REPO="$DOTFILES_REPO" \
+            --build-arg DEVTOOLS=true \
             --target final \
             --tag "$DOTFILES_TAG" \
             --label "org.opencontainers.image.source=https://github.com/$DOTFILES_REPO" \
