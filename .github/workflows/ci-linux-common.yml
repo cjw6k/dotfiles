@@ -23,7 +23,7 @@ jobs:
     container: ${{ format('ghcr.io/{0}:ci-{1}-{2}{3}', github.repository, inputs.distro, inputs.tag, inputs.suffix) }}
     steps:
       - name: checkout
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: detect distro-and-version-safe command to init dotfiles
         id: init-dotfiles-command
