@@ -46,7 +46,7 @@ jobs:
             --label "org.opencontainers.image.description=${{ inputs.image }}:${{ inputs.tag }} for $DOTFILES_REPO"
 
       - name: login to ghcr.io
-        uses: docker/login-action@v2
+        uses: docker/login-action@v3
         with:
           registry: ghcr.io
           username: ${{ github.actor }}
