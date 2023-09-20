@@ -70,7 +70,6 @@
         "ubuntu": {
           "mantic": ["7zz"],
           "lunar": ["7zz"],
-          "kinetic": ["7zz"],
           "jammy": ["7zz"],
           "focal": ["7zr"]
         }
@@ -166,7 +165,6 @@
         "ubuntu": {
           "mantic": ["delta"],
           "lunar": ["delta"],
-          "kinetic": ["delta"],
           "jammy": ["delta"]
         }
       },
