@@ -10,7 +10,7 @@ concurrency:
 
 jobs:
   freebsd:
-    runs-on: macos-12
+    runs-on: ubuntu-latest
     name: Install and Test on FreeBSD
     strategy:
       matrix:
