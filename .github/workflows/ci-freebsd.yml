@@ -10,18 +10,18 @@ concurrency:
 
 jobs:
   freebsd:
-    runs-on: macos-12
+    runs-on: ubuntu-latest
     name: Install and Test on FreeBSD
     strategy:
       matrix:
-        release: ['13.2', '13.1', '12.3']
+        release: ['14.0', '13.2', '12.4']
 
     steps:
       - name: checkout
         uses: actions/checkout@v4
 
       - name: test bundle
-        uses: vmactions/freebsd-vm@v0
+        uses: vmactions/freebsd-vm@v1
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
         with:
