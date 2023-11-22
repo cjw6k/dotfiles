@@ -14,7 +14,7 @@ jobs:
     name: Install and Test on FreeBSD
     strategy:
       matrix:
-        release: ['13.2', '13.1', '12.3']
+        release: ['14.0', '13.2', '12.4']
 
     steps:
       - name: checkout
