@@ -17,7 +17,7 @@ jobs:
     uses: ./.github/workflows/ci-linux-common.yml
     strategy:
       matrix:
-        tag: ['edge', '3.18', '3.17']
+        tag: ['edge', '3.19', '3.18', '3.17']
 
     with:
       distro: alpine
