@@ -1,3 +1,3 @@
 #!/usr/bin/env sh
 
-sudo emerge -n dev-util/cmake
+sudo emerge -n dev-build/cmake
