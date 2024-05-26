@@ -29,7 +29,7 @@ jobs:
           release: ${{ matrix.release }}
           envs: "BRANCH"
           prepare: |
-            pkg -d install -y sudo chezmoi
+            pkg -d install -y curl
 
           run: |
             whoami
