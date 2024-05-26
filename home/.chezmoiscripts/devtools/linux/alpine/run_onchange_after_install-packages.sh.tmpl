@@ -17,7 +17,7 @@ sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
 
 read -r -d '' pipScript << 'JQ'
 .[]
-  | select(".devtools-pip" == true)
+  | select('.devtools-pip' == true)
   | .install.linux.alpine.common
     // .install.linux.common
     // .install.common
