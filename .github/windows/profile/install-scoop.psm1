@@ -1,5 +1,5 @@
 function Install-Scoop {
-    Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value
+    Set-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Control\FileSystem' -Name 'LongPathsEnabled' -Value 1
 
     Invoke-Expression "& {$(Invoke-RestMethod get.scoop.sh)}"
 
