@@ -320,7 +320,8 @@
       },
       "freebsd": {
         "common": "py39-pip"
-      }
+      },
+      "windows": "#na"
     },
     "provides": {
       "freebsd": {
