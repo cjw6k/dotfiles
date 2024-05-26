@@ -118,9 +118,7 @@
           "common": "#builtin"
         }
       },
-      "windows": {
-        "common": "#builtin"
-      }
+      "windows": "#builtin"
     }
   },
   {
@@ -320,13 +318,13 @@
       },
       "freebsd": {
         "common": "py39-pip"
-      }
+      },
+      "windows": "#na"
     },
     "provides": {
       "freebsd": {
         "common": ["pip"],
-        "13.2": ["pip3"],
-        "13.1": ["pip3"]
+        "13.2": ["pip3"]
       },
       "linux": {
         "alpine": {
@@ -376,9 +374,7 @@
     },
     "provides": {
       "freebsd": {
-        "13.2": ["python3"],
-        "13.1": ["python3"],
-        "12.3": ["python"]
+        "13.2": ["python3"]
       },
       "linux": {
         "alpine": {

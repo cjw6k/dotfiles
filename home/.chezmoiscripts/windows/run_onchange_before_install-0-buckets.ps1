@@ -1,2 +1,2 @@
-shovel bucket add extras
-shovel bucket add nerd-fonts
+scoop bucket add extras
+scoop bucket add nerd-fonts
