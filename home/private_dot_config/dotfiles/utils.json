@@ -118,9 +118,7 @@
           "common": "#builtin"
         }
       },
-      "windows": {
-        "common": "#builtin"
-      }
+      "windows": "#builtin"
     }
   },
   {
