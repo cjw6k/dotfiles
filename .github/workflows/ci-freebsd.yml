@@ -28,7 +28,6 @@ jobs:
         with:
           release: ${{ matrix.release }}
           envs: "BRANCH"
-          usesh: true
           prepare: |
             pkg -d install -y curl
 
