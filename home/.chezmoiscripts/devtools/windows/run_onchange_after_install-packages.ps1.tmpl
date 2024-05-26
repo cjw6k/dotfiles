@@ -18,3 +18,19 @@ foreach ($util in $utils) {
 }
 
 scoop install @toInstall
+
+$pipUtils = Get-Content '~/.config/dotfiles/utils.json' `
+  | ConvertFrom-Json `
+  | Where-Object {$_.devtools-pip -eq $true}
+
+$toInstallWithPip = @()
+foreach ($pipUtil in $pipUtils) {
+  $name = $pipUtil.install.windows ?? $pipUtil.install.common ?? $pipUtil.name
+  if ($name -in $skipInstall) {
+    continue
+  }
+
+  $toInstallWithPip += $name
+}
+
+pip install @toInstallWithPip

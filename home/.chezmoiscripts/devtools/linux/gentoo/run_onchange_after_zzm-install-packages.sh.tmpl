@@ -17,3 +17,15 @@ sudo emerge -n $(jq -r "$script" ~/.config/dotfiles/utils.json)
 
 # better as an ebuild & overlay
 sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+
+read -r -d '' pipScript << 'JQ'
+.[]
+  | select(.devtools-pip == true)
+  | .install.linux.gentoo.common
+    // .install.linux.common
+    // .install.common
+    // .name
+  | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
+JQ
+
+pip install $(jq -r "$pipScript" ~/.config/dotfiles/utils.json)

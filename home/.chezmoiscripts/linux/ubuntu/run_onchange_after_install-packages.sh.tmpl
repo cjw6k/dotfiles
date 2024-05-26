@@ -7,6 +7,7 @@ read -r -d '' script << 'JQ'
 .[]
   | select(.personal != true)
   | select(.devtools != true)
+  | select(.devtools-pip != true)
   | .install.linux.ubuntu.{{ .chezmoi.osRelease.versionCodename }}
     // .install.linux.ubuntu.common
     // .install.linux.common
