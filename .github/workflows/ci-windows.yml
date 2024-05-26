@@ -28,7 +28,7 @@ jobs:
             | Foreach-Object -Process {Add-Content $PROFILE "Import-Module $_"}
 
       - name: restore scoop cache
-        uses: actions/cache@v3
+        uses: actions/cache@v4
         env:
           cache-name: cache-scoop-assets
 
