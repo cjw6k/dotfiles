@@ -348,6 +348,12 @@
     }
   },
   {
+    "name": "pre-commit",
+    "description": "A framework for managing and maintaining multi-language pre-commit hooks.",
+    "url": "https://pre-commit.com/",
+    "devtools": true
+  },
+  {
     "name": "python",
     "description": "The Python programming language.",
     "url": "https://python.org/",
