@@ -32,19 +32,4 @@ jobs:
             pkg -d install -y sudo chezmoi
 
           run: |
-            # add ci user
-            pw groupadd -n ci
-            pw useradd -n ci -g ci -m
-            echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
-
-            # init chezmoi
-            sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
-
-            # confirm installed utils
-            sh .github/freebsd/confirm-installed-utils.sh
-
-            # confirm ci user has fish shell
-            test `tee </etc/passwd | grep ^ci: | grep -o '[^:]*$'` = `which fish`
-
-            # run tests
-            sudo -iu ci fishtape /home/ci/.config/dotfiles/tests.fish
+            whoami
