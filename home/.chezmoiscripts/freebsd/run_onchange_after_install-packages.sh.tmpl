@@ -7,7 +7,7 @@ script="
 .[]
   | select(.personal != true)
   | select(.devtools != true)
-  | select(.devtools-pip != true)
+  | select(.devtools_pip != true)
   | .install.freebsd.common
     // .install.common
     // .name

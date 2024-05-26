@@ -7,7 +7,7 @@ read -r -d '' script << 'JQ'
 .[]
   | select(.personal != true)
   | select(.devtools != true)
-  | select(.devtools-pip != true)
+  | select(.devtools_pip != true)
   | .install.linux.debian.{{ .chezmoi.osRelease.versionCodename }}
     // .install.linux.debian.common
     // .install.linux.common

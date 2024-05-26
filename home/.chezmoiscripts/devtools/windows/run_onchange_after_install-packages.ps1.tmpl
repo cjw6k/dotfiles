@@ -21,7 +21,7 @@ scoop install @toInstall
 
 $pipUtils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
-  | Where-Object {$_.devtools-pip -eq $true}
+  | Where-Object {$_.devtools_pip -eq $true}
 
 $toInstallWithPip = @()
 foreach ($pipUtil in $pipUtils) {

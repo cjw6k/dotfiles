@@ -7,7 +7,7 @@ $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | ConvertFrom-Json `
   | Where-Object {$_.personal -eq $null}
   | Where-Object {$_.devtools -eq $null}
-  | Where-Object {$_.devtools-pip -eq $null}
+  | Where-Object {$_.devtools_pip -eq $null}
 
 $toInstall = @()
 foreach ($util in $utils) {
