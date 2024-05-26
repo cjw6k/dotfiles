@@ -1,1 +1,1 @@
-shovel install starship
+scoop install starship

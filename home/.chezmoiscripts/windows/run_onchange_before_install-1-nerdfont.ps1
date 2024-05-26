@@ -1,1 +1,1 @@
-shovel install cousine-nf cousine-nf-mono cousine-nf-propo
+scoop install cousine-nf cousine-nf-mono cousine-nf-propo

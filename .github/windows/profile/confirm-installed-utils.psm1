@@ -24,7 +24,7 @@ function Confirm-InstalledUtils {
   $allConfirmed = $true
   Write-Host "Commands"
   foreach ($command in $commands) {
-    $hasShim = shovel which $command 6>$null
+    $hasShim = scoop which $command 6>$null
 
     $allConfirmed = $allConfirmed -and $hasShim
 

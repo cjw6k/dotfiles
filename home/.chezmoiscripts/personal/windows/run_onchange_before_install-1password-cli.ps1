@@ -1,1 +1,1 @@
-shovel install 1password-cli
+scoop install 1password-cli

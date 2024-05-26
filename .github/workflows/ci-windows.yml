@@ -27,10 +27,10 @@ jobs:
             | Select-Object -ExpandProperty Fullname `
             | Foreach-Object -Process {Add-Content $PROFILE "Import-Module $_"}
 
-      - name: restore shovel cache
+      - name: restore scoop cache
         uses: actions/cache@v3
         env:
-          cache-name: cache-shovel-assets
+          cache-name: cache-scoop-assets
 
         with:
           path: ~/scoop/cache/
@@ -38,24 +38,24 @@ jobs:
           restore-keys:
             ${{ env.cache-name }}-
 
-      - name: install shovel
+      - name: install scoop
         run: |
-          Install-Shovel
-          shovel --version
+          Install-Scoop
+          scoop --version
 
-      - name: shovel checkup
-        run: shovel checkup
+      - name: scoop checkup
+        run: scoop checkup
 
       - name: install chezmoi
-        run: shovel install chezmoi
+        run: scoop install chezmoi
 
       - name: init dotfiles
         env:
           DOTFILES_DEVTOOLS: true
         run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
-      - name: shovel list
-        run: shovel list
+      - name: scoop list
+        run: scoop list
 
       - name: verify utilities are present
         run: Confirm-InstalledUtils
