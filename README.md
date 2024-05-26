@@ -34,9 +34,7 @@ Install and apply my dotfiles with `chezmoi init --apply cjw6k`. Better yet, [fo
 2. Get [Scoop](https://github.com/ScoopInstaller/Install#scoop-uninstaller).
    * _Don't change the execution policy as in the example there!_
      * Too late? We don't know what it may have been before, but restoring the default is: `Set-ExecutionPolicy -ExecutionPolicy Undefined -Scope CurrentUser`
-3. Replace Scoop w/ [Shovel](https://github.com/Ash258/Scoop-Core#Installation).
-   * the docs aren't clear on this, but do fix any warnings shown after running `scoop checkup`.
-4. Get chezmoi w/ `shovel install chezmoi`.
+4. Get chezmoi w/ `scoop install chezmoi`.
 
 ## Features
 
