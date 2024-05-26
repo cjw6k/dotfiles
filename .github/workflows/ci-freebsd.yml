@@ -24,6 +24,7 @@ jobs:
         uses: vmactions/freebsd-vm@v1
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
+          DEBUG: 1
         with:
           release: ${{ matrix.release }}
           envs: "BRANCH"
