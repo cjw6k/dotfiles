@@ -16,7 +16,7 @@ JQ
 
 packages=$(jq -r "$script" ~/.config/dotfiles/utils.json)
 if test ! -z "$packages"; then
-  sudo apk add "$packages"
+  sudo apk add $packages
 fi
 
 read -r -d '' pipScript << 'JQ'
@@ -32,5 +32,5 @@ JQ
 
 packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
 if test ! -z "$packages"; then
-  pip install "$packages"
+  pip install $packages
 fi
