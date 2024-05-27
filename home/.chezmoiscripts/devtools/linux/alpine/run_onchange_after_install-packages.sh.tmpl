@@ -6,7 +6,7 @@
 read -r -d '' script << 'JQ'
 .[]
   | select(.devtools == true)
-  | .install.linux.alpine."{{ $version := semver .chezmoi.osRelease.versionID }}{{ $version.Major }}_{{ $version.Minor }}"
+  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
     // .install.linux.alpine.common
     // .install.linux.common
     // .install.common
