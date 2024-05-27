@@ -15,3 +15,16 @@ read -r -d '' script << 'JQ'
 JQ
 
 sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
+
+read -r -d '' pipScript << 'JQ'
+.[]
+  | select(.devtools == true)
+  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
+    // .install.linux.alpine.common
+    // .install.linux.common
+    // .install.common
+    // .name
+  | select(. == "#pip")
+JQ
+
+pip install $(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
