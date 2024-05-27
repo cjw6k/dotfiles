@@ -3,10 +3,13 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
+{{ version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
+release="{{ version }}"
+
 read -r -d '' script << 'JQ'
 .[]
   | select(.devtools == true)
-  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
+  | .install.linux.alpine."$release"
     // .install.linux.alpine.common
     // .install.linux.common
     // .install.common
@@ -22,7 +25,7 @@ fi
 read -r -d '' pipScript << 'JQ'
 .[]
   | select(.devtools == true)
-  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
+  | .install.linux.alpine."$release"
     // .install.linux.alpine.common
     // .install.linux.common
     // .install.common
@@ -32,5 +35,5 @@ JQ
 
 packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
 if test ! -z "$packages"; then
-  pip install $packages --break-system-packages
+  pip install $packages
 fi
