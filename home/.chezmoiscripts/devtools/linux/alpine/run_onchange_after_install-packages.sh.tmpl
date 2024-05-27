@@ -32,5 +32,5 @@ JQ
 
 packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
 if test ! -z "$packages"; then
-  pip install $packages
+  pip install $packages --break-system-packages
 fi
