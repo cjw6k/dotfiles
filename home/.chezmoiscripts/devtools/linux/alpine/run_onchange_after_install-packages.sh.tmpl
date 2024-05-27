@@ -14,6 +14,8 @@ read -r -d '' script << 'JQ'
   | select(. as $in | ["#builtin", "#custom", "#na", "#pip"] | index($in) | not)
 JQ
 
+echo "$script"
+
 sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
 
 read -r -d '' pipScript << 'JQ'
@@ -26,5 +28,7 @@ read -r -d '' pipScript << 'JQ'
     // .name
   | select(. == "#pip")
 JQ
+
+echo "$pipScript"
 
 pip install $(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
