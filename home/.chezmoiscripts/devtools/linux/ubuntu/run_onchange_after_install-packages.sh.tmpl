@@ -11,7 +11,7 @@ read -r -d '' script << 'JQ'
     // .install.linux.common
     // .install.common
     // .name
-  | select(. as $in | ["#builtin", "#custom", "#na", "#pip] | index($in) | not)
+  | select(. as $in | ["#builtin", "#custom", "#na", "#pip"] | index($in) | not)
 JQ
 
 packages=$(jq -r "$script" ~/.config/dotfiles/utils.json)
