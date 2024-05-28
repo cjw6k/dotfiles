@@ -1,7 +1,5 @@
 #!/usr/bin/env sh
 
-echo "path is $PATH"
-
 if [ $# -ne 2 ]; then
   echo "usage: confirm-installed-utils.sh DISTRO VERSION"
   exit 1

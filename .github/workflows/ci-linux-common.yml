@@ -36,6 +36,9 @@ jobs:
           BRANCH: ${{ github.head_ref || github.ref_name }}
         run: sudo DOTFILES_DEVTOOLS=true -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
+      - name: debug path
+        run: echo "$PATH"
+
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
 
