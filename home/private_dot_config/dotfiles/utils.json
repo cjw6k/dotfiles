@@ -359,6 +359,9 @@
           "3.18": "#pip",
           "3.17": "#pip"
         },
+        "debian": {
+          "buster": "#pip"
+        },
         "ubuntu": {
           "focal": "#pip"
         }
