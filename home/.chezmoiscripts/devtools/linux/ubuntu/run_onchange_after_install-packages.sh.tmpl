@@ -35,7 +35,11 @@ JQ
 
 packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
 if test ! -z "$packages"; then
+{{- if eq .chezmoi.osRelease.versionCodename "buster" }}
+  pip3 install $packages
+{{- else }}
   pip install $packages
+{{- end }}
 fi
 
 sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
