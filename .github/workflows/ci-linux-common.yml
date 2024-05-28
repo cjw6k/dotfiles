@@ -37,9 +37,7 @@ jobs:
         run: sudo DOTFILES_DEVTOOLS=true -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
-        run: |
-          PATH="$HOME/.local/bin:$PATH"
-          .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
+        run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
 
       - name: verify ci user has fish-shell
         run: |
