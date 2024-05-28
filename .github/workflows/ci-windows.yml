@@ -54,7 +54,8 @@ jobs:
           DOTFILES_DEVTOOLS: true
         run: |
           chezmoi init --apply cjw6k --branch "$env:BRANCH"
-          echo $env:path > $GITHUB_PATH
+          echo [System.Environment]::GetEnvironmentVariable("Path","Machine") + ";" `
+            + [System.Environment]::GetEnvironmentVariable("Path","User") > $GITHUB_PATH
 
       - name: scoop list
         run: scoop list
