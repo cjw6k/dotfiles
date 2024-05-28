@@ -1,7 +1,11 @@
 if status is-interactive
     # Commands to run in interactive sessions can go here
     set fish_greeting
+{{- if and (eq "ubuntu" .chezmoi.osRelease.id) (eq "focal" .chezmoi.osRelease.ubuntuCodename) }}
+    set -U fish_user_paths ~/.local/bin $fish_user_paths
+{{- else }}
     fish_add_path ~/.local/bin
+{{- end }}
     set -x STARSHIP_CONFIG ~/.config/starship/starship.toml
     starship init fish | source
 end
