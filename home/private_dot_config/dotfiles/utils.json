@@ -365,7 +365,8 @@
         "ubuntu": {
           "focal": "#pip"
         }
-      }
+      },
+      "windows": "#pip"
     }
   },
   {
