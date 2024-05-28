@@ -36,11 +36,10 @@ jobs:
           BRANCH: ${{ github.head_ref || github.ref_name }}
         run: sudo DOTFILES_DEVTOOLS=true -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
-      - name: add .local/bin to path
-        run: echo "$HOME/.local/bin" >> $GITHUB_PATH
-
       - name: verify utilities are present
-        run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
+        run: |
+          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
 
       - name: verify ci user has fish-shell
         run: |
