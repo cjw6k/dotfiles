@@ -353,6 +353,9 @@
     "url": "https://pre-commit.com/",
     "devtools": true,
     "install": {
+      "freebsd": {
+        "common": "#pip"
+      },
       "linux": {
         "alpine": {
           "3.19": "#pip",
