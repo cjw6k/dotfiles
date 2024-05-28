@@ -1,8 +1,6 @@
 #!/usr/bin/env sh
 
-if [ -d "$HOME/.local/bin" ]; then
-  PATH="$HOME/.local/bin:$PATH"
-fi
+echo "path is $PATH"
 
 if [ $# -ne 2 ]; then
   echo "usage: confirm-installed-utils.sh DISTRO VERSION"
