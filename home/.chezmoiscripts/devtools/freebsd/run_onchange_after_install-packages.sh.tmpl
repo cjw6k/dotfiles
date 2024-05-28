@@ -9,6 +9,6 @@ script="
   | .install.freebsd.common
     // .install.common
     // .name
-  | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\"] | index(\$in) | not)"
+  | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\", \"#pip\"] | index(\$in) | not)"
 
 sudo pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
