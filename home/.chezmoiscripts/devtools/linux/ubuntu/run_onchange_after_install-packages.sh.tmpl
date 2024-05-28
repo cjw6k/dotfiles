@@ -15,7 +15,7 @@ read -r -d '' script << 'JQ'
 JQ
 
 packages=$(jq -r "$script" ~/.config/dotfiles/utils.json)
-if test ! -z $packages; then
+if test ! -z "$packages"; then
   DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $packages
 fi
 
