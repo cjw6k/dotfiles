@@ -55,12 +55,14 @@ jobs:
         run: |
           chezmoi init --apply cjw6k --branch "$env:BRANCH"
           echo $env:PATH
-          echo $GITHUB_PATH
+          echo -=-=-
+          echo $PATH
 
       - name: debug
         run: |
           echo $env:PATH
-          echo $GITHUB_PATH
+          echo -=-=-
+          echo $PATH
 
       - name: scoop list
         run: scoop list
