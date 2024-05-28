@@ -1,10 +1,5 @@
 #!/usr/bin/env sh
 
-echo "path was $PATH"
-export PATH="$HOME/.local/bin:$PATH"
-echo "path is $PATH"
-echo "subshell path is $(echo "$PATH")"
-
 if [ $# -ne 2 ]; then
   echo "usage: confirm-installed-utils.sh DISTRO VERSION"
   exit 1
