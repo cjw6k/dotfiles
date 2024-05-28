@@ -38,7 +38,7 @@ jobs:
 
       - name: verify utilities are present
         run: |
-          echo "$HOME/.local/bin" >> $GITHUB_PATH
+          PATH="$HOME/.local/bin:$PATH"
           .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
 
       - name: verify ci user has fish-shell
