@@ -8,8 +8,14 @@ $utils = Get-Content '~/.config/dotfiles/utils.json' `
   | Where-Object {$_.devtools -eq $true}
 
 $toInstall = @()
+$toInstallWithPip = @()
 foreach ($util in $utils) {
   $name = $util.install.windows ?? $util.install.common ?? $util.name
+  if ($name -eq "#pip") {
+    $toInstallWithPip += $util.name
+    continue
+  }
+
   if ($name -in $skipInstall) {
     continue
   }
@@ -18,3 +24,5 @@ foreach ($util in $utils) {
 }
 
 scoop install @toInstall
+
+pip install @toInstallWithPip
