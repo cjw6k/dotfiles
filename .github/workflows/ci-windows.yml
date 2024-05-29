@@ -55,7 +55,7 @@ jobs:
         run: |
           chezmoi init --apply cjw6k --branch "$env:BRANCH"
           [System.Environment]::GetEnvironmentVariable("Path","Machine") `
-            + ";" + [System.Environment]::GetEnvironmentVariable("Path","User") >> $GITHUB_PATH
+            + ";" + [System.Environment]::GetEnvironmentVariable("Path","User")
 
       - name: scoop list
         run: scoop list
