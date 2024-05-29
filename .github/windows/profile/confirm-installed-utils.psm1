@@ -1,4 +1,14 @@
 function Confirm-InstalledUtils {
+  $pathAdditions = @(
+    "$env:USERPROFILE\scoop\shims",
+    "$env:USERPROFILE\scoop\apps\python\current\Scripts"
+  )
+  foreach ($pathAddition in $pathAdditions) {
+    if ([System.IO.Directory]::Exists($pathAddition)) {
+      $env:Path = "$pathAddition;$env:Path"
+    }
+  }
+
   $utils = Get-Content "~/.config/dotfiles/utils.json" | ConvertFrom-Json
 
   $commands = @()
