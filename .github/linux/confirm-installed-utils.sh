@@ -10,6 +10,10 @@ if [ $? -ne 0 ]; then
   exit 1
 fi
 
+if [ -d "/home/ci/.local/bin" ]; then
+  export PATH="/home/ci/.local/bin:$PATH"
+fi
+
 partial=$(jq '.[] | select(.personal != true)' /home/ci/.config/dotfiles/utils.json)
 
 check () {

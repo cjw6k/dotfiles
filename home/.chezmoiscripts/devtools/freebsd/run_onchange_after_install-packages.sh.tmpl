@@ -9,6 +9,14 @@ script="
   | .install.freebsd.common
     // .install.common
     // .name
-  | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\"] | index(\$in) | not)"
+  | select(. as \$in | [\"#builtin\", \"#custom\", \"#na\", \"#pip\"] | index(\$in) | not)"
 
 sudo pkg install -y $(jq -r "$script" ~/.config/dotfiles/utils.json)
+
+pipScript="
+.[]
+  | select(.devtools == true)
+  | select((.install.freebsd.common // .install.common) == \"#pip\")
+  | .name"
+
+pip install $(jq -r "$pipScript" ~/.config/dotfiles/utils.json)

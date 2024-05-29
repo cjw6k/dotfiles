@@ -11,10 +11,33 @@ read -r -d '' script << 'JQ'
     // .install.linux.common
     // .install.common
     // .name
-  | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
+  | select(. as $in | ["#builtin", "#custom", "#na", "#pip"] | index($in) | not)
 JQ
 
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
   $(jq -r "$script" ~/.config/dotfiles/utils.json)
+
+read -r -d '' pipScript << 'JQ'
+.[]
+  | select(.devtools == true)
+  | select(
+    (
+      .install.linux.debian.{{ .chezmoi.osRelease.versionCodename }}
+      // .install.linux.debian.common
+      // .install.linux.common
+      // .install.common
+    ) == "#pip"
+  )
+  | .name
+JQ
+
+packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
+if test ! -z "$packages"; then
+{{- if eq .chezmoi.osRelease.versionCodename "buster" }}
+  pip3 install $packages
+{{- else }}
+  pip install $packages
+{{- end }}
+fi
 
 sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin

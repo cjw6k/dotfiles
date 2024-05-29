@@ -348,6 +348,31 @@
     }
   },
   {
+    "name": "pre-commit",
+    "description": "A framework for managing and maintaining multi-language pre-commit hooks.",
+    "url": "https://pre-commit.com/",
+    "devtools": true,
+    "install": {
+      "freebsd": {
+        "common": "#pip"
+      },
+      "linux": {
+        "alpine": {
+          "3.19": "#pip",
+          "3.18": "#pip",
+          "3.17": "#pip"
+        },
+        "debian": {
+          "buster": "#pip"
+        },
+        "ubuntu": {
+          "focal": "#pip"
+        }
+      },
+      "windows": "#pip"
+    }
+  },
+  {
     "name": "python",
     "description": "The Python programming language.",
     "url": "https://python.org/",
