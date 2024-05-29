@@ -52,8 +52,7 @@ jobs:
       - name: init dotfiles
         env:
           DOTFILES_DEVTOOLS: true
-        run: |
-          chezmoi init --apply cjw6k --branch "$env:BRANCH"
+        run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
       - name: scoop list
         run: scoop list
