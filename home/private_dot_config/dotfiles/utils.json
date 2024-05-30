@@ -445,7 +445,7 @@
     "install": {
       "common": "#custom",
       "freebsd": {
-        "common": "#na"
+        "common": "#custom"
       },
       "linux": {
         "alpine": {
@@ -455,6 +455,9 @@
       "windows": "task"
     },
     "provides": {
+      "freebsd": {
+        "common": ["task"]
+      },
       "linux": {
         "alpine": {
           "common": ["go-task"]
