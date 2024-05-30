@@ -399,7 +399,7 @@
     },
     "provides": {
       "freebsd": {
-        "13.2": ["python3"]
+        "common": ["python3.9"]
       },
       "linux": {
         "alpine": {
