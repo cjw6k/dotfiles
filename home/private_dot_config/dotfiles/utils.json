@@ -68,6 +68,7 @@
           ]
         },
         "ubuntu": {
+          "noble": ["7zz"],
           "mantic": ["7zz"],
           "lunar": ["7zz"],
           "jammy": ["7zz"],
@@ -161,6 +162,7 @@
           "common": ["delta"]
         },
         "ubuntu": {
+          "noble": ["delta"],
           "mantic": ["delta"],
           "lunar": ["delta"],
           "jammy": ["delta"]
