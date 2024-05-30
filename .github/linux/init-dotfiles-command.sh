@@ -20,13 +20,13 @@ distro () {
 
 alpine () {
   usage
-  echo " when DISTRO is alpine, VERSION must be one of: edge, 3.19, 3.18, or 3.17"
+  echo " when DISTRO is alpine, VERSION must be one of: edge, 3.20, 3.19, 3.18, or 3.17"
 }
 
 case $1 in
   alpine)
     case $2 in
-      edge|3.19|3.18)
+      edge|3.20|3.19|3.18)
         chezmoi cjw6k
         ;;
 
