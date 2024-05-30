@@ -399,7 +399,7 @@
     },
     "provides": {
       "freebsd": {
-        "13.2": ["python3"]
+        "common": ["python3.9"]
       },
       "linux": {
         "alpine": {
@@ -445,7 +445,7 @@
     "install": {
       "common": "#custom",
       "freebsd": {
-        "common": "#na"
+        "common": "#custom"
       },
       "linux": {
         "alpine": {
@@ -455,6 +455,9 @@
       "windows": "task"
     },
     "provides": {
+      "freebsd": {
+        "common": ["task"]
+      },
       "linux": {
         "alpine": {
           "common": ["go-task"]
