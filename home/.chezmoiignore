@@ -1,7 +1,6 @@
 {{/* .tmpl suffix allowed on this file since v2.29.0 */}}
 lib.sh
-
-{{- if ne .chezmoi.os "windows" -}}
+{{ if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
 .chezmoiscripts/devtools/windows/**
 .chezmoiscripts/personal/windows/**
