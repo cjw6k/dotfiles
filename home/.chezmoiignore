@@ -43,9 +43,12 @@ Documents
 
 {{ if not .is.personal -}}
 .chezmoiscripts/personal/**
+.config/dotfiles/utils/personal.json
+.config/dotfiles/utils/personal-custom.json
 .ssh
 {{ end -}}
 
 {{ if not .is.devtools -}}
 .chezmoiscripts/devtools/**
+.config/dotfiles/utils/dev/**
 {{ end -}}
