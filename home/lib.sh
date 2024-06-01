@@ -13,8 +13,8 @@ build_jq_filter() {
 }
 
 run_jq_filter() {
-    filter "$2" "$3" "$4"
-    utils=$(jq -r "$filter" "$HOME/.config/dotfiles/utils/$1.json")
+  build_jq_filter "$2" "$3" "$4"
+  utils=$(jq -r "$filter" "$HOME/.config/dotfiles/utils/$1.json")
 }
 
 standard_utils() {
