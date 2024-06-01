@@ -1,7 +1,11 @@
 #!/usr/bin/env sh
 
-# ~/.config/dotfiles/utils.json hash:
-# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+# ~/.config/dotfiles/utils/dev/common.json hash:
+# {{ include "private_dot_config/dotfiles/utils/dev/common.json" | sha256sum }}
+
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
+. ./../../../lib.sh
 
 read -r -d '' script << 'JQ'
 .[]
@@ -14,7 +18,7 @@ read -r -d '' script << 'JQ'
   | select(. as $in | ["#builtin", "#custom", "#na", "#pip"] | index($in) | not)
 JQ
 
-packages=$(jq -r "$script" ~/.config/dotfiles/utils.json)
+packages=$(jq -r "$script" ~/.config/dotfiles/utils/dev/common.json)
 if test ! -z "$packages"; then
   sudo apk add $packages
 fi
@@ -34,7 +38,7 @@ read -r -d '' pipScript << 'JQ'
 JQ
 
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
-packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils.json)
+packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils/dev/common.json)
 if test ! -z "$packages"; then
 {{- if eq $version "3.19" }}
   pip install $packages --break-system-packages
