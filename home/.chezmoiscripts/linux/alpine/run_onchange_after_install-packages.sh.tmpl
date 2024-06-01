@@ -1,7 +1,10 @@
 #!/usr/bin/env sh
 
-# ~/.config/dotfiles/utils/standard.json hash:
-# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
+. ./../../lib.sh
+
+lib_test "library function"
 
 # the jq script variable $in is not a shell variable
 # shellcheck disable=SC2016
@@ -15,6 +18,8 @@ script='
   | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
 '
 
+# ~/.config/dotfiles/utils/standard.json hash:
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 # intentional word splitting
 # shellcheck disable=SC2046
 sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils/standard.json)
