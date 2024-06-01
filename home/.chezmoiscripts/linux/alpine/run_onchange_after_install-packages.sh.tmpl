@@ -13,20 +13,8 @@
 . "$CHEZMOI_SOURCE_DIR/lib.sh"
 {{ end }}
 
-lib_test "library function"
+standard_utils \
+  "alpine" \
+  "{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}")
 
-# the jq script variable $in is not a shell variable
-# shellcheck disable=SC2016
-script='
-  .[]
-  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
-    // .installs.linux.alpine.common
-    // .installs.linux.common
-    // .installs.common
-    // .name
-  | select(. as $in | ["#builtin", "#script", "#na"] | index($in) | not)
-'
-
-# intentional word splitting
-# shellcheck disable=SC2046
-sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils/standard.json)
+sudo apk add $utils
