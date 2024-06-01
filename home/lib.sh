@@ -9,11 +9,11 @@ standard_utils() {
   script="
     .[]
     | .install.linux.$1.\"$2\"
-      // .installs.linux.alpine.common
+      // .installs.linux.$1.common
       // .installs.linux.common
       // .installs.common
       // .name
-    | select(. as \$in | ['#builtin', '#script', '#na'] | index(\$in) | not)
+    | select(. as \$in | [\"#builtin\", \"#script\", \"#na\"] | index(\$in) | not)
   "
 
   utils=$(jq -r "$script" ~/.config/dotfiles/utils/standard.json)
