@@ -43,6 +43,7 @@ Documents
 
 {{ if not .is.personal -}}
 .chezmoiscripts/personal/**
+.config/dotfiles/utils/personal-custom.json.tmpl
 .ssh
 {{ end -}}
 
