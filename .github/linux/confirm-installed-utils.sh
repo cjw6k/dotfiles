@@ -29,7 +29,7 @@ check () {
 
 missed=0
 
-selection=$(echo "$partial" | jq -r '. | select(.provides == null) | .name')
+selection=$(echo "$partial" | jq -r '.[] | select(.provides == null) | .name')
 if [ $? -ne 0 ]; then
   echo 'Failed parsing .[].provides from utils json'
   exit 1
@@ -41,7 +41,7 @@ for i in $selection; do
   fi
 done
 
-selection=$(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]')
+selection=$(echo "$partial" | jq -r '.[] | select(.provides.common != null) | .provides.common[]')
 if [ $? -ne 0 ]; then
   echo 'Failed parsing .[].provides.commmon from utils json'
   exit 1
@@ -53,7 +53,7 @@ for i in $selection; do
   fi
 done
 
-selection=$(echo "$partial" | jq -r '. | select(.provides.linux.common != null) | .provides.linux.common[]')
+selection=$(echo "$partial" | jq -r '.[] | select(.provides.linux.common != null) | .provides.linux.common[]')
 if [ $? -ne 0 ]; then
   echo 'Failed parsing .[].provides.linux.common from utils json'
   exit 1
@@ -65,7 +65,7 @@ for i in $selection; do
   fi
 done
 
-selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]")
+selection=$(echo "$partial" | jq -r ".[] | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]")
 if [ $? -ne 0 ]; then
   echo "Failed parsing .[].provides.linux.\"$1\".common from utils json"
   exit 1
@@ -77,7 +77,7 @@ for i in $selection; do
   fi
 done
 
-selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]")
+selection=$(echo "$partial" | jq -r ".[] | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]")
 if [ $? -ne 0 ]; then
   echo "Failed parsing .[].provides.linux.\"$1\".\"$2\" from utils json"
   exit 1
