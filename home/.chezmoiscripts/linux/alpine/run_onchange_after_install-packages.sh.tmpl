@@ -5,7 +5,13 @@
 
 # dotfiles lib.sh hash:
 # {{ include "lib.sh" | sha256sum }}
+
+{{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
+{{ if eq $version "3.18" "3.17" }}
+. "$CHEZMOI_SOURCE_DIR/home/lib.sh"
+{{ else }}
 . "$CHEZMOI_SOURCE_DIR/lib.sh"
+{{ end }}
 
 lib_test "library function"
 
