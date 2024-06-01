@@ -5,11 +5,9 @@
 
 # dotfiles lib.sh hash:
 # {{ include "lib.sh" | sha256sum }}
-env
-pwd
-. ./../../../lib.sh
+. "$CHEZMOI_SOURCE_DIR/lib.sh"
 
-read -r -d '' script << 'JQ'
+script='
 .[]
   | select(.devtools == true)
   | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
@@ -17,15 +15,15 @@ read -r -d '' script << 'JQ'
     // .install.linux.common
     // .install.common
     // .name
-  | select(. as $in | ["#builtin", "#custom", "#na", "#pip"] | index($in) | not)
-JQ
+  | select(. as $in | ["#builtin", "#script", "#na", "#pip"] | index($in) | not)
+'
 
 packages=$(jq -r "$script" ~/.config/dotfiles/utils/dev/common.json)
 if test ! -z "$packages"; then
   sudo apk add $packages
 fi
 
-read -r -d '' pipScript << 'JQ'
+pipScript='
 .[]
   | select(.devtools == true)
   | select(
@@ -37,7 +35,7 @@ read -r -d '' pipScript << 'JQ'
     ) == "#pip"
   )
   | .name
-JQ
+'
 
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
 packages=$(jq -r "$pipScript" ~/.config/dotfiles/utils/dev/common.json)

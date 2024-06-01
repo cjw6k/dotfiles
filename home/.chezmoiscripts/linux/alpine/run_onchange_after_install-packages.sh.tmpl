@@ -5,7 +5,7 @@
 
 # dotfiles lib.sh hash:
 # {{ include "lib.sh" | sha256sum }}
-. ./../../../lib.sh
+. "$CHEZMOI_SOURCE_DIR/lib.sh"
 
 lib_test "library function"
 
@@ -13,12 +13,12 @@ lib_test "library function"
 # shellcheck disable=SC2016
 script='
   .[]
-  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\d+\.\d+|\w+" }}"
+  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
     // .installs.linux.alpine.common
     // .installs.linux.common
     // .installs.common
     // .name
-  | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
+  | select(. as $in | ["#builtin", "#script", "#na"] | index($in) | not)
 '
 
 # intentional word splitting

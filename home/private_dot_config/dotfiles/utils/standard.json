@@ -172,6 +172,7 @@
     "name": "silver searcher, the",
     "summary": "A code-searching tool similar to ack, but faster.",
     "uri": "https://geoff.greer.fm/ag/",
+    "installs": {"common": "the_silver_searcher"},
     "provides": {"common": ["ag"]}
   },
   {
@@ -216,6 +217,7 @@
     "name": "tealdeer",
     "summary": "Display simple help pages for command-line tools from the tldr-pages project.",
     "uri": "https://tldr.sh/",
+    "installs": {"common": "#script"},
     "provides": {"common": ["tldr"]}
   }
 ]
