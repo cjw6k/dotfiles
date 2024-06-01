@@ -14,7 +14,7 @@ if [ -d "/home/ci/.local/bin" ]; then
   export PATH="/home/ci/.local/bin:$PATH"
 fi
 
-partial=$(jq 'inputs[]' /home/ci/.config/dotfiles/utils/standard.json /home/ci/.config/dotfiles/utils/dev/*.json)
+partial=$(jq -s '.[]' /home/ci/.config/dotfiles/utils/standard.json /home/ci/.config/dotfiles/utils/dev/*.json)
 
 check () {
     ident=$(which "$1")
