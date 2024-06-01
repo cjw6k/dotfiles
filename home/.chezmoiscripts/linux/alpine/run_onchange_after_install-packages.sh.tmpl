@@ -1,17 +1,20 @@
 #!/usr/bin/env sh
 
-# ~/.config/dotfiles/utils.json hash:
-# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+# ~/.config/dotfiles/utils/standard.json hash:
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 
-read -r -d '' script << 'JQ'
-.[]
-  | select(.personal != true)
-  | select(.devtools != true)
-  | .install.linux.alpine.common
-    // .install.linux.common
-    // .install.common
+# the jq script variable $in is not a shell variable
+# shellcheck disable=SC2016
+script='
+  .[]
+  | .install.linux.alpine."{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\d+\.\d+|\w+" }}"
+    // .installs.linux.alpine.common
+    // .installs.linux.common
+    // .installs.common
     // .name
   | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
-JQ
+'
 
-sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils.json)
+# intentional word splitting
+# shellcheck disable=SC2046
+sudo apk add $(jq -r "$script" ~/.config/dotfiles/utils/standard.json)
