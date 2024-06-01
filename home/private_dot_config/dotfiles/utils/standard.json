@@ -54,7 +54,7 @@
     "uri": "https://cmake.org/",
     "installs": {
       "common": "#na",
-      "linux": {"gentoo": "#custom"}
+      "linux": {"gentoo": "#script"}
     },
     "provides": {"linux": {"gentoo": ["cmake"]}}
   },
@@ -76,13 +76,13 @@
       "freebsd": {"common": "git-delta"},
       "linux": {
         "debian": {
-          "common": "#custom",
+          "common": "#script",
           "bullseye": "#na",
           "buster": "#na"
         },
         "gentoo": "dev-util/git-delta",
         "ubuntu": {
-          "common": "#custom",
+          "common": "#script",
           "focal": "#na"
         }
       }
@@ -113,7 +113,7 @@
     "uri": "https://github.com/fish-shell/fish-shell",
     "installs": {
       "common": "fish",
-      "linux": {"gentoo": "#custom"},
+      "linux": {"gentoo": "#script"},
       "windows": "#na"
     },
     "provides": {
@@ -139,8 +139,8 @@
     "summary": "A command-line JSON processor that uses a domain-specific language.",
     "uri": "https://stedolan.github.io/jq/",
     "installs": {
-      "freebsd": {"common": "#custom"},
-      "linux": {"common": "#custom"}
+      "freebsd": {"common": "#script"},
+      "linux": {"common": "#script"}
     }
   },
   {
@@ -180,10 +180,10 @@
     "uri": "https://starship.rs/",
     "installs": {
       "linux": {
-        "debian": {"common": "#custom"},
-        "ubuntu": {"common": "#custom"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       },
-      "windows": "#custom"
+      "windows": "#script"
     }
   },
   {
@@ -196,8 +196,8 @@
     "summary": "A task runner / simpler Make alternative.",
     "uri": "https://taskfile.dev/",
     "installs": {
-      "common": "#custom",
-      "freebsd": {"common": "#custom"},
+      "common": "#script",
+      "freebsd": {"common": "#script"},
       "linux": {"alpine": {"common": "go-task"}},
       "windows": "task"
     },
