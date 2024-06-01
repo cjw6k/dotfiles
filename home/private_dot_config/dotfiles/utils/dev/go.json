@@ -1,0 +1,8 @@
+[
+  {
+    "name": "go",
+    "summary": "Tool for managing go source code.",
+    "uri": "https://golang.org/",
+    "provides": {"common": ["go", "gofmt"]}
+  }
+]

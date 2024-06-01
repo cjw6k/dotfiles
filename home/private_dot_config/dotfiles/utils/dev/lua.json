@@ -1,0 +1,14 @@
+[
+  {
+    "name": "lua",
+    "summary": "A powerful, light-weight embeddable programming language.",
+    "uri": "https://www.lua.org/",
+    "provides": {"common": ["lua", "luac"]}
+  },
+  {
+    "name": "luarocks",
+    "summary": "The package manager for Lua modules.",
+    "uri": "https://luarocks.org/",
+    "provides": {"common": ["luarocks", "luarocks-admin"]}
+  }
+]

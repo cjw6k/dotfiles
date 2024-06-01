@@ -1,0 +1,148 @@
+[
+  {
+    "name": "actionlint",
+    "summary": "A linter for GitHub Actions workflow files.",
+    "uri": "https://github.com/rhysd/actionlint"
+  },
+  {
+    "name": "delta",
+    "summary": "A viewer for git and diff output.",
+    "uri": "https://dandavison.github.io/delta/"
+  },
+  {
+    "name": "gource",
+    "summary": "Renders an animated tree diagram of Git, SVN, Mercurial and Bazaar repositories.",
+    "uri": "https://gource.io/"
+  },
+  {
+    "name": "hexyl",
+    "summary": "Hex viewer for the terminal.",
+    "uri": "https://github.com/sharkdp/hexyl"
+  },
+  {
+    "name": "hyperfine",
+    "summary": "A command-line benchmarking tool.",
+    "uri": "https://github.com/sharkdp/hyperfine/"
+  },
+  {
+    "name": "lychee",
+    "summary": "Async, stream-based link checker.",
+    "uri": "https://github.com/lycheeverse/lychee"
+  },
+  {
+    "name": "onefetch",
+    "summary": "Command-line Git information tool.",
+    "uri": "https://onefetch.dev/"
+  },
+  {
+    "name": "posh-git",
+    "summary": "A PowerShell environment for Git.",
+    "uri": "http://dahlbyk.github.io/posh-git/"
+  },
+  {
+    "name": "shellcheck",
+    "summary": "Shell script static analysis tool.",
+    "uri": "https://www.shellcheck.net/"
+  },
+  {
+    "name": "shfmt",
+    "summary": "Format shell programs.",
+    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd"
+  },
+  {
+    "name": "tokei",
+    "summary": "Print out statistics about code.",
+    "uri": "https://github.com/XAMPPRocky/tokei"
+  },
+  {
+    "name": "pip",
+    "summary": "The PyPA recommended tool for installing Python packages.",
+    "uri": "https://pip.pypa.io/en/stable/",
+    "installs": {
+      "linux": {
+        "alpine": {"common": "py-pip"},
+        "debian": {"common": "python3-pip"},
+        "gentoo": "dev-python/pip",
+        "ubuntu": {"common": "python3-pip"}
+      },
+      "freebsd": {"common": "py39-pip"},
+      "windows": "#na"
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["pip"],
+        "13.2": ["pip3"]
+      },
+      "linux": {
+        "alpine": {"common": ["pip", "pip3"]},
+        "debian": {
+          "common": ["pip3"],
+          "bullseye": ["pip"],
+          "bookworm": ["pip"],
+          "trixie": ["pip"],
+          "sid": ["pip"]
+        },
+        "gentoo": ["pip", "pip3"],
+        "ubuntu": {"common": ["pip", "pip3"]}
+      },
+      "windows": ["pip", "pip3"]
+    }
+  },
+  {
+    "name": "pre-commit",
+    "summary": "A framework for managing and maintaining multi-language pre-commit hooks.",
+    "uri": "https://pre-commit.com/",
+    "installs": {
+      "freebsd": {"common": "#pip"},
+      "linux": {
+        "alpine": {
+          "3.19": "#pip",
+          "3.18": "#pip",
+          "3.17": "#pip"
+        },
+        "debian": {
+          "buster": "#pip"
+        },
+        "ubuntu": {
+          "focal": "#pip"
+        }
+      },
+      "windows": "#pip"
+    }
+  },
+  {
+    "name": "python",
+    "summary": "The Python programming language.",
+    "uri": "https://python.org/",
+    "installs": {
+      "linux": {
+        "alpine": {"common": "python3"},
+        "debian": {
+          "buster": "python3",
+          "common": "python-is-python3"
+        },
+        "gentoo":  "dev-lang/python",
+        "ubuntu": {"common": "python-is-python3"}
+      },
+      "freebsd": {"common": "python39"}
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["python3.9"]
+      },
+      "linux": {
+        "alpine": {"common": ["python", "python3"]},
+        "debian": {
+          "common": ["python3"],
+          "bullseye": ["python"],
+          "bookworm": ["python"],
+          "trixie": ["python"],
+          "sid": ["python"]
+        },
+        "gentoo": ["python", "python3"],
+        "ubuntu": {"common": ["python", "python3"]}
+      },
+      "windows": ["python", "python3"]
+    }
+  }
+]

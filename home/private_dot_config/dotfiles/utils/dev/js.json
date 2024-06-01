@@ -1,0 +1,13 @@
+[
+  {
+    "name": "nodejs",
+    "summary": "Server-side JavaScript platform.",
+    "uri": "https://nodejs.org/",
+    "provides": {"common": ["node", "npm", "npx"]}
+  },
+  {
+    "name": "yarn",
+    "summary": "JavaScript and Node.js package manager alternative.",
+    "uri": "https://yarnpkg.com/"
+  }
+]

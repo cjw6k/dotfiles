@@ -23,4 +23,8 @@
 {{ if .is.personal -}}
 [url "git@github.com:{{ .user.git.name }}"]
     insteadOf = https://github.com/{{ .user.git.name }}
+
+# 1password:dotfiles/git/config
+{{ onepasswordRead "op://dotfiles/git/config" }}
+
 {{- end }}

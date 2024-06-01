@@ -1,0 +1,13 @@
+[
+  {
+    "name": "composer",
+    "summary": "A package-based dependency manager for PHP projects.",
+    "uri": "https://getcomposer.org/"
+  },
+  {
+    "name": "php",
+    "summary": "PHP command-line interface.",
+    "uri": "https://php.net/",
+    "provides": {"common": ["php", "php-cgi", "phpdbg"]}
+  }
+]
