@@ -6,6 +6,7 @@
     "sources": {
       "linux": {
         "alpine": {
+          "3.19": "#tbd",
           "3.18": "#tbd",
           "3.17": "#tbd"
         }
