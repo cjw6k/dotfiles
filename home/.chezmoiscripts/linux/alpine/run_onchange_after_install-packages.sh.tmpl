@@ -16,10 +16,10 @@
 standard_utils linux alpine "{{ $version }}"
 sudo apk add $utils
 
-#{{ if .is.personal }}
+{{ if .is.personal }}
 #personal_utils linux alpine "{{ $version }}"
 #sudo apk add $utils
-#{{ endif }}
+{{ end }}
 
 {{ if .is.devtools }}
 dev_utils linux alpine "{{ $version }}"
