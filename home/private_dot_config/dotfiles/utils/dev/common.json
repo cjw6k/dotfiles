@@ -6,9 +6,9 @@
     "sources": {
       "linux": {
         "alpine": {
-          "3.19": "#tbd",
-          "3.18": "#tbd",
-          "3.17": "#tbd"
+          "3.19": "#script",
+          "3.18": "#script",
+          "3.17": "#script"
         }
       }
     }
@@ -37,7 +37,7 @@
     "name": "lychee",
     "summary": "Async, stream-based link checker.",
     "uri": "https://github.com/lycheeverse/lychee",
-    "sources": {"linux": {"alpine": {"common": "#tbd"}}}
+    "sources": {"linux": {"alpine": {"common": "#script"}}}
   },
   {
     "name": "onefetch",

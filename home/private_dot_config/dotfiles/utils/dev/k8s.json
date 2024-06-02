@@ -8,7 +8,7 @@
     "name": "kind",
     "summary": "Tool for running local Kubernetes clusters using Docker container \"nodes\".",
     "uri": "https://github.com/kubernetes-sigs/kind",
-    "sources": {"linux": {"alpine": {"common": "#tbd"}}}
+    "sources": {"linux": {"alpine": {"common": "#script"}}}
   },
   {
     "name": "kubectl",
@@ -17,8 +17,8 @@
     "sources": {
       "linux": {
         "alpine": {
-          "3.18": "#tbd",
-          "3.17": "#tbd"
+          "3.18": "#script",
+          "3.17": "#script"
         }
       }
     }
@@ -27,6 +27,6 @@
     "name": "kubeseal",
     "summary": "Asymmetric crypto to encrypt secrets for kubernetes.",
     "uri": "https://github.com/bitnami-labs/sealed-secrets",
-    "sources": {"linux": {"alpine": {"common": "#tbd"}}}
+    "sources": {"linux": {"alpine": {"common": "#script"}}}
   }
 ]
