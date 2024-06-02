@@ -45,12 +45,6 @@
     "uri": "https://onefetch.dev/"
   },
   {
-    "name": "posh-git",
-    "summary": "A PowerShell environment for Git.",
-    "uri": "http://dahlbyk.github.io/posh-git/",
-    "sources": {"linux": {"common": "#na"}}
-  },
-  {
     "name": "shellcheck",
     "summary": "Shell script static analysis tool.",
     "uri": "https://www.shellcheck.net/"
