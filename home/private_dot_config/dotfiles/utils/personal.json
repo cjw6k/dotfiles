@@ -3,7 +3,7 @@
     "name": "1password-cli",
     "summary": "Provision secrets across development environments.",
     "uri": "https://developer.1password.com/docs/cli/",
-    "installs": {
+    "sources": {
       "common": "#script",
       "freebsd": {"common": "1password-client2"},
       "linux": {"gentoo": "app-admin/op-cli-bin"}

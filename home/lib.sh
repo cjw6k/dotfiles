@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-build_jq_filter() {
+installation_sources_filter() {
   filter=".[] |"
   if test -n "$3"; then
     filter="$filter .installs.$1.$2.\"$3\" // .installs.$1.$2.common //"
@@ -9,14 +9,17 @@ build_jq_filter() {
   fi
 
   filter="$filter .installs.$1.common // .installs.common // .name"
-  filter="$filter | select(. as \$in | [\"#builtin\", \"#script\", \"#na\"] | index(\$in) | not)"
 }
 
-run_jq_filter() {
-  build_jq_filter "$2" "$3" "$4"
-  utils=$(jq -r "$filter" "$HOME/.config/dotfiles/utils/$1.json")
+filter_utils() {
+  installation_sources_filter "$3" "$4" "$5"
+  utils=$(jq -r "$filter $2" "$HOME/.config/dotfiles/utils/$1.json")
 }
 
 standard_utils() {
-  run_jq_filter standard "$1" "$2" "$3"
+  filter_utils standard "| select(. | startswith(\"#\") | not)" "$1" "$2" "$3"
+}
+
+dev_utils() {
+  filter_utils "dev/*" "| select(. | startswith(\"#\") | not)" "$1" "$2" "$3"
 }

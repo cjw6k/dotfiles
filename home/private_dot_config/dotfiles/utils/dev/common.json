@@ -58,7 +58,7 @@
     "name": "pip",
     "summary": "The PyPA recommended tool for installing Python packages.",
     "uri": "https://pip.pypa.io/en/stable/",
-    "installs": {
+    "sources": {
       "linux": {
         "alpine": {"common": "py-pip"},
         "debian": {"common": "python3-pip"},
@@ -92,7 +92,7 @@
     "name": "pre-commit",
     "summary": "A framework for managing and maintaining multi-language pre-commit hooks.",
     "uri": "https://pre-commit.com/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "#pip"},
       "linux": {
         "alpine": {
@@ -114,7 +114,7 @@
     "name": "python",
     "summary": "The Python programming language.",
     "uri": "https://python.org/",
-    "installs": {
+    "sources": {
       "linux": {
         "alpine": {"common": "python3"},
         "debian": {

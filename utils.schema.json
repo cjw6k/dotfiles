@@ -14,7 +14,7 @@
         "type": "string",
         "format": "uri"
       },
-      "installs": {
+      "sources": {
         "type": "object",
         "properties": {
           "common": {"$ref": "#/$defs/InstallationSource"},

@@ -13,10 +13,15 @@
 . "$CHEZMOI_SOURCE_DIR/lib.sh"
 {{ end }}
 
-# fills $utils
-standard_utils \
-  linux \
-  alpine \
-  "{{ trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" }}"
-
+standard_utils linux alpine "{{ $version }}"
 sudo apk add $utils
+
+#{{ if .is.personal }}
+#personal_utils linux alpine "{{ $version }}"
+#sudo apk add $utils
+#{{ endif }}
+
+{{ if .is.devtools }}
+dev_utils linux alpine "{{ $version }}"
+sudo apk add $utils
+{{ endif }}

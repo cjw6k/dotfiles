@@ -3,7 +3,7 @@
     "name": "7zip",
     "summary": "A file archiver with a high compression ratio.",
     "uri": "https://www.7-zip.org/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "7-zip"},
       "linux": {
         "debian": {
@@ -46,13 +46,13 @@
     "name": "chezmoi",
     "summary": "Manage your dotfiles across multiple diverse machines, securely.",
     "uri": "https://chezmoi.io/",
-    "installs": {"common": "#builtin"}
+    "sources": {"common": "#builtin"}
   },
   {
     "name": "cmake",
     "summary": "An open-source, cross-platform family of tools designed to build, test and package software.",
     "uri": "https://cmake.org/",
-    "installs": {
+    "sources": {
       "common": "#na",
       "linux": {"gentoo": "#script"}
     },
@@ -62,7 +62,7 @@
     "name": "curl",
     "summary": "A command line tool and library for transferring data with URL syntax.",
     "uri": "https://curl.se/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "#builtin"},
       "linux": {"gentoo": "#builtin"},
       "windows": "#builtin"
@@ -72,7 +72,7 @@
     "name": "delta",
     "summary": "A viewer for git and diff output.",
     "uri": "https://dandavison.github.io/delta/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "git-delta"},
       "linux": {
         "debian": {
@@ -111,7 +111,7 @@
     "name": "fish-shell",
     "summary": "The user-friendly command line shell.",
     "uri": "https://github.com/fish-shell/fish-shell",
-    "installs": {
+    "sources": {
       "common": "fish",
       "linux": {"gentoo": "#script"},
       "windows": "#na"
@@ -125,7 +125,7 @@
     "name": "git",
     "summary": "Distributed version control system.",
     "uri": "https://git-scm.com/",
-    "installs": {
+    "sources": {
       "linux": {"gentoo": "dev-vcs/git"},
       "windows": "#builtin"
     },
@@ -138,7 +138,7 @@
     "name": "jq",
     "summary": "A command-line JSON processor that uses a domain-specific language.",
     "uri": "https://stedolan.github.io/jq/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "#script"},
       "linux": {"common": "#script"}
     }
@@ -157,7 +157,7 @@
     "name": "openssh",
     "summary": "Connectivity tool for remote login with the SSH protocol",
     "uri": "https://www.openssh.com/",
-    "installs": {
+    "sources": {
       "freebsd": {"common": "#builtin"},
       "linux": {
         "debian": {"common": "openssh-server"},
@@ -172,14 +172,14 @@
     "name": "silver searcher, the",
     "summary": "A code-searching tool similar to ack, but faster.",
     "uri": "https://geoff.greer.fm/ag/",
-    "installs": {"common": "the_silver_searcher"},
+    "sources": {"common": "the_silver_searcher"},
     "provides": {"common": ["ag"]}
   },
   {
     "name": "starship",
     "summary": "The minimal, blazing-fast, and infinitely customizable prompt for any shell!",
     "uri": "https://starship.rs/",
-    "installs": {
+    "sources": {
       "linux": {
         "debian": {"common": "#script"},
         "ubuntu": {"common": "#script"}
@@ -196,7 +196,7 @@
     "name": "task",
     "summary": "A task runner / simpler Make alternative.",
     "uri": "https://taskfile.dev/",
-    "installs": {
+    "sources": {
       "common": "#script",
       "freebsd": {"common": "#script"},
       "linux": {"alpine": {"common": "go-task"}},
@@ -217,7 +217,7 @@
     "name": "tealdeer",
     "summary": "Display simple help pages for command-line tools from the tldr-pages project.",
     "uri": "https://tldr.sh/",
-    "installs": {"common": "#script"},
+    "sources": {"common": "#script"},
     "provides": {"common": ["tldr"]}
   }
 ]
