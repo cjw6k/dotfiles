@@ -3,12 +3,12 @@
 installation_sources_filter() {
   filter=".[] |"
   if test -n "$3"; then
-    filter="$filter .installs.$1.$2.\"$3\" // .installs.$1.$2.common //"
+    filter="$filter .sources.$1.$2.\"$3\" // .sources.$1.$2.common //"
   else
-    filter="$filter .installs.$1.$2 //"
+    filter="$filter .sources.$1.$2 //"
   fi
 
-  filter="$filter .installs.$1.common // .installs.common // .name"
+  filter="$filter .sources.$1.common // .sources.common // .name"
 }
 
 filter_utils() {
