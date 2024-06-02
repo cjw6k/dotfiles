@@ -3,7 +3,13 @@
     "name": "nodejs",
     "summary": "Server-side JavaScript platform.",
     "uri": "https://nodejs.org/",
-    "provides": {"common": ["node", "npm", "npx"]}
+    "provides": {"common": ["node"]}
+  },
+  {
+    "name": "npm",
+    "summary": "The package manager for JavaScript.",
+    "uri": "https://github.com/npm/cli",
+    "provides": {"common": ["npm", "npx"]}
   },
   {
     "name": "yarn",
