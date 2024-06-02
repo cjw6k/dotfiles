@@ -7,21 +7,22 @@
 # {{ include "lib.sh" | sha256sum }}
 
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
-{{ if eq $version "3.18" "3.17" }}
-. "$CHEZMOI_SOURCE_DIR/home/lib.sh"
-{{ else }}
-. "$CHEZMOI_SOURCE_DIR/lib.sh"
-{{ end }}
+. "{{ print .chezmoi.sourceDir }}/lib.sh"
 
 standard_utils linux alpine "{{ $version }}"
 sudo apk add $utils
 
-{{ if .is.personal }}
+{{ if .is.personal -}}
 #personal_utils linux alpine "{{ $version }}"
 #sudo apk add $utils
-{{ end }}
+{{- end }}
 
-{{ if .is.devtools }}
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include "$file" | sha256sum }}
+{{- end }}
+
 utils=
 dev_utils linux alpine "{{ $version }}"
 sudo apk add $utils
@@ -35,4 +36,4 @@ if test -n "$utils"; then
   pip install $utils
 {{- end }}
 fi
-{{ end }}
+{{- end }}
