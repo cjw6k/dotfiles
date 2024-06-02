@@ -30,5 +30,5 @@ pip_utils() {
   source_filter "$1" "$2" "$3"
   # allow globbing
   # shellcheck disable=SC2086
-  utils=$(jq -rs ".[][] | select($sourceFilter) == \"#pip\" | .name" ~/.config/dotfiles/utils/dev/*.json)
+  utils=$(jq -rs ".[][] | select($sourceFilter == \"#pip\") | .name" ~/.config/dotfiles/utils/dev/*.json)
 }
