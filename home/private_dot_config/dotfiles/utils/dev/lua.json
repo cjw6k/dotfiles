@@ -3,12 +3,36 @@
     "name": "lua",
     "summary": "A powerful, light-weight embeddable programming language.",
     "uri": "https://www.lua.org/",
-    "provides": {"common": ["lua", "luac"]}
+    "provides": {
+      "common": ["lua", "luac"],
+      "linux": {"alpine": {"common": ["lua5.4", "luac5.4"]}}
+    }
   },
   {
     "name": "luarocks",
     "summary": "The package manager for Lua modules.",
     "uri": "https://luarocks.org/",
-    "provides": {"common": ["luarocks", "luarocks-admin"]}
+    "provides": {
+      "linux": {
+        "alpine": {
+          "edge": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.20": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.19": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.18": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ]
+        }
+      }
+    }
   }
 ]
