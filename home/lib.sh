@@ -13,7 +13,7 @@ installation_sources_filter() {
 
 filter_utils() {
   installation_sources_filter "$3" "$4" "$5"
-  utils=$(jq -r "$filter $2" "$HOME/.config/dotfiles/utils/$1.json")
+  utils=$(jq -rs "$filter $2" "$HOME/.config/dotfiles/utils/$1.json")
 }
 
 standard_utils() {
