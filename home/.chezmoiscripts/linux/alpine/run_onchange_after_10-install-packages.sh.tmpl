@@ -26,9 +26,11 @@ dev_utils linux alpine "{{ $version }}"
 sudo apk add $utils
 
 pip_utils linux alpine "{{ $version }}"
-{{- if eq $version "3.19" }}
+if test -n $utils; then
+{{- if eq $version "3.20" "3.19" }}
   pip install $utils --break-system-packages
 {{- else }}
   pip install $utils
 {{- end }}
+fi
 {{ end }}
