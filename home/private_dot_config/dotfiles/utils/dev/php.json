@@ -8,6 +8,17 @@
     "name": "php",
     "summary": "PHP command-line interface.",
     "uri": "https://php.net/",
-    "provides": {"common": ["php", "php-cgi", "phpdbg"]}
+    "provides": {
+      "common": ["php", "php-cgi", "phpdbg"],
+      "linux": {
+        "alpine": {
+          "edge": ["php", "php83"],
+          "3.20": ["php", "php83"],
+          "3.19": ["php", "php82"],
+          "3.18": ["php", "php81"],
+          "3.17": ["php", "php81"]
+        }
+      }
+    }
   }
 ]
