@@ -22,9 +22,11 @@ sudo apk add $utils
 {{ end }}
 
 {{ if .is.devtools }}
+utils=
 dev_utils linux alpine "{{ $version }}"
 sudo apk add $utils
 
+utils=
 pip_utils linux alpine "{{ $version }}"
 if test -n $utils; then
 {{- if eq $version "3.20" "3.19" }}
