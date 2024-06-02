@@ -13,7 +13,15 @@
   {
     "name": "kubectl",
     "summary": "Command-line interface for running commands against Kubernetes clusters.",
-    "uri": "https://kubernetes.io/docs/reference/kubectl/"
+    "uri": "https://kubernetes.io/docs/reference/kubectl/",
+    "sources": {
+      "linux": {
+        "alpine": {
+          "3.18": "#script",
+          "3.17": "#script"
+        }
+      }
+    }
   },
   {
     "name": "kubeseal",

@@ -2,7 +2,15 @@
   {
     "name": "actionlint",
     "summary": "A linter for GitHub Actions workflow files.",
-    "uri": "https://github.com/rhysd/actionlint"
+    "uri": "https://github.com/rhysd/actionlint",
+    "sources": {
+      "linux": {
+        "alpine": {
+          "3.18": "#script",
+          "3.17": "#script"
+        }
+      }
+    }
   },
   {
     "name": "delta",
