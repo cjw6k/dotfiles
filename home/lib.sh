@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
 installation_sources_filter() {
-  filter=".[] |"
+  filter=".[][] |"
   if test -n "$3"; then
     filter="$filter .sources.$1.$2.\"$3\" // .sources.$1.$2.common //"
   else
