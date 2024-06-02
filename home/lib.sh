@@ -25,3 +25,7 @@ standard_utils() {
 dev_utils() {
   filter_utils "dev/*" "| select(. | startswith(\"#\") | not)" "$1" "$2" "$3"
 }
+
+pip_utils() {
+  filter_utils "dev/*" "| select(. == \"#pip\")" "$1" "$2" "$3"
+}
