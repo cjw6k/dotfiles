@@ -27,7 +27,8 @@
   {
     "name": "lychee",
     "summary": "Async, stream-based link checker.",
-    "uri": "https://github.com/lycheeverse/lychee"
+    "uri": "https://github.com/lycheeverse/lychee",
+    "sources": {"linux": {"alpine": {"common": "#script"}}}
   },
   {
     "name": "onefetch",
@@ -37,7 +38,8 @@
   {
     "name": "posh-git",
     "summary": "A PowerShell environment for Git.",
-    "uri": "http://dahlbyk.github.io/posh-git/"
+    "uri": "http://dahlbyk.github.io/posh-git/",
+    "sources": {"linux": {"common": "#na"}}
   },
   {
     "name": "shellcheck",
