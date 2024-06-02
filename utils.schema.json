@@ -54,7 +54,7 @@
       "type": "string",
       "pattern": "^[\\w\\-.]*\\w$"
     },
-    "CustomInstallationMethod": {"enum": ["#na", "#script", "#builtin", "#pip", "#psmodule"]},
+    "CustomInstallationMethod": {"enum": ["#na", "#tbd", "#script", "#builtin", "#pip", "#psmodule"]},
     "FreeBSDInstallationSource": {
       "allOf": [
         {"$ref": "#/$defs/FreeBSD"},
