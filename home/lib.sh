@@ -11,10 +11,6 @@ source_filter() {
   sourceFilter="$sourceFilter .sources.$1.common // .sources.common // .name"
 }
 
-installation_sources_filter() {
-
-}
-
 filter_utils() {
   source_filter "$3" "$4" "$5"
   # allow globbing
