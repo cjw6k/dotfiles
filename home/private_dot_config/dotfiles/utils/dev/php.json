@@ -9,7 +9,6 @@
     "summary": "PHP command-line interface.",
     "uri": "https://php.net/",
     "provides": {
-      "common": ["php", "php-cgi", "phpdbg"],
       "linux": {
         "alpine": {
           "edge": ["php", "php83"],
