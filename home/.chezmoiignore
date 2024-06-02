@@ -10,13 +10,13 @@ Documents
 {{ end -}}
 
 {{- if ne .chezmoi.os "linux" -}}
+lib.sh
 .chezmoiscripts/linux/**
 .chezmoiscripts/devtools/linux/**
 .chezmoiscripts/personal/linux/**
 {{ else -}}
 {{   if ne .chezmoi.osRelease.id "alpine" -}}
     .chezmoiscripts/linux/alpine/**
-    .chezmoiscripts/devtools/linux/alpine/**
     .chezmoiscripts/personal/linux/alpine/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "ubuntu" -}}
