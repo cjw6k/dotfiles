@@ -13,7 +13,9 @@ installation_sources_filter() {
 
 filter_utils() {
   installation_sources_filter "$3" "$4" "$5"
-  utils=$(jq -rs "$filter $2" "$HOME/.config/dotfiles/utils/$1.json")
+  # allow globbing
+  # shellcheck disable=SC2086
+  utils=$(jq -rs "$filter $2" ~/.config/dotfiles/utils/$1.json)
 }
 
 standard_utils() {
