@@ -8,10 +8,26 @@
         "debian": {
           "common": "lua5.4",
           "buster": "lua5.3"
+        },
+        "ubuntu": {
+          "common": "lua5.4",
+          "focal": "lua5.3"
         }
       }
     },
-    "provides": {"linux": {"alpine": {"common": ["lua5.4", "luac5.4"]}}}
+    "provides": {
+      "linux": {
+        "alpine": {"common": ["lua5.4", "luac5.4"]},
+        "ubuntu": {
+          "common": ["lua", "luac"],
+          "noble": ["lua5.4", "luac5.4"],
+          "mantic": ["lua5.4", "luac5.4"],
+          "lunar": ["lua5.4", "luac5.4"],
+          "jammy": ["lua5.4", "luac5.4"],
+          "focal": ["lua5.3", "luac5.3"]
+        }
+      }
+    }
   },
   {
     "name": "luarocks",
