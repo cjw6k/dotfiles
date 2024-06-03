@@ -25,7 +25,7 @@ fi
 {{ if .is.devtools -}}
 {{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
 # {{ $file }} hash:
-# {{ include "$file" | sha256sum }}
+# {{ include $file | sha256sum }}
 {{- end }}
 
 utils=
