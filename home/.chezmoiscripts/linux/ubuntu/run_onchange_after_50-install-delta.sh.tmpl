@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
 
-{{ if eq .chezmoi.osRelease.versionCodename "xenial" "bionic" "focal" -}}
-{{- else -}}
+{{ if not (eq .chezmoi.osRelease.versionCodename "xenial" "bionic" "focal") -}}
 # hard-coded architecture and version numbers, better is a PPA for dotfiles, or build from source
 curl -sLO https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb \
   && sudo dpkg -i git-delta_0.17.0_amd64.deb \
