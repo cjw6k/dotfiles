@@ -26,7 +26,10 @@
           "3.18": "#script",
           "3.17": "#script"
         },
-        "debian": {"sid": "kubernetes-client"}
+        "debian": {
+          "common": "kubernetes-client",
+          "buster": "#script"
+        }
       }
     }
   },

@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-sudo apt-get install -y jq
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends jq
