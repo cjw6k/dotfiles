@@ -17,7 +17,15 @@
   {
     "name": "delta",
     "summary": "A viewer for git and diff output.",
-    "uri": "https://dandavison.github.io/delta/"
+    "uri": "https://dandavison.github.io/delta/",
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        }
+      }
+    }
   },
   {
     "name": "gource",
