@@ -9,7 +9,8 @@
           "3.19": "#script",
           "3.18": "#script",
           "3.17": "#script"
-        }
+        },
+        "debian": {"common": "#script"}
       }
     }
   },
@@ -31,18 +32,25 @@
   {
     "name": "hyperfine",
     "summary": "A command-line benchmarking tool.",
-    "uri": "https://github.com/sharkdp/hyperfine/"
+    "uri": "https://github.com/sharkdp/hyperfine/",
+    "sources": {"linux": {"debian": {"buster": "#script"}}}
   },
   {
     "name": "lychee",
     "summary": "Async, stream-based link checker.",
     "uri": "https://github.com/lycheeverse/lychee",
-    "sources": {"linux": {"alpine": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "alpine": {"common": "#script"},
+        "debian": {"common": "#script"}
+      }
+    }
   },
   {
     "name": "onefetch",
     "summary": "Command-line Git information tool.",
-    "uri": "https://onefetch.dev/"
+    "uri": "https://onefetch.dev/",
+    "sources": {"linux": {"debian": {"common": "#script"}}}
   },
   {
     "name": "shellcheck",
@@ -57,7 +65,8 @@
   {
     "name": "tokei",
     "summary": "Print out statistics about code.",
-    "uri": "https://github.com/XAMPPRocky/tokei"
+    "uri": "https://github.com/XAMPPRocky/tokei",
+    "sources": {"linux": {"debian": {"common": "#script"}}}
   },
   {
     "name": "pip",

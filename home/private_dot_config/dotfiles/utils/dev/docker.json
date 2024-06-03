@@ -3,12 +3,22 @@
     "name": "dive",
     "summary": "A tool for exploring a Docker image, layer contents, and discovering ways to shrink it.",
     "uri": "https://github.com/wagoodman/dive",
-    "sources": {"linux": {"alpine": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "alpine": {"common": "#script"},
+        "debian": {"common": "#script"}
+      }
+    }
   },
   {
     "name": "hadolint",
     "summary": "Dockerfile linter.",
     "uri": "https://github.com/hadolint/hadolint",
-    "sources": {"linux": {"alpine": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "alpine": {"common": "#script"},
+        "debian": {"common": "#script"}
+      }
+    }
   }
 ]

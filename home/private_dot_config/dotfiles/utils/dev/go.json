@@ -3,6 +3,7 @@
     "name": "go",
     "summary": "Tool for managing go source code.",
     "uri": "https://golang.org/",
+    "sources": {"linux": {"debian": {"common": "golang"}}},
     "provides": {"common": ["go", "gofmt"]}
   }
 ]

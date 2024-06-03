@@ -2,13 +2,19 @@
   {
     "name": "helm",
     "summary": "A package manager for Kubernetes.",
-    "uri": "https://helm.sh/"
+    "uri": "https://helm.sh/",
+    "sources": {"linux": {"debian": {"common": "#script"}}}
   },
   {
     "name": "kind",
     "summary": "Tool for running local Kubernetes clusters using Docker container \"nodes\".",
     "uri": "https://github.com/kubernetes-sigs/kind",
-    "sources": {"linux": {"alpine": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "alpine": {"common": "#script"},
+        "debian": {"common": "#script"}
+      }
+    }
   },
   {
     "name": "kubectl",
@@ -19,7 +25,8 @@
         "alpine": {
           "3.18": "#script",
           "3.17": "#script"
-        }
+        },
+        "debian": {"sid": "kubernetes-client"}
       }
     }
   },
@@ -27,6 +34,11 @@
     "name": "kubeseal",
     "summary": "Asymmetric crypto to encrypt secrets for kubernetes.",
     "uri": "https://github.com/bitnami-labs/sealed-secrets",
-    "sources": {"linux": {"alpine": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "alpine": {"common": "#script"},
+        "debian": {"common": "#script"}
+      }
+    }
   }
 ]
