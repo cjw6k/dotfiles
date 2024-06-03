@@ -3,9 +3,15 @@
     "name": "lua",
     "summary": "A powerful, light-weight embeddable programming language.",
     "uri": "https://www.lua.org/",
-    "provides": {
-      "linux": {"alpine": {"common": ["lua5.4", "luac5.4"]}}
-    }
+    "sources": {
+      "linux": {
+        "debian": {
+          "common": "lua5.4",
+          "buster": "lua5.3"
+        }
+      }
+    },
+    "provides": {"linux": {"alpine": {"common": ["lua5.4", "luac5.4"]}}}
   },
   {
     "name": "luarocks",
