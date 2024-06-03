@@ -7,7 +7,7 @@
 # {{ include "lib.sh" | sha256sum }}
 
 # todo: cleanup this hack that works around a bug, see https://github.com/twpayne/chezmoi/pull/3001
-{{ if not hasSuffix "home" .chezmoi.sourceDir -}}
+{{ if not (hasSuffix "home" .chezmoi.sourceDir) -}}
 . "{{ .chezmoi.sourceDir }}/home/lib.sh"
 {{- else -}}
 . "{{ .chezmoi.sourceDir }}/lib.sh"
