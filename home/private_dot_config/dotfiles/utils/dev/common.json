@@ -60,7 +60,8 @@
   {
     "name": "shfmt",
     "summary": "Format shell programs.",
-    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd"
+    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
+    "sources": {"linux": {"debian": {"buster": "#script"}}}
   },
   {
     "name": "tokei",
