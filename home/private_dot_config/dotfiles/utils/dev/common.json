@@ -21,8 +21,9 @@
     "sources": {
       "linux": {
         "debian": {
-          "bullseye": "#script",
-          "buster": "#script"
+          "common": "#script",
+          "bullseye": "#na",
+          "buster": "#na"
         }
       }
     }
