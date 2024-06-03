@@ -33,7 +33,14 @@
     "name": "hyperfine",
     "summary": "A command-line benchmarking tool.",
     "uri": "https://github.com/sharkdp/hyperfine/",
-    "sources": {"linux": {"debian": {"buster": "#script"}}}
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        }
+      }
+    }
   },
   {
     "name": "lychee",
@@ -61,7 +68,14 @@
     "name": "shfmt",
     "summary": "Format shell programs.",
     "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
-    "sources": {"linux": {"debian": {"buster": "#script"}}}
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        }
+      }
+    }
   },
   {
     "name": "tokei",
