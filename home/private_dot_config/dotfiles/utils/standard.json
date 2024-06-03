@@ -175,7 +175,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "the_silver_searcher"},
-        "debian": {"common": "silversearcher-ag"}
+        "debian": {"common": "silversearcher-ag"},
+        "gentoo": "sys-apps/the_silver_searcher"
       }
     },
     "provides": {"common": ["ag"]}
