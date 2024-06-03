@@ -3,19 +3,40 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
 
-read -r -d '' script << 'JQ'
-.[]
-  | select(.personal != true)
-  | select(.devtools != true)
-  | .install.linux.debian.{{ .chezmoi.osRelease.versionCodename }}
-    // .install.linux.debian.common
-    // .install.linux.common
-    // .install.common
-    // .name
-  | select(. as $in | ["#builtin", "#custom", "#na"] | index($in) | not)
-JQ
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
 
-DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends \
-  $(jq -r "$script" ~/.config/dotfiles/utils.json)
+. "{{ print .chezmoi.sourceDir }}/lib.sh"
 
-sudo sh -c "$(curl --location https://taskfile.dev/install.sh)" -- -d -b /usr/local/bin
+utils=
+standard_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
+fi
+
+{{ if .is.personal -}}
+#utils=
+#personal_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+#if test -n "$utils"; then
+#  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
+#fi
+{{- end }}
+
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include "$file" | sha256sum }}
+{{- end }}
+
+utils=
+dev_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
+fi
+
+utils=
+pip_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  pip install $utils
+fi
+{{- end }}

@@ -6,13 +6,15 @@
 # dotfiles lib.sh hash:
 # {{ include "lib.sh" | sha256sum }}
 
-{{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
 . "{{ print .chezmoi.sourceDir }}/lib.sh"
 
+{{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
+utils=
 standard_utils linux alpine "{{ $version }}"
 sudo apk add $utils
 
 {{ if .is.personal -}}
+#utils=
 #personal_utils linux alpine "{{ $version }}"
 #sudo apk add $utils
 {{- end }}
