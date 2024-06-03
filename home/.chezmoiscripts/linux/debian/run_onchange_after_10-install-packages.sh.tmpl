@@ -13,7 +13,6 @@
 . "{{ .chezmoi.sourceDir }}/lib.sh"
 {{- end }}
 
-
 utils=
 standard_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
 if test -n "$utils"; then
