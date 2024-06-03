@@ -68,30 +68,6 @@
     "sources": {"linux": {"debian": {"common": "#script"}}}
   },
   {
-    "name": "shellcheck",
-    "summary": "Shell script static analysis tool.",
-    "uri": "https://www.shellcheck.net/"
-  },
-  {
-    "name": "shfmt",
-    "summary": "Format shell programs.",
-    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
-    "sources": {
-      "linux": {
-        "debian": {
-          "bullseye": "#script",
-          "buster": "#script"
-        }
-      }
-    }
-  },
-  {
-    "name": "tokei",
-    "summary": "Print out statistics about code.",
-    "uri": "https://github.com/XAMPPRocky/tokei",
-    "sources": {"linux": {"debian": {"common": "#script"}}}
-  },
-  {
     "name": "pip",
     "summary": "The PyPA recommended tool for installing Python packages.",
     "uri": "https://pip.pypa.io/en/stable/",
@@ -181,5 +157,29 @@
       },
       "windows": ["python", "python3"]
     }
+  },
+  {
+    "name": "shellcheck",
+    "summary": "Shell script static analysis tool.",
+    "uri": "https://www.shellcheck.net/"
+  },
+  {
+    "name": "shfmt",
+    "summary": "Format shell programs.",
+    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        }
+      }
+    }
+  },
+  {
+    "name": "tokei",
+    "summary": "Print out statistics about code.",
+    "uri": "https://github.com/XAMPPRocky/tokei",
+    "sources": {"linux": {"debian": {"common": "#script"}}}
   }
 ]
