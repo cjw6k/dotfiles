@@ -6,7 +6,12 @@
 # dotfiles lib.sh hash:
 # {{ include "lib.sh" | sha256sum }}
 
-. "{{ print .chezmoi.sourceDir }}/lib.sh"
+# todo: cleanup this hack that works around a bug, see https://github.com/twpayne/chezmoi/pull/3001
+{{ if not hasSuffix "home" .chezmoi.sourceDir -}}
+. "{{ .chezmoi.sourceDir }}/home/lib.sh"
+{{- else -}}
+. "{{ .chezmoi.sourceDir }}/lib.sh"
+{{- end }}
 
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
 utils=
