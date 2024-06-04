@@ -9,7 +9,16 @@ function Confirm-InstalledUtils {
     }
   }
 
-  $utils = Get-Content "~/.config/dotfiles/utils.json" | ConvertFrom-Json
+  $utils = @()
+  foreach ($util in Get-Content '~/.config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
+    $utils += $util
+  }
+
+  foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
+    foreach ($util in Get-Content $file | ConvertFrom-Json) {
+      $utils += $util
+    }
+  }
 
   $commands = @()
   foreach ($util in $utils) {
