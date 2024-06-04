@@ -35,6 +35,8 @@ foreach ($util in $utils) {
     $toInstall += $name
 }
 
+echo @toInstall
 scoop install @toInstall
 
+echo $toInstallWithPip
 pip install @toInstallWithPip
