@@ -19,8 +19,14 @@ foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
 }
 
 $toInstall = @()
+$toInstallWithPip = @()
 foreach ($util in $utils) {
     $name = $util.install.windows ?? $util.install.common ?? $util.name
+    if ($name -eq "#pip") {
+        $toInstallWithPip += $name
+        continue
+    }
+
     if ($name.StartsWith("#")) {
         continue
     }
@@ -29,3 +35,5 @@ foreach ($util in $utils) {
 }
 
 scoop install @toInstall
+
+pip install @toInstallWithPip
