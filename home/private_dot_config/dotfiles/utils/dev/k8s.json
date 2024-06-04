@@ -6,6 +6,7 @@
     "sources": {
       "linux": {
         "debian": {"common": "#script"},
+        "gentoo": "app-admin/helm",
         "ubuntu": {"common": "#script"}
       }
     }
