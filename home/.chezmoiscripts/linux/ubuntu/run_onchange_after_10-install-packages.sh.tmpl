@@ -11,14 +11,14 @@
 utils=
 standard_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
 if test -n "$utils"; then
-  DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt-get install -y --no-install-recommends $utils
+  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
 fi
 
 {{ if .is.personal -}}
 #utils=
 #personal_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
 #if test -n "$utils"; then
-#  DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt-get install -y --no-install-recommends $utils
+#  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
 #fi
 {{- end }}
 
@@ -31,7 +31,7 @@ fi
 utils=
 dev_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
 if test -n "$utils"; then
-  DEBIAN_FRONTEND=noninteractive TZ=Etc/UTC sudo apt-get install -y --no-install-recommends $utils
+  DEBIAN_FRONTEND=noninteractive sudo apt-get install -y --no-install-recommends $utils
 fi
 
 utils=
