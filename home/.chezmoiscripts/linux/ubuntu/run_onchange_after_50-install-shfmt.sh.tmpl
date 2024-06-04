@@ -2,7 +2,8 @@
 
 {{ if eq .chezmoi.osRelease.versionCodename "focal" -}}
 # hard-coded architecture and version numbers, better is an apt repository for dotfiles, or build from source
-curl -sLO https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb \
-  && sudo dpkg -i git-delta_0.17.0_amd64.deb \
-  && rm git-delta_0.17.0_amd64.deb
+DEBIAN_FRONTEND=noninteractive sudo apt-get install -y openssl ca-certificates --no-install-recommends
+# hard-coded architecture and version numbers, better is an apt repository for dotfiles, or build from source
+curl -sLO https://github.com/mvdan/sh/releases/download/v3.8.0/shfmt_v3.8.0_linux_amd64 \
+  && mv shfmt_v3.8.0_linux_amd64 ~/.local/bin/
 {{ end -}}
