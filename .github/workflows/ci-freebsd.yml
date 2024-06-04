@@ -41,7 +41,7 @@ jobs:
             sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
             # confirm installed utils
-            sh .github/freebsd/confirm-installed-utils.sh
+            sh .github/freebsd/confirm-installed-utils.sh ${{ matrix.release }}
 
             # confirm ci user has fish shell
             test `tee </etc/passwd | grep ^ci: | grep -o '[^:]*$'` = `which fish`
