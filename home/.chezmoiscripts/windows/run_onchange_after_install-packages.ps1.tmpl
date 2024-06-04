@@ -1,22 +1,23 @@
 # ~/.config/dotfiles/utils.json hash:
 # {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 
+$utils = @()
+foreach ($util in Get-Content 'home/private_dot_config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
+    $utils += $util
+}
+
 {{ if .is.devtools -}}
 {{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
 # {{ $file }} hash:
 # {{ include $file | sha256sum }}
 {{- end }}
 
-$utils = @()
-foreach ($util in Get-Content '~/.config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
-    $utils += $util
-}
-
-foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
+foreach ($file in Get-ChildItem 'home/private_dot_config/dotfiles/utils/dev/*.json') {
     foreach ($util in Get-Content $file | ConvertFrom-Json) {
         $utils += $util
     }
 }
+{{ end }}
 
 $toInstall = @()
 $toInstallWithPip = @()
