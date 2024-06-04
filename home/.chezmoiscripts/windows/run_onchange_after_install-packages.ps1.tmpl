@@ -1,5 +1,5 @@
 # ~/.config/dotfiles/utils.json hash:
-# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 
 {{ if .is.devtools -}}
 {{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
