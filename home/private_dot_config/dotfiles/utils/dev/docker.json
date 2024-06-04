@@ -6,7 +6,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "#script"},
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   },
@@ -17,7 +18,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "#script"},
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   }

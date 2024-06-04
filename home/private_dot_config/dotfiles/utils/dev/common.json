@@ -10,7 +10,8 @@
           "3.18": "#script",
           "3.17": "#script"
         },
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   },
@@ -19,13 +20,38 @@
     "summary": "A viewer for git and diff output.",
     "uri": "https://dandavison.github.io/delta/",
     "sources": {
+      "freebsd": {"common": "git-delta"},
       "linux": {
         "debian": {
           "common": "#script",
           "bullseye": "#na",
           "buster": "#na"
+        },
+        "gentoo": "dev-util/git-delta",
+        "ubuntu": {
+          "common": "#script",
+          "focal": "#na"
         }
       }
+    },
+    "provides": {
+      "freebsd": {"common": ["delta"]},
+      "linux": {
+        "alpine": {"common": ["delta"]},
+        "debian": {
+          "sid": ["delta"],
+          "trixie": ["delta"],
+          "bookworm": ["delta"]
+        },
+        "gentoo": ["delta"],
+        "ubuntu": {
+          "noble": ["delta"],
+          "mantic": ["delta"],
+          "lunar": ["delta"],
+          "jammy": ["delta"]
+        }
+      },
+      "windows": ["delta"]
     }
   },
   {
@@ -47,7 +73,8 @@
         "debian": {
           "bullseye": "#script",
           "buster": "#script"
-        }
+        },
+        "ubuntu": {"focal": "#script"}
       }
     }
   },
@@ -58,7 +85,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "#script"},
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   },
@@ -66,7 +94,12 @@
     "name": "onefetch",
     "summary": "Command-line Git information tool.",
     "uri": "https://onefetch.dev/",
-    "sources": {"linux": {"debian": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
+      }
+    }
   },
   {
     "name": "pip",
@@ -173,7 +206,8 @@
         "debian": {
           "bullseye": "#script",
           "buster": "#script"
-        }
+        },
+        "ubuntu": {"focal": "#script"}
       }
     }
   },
@@ -181,6 +215,11 @@
     "name": "tokei",
     "summary": "Print out statistics about code.",
     "uri": "https://github.com/XAMPPRocky/tokei",
-    "sources": {"linux": {"debian": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
+      }
+    }
   }
 ]

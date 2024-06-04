@@ -69,45 +69,6 @@
     }
   },
   {
-    "name": "delta",
-    "summary": "A viewer for git and diff output.",
-    "uri": "https://dandavison.github.io/delta/",
-    "sources": {
-      "freebsd": {"common": "git-delta"},
-      "linux": {
-        "debian": {
-          "common": "#script",
-          "bullseye": "#na",
-          "buster": "#na"
-        },
-        "gentoo": "dev-util/git-delta",
-        "ubuntu": {
-          "common": "#script",
-          "focal": "#na"
-        }
-      }
-    },
-    "provides": {
-      "freebsd": {"common": ["delta"]},
-      "linux": {
-        "alpine": {"common": ["delta"]},
-        "debian": {
-          "sid": ["delta"],
-          "trixie": ["delta"],
-          "bookworm": ["delta"]
-        },
-        "gentoo": ["delta"],
-        "ubuntu": {
-          "noble": ["delta"],
-          "mantic": ["delta"],
-          "lunar": ["delta"],
-          "jammy": ["delta"]
-        }
-      },
-      "windows": ["delta"]
-    }
-  },
-  {
     "name": "fish-shell",
     "summary": "The user-friendly command line shell.",
     "uri": "https://github.com/fish-shell/fish-shell",
@@ -176,7 +137,8 @@
       "linux": {
         "alpine": {"common": "the_silver_searcher"},
         "debian": {"common": "silversearcher-ag"},
-        "gentoo": "sys-apps/the_silver_searcher"
+        "gentoo": "sys-apps/the_silver_searcher",
+        "ubuntu": {"common": "silversearcher-ag"}
       }
     },
     "provides": {"common": ["ag"]}

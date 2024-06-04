@@ -3,7 +3,12 @@
     "name": "helm",
     "summary": "A package manager for Kubernetes.",
     "uri": "https://helm.sh/",
-    "sources": {"linux": {"debian": {"common": "#script"}}}
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
+      }
+    }
   },
   {
     "name": "kind",
@@ -12,7 +17,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "#script"},
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   },
@@ -29,7 +35,8 @@
         "debian": {
           "common": "kubernetes-client",
           "buster": "#script"
-        }
+        },
+        "ubuntu": {"common": "#script"}
       }
     }
   },
@@ -40,7 +47,8 @@
     "sources": {
       "linux": {
         "alpine": {"common": "#script"},
-        "debian": {"common": "#script"}
+        "debian": {"common": "#script"},
+        "ubuntu": {"common": "#script"}
       }
     }
   }
