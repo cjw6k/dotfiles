@@ -2,7 +2,7 @@
 # {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 
 $utils = @()
-foreach ($util in Get-Content 'home/private_dot_config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
+foreach ($util in Get-Content '~/.config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
     $utils += $util
 }
 
@@ -12,7 +12,7 @@ foreach ($util in Get-Content 'home/private_dot_config/dotfiles/utils/standard.j
 # {{ include $file | sha256sum }}
 {{- end }}
 
-foreach ($file in Get-ChildItem 'home/private_dot_config/dotfiles/utils/dev/*.json') {
+foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
     foreach ($util in Get-Content $file | ConvertFrom-Json) {
         $utils += $util
     }
