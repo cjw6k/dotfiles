@@ -5,7 +5,7 @@ source_filter() {
   if test -n "$3"; then
     sourceFilter="$sourceFilter .sources.$1.$2.\"$3\" // .sources.$1.$2.common //"
   else
-    sourceFilter="$sourceFilter .sources.$1.$2 //"
+    sourceFilter="$sourceFilter .sources.$1.\"$2\" //"
   fi
 
   sourceFilter="$sourceFilter .sources.$1.common // .sources.common // .name"
