@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-if [ $# -ne 2 ]; then
-  echo "usage: confirm-installed-utils.sh DISTRO VERSION"
+if [ $# -lt 1 ]; then
+  echo "usage: confirm-installed-utils.sh DISTRO [VERSION]"
   exit 1
 fi
 
