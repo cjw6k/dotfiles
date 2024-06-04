@@ -33,6 +33,14 @@
     "name": "luarocks",
     "summary": "The package manager for Lua modules.",
     "uri": "https://luarocks.org/",
+    "sources": {
+      "linux": {
+        "ubuntu": {
+          "jammy": "#na",
+          "focal": "#na"
+        }
+      }
+    },
     "provides": {
       "linux": {
         "alpine": {
