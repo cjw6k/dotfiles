@@ -29,7 +29,7 @@ foreach ($util in $utils) {
     }
 
     if ($name -eq "#pip") {
-        $toInstallWithPip += $name
+        $toInstallWithPip += $util.name
         continue
     }
 
