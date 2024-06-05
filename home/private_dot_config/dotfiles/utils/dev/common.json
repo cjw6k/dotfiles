@@ -199,7 +199,8 @@
   {
     "name": "shellcheck",
     "summary": "Shell script static analysis tool.",
-    "uri": "https://www.shellcheck.net/"
+    "uri": "https://www.shellcheck.net/",
+    "sources": {"freebsd": {"common": "hs-ShellCheck"}}
   },
   {
     "name": "shfmt",
