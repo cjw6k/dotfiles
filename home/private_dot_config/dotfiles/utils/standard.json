@@ -134,6 +134,7 @@
     "summary": "A code-searching tool similar to ack, but faster.",
     "uri": "https://geoff.greer.fm/ag/",
     "sources": {
+      "freebsd": {"common": "the_silver_searcher"},
       "linux": {
         "alpine": {"common": "the_silver_searcher"},
         "debian": {"common": "silversearcher-ag"},
