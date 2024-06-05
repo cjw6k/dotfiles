@@ -23,7 +23,7 @@ $skipInstall = @("#na", "#builtin", "#script")
 $toInstall = @()
 $toInstallWithPip = @()
 foreach ($util in $utils) {
-    $name = $util.install.windows ?? $util.install.common ?? $util.name
+    $name = $util.sources.windows ?? $util.sources.common ?? $util.name
     if ($name -in $skipInstall) {
         continue
     }
