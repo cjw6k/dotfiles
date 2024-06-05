@@ -64,7 +64,8 @@
   {
     "name": "hexyl",
     "summary": "Hex viewer for the terminal.",
-    "uri": "https://github.com/sharkdp/hexyl"
+    "uri": "https://github.com/sharkdp/hexyl",
+    "sources": {"linux": {"gentoo": "#script"}}
   },
   {
     "name": "hyperfine",
