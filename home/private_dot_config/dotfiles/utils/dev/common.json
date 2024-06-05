@@ -90,11 +90,7 @@
     "summary": "Async, stream-based link checker.",
     "uri": "https://github.com/lycheeverse/lychee",
     "sources": {
-      "linux": {
-        "alpine": {"common": "#script"},
-        "debian": {"common": "#script"},
-        "ubuntu": {"common": "#script"}
-      }
+      "linux": {"common": "#script"}
     }
   },
   {
