@@ -59,7 +59,8 @@
   {
     "name": "gource",
     "summary": "Renders an animated tree diagram of Git, SVN, Mercurial and Bazaar repositories.",
-    "uri": "https://gource.io/"
+    "uri": "https://gource.io/",
+    "sources": {"linux": {"gentoo": "#script"}}
   },
   {
     "name": "hexyl",
