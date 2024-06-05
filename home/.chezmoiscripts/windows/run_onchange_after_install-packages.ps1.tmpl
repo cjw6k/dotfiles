@@ -19,10 +19,15 @@ foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
 }
 {{ end }}
 
+$skipInstall = @("#na", "#builtin", "#script")
 $toInstall = @()
 $toInstallWithPip = @()
 foreach ($util in $utils) {
     $name = $util.install.windows ?? $util.install.common ?? $util.name
+    if ($name -in $skipInstall) {
+        continue
+    }
+
     if ($name -eq "#pip") {
         $toInstallWithPip += $name
         continue
