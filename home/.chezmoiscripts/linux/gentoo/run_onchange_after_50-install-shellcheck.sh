@@ -5,7 +5,7 @@ if [ ! -f /etc/portage/package.accepted_keyworks/dev-util/shellcheck ]; then
     sudo mkdir -p /etc/portage/package.accepted_keyworks/dev-util
   fi
 
-  echo 'dev-util/shellcheck-0.9.0-r2 ~amd64' | sudo tee -a /etc/portage/package.accepted_keyworks/dev-util/shellcheck
+  echo 'dev-util/shellcheck-0.9.0-r2::gentoo ~amd64' | sudo tee -a /etc/portage/package.accepted_keyworks/dev-util/shellcheck
 fi
 
 sudo emerge -n dev-util/shellcheck
