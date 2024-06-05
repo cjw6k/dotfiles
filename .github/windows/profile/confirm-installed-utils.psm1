@@ -22,10 +22,6 @@ function Confirm-InstalledUtils {
 
   $commands = @()
   foreach ($util in $utils) {
-    if ($util.personal) {
-      continue
-    }
-
     if ($null -eq $util.provides) {
       $commands += $util.name
       continue
