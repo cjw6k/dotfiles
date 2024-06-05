@@ -140,7 +140,8 @@
         "debian": {"common": "silversearcher-ag"},
         "gentoo": "sys-apps/the_silver_searcher",
         "ubuntu": {"common": "silversearcher-ag"}
-      }
+      },
+      "windows": "ag"
     },
     "provides": {"common": ["ag"]}
   },
