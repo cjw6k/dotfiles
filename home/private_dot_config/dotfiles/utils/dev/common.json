@@ -4,6 +4,7 @@
     "summary": "A linter for GitHub Actions workflow files.",
     "uri": "https://github.com/rhysd/actionlint",
     "sources": {
+      "freebsd": {"common": "#script"},
       "linux": {
         "alpine": {
           "3.19": "#script",
