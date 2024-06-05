@@ -12,6 +12,7 @@
           "3.17": "#script"
         },
         "debian": {"common": "#script"},
+        "gentoo": "#script",
         "ubuntu": {"common": "#script"}
       }
     }
