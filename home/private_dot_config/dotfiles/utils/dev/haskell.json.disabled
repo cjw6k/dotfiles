@@ -6,6 +6,7 @@
     "sources": {
       "common": "#na",
       "linux": {"gentoo": "#script"}
-    }
+    },
+    "provides": {"gentoo": ["shellcheck"]}
   }
 ]
