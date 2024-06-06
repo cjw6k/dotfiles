@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+{{ if .is.devtoolsExtra -}}
+# dotfiles / devtools / extra: enabled
+{{- end }}
+
 {{ if eq .chezmoi.osRelease.versionCodename "buster" "bullseye" -}}
 DEBIAN_FRONTEND=noninteractive sudo apt-get install -y openssl ca-certificates --no-install-recommends
 # hard-coded architecture and version numbers, better is an apt repository for dotfiles, or build from source

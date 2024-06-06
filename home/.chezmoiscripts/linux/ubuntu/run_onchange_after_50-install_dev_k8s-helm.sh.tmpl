@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
 
+{{ if .is.devtoolsK8s -}}
+# dotfiles / devtools / k8s: enabled
+{{- end }}
+
 bash -c "$(curl -sL https://raw.githubusercontent.com/helm/helm/main/scripts/get-helm-3)"

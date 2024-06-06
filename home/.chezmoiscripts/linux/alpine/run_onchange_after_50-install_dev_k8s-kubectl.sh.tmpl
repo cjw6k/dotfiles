@@ -1,5 +1,9 @@
 #!/usr/bin/env sh
 
+{{ if .is.devtoolsK8s -}}
+# dotfiles / devtools / k8s: enabled
+{{- end }}
+
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
 {{ if eq $version "3.18" "3.17" }}
 curl -sLO https://dl.k8s.io/release/v1.30.1/bin/linux/amd64/kubectl \

@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+{{ if .is.devtools -}}
+# dotfiles / devtools / common: enabled
+{{- end }}
+
 {{ if not (eq .chezmoi.osRelease.versionCodename "buster" "bullseye") -}}
 # hard-coded architecture and version numbers, better is an apt repository for dotfiles, or build from source
 curl -sLO https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb \
