@@ -3,6 +3,16 @@
 {{/* feature flags */}}
 {{- $personal := false -}}{{/* true if this machine should have personal secrets */}}
 {{- $devtools := false -}}{{/* true if this machine should have development tools */}}
+{{- $devtoolsAll := false -}}{{/* true if this machine should have ALL development tools */}}
+{{- $devtoolsC := false -}}{{/* true if this machine should have development tools for c/c++ */}}
+{{- $devtoolsDocker := false -}}{{/* true if this machine should have development tools for docker */}}
+{{- $devtoolsExtra := false -}}{{/* true if this machine should have extra development tools */}}
+{{- $devtoolsGo := false -}}{{/* true if this machine should have development tools for go */}}
+{{- $devtoolsHaskell := false -}}{{/* true if this machine should have development tools for haskell */}}
+{{- $devtoolsJs := false -}}{{/* true if this machine should have development tools for js/ts */}}
+{{- $devtoolsK8s := false -}}{{/* true if this machine should have development tools for kubernetes */}}
+{{- $devtoolsLua := false -}}{{/* true if this machine should have development tools lua */}}
+{{- $devtoolsPhp := false -}}{{/* true if this machine should have development tools php */}}
 {{- $wsl := false -}}{{/* true if this machine is a WSL distro */}}
 
 {{/* personalization */}}
@@ -19,10 +29,94 @@
 
 {{ if or (empty (env "DOTFILES_DEVTOOLS")) (not (has (env "DOTFILES_DEVTOOLS") (list "0" "1" "true" "false"))) -}}
 {{    if stdinIsATTY -}}
-{{-     $devtools = promptBoolOnce . "is.personal" "Should this machine have development tools" false -}}
+{{-     $devtools = promptBoolOnce . "is.devtools" "Should this machine have development tools" false -}}
 {{-   end -}}
 {{- else -}}
 {{-   $devtools = has (env "DOTFILES_DEVTOOLS") (list "1" "true") -}}
+{{- end -}}
+
+{{ if or (empty (env "DOTFILES_DEVTOOLS_ALL")) (not (has (env "DOTFILES_DEVTOOLS_ALL") (list "0" "1" "true" "false"))) -}}
+{{    if stdinIsATTY -}}
+{{-     $devtoolsAll = promptBoolOnce . "is.devtoolsAll" "Should this machine have ALL development tools" false -}}
+{{-   end -}}
+{{- else -}}
+{{-   $devtoolsAll = has (env "DOTFILES_DEVTOOLS_ALL") (list "1" "true") -}}
+{{- end -}}
+
+{{ if $devtoolsAll -}}
+{{    $devtoolsC = true }}
+{{    $devtoolsDocker = true }}
+{{    $devtoolsExtra = true }}
+{{    $devtoolsGo = true }}
+{{    $devtoolsHaskell = true }}
+{{    $devtoolsJs = true }}
+{{    $devtoolsK8s = true }}
+{{    $devtoolsLua = true }}
+{{    $devtoolsPhp = true }}
+{{- else -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_C")) (not (has (env "DOTFILES_DEVTOOLS_C") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsC = promptBoolOnce . "is.devtoolsC" "Should this machine have development tools for c/c++" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsC  = has (env "DOTFILES_DEVTOOLS_C") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_DOCKER")) (not (has (env "DOTFILES_DEVTOOLS_DOCKER") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsDocker = promptBoolOnce . "is.devtoolsDocker" "Should this machine have development tools for docker" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsDocker  = has (env "DOTFILES_DEVTOOLS_DOCKER") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_EXTRA")) (not (has (env "DOTFILES_DEVTOOLS_EXTRA") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsExtra = promptBoolOnce . "is.devtoolsExtra" "Should this machine have extra development tools" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsExtra  = has (env "DOTFILES_DEVTOOLS_EXTRA") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_GO")) (not (has (env "DOTFILES_DEVTOOLS_GO") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsGo = promptBoolOnce . "is.devtoolsGo" "Should this machine have development tools for Go" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsGo  = has (env "DOTFILES_DEVTOOLS_GO") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_HASKELL")) (not (has (env "DOTFILES_DEVTOOLS_HASKELL") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsHaskell = promptBoolOnce . "is.devtoolsHaskell" "Should this machine have development tools for Haskell" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsHaskell  = has (env "DOTFILES_DEVTOOLS_HASKELL") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_JS")) (not (has (env "DOTFILES_DEVTOOLS_JS") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsJs = promptBoolOnce . "is.devtoolsJs" "Should this machine have development tools for javascript/typescript" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsJs  = has (env "DOTFILES_DEVTOOLS_JS") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_K8S")) (not (has (env "DOTFILES_DEVTOOLS_K8S") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsK8s = promptBoolOnce . "is.devtoolsK8s" "Should this machine have development tools for kubernetes" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsK8s  = has (env "DOTFILES_DEVTOOLS_K8S") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_LUA")) (not (has (env "DOTFILES_DEVTOOLS_LUA") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsLua = promptBoolOnce . "is.devtoolsLua" "Should this machine have development tools for lua" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsLua  = has (env "DOTFILES_DEVTOOLS_LUA") (list "1" "true") -}}
+{{-   end -}}
+{{    if or (empty (env "DOTFILES_DEVTOOLS_PHP")) (not (has (env "DOTFILES_DEVTOOLS_PHP") (list "0" "1" "true" "false"))) -}}
+{{      if stdinIsATTY -}}
+{{-       $devtoolsPhp = promptBoolOnce . "is.devtoolsPhp" "Should this machine have development tools for php" false -}}
+{{-     end -}}
+{{-   else -}}
+{{-     $devtoolsPhp  = has (env "DOTFILES_DEVTOOLS_PHP") (list "1" "true") -}}
+{{-   end -}}
 {{- end -}}
 
 {{ if stdinIsATTY -}}
@@ -40,6 +134,16 @@
 [data.is]
     personal = {{ $personal }}
     devtools = {{ $devtools }}
+    devtoolsAll = {{ $devtoolsAll }}
+    devtoolsC = {{ $devtoolsC }}
+    devtoolsDocker = {{ $devtoolsDocker }}
+    devtoolsExtra = {{ $devtoolsExtra }}
+    devtoolsGo = {{ $devtoolsGo }}
+    devtoolsHaskell = {{ $devtoolsHaskell }}
+    devtoolsJs = {{ $devtoolsJs }}
+    devtoolsK8s = {{ $devtoolsK8s }}
+    devtoolsLua = {{ $devtoolsLua }}
+    devtoolsPhp = {{ $devtoolsPhp }}
     wsl = {{ $wsl }}
 
 [data.user.git]

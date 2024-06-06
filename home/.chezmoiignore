@@ -45,4 +45,34 @@ lib.sh
 
 {{ if not .is.devtools -}}
 .config/dotfiles/utils/dev/**
+{{ else }}
+{{   if not .is.devtoolsAll }}
+{{     if not .is.devtoolsC }}
+.config/dotfiles/utils/dev/c.json
+{{     end }}
+{{     if not .is.devtoolsDocker }}
+.config/dotfiles/utils/dev/docker.json
+{{     end }}
+{{     if not .is.devtoolsExtra }}
+.config/dotfiles/utils/dev/extra.json
+{{     end }}
+{{     if not .is.devtoolsGo }}
+.config/dotfiles/utils/dev/go.json
+{{     end }}
+{{     if not .is.devtoolsHaskell }}
+.config/dotfiles/utils/dev/haskell.json
+{{     end }}
+{{     if not .is.devtoolsJs }}
+.config/dotfiles/utils/dev/js.json
+{{     end }}
+{{     if not .is.devtoolsK8s }}
+.config/dotfiles/utils/dev/k8s.json
+{{     end }}
+{{     if not .is.devtoolsLua }}
+.config/dotfiles/utils/dev/lua.json
+{{     end }}
+{{     if not .is.devtoolsPhp }}
+.config/dotfiles/utils/dev/php.json
+{{     end }}
+{{   end }}
 {{ end -}}
