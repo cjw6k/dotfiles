@@ -7,6 +7,6 @@
       "common": "#na",
       "linux": {"gentoo": "#script"}
     },
-    "provides": {"gentoo": ["shellcheck"]}
+    "provides": {"linux": {"gentoo": ["shellcheck"]}}
   }
 ]
