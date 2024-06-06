@@ -72,7 +72,7 @@
     "uri": "https://www.shellcheck.net/",
     "sources": {
       "freebsd": {"common": "hs-ShellCheck"},
-      "linux": {"gentoo": "#script"}
+      "linux": {"gentoo": "#na"}
     }
   },
   {
