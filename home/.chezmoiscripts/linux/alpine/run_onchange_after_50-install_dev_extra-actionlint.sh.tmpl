@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-{{ if .is.devtoolsExtra -}}
-# dotfiles / devtools / extra: enabled
-{{- end }}
-
 {{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
 {{ if eq $version "3.19" "3.18" "3.17" }}
 curl -sLO https://github.com/rhysd/actionlint/releases/download/v1.7.1/actionlint_1.7.1_linux_amd64.tar.gz \

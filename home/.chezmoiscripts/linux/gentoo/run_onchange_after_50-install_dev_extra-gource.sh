@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-{{ if .is.devtoolsExtra -}}
-# dotfiles / devtools / extra: enabled
-{{- end }}
-
 if [ ! -f /etc/portage/package.use/dev-util/gource ]; then
   if [ ! -d /etc/portage/package.use/dev-util ]; then
     sudo mkdir -p /etc/portage/package.use/dev-util

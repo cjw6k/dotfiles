@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-{{ if .is.devtoolsHaskell -}}
-# dotfiles / devtools / haskell: enabled
-{{- end }}
-
 if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
   if [ ! -d /etc/portage/package.accept_keywords/dev-util ]; then
     sudo mkdir -p /etc/portage/package.accept_keywords/dev-util

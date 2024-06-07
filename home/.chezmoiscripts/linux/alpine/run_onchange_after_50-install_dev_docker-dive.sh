@@ -1,9 +1,5 @@
 #!/usr/bin/env sh
 
-{{ if .is.devtoolsDocker -}}
-# dotfiles / devtools / docker: enabled
-{{- end }}
-
 curl -sLO https://github.com/wagoodman/dive/releases/download/v0.12.0/dive_0.12.0_linux_amd64.tar.gz \
   && tar xzf dive_0.12.0_linux_amd64.tar.gz dive \
   && mv ./dive ~/.local/bin \
