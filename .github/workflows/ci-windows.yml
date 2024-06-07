@@ -52,15 +52,15 @@ jobs:
       - name: init dotfiles
         env:
           DOTFILES_DEVTOOLS: true
-          DOTFILES_DEVTOOLS_C: false
-          DOTFILES_DEVTOOLS_DOCKER: false
-          DOTFILES_DEVTOOLS_EXTRA: false
-          DOTFILES_DEVTOOLS_GO: false
-          DOTFILES_DEVTOOLS_HASKELL: false
-          DOTFILES_DEVTOOLS_JS: false
-          DOTFILES_DEVTOOLS_K8S: false
-          DOTFILES_DEVTOOLS_LUA: false
-          DOTFILES_DEVTOOLS_PHP: false
+          DOTFILES_DEVTOOLS_C: true
+          DOTFILES_DEVTOOLS_DOCKER: true
+          DOTFILES_DEVTOOLS_EXTRA: true
+          DOTFILES_DEVTOOLS_GO: true
+          DOTFILES_DEVTOOLS_HASKELL: true
+          DOTFILES_DEVTOOLS_JS: true
+          DOTFILES_DEVTOOLS_K8S: true
+          DOTFILES_DEVTOOLS_LUA: true
+          DOTFILES_DEVTOOLS_PHP: true
         run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
       - name: scoop list
