@@ -38,7 +38,18 @@ jobs:
             echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
 
             # init chezmoi
-            sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+            sudo \
+              DOTFILES_DEVTOOLS=true \
+              DOTFILES_DEVTOOLS_C=false \
+              DOTFILES_DEVTOOLS_DOCKER=false \
+              DOTFILES_DEVTOOLS_EXTRA=false \
+              DOTFILES_DEVTOOLS_GO=false \
+              DOTFILES_DEVTOOLS_HASKELL=false \
+              DOTFILES_DEVTOOLS_JS=false \
+              DOTFILES_DEVTOOLS_K8S=false \
+              DOTFILES_DEVTOOLS_LUA=false \
+              DOTFILES_DEVTOOLS_PHP=false \
+              -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
             # confirm installed utils
             sh .github/freebsd/confirm-installed-utils.sh ${{ matrix.release }}
