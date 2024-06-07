@@ -15,6 +15,11 @@ on:
         type: string
         default: ''
 
+      dotfiles_devtools:
+        required: false
+        type: boolean
+        default: true
+
 jobs:
   linux:
     runs-on: ubuntu-latest
@@ -34,7 +39,8 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: sudo DOTFILES_DEVTOOLS=true -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
+          DOTFILES_DEVTOOLS: ${{ inputs.dotfiles_devtools }}
+        run: sudo -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
