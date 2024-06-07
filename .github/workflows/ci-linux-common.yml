@@ -40,7 +40,7 @@ jobs:
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
           DOTFILES_DEVTOOLS: ${{ inputs.dotfiles_devtools }}
-        run: sudo -eiu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
+        run: sudo -Eiu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
