@@ -3,13 +3,20 @@
     "name": "nodejs",
     "summary": "Server-side JavaScript platform.",
     "uri": "https://nodejs.org/",
-    "provides": {"common": ["node"]}
+    "provides": {
+      "common": ["node"],
+      "windows": ["npm", "npx"]
+    }
   },
   {
     "name": "npm",
     "summary": "The package manager for JavaScript.",
     "uri": "https://github.com/npm/cli",
-    "provides": {"common": ["npm", "npx"]}
+    "sources": {"windows": "#na"},
+    "provides": {
+      "freebsd": {"common": ["npm", "npx"]},
+      "linux": {"common": ["npm", "npx"]}
+    }
   },
   {
     "name": "yarn",
