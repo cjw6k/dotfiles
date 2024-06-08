@@ -3,6 +3,7 @@
     "name": "nodejs",
     "summary": "Server-side JavaScript platform.",
     "uri": "https://nodejs.org/",
+    "sources": {"freebsd": {"common": "node"}},
     "provides": {
       "common": ["node"],
       "windows": ["npm", "npx"]
