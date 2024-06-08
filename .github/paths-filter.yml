@@ -38,37 +38,31 @@ chezmoi-config: &chezmoi-config
 # utilities installed by dotfiles
 #
 utils: &utils
-  - 'home/private_dot_config/dotfiles/utils.json'
+  - 'home/private_dot_config/dotfiles/standard.json'
+  - 'home/private_dot_config/dotfiles/utils/dev/**'
 
 #
 # scripts that run when chezmoi is initialized
 #
 dotfiles-scripts-freebsd: &dotfiles-scripts-freebsd
   - 'home/.chezmoiscripts/freebsd/**'
-  - 'home/.chezmoiscripts/devtools/freebsd/**'
 
 dotfiles-scripts-alpine: &dotfiles-scripts-alpine
   - 'home/.chezmoiscripts/linux/alpine/**'
-  - 'home/.chezmoiscripts/linux/devtools/alpine/**'
 
 dotfiles-scripts-debian: &dotfiles-scripts-debian
   - 'home/.chezmoiscripts/linux/debian/**'
-  - 'home/.chezmoiscripts/linux/devtools/debian/**'
 
 dotfiles-scripts-gentoo: &dotfiles-scripts-gentoo
   - 'home/.chezmoiscripts/linux/gentoo/**'
-  - 'home/.chezmoiscripts/linux/devtools/gentoo/**'
 
 dotfiles-scripts-ubuntu: &dotfiles-scripts-ubuntu
   - 'home/.chezmoiscripts/linux/ubuntu/**'
-  - 'home/.chezmoiscripts/linux/devtools/ubuntu/**'
 
 dotfiles-scripts-windows: &dotfiles-scripts-windows
-  - 'home/.chezmoiscripts/devtools/windows/**'
   - 'home/.chezmoiscripts/windows/**'
 
 dotfiles-scripts-linux-common: &dotfiles-scripts-linux-common
-  - 'home/.chezmoiscripts/devtools/linux/*'
   - 'home/.chezmoiscripts/linux/*'
 
 #

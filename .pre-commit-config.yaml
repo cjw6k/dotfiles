@@ -26,6 +26,15 @@ repos:
     hooks:
       - id: hadolint
 
+  - repo: https://github.com/python-jsonschema/check-jsonschema
+    rev: 0.28.4
+    hooks:
+      - id: check-metaschema
+        files: '\.schema\.json$'
+      - id: check-jsonschema
+        files: ^home/private_dot_config/dotfiles/utils/.*\.json$
+        args: ["--schemafile", "utils.schema.json"]
+
 ci:
   autofix_commit_msg: "⚙ auto fixes [pre-commit.ci]"
   autoupdate_commit_msg: "⚙ auto updates [pre-commit.ci]"

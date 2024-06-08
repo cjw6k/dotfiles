@@ -1,0 +1,74 @@
+[
+  {
+    "name": "lua",
+    "summary": "A powerful, light-weight embeddable programming language.",
+    "uri": "https://www.lua.org/",
+    "sources": {
+      "freebsd": {"common": "lua54"},
+      "linux": {
+        "debian": {
+          "common": "lua5.4",
+          "buster": "lua5.3"
+        },
+        "gentoo": "dev-lang/lua",
+        "ubuntu": {
+          "common": "lua5.4",
+          "focal": "lua5.3"
+        }
+      }
+    },
+    "provides": {
+      "freebsd": {"common": ["lua54", "luac54"]},
+      "linux": {
+        "alpine": {"common": ["lua5.4", "luac5.4"]},
+        "gentoo": ["lua", "lua5.4", "luac", "luac5.4"],
+        "ubuntu": {
+          "common": ["lua", "luac"],
+          "noble": ["lua5.4", "luac5.4"],
+          "mantic": ["lua5.4", "luac5.4"],
+          "lunar": ["lua5.4", "luac5.4"],
+          "jammy": ["lua5.4", "luac5.4"],
+          "focal": ["lua5.3", "luac5.3"]
+        }
+      }
+    }
+  },
+  {
+    "name": "luarocks",
+    "summary": "The package manager for Lua modules.",
+    "uri": "https://luarocks.org/",
+    "sources": {
+      "freebsd": {"common": "lua54-luarocks"},
+      "linux": {
+        "ubuntu": {
+          "jammy": "#na",
+          "focal": "#na"
+        }
+      }
+    },
+    "provides": {
+      "freebsd": {"common": ["luarocks54", "luarocks-admin54"]},
+      "linux": {
+        "alpine": {
+          "edge": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.20": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.19": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ],
+          "3.18": [
+            "luarocks-5.4",
+            "luarocks-admin-5.4"
+          ]
+        },
+        "gentoo": ["luarocks", "luarocks-admin"]
+      }
+    }
+  }
+]

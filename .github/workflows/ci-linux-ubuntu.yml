@@ -23,3 +23,12 @@ jobs:
       distro: ubuntu
       tag: ${{ matrix.tag }}
       suffix: ${{ inputs.suffix }}
+      dotfiles_devtools_c: true
+      dotfiles_devtools_docker: true
+      dotfiles_devtools_extra: true
+      dotfiles_devtools_go: true
+      dotfiles_devtools_haskell: true
+      dotfiles_devtools_js: true
+      dotfiles_devtools_k8s: true
+      dotfiles_devtools_lua: true
+      dotfiles_devtools_php: true

@@ -1,0 +1,58 @@
+[
+  {
+    "name": "helm",
+    "summary": "A package manager for Kubernetes.",
+    "uri": "https://helm.sh/",
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "gentoo": "app-admin/helm",
+        "ubuntu": {"common": "#script"}
+      }
+    }
+  },
+  {
+    "name": "kind",
+    "summary": "Tool for running local Kubernetes clusters using Docker container \"nodes\".",
+    "uri": "https://github.com/kubernetes-sigs/kind",
+    "sources": {
+      "freebsd": {"common": "#na"},
+      "linux": {"common": "#script"}
+    },
+    "provides": {
+      "linux": {"common": ["kind"]},
+      "windows": ["kind"]
+    }
+  },
+  {
+    "name": "kubectl",
+    "summary": "Command-line interface for running commands against Kubernetes clusters.",
+    "uri": "https://kubernetes.io/docs/reference/kubectl/",
+    "sources": {
+      "linux": {
+        "alpine": {
+          "3.18": "#script",
+          "3.17": "#script"
+        },
+        "debian": {
+          "common": "kubernetes-client",
+          "buster": "#script"
+        },
+        "ubuntu": {"common": "#script"}
+      }
+    }
+  },
+  {
+    "name": "kubeseal",
+    "summary": "Asymmetric crypto to encrypt secrets for kubernetes.",
+    "uri": "https://github.com/bitnami-labs/sealed-secrets",
+    "sources": {
+      "freebsd": {"common": "#na"},
+      "linux": {"common": "#script"}
+    },
+    "provides": {
+      "linux": {"common": ["kubeseal"]},
+      "windows": ["kubeseal"]
+    }
+  }
+]

@@ -1,0 +1,114 @@
+[
+  {
+    "name": "actionlint",
+    "summary": "A linter for GitHub Actions workflow files.",
+    "uri": "https://github.com/rhysd/actionlint",
+    "sources": {
+      "freebsd": {"common": "#script"},
+      "linux": {
+        "alpine": {
+          "3.19": "#script",
+          "3.18": "#script",
+          "3.17": "#script"
+        },
+        "debian": {"common": "#script"},
+        "gentoo": "#script",
+        "ubuntu": {"common": "#script"}
+      }
+    }
+  },
+  {
+    "name": "gource",
+    "summary": "Renders an animated tree diagram of Git, SVN, Mercurial and Bazaar repositories.",
+    "uri": "https://gource.io/",
+    "sources": {"linux": {"gentoo": "#script"}}
+  },
+  {
+    "name": "hexyl",
+    "summary": "Hex viewer for the terminal.",
+    "uri": "https://github.com/sharkdp/hexyl",
+    "sources": {"linux": {"gentoo": "#script"}}
+  },
+  {
+    "name": "hyperfine",
+    "summary": "A command-line benchmarking tool.",
+    "uri": "https://github.com/sharkdp/hyperfine/",
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        },
+        "ubuntu": {
+          "jammy": "#script",
+          "focal": "#script"
+        }
+      }
+    }
+  },
+  {
+    "name": "lychee",
+    "summary": "Async, stream-based link checker.",
+    "uri": "https://github.com/lycheeverse/lychee",
+    "sources": {
+      "linux": {"common": "#script"}
+    }
+  },
+  {
+    "name": "onefetch",
+    "summary": "Command-line Git information tool.",
+    "uri": "https://onefetch.dev/",
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "gentoo": "#script",
+        "ubuntu": {"common": "#script"}
+      }
+    }
+  },
+  {
+    "name": "shellcheck",
+    "summary": "Shell script static analysis tool.",
+    "uri": "https://www.shellcheck.net/",
+    "sources": {
+      "freebsd": {"common": "hs-ShellCheck"},
+      "linux": {"gentoo": "#na"}
+    },
+    "provides": {
+      "freebsd": {"common": ["shellcheck"]},
+      "linux": {
+        "alpine": {"common": ["shellcheck"]},
+        "debian": {"common": ["shellcheck"]},
+        "ubuntu": {"common": ["shellcheck"]}
+      },
+      "windows": ["shellcheck"]
+    }
+  },
+  {
+    "name": "shfmt",
+    "summary": "Format shell programs.",
+    "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
+    "sources": {
+      "linux": {
+        "debian": {
+          "bullseye": "#script",
+          "buster": "#script"
+        },
+        "gentoo": "#script",
+        "ubuntu": {"focal": "#script"}
+      }
+    }
+  },
+  {
+    "name": "tokei",
+    "summary": "Print out statistics about code.",
+    "uri": "https://github.com/XAMPPRocky/tokei",
+    "sources": {
+      "linux": {
+        "debian": {"common": "#script"},
+        "gentoo": "#script",
+        "ubuntu": {"common": "#script"}
+      }
+    }
+  }
+]

@@ -15,6 +15,56 @@ on:
         type: string
         default: ''
 
+      dotfiles_devtools:
+        required: false
+        type: boolean
+        default: true
+
+      dotfiles_devtools_c:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_docker:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_extra:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_go:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_haskell:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_js:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_k8s:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_lua:
+        required: false
+        type: boolean
+        default: false
+
+      dotfiles_devtools_php:
+        required: false
+        type: boolean
+        default: false
+
 jobs:
   linux:
     runs-on: ubuntu-latest
@@ -34,7 +84,19 @@ jobs:
       - name: init dotfiles
         env:
           BRANCH: ${{ github.head_ref || github.ref_name }}
-        run: sudo DOTFILES_DEVTOOLS=true -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
+        run: |
+          sudo \
+            DOTFILES_DEVTOOLS=${{ inputs.dotfiles_devtools }} \
+            DOTFILES_DEVTOOLS_C=${{ inputs.dotfiles_devtools_c }} \
+            DOTFILES_DEVTOOLS_DOCKER=${{ inputs.dotfiles_devtools_docker }} \
+            DOTFILES_DEVTOOLS_EXTRA=${{ inputs.dotfiles_devtools_extra }} \
+            DOTFILES_DEVTOOLS_GO=${{ inputs.dotfiles_devtools_go }} \
+            DOTFILES_DEVTOOLS_HASKELL=${{ inputs.dotfiles_devtools_haskell }} \
+            DOTFILES_DEVTOOLS_JS=${{ inputs.dotfiles_devtools_js }} \
+            DOTFILES_DEVTOOLS_K8S=${{ inputs.dotfiles_devtools_k8s }} \
+            DOTFILES_DEVTOOLS_LUA=${{ inputs.dotfiles_devtools_lua }} \
+            DOTFILES_DEVTOOLS_PHP=${{ inputs.dotfiles_devtools_php }} \
+            -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
         run: .github/linux/confirm-installed-utils.sh "${{ inputs.distro }}" "${{ inputs.tag }}"
