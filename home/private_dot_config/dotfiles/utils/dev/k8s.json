@@ -16,11 +16,16 @@
     "summary": "Tool for running local Kubernetes clusters using Docker container \"nodes\".",
     "uri": "https://github.com/kubernetes-sigs/kind",
     "sources": {
+      "freebsd": {"common": "#na"},
       "linux": {
         "alpine": {"common": "#script"},
         "debian": {"common": "#script"},
         "ubuntu": {"common": "#script"}
       }
+    },
+    "provides": {
+      "linux": {"common": ["kind"]},
+      "windows": ["kind"]
     }
   },
   {
