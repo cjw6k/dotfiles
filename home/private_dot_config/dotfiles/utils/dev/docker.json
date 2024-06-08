@@ -7,6 +7,7 @@
       "linux": {
         "alpine": {"common": "#script"},
         "debian": {"common": "#script"},
+        "gentoo": "#script",
         "ubuntu": {"common": "#script"}
       }
     }
