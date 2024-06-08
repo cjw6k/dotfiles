@@ -51,11 +51,16 @@
     "summary": "Asymmetric crypto to encrypt secrets for kubernetes.",
     "uri": "https://github.com/bitnami-labs/sealed-secrets",
     "sources": {
+      "freebsd": {"common": "#na"},
       "linux": {
         "alpine": {"common": "#script"},
         "debian": {"common": "#script"},
         "ubuntu": {"common": "#script"}
       }
+    },
+    "provides": {
+      "linux": {"common": ["kubeseal"]},
+      "windows": ["kubeseal"]
     }
   }
 ]
