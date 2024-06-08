@@ -3,7 +3,10 @@
     "name": "composer",
     "summary": "A package-based dependency manager for PHP projects.",
     "uri": "https://getcomposer.org/",
-    "sources": {"freebsd": {"common": "php83-composer"}}
+    "sources": {
+      "freebsd": {"common": "php83-composer"},
+      "linux": {"gentoo": "#script"}
+    }
   },
   {
     "name": "php",
