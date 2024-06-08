@@ -2,13 +2,16 @@
   {
     "name": "composer",
     "summary": "A package-based dependency manager for PHP projects.",
-    "uri": "https://getcomposer.org/"
+    "uri": "https://getcomposer.org/",
+    "sources": {"freebsd": {"common": "php83-composer"}}
   },
   {
     "name": "php",
     "summary": "PHP command-line interface.",
     "uri": "https://php.net/",
+    "sources": {"freebsd": {"common": "php83"}},
     "provides": {
+      "freebsd": {"common": ["php", "phpize", "php-cgi", "php-config", "php-fpm"]},
       "linux": {
         "alpine": {
           "edge": ["php", "php83"],
