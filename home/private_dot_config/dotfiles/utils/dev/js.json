@@ -6,6 +6,7 @@
     "sources": {"freebsd": {"common": "node"}},
     "provides": {
       "common": ["node"],
+      "linux": {"gentoo": ["npm", "npx"]},
       "windows": ["npm", "npx"]
     }
   },
@@ -13,10 +14,17 @@
     "name": "npm",
     "summary": "The package manager for JavaScript.",
     "uri": "https://github.com/npm/cli",
-    "sources": {"windows": "#na"},
+    "sources": {
+      "linux": {"gentoo": "#na"},
+      "windows": "#na"
+    },
     "provides": {
       "freebsd": {"common": ["npm", "npx"]},
-      "linux": {"common": ["npm", "npx"]}
+      "linux": {
+        "alpine": {"common": ["npm", "npx"]},
+        "debian": {"common": ["npm", "npx"]},
+        "ubuntu": {"common": ["npm", "npx"]}
+      }
     }
   },
   {
