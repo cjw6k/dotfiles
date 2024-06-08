@@ -4,6 +4,7 @@
     "summary": "A powerful, light-weight embeddable programming language.",
     "uri": "https://www.lua.org/",
     "sources": {
+      "freebsd": {"common": "lua54"},
       "linux": {
         "debian": {
           "common": "lua5.4",
@@ -16,6 +17,7 @@
       }
     },
     "provides": {
+      "freebsd": {"common": ["lua54", "luac54"]},
       "linux": {
         "alpine": {"common": ["lua5.4", "luac5.4"]},
         "ubuntu": {
@@ -34,6 +36,7 @@
     "summary": "The package manager for Lua modules.",
     "uri": "https://luarocks.org/",
     "sources": {
+      "freebsd": {"common": "lua54-luarocks"},
       "linux": {
         "ubuntu": {
           "jammy": "#na",
@@ -42,6 +45,7 @@
       }
     },
     "provides": {
+      "freebsd": {"common": ["luarocks54", "luarocks-admin54"]},
       "linux": {
         "alpine": {
           "edge": [
