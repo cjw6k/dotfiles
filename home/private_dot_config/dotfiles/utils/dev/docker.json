@@ -17,11 +17,7 @@
     "uri": "https://github.com/hadolint/hadolint",
     "sources": {
       "freebsd": {"common": "#na"},
-      "linux": {
-        "alpine": {"common": "#script"},
-        "debian": {"common": "#script"},
-        "ubuntu": {"common": "#script"}
-      }
+      "linux": {"common": "#script"}
     },
     "provides": {
       "linux": {"common": ["hadolint"]},
