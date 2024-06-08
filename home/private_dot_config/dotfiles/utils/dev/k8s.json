@@ -48,11 +48,7 @@
     "uri": "https://github.com/bitnami-labs/sealed-secrets",
     "sources": {
       "freebsd": {"common": "#na"},
-      "linux": {
-        "alpine": {"common": "#script"},
-        "debian": {"common": "#script"},
-        "ubuntu": {"common": "#script"}
-      }
+      "linux": {"common": "#script"}
     },
     "provides": {
       "linux": {"common": ["kubeseal"]},
