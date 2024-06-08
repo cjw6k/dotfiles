@@ -25,23 +25,11 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
-      - name: identify instruction set architecture
-        id: arch
-        run: |
-          echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
-            >> "$GITHUB_OUTPUT"
-
-      - name: identify microarchitecture
-        id: march
-        run: |
-          echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
-            >> "$GITHUB_OUTPUT"
-
       - name: restore binpkgs cache
         id: cache
         uses: actions/cache/restore@v4
         env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs
 
         with:
           path: /var/cache/binpkgs
@@ -49,15 +37,9 @@ jobs:
           restore-keys:
             ${{ env.cache-name }}-
 
-      - name: build architecture optimized binaries
+      - name: enable install binary packages feature
         run: |
-          sed -i 's/COMMON_FLAGS="-O2/COMMON_FLAGS="-march=native -O2/' /etc/portage/make.conf
-
-      - name: enable buildpkg feature
-        run: |
-          echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
-          # shellcheck disable=SC2016
-          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
+          echo 'FEATURES="getbinpkg binpkg-request-signature"' >> /etc/portage/make.conf
           tee </etc/portage/make.conf
 
       - name: note initial binpkgs info
@@ -110,7 +92,7 @@ jobs:
         if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
         uses: actions/cache/save@v4
         env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs
 
         with:
           path: /var/cache/binpkgs
