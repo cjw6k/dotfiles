@@ -2,6 +2,11 @@ name: CI - Gentoo
 run-name: CI / Linux / Gentoo on ${{ github.head_ref || github.ref_name }}
 on:
   workflow_call:
+    secrets:
+      CI_GPG_KEY:
+        required: true
+      CI_GPG_PASSPHRASE:
+        required: true
   workflow_dispatch:
 
 concurrency:
@@ -25,23 +30,11 @@ jobs:
         - portage:/var/db/repos/gentoo
 
     steps:
-      - name: identify instruction set architecture
-        id: arch
-        run: |
-          echo arch="$(lscpu | grep -P '^Architecture:' | sed 's/Architecture:\s\+//' | sed 's/x86_64/amd64/')" \
-            >> "$GITHUB_OUTPUT"
-
-      - name: identify microarchitecture
-        id: march
-        run: |
-          echo march="$(gcc -march=native -E -v - </dev/null 2>&1 | grep cc1 | grep -oP '(?<=-march=)[^\s]+')" \
-            >> "$GITHUB_OUTPUT"
-
       - name: restore binpkgs cache
         id: cache
         uses: actions/cache/restore@v4
         env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs
 
         with:
           path: /var/cache/binpkgs
@@ -49,15 +42,26 @@ jobs:
           restore-keys:
             ${{ env.cache-name }}-
 
-      - name: build architecture optimized binaries
-        run: |
-          sed -i 's/COMMON_FLAGS="-O2/COMMON_FLAGS="-march=native -O2/' /etc/portage/make.conf
+      - name: import gpg key
+        uses: crazy-max/ghaction-import-gpg@v6
+        with:
+          gpg_private_key: ${{ secrets.CI_GPG_KEY }}
+          passphrase: ${{ secrets.CI_GPG_PASSPHRASE }}
+          trust_level: 5
 
-      - name: enable buildpkg feature
+      - name: enable install binary packages feature
         run: |
-          echo 'FEATURES="buildpkg"' >> /etc/portage/make.conf
-          # shellcheck disable=SC2016
-          echo 'EMERGE_DEFAULT_OPTS="${EMERGE_DEFAULT_OPTS} --usepkg"' >> /etc/portage/make.conf
+          echo 'FEATURES="buildpkg binpkg-signing binpkg-request-signature getbinpkg"' >> /etc/portage/make.conf
+          echo 'BINPKG_GPG_SIGNING_GPG_HOME=/github/home/.gnupg' >> /etc/portage/make.conf
+          keyid=$(gpg --list-keys --keyid-format=long | grep ^pub | sed -e 's/^[^/]*\///' -e 's/\s.*'//)
+          fingerprint=$(gpg --list-keys | grep '^\s' | sed 's/\s*//')
+          echo "BINPKG_GPG_SIGNING_KEY=0x$keyid" >> /etc/portage/make.conf
+          getuto
+          gpg --homedir /etc/portage/gnupg --import-ownertrust <(echo "$fingerprint:6:")
+          gpg --output - --export "0x$keyid" | gpg --homedir /etc/portage/gnupg --import -
+          echo -e "y\ny\n" | gpg -v --pinentry-mode loopback --homedir /etc/portage/gnupg \
+            --passphrase-file /etc/portage/gnupg/pass --batch --command-fd 0 --expert --edit-key "$fingerprint" sign
+          mkdir /run/lock
           tee </etc/portage/make.conf
 
       - name: note initial binpkgs info
@@ -122,7 +126,7 @@ jobs:
         if: ${{ always() && (steps.initial-binpkgs.outputs.sha1 != steps.final-binpkgs.outputs.sha1) }}
         uses: actions/cache/save@v4
         env:
-          cache-name: cache-binpkgs-${{ steps.arch.outputs.arch }}-${{ steps.march.outputs.march }}
+          cache-name: cache-binpkgs
 
         with:
           path: /var/cache/binpkgs
