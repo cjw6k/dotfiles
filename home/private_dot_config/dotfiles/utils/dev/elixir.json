@@ -1,0 +1,8 @@
+[
+  {
+    "name": "elixir",
+    "summary": "Elixir is a dynamic, functional language for building scalable and maintainable applications.",
+    "uri": "https://github.com/elixir-lang/elixir",
+    "provides": {"common": ["elixir", "mix"]}
+  }
+]
