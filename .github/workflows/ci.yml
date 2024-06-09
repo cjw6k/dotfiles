@@ -99,6 +99,10 @@ jobs:
       && needs.paths-filter.outputs.ci-gentoo == 'true'
 
     uses: ./.github/workflows/ci-linux-gentoo.yml
+    secrets:
+      CI_GPG_KEY: ${{ secrets.CI_GPG_KEY }}
+      CI_GPG_PASSPHRASE: ${{ secrets.CI_GPG_PASSPHRASE }}
+
 
   ci-ubuntu:
     needs: [paths-filter, ci-alpine, ci-build-ubuntu]
