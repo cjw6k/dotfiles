@@ -35,6 +35,11 @@ on:
         type: boolean
         default: false
 
+      dotfiles_devtools_elixir:
+        required: false
+        type: boolean
+        default: false
+
       dotfiles_devtools_extra:
         required: false
         type: boolean
@@ -99,6 +104,7 @@ jobs:
             DOTFILES_DEVTOOLS=${{ inputs.dotfiles_devtools }} \
             DOTFILES_DEVTOOLS_C=${{ inputs.dotfiles_devtools_c }} \
             DOTFILES_DEVTOOLS_DOCKER=${{ inputs.dotfiles_devtools_docker }} \
+            DOTFILES_DEVTOOLS_ELIXIR=${{ inputs.dotfiles_devtools_elixir }} \
             DOTFILES_DEVTOOLS_ERLANG=${{ inputs.dotfiles_devtools_erlang }} \
             DOTFILES_DEVTOOLS_EXTRA=${{ inputs.dotfiles_devtools_extra }} \
             DOTFILES_DEVTOOLS_GO=${{ inputs.dotfiles_devtools_go }} \

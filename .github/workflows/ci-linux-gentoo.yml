@@ -96,6 +96,7 @@ jobs:
             DOTFILES_DEVTOOLS=true \
             DOTFILES_DEVTOOLS_C=true \
             DOTFILES_DEVTOOLS_DOCKER=true \
+            DOTFILES_DEVTOOLS_ELIXIR=true \
             DOTFILES_DEVTOOLS_ERLANG=true \
             DOTFILES_DEVTOOLS_EXTRA=true \
             DOTFILES_DEVTOOLS_GO=true \
