@@ -1,0 +1,8 @@
+[
+  {
+    "name": "ruby",
+    "summary": "The Ruby programming language.",
+    "uri": "https://github.com/ruby/ruby",
+    "provides": {"common": ["ruby", "gem"]}
+  }
+]
