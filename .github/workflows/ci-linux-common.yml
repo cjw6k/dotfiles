@@ -70,6 +70,11 @@ on:
         type: boolean
         default: false
 
+      dotfiles_devtools_perl:
+        required: false
+        type: boolean
+        default: false
+
       dotfiles_devtools_php:
         required: false
         type: boolean
@@ -112,6 +117,7 @@ jobs:
             DOTFILES_DEVTOOLS_JS=${{ inputs.dotfiles_devtools_js }} \
             DOTFILES_DEVTOOLS_K8S=${{ inputs.dotfiles_devtools_k8s }} \
             DOTFILES_DEVTOOLS_LUA=${{ inputs.dotfiles_devtools_lua }} \
+            DOTFILES_DEVTOOLS_PERL=${{ inputs.dotfiles_devtools_perl }} \
             DOTFILES_DEVTOOLS_PHP=${{ inputs.dotfiles_devtools_php }} \
             DOTFILES_DEVTOOLS_RUBY=${{ inputs.dotfiles_devtools_ruby }} \
             -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"

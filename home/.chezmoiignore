@@ -88,6 +88,10 @@ lib.sh
 .config/dotfiles/utils/dev/lua.json
 .chezmoiscripts/**/50-install_dev_lua-*
 {{     end }}
+{{     if not .is.devtoolsPerl }}
+.config/dotfiles/utils/dev/perl.json
+.chezmoiscripts/**/50-install_dev_perl-*
+{{     end }}
 {{     if not .is.devtoolsPhp }}
 .config/dotfiles/utils/dev/php.json
 .chezmoiscripts/**/50-install_dev_php-*
