@@ -2,12 +2,25 @@
   {
     "name": "cabal",
     "summary": "A system for building and packaging Haskell libraries and programs.",
-    "uri": "https://www.haskell.org/cabal/"
+    "uri": "https://www.haskell.org/cabal/",
+    "sources": {
+      "freebsd": {"common": "cabal-install"},
+      "linux": {
+        "debian": {"common": "cabal-install"},
+        "gentoo": "cabal-install",
+        "ubuntu": {"common": "cabal-install"}
+      }
+    }
   },
   {
     "name": "ghc",
     "summary": "A compiler and interactive environment for the Haskell functional programming language.",
-    "uri": "https://www.haskell.org/ghc/"
+    "uri": "https://www.haskell.org/ghc/",
+    "sources": {"windows": "haskell"},
+    "provides": {
+      "common": ["ghc"],
+      "windows": ["ghci", "ghc-pkg", "haddock", "hp2ps", "hpc", "hsc2hs", "runghc"]
+    }
   },
   {
     "name": "shellcheck",
