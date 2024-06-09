@@ -25,6 +25,7 @@ jobs:
       suffix: ${{ inputs.suffix }}
       dotfiles_devtools_c: true
       dotfiles_devtools_docker: true
+      dotfiles_devtools_erlang: true
       dotfiles_devtools_extra: true
       dotfiles_devtools_go: true
       dotfiles_devtools_haskell: true

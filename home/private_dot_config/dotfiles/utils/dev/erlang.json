@@ -1,0 +1,8 @@
+[
+  {
+    "name": "erlang",
+    "summary": "A programming language and runtime system for building massively scalable soft real-time systems with requirements on high availability.",
+    "uri": "https://github.com/erlang/otp",
+    "provides": {"common": ["erl", "erlc"]}
+  }
+]

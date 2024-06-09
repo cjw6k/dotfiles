@@ -54,6 +54,7 @@ jobs:
           DOTFILES_DEVTOOLS: true
           DOTFILES_DEVTOOLS_C: true
           DOTFILES_DEVTOOLS_DOCKER: true
+          DOTFILES_DEVTOOLS_ERLANG: true
           DOTFILES_DEVTOOLS_EXTRA: true
           DOTFILES_DEVTOOLS_GO: true
           DOTFILES_DEVTOOLS_HASKELL: true
@@ -61,6 +62,7 @@ jobs:
           DOTFILES_DEVTOOLS_K8S: true
           DOTFILES_DEVTOOLS_LUA: true
           DOTFILES_DEVTOOLS_PHP: true
+          DOTFILES_DEVTOOLS_RUBY: true
         run: chezmoi init --apply cjw6k --branch "$env:BRANCH"
 
       - name: scoop list

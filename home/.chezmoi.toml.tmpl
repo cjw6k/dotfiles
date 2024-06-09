@@ -6,6 +6,7 @@
 {{- $devtoolsAll := false -}}{{/* true if this machine should have ALL development tools */}}
 {{- $devtoolsC := false -}}{{/* true if this machine should have development tools for c/c++ */}}
 {{- $devtoolsDocker := false -}}{{/* true if this machine should have development tools for docker */}}
+{{- $devtoolsErlang := false -}}{{/* true if this machine should have development tools for erlang */}}
 {{- $devtoolsExtra := false -}}{{/* true if this machine should have extra development tools */}}
 {{- $devtoolsGo := false -}}{{/* true if this machine should have development tools for go */}}
 {{- $devtoolsHaskell := false -}}{{/* true if this machine should have development tools for haskell */}}
@@ -47,6 +48,7 @@
 {{   if $devtoolsAll -}}
 {{      $devtoolsC = true }}
 {{      $devtoolsDocker = true }}
+{{      $devtoolsErlang = true }}
 {{      $devtoolsExtra = true }}
 {{      $devtoolsGo = true }}
 {{      $devtoolsHaskell = true }}
@@ -69,6 +71,13 @@
 {{-      end -}}
 {{-    else -}}
 {{-      $devtoolsDocker  = has (env "DOTFILES_DEVTOOLS_DOCKER") (list "1" "true") -}}
+{{-    end -}}
+{{     if or (empty (env "DOTFILES_DEVTOOLS_ERLANG")) (not (has (env "DOTFILES_DEVTOOLS_ERLANG") (list "0" "1" "true" "false"))) -}}
+{{       if stdinIsATTY -}}
+{{-        $devtoolsErlang = promptBoolOnce . "is.devtoolsErlang" "Should this machine have development tools for erlang" false -}}
+{{-      end -}}
+{{-    else -}}
+{{-      $devtoolsErlang  = has (env "DOTFILES_DEVTOOLS_ERLANG") (list "1" "true") -}}
 {{-    end -}}
 {{     if or (empty (env "DOTFILES_DEVTOOLS_EXTRA")) (not (has (env "DOTFILES_DEVTOOLS_EXTRA") (list "0" "1" "true" "false"))) -}}
 {{       if stdinIsATTY -}}
@@ -147,6 +156,7 @@
     devtoolsAll = {{ $devtoolsAll }}
     devtoolsC = {{ $devtoolsC }}
     devtoolsDocker = {{ $devtoolsDocker }}
+    devtoolsErlang = {{ $devtoolsErlang }}
     devtoolsExtra = {{ $devtoolsExtra }}
     devtoolsGo = {{ $devtoolsGo }}
     devtoolsHaskell = {{ $devtoolsHaskell }}
