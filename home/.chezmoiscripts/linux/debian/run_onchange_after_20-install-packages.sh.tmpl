@@ -1,0 +1,51 @@
+#!/usr/bin/env bash
+
+# ~/.config/dotfiles/utils/standard.json hash:
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
+
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
+
+# todo: cleanup this hack that works around a bug, see https://github.com/twpayne/chezmoi/pull/3001
+{{ if not (hasSuffix "home" .chezmoi.sourceDir) -}}
+. "{{ .chezmoi.sourceDir }}/home/lib.sh"
+{{- else -}}
+. "{{ .chezmoi.sourceDir }}/lib.sh"
+{{- end }}
+
+utils=
+standard_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+fi
+
+{{ if .is.personal -}}
+#utils=
+#personal_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+#if test -n "$utils"; then
+#  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+#fi
+{{- end }}
+
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include $file | sha256sum }}
+{{- end }}
+
+utils=
+dev_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+fi
+
+utils=
+pip_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+{{- if eq .chezmoi.osRelease.versionCodename "buster" }}
+  pip3 install $utils
+{{- else }}
+  pip install $utils
+{{- end }}
+fi
+{{- end }}

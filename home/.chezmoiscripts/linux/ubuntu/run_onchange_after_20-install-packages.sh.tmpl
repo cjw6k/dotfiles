@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+# ~/.config/dotfiles/utils/standard.json hash:
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
+
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
+
+. "{{ .chezmoi.sourceDir }}/lib.sh"
+
+utils=
+standard_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+fi
+
+{{ if .is.personal -}}
+#utils=
+#personal_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
+#if test -n "$utils"; then
+#  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+#fi
+{{- end }}
+
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include $file | sha256sum }}
+{{- end }}
+
+utils=
+dev_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  sudo DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends $utils
+fi
+
+utils=
+pip_utils linux ubuntu "{{ .chezmoi.osRelease.versionCodename }}"
+if test -n "$utils"; then
+  pip install $utils
+fi
+{{- end }}

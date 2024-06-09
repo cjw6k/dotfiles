@@ -1,0 +1,193 @@
+{
+  "$id": "https://raw.githubusercontent.com/cjw6k/dotfiles/main/utils.schema.json",
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "dotfiles utils",
+  "description": "A curated collection of useful software.",
+  "type": "array",
+  "items": {
+    "type": "object",
+    "title": "A software utility.",
+    "properties": {
+      "name": {"type": "string"},
+      "summary": {"type": "string"},
+      "uri": {
+        "type": "string",
+        "format": "uri"
+      },
+      "sources": {
+        "type": "object",
+        "properties": {
+          "common": {"$ref": "#/$defs/InstallationSource"},
+          "freebsd": {"$ref": "#/$defs/FreeBSDInstallationSource"},
+          "linux": {"$ref": "#/$defs/LinuxInstallationSource"},
+          "windows": {"$ref": "#/$defs/InstallationSource"}
+        },
+        "additionalProperties": false
+      },
+      "provides": {
+        "type": "object",
+        "properties": {
+          "common": {"$ref": "#/$defs/Software"},
+          "freebsd": {"$ref": "#/$defs/FreeBSDSoftware"},
+          "linux": {"$ref": "#/$defs/LinuxSoftware"},
+          "windows": {"$ref": "#/$defs/Software"}
+        },
+        "additionalProperties": false
+      }
+    },
+    "additionalProperties": false,
+    "required": [
+      "name",
+      "summary",
+      "uri"
+    ]
+  },
+  "minItems": 0,
+  "$defs": {
+    "InstallationSource": {
+      "oneOf": [
+        {"$ref": "#/$defs/Package"},
+        {"$ref": "#/$defs/CustomInstallationMethod"}
+      ]
+    },
+    "Package": {
+      "type": "string",
+      "pattern": "^[\\w\\-.]*\\w$"
+    },
+    "CustomInstallationMethod": {"enum": ["#na", "#script", "#builtin", "#pip"]},
+    "FreeBSDInstallationSource": {
+      "allOf": [
+        {"$ref": "#/$defs/FreeBSD"},
+        {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
+      ]
+    },
+    "FreeBSD": {
+      "type": "object",
+      "properties": {
+        "common": {},
+        "14.0": {},
+        "13.3": {},
+        "13.2": {}
+      },
+      "additionalProperties": false
+    },
+    "OperatingSystemEditionInstallationSource": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {"$ref": "#/$defs/InstallationSource"}
+    },
+    "LinuxInstallationSource": {
+      "type": "object",
+      "properties": {
+        "common": {"$ref": "#/$defs/InstallationSource"},
+        "alpine": {
+          "allOf": [
+            {"$ref": "#/$defs/Alpine"},
+            {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
+          ]
+        },
+        "debian": {
+          "allOf": [
+            {"$ref": "#/$defs/Debian"},
+            {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
+          ]
+        },
+        "gentoo": {"$ref": "#/$defs/GentooInstallationSource"},
+        "ubuntu": {
+          "allOf": [
+            {"$ref": "#/$defs/Ubuntu"},
+            {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "Alpine": {
+      "type": "object",
+      "properties": {
+        "common": {},
+        "edge": {},
+        "3.20": {},
+        "3.19": {},
+        "3.18": {},
+        "3.17": {}
+      },
+      "additionalProperties": false
+    },
+    "Debian": {
+      "type": "object",
+      "properties": {
+        "common": {},
+        "sid": {},
+        "trixie": {},
+        "bookworm": {},
+        "bullseye": {},
+        "buster": {}
+      },
+      "additionalProperties": false
+    },
+    "GentooInstallationSource": {
+      "oneOf": [
+        {"$ref": "#/$defs/GentooPackage"},
+        {"$ref": "#/$defs/CustomInstallationMethod"}
+      ]
+    },
+    "GentooPackage": {
+      "type": "string",
+      "pattern": "^[\\w\\-./]*\\w$"
+    },
+    "Ubuntu": {
+      "type": "object",
+      "properties": {
+        "common": {},
+        "noble": {},
+        "mantic": {},
+        "lunar": {},
+        "jammy": {},
+        "focal": {}
+      },
+      "additionalProperties": false
+    },
+    "Software": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/Package"},
+      "minItems": 1
+    },
+    "FreeBSDSoftware": {
+      "$ref": "#/$defs/FreeBSD",
+      "properties": {},
+      "additionalProperties": {"$ref": "#/$defs/Software"}
+    },
+    "LinuxSoftware": {
+      "type": "object",
+      "properties": {
+        "common": {"$ref": "#/$defs/Software"},
+        "alpine": {
+          "allOf": [
+            {"$ref": "#/$defs/Alpine"},
+            {"$ref": "#/$defs/OperatingSystemEditionSoftware"}
+          ]
+        },
+        "debian": {
+          "allOf": [
+            {"$ref": "#/$defs/Debian"},
+            {"$ref": "#/$defs/OperatingSystemEditionSoftware"}
+          ]
+        },
+        "gentoo": {"$ref": "#/$defs/Software"},
+        "ubuntu": {
+          "allOf": [
+            {"$ref": "#/$defs/Ubuntu"},
+            {"$ref": "#/$defs/OperatingSystemEditionSoftware"}
+          ]
+        }
+      },
+      "additionalProperties": false
+    },
+    "OperatingSystemEditionSoftware": {
+      "type": "object",
+      "properties": {},
+      "additionalProperties": {"$ref": "#/$defs/Software"}
+    }
+  }
+}

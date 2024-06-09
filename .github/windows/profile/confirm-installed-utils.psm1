@@ -1,7 +1,9 @@
 function Confirm-InstalledUtils {
   $pathAdditions = @(
     "$env:USERPROFILE\scoop\shims",
-    "$env:USERPROFILE\scoop\apps\python\current\Scripts"
+    "$env:USERPROFILE\scoop\apps\python\current\Scripts",
+    "$env:USERPROFILE\scoop\apps\yarn\current\global\node_modules\.bin",
+    "$env:USERPROFILE\scoop\apps\yarn\current\bin"
   )
   foreach ($pathAddition in $pathAdditions) {
     if ([System.IO.Directory]::Exists($pathAddition)) {
@@ -9,14 +11,19 @@ function Confirm-InstalledUtils {
     }
   }
 
-  $utils = Get-Content "~/.config/dotfiles/utils.json" | ConvertFrom-Json
+  $utils = @()
+  foreach ($util in Get-Content '~/.config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
+    $utils += $util
+  }
+
+  foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
+    foreach ($util in Get-Content $file | ConvertFrom-Json) {
+      $utils += $util
+    }
+  }
 
   $commands = @()
   foreach ($util in $utils) {
-    if ($util.personal) {
-      continue
-    }
-
     if ($null -eq $util.provides) {
       $commands += $util.name
       continue

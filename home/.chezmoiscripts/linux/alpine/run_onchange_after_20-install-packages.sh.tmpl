@@ -1,0 +1,46 @@
+#!/usr/bin/env sh
+
+# ~/.config/dotfiles/utils/standard.json hash:
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
+
+# dotfiles lib.sh hash:
+# {{ include "lib.sh" | sha256sum }}
+
+# todo: cleanup this hack that works around a bug, see https://github.com/twpayne/chezmoi/pull/3001
+{{ if not (hasSuffix "home" .chezmoi.sourceDir) -}}
+. "{{ .chezmoi.sourceDir }}/home/lib.sh"
+{{- else -}}
+. "{{ .chezmoi.sourceDir }}/lib.sh"
+{{- end }}
+
+{{ $version := trimPrefix "Alpine Linux " .chezmoi.osRelease.prettyName | trimPrefix "v" | regexFind "\\d+\\.\\d+|\\w+" -}}
+utils=
+standard_utils linux alpine "{{ $version }}"
+sudo apk add $utils
+
+{{ if .is.personal -}}
+#utils=
+#personal_utils linux alpine "{{ $version }}"
+#sudo apk add $utils
+{{- end }}
+
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include $file | sha256sum }}
+{{- end }}
+
+utils=
+dev_utils linux alpine "{{ $version }}"
+sudo apk add $utils
+
+utils=
+pip_utils linux alpine "{{ $version }}"
+if test -n "$utils"; then
+{{- if eq $version "3.20" "3.19" }}
+  pip install $utils --break-system-packages
+{{- else }}
+  pip install $utils
+{{- end }}
+fi
+{{- end }}

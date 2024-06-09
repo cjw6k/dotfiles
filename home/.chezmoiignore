@@ -1,7 +1,7 @@
 {{/* .tmpl suffix allowed on this file since v2.29.0 */}}
-{{- if ne .chezmoi.os "windows" -}}
+lib.sh
+{{ if ne .chezmoi.os "windows" -}}
 .chezmoiscripts/windows/**
-.chezmoiscripts/devtools/windows/**
 .chezmoiscripts/personal/windows/**
 Documents
 {{ else -}}
@@ -9,43 +9,80 @@ Documents
 {{ end -}}
 
 {{- if ne .chezmoi.os "linux" -}}
+lib.sh
 .chezmoiscripts/linux/**
-.chezmoiscripts/devtools/linux/**
 .chezmoiscripts/personal/linux/**
 {{ else -}}
 {{   if ne .chezmoi.osRelease.id "alpine" -}}
     .chezmoiscripts/linux/alpine/**
-    .chezmoiscripts/devtools/linux/alpine/**
     .chezmoiscripts/personal/linux/alpine/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "ubuntu" -}}
     .chezmoiscripts/linux/ubuntu/**
-    .chezmoiscripts/devtools/linux/ubuntu/**
     .chezmoiscripts/personal/linux/ubuntu/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "debian" -}}
     .chezmoiscripts/linux/debian/**
-    .chezmoiscripts/devtools/linux/debian/**
     .chezmoiscripts/personal/linux/debian/**
 {{   end -}}
 {{   if ne .chezmoi.osRelease.id "gentoo" -}}
     .chezmoiscripts/linux/gentoo/**
-    .chezmoiscripts/devtools/linux/gentoo/**
     .chezmoiscripts/personal/linux/gentoo/**
 {{   end -}}
 {{ end -}}
 
 {{- if ne .chezmoi.os "freebsd" -}}
 .chezmoiscripts/freebsd/**
-.chezmoiscripts/devtools/freebsd/**
 .chezmoiscripts/personal/freebsd/**
 {{ end -}}
 
 {{ if not .is.personal -}}
 .chezmoiscripts/personal/**
+.config/dotfiles/utils/personal.json
+.config/dotfiles/utils/personal-custom.json
 .ssh
 {{ end -}}
 
 {{ if not .is.devtools -}}
-.chezmoiscripts/devtools/**
+.config/dotfiles/utils/dev/**
+.chezmoiscripts/**/50-install_dev_*
+{{ else }}
+{{   if not .is.devtoolsAll }}
+{{     if not .is.devtoolsC }}
+.config/dotfiles/utils/dev/c.json
+.chezmoiscripts/**/50-install_dev_c-*
+{{     end }}
+{{     if not .is.devtoolsDocker }}
+.config/dotfiles/utils/dev/docker.json
+.chezmoiscripts/**/50-install_dev_docker-*
+{{     end }}
+{{     if not .is.devtoolsExtra }}
+.config/dotfiles/utils/dev/extra.json
+.chezmoiscripts/**/50-install_dev_extra-*
+{{     end }}
+{{     if not .is.devtoolsGo }}
+.config/dotfiles/utils/dev/go.json
+.chezmoiscripts/**/50-install_dev_go-*
+{{     end }}
+{{     if not .is.devtoolsHaskell }}
+.config/dotfiles/utils/dev/haskell.json
+.chezmoiscripts/**/50-install_dev_haskell-*
+{{     end }}
+{{     if not .is.devtoolsJs }}
+.config/dotfiles/utils/dev/js.json
+.chezmoiscripts/**/50-install_dev_js-*
+{{     end }}
+{{     if not .is.devtoolsK8s }}
+.config/dotfiles/utils/dev/k8s.json
+.chezmoiscripts/**/50-install_dev_k8s-*
+{{     end }}
+{{     if not .is.devtoolsLua }}
+.config/dotfiles/utils/dev/lua.json
+.chezmoiscripts/**/50-install_dev_lua-*
+{{     end }}
+{{     if not .is.devtoolsPhp }}
+.config/dotfiles/utils/dev/php.json
+.chezmoiscripts/**/50-install_dev_php-*
+{{     end }}
+{{   end }}
 {{ end -}}

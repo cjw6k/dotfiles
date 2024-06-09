@@ -1,0 +1,8 @@
+#!/usr/bin/env bash
+
+{{ if not (eq .chezmoi.osRelease.versionCodename "buster" "bullseye") -}}
+# hard-coded architecture and version numbers, better is an apt repository for dotfiles, or build from source
+curl -sLO https://github.com/dandavison/delta/releases/download/0.17.0/git-delta_0.17.0_amd64.deb \
+  && sudo dpkg -i git-delta_0.17.0_amd64.deb \
+  && rm git-delta_0.17.0_amd64.deb
+{{ end -}}

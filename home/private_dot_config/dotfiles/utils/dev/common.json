@@ -1,0 +1,132 @@
+[
+  {
+    "name": "delta",
+    "summary": "A viewer for git and diff output.",
+    "uri": "https://dandavison.github.io/delta/",
+    "sources": {
+      "freebsd": {"common": "git-delta"},
+      "linux": {
+        "debian": {
+          "common": "#script",
+          "bullseye": "#na",
+          "buster": "#na"
+        },
+        "gentoo": "dev-util/git-delta",
+        "ubuntu": {
+          "common": "#script",
+          "focal": "#na"
+        }
+      }
+    },
+    "provides": {
+      "freebsd": {"common": ["delta"]},
+      "linux": {
+        "alpine": {"common": ["delta"]},
+        "debian": {
+          "sid": ["delta"],
+          "trixie": ["delta"],
+          "bookworm": ["delta"]
+        },
+        "gentoo": ["delta"],
+        "ubuntu": {
+          "noble": ["delta"],
+          "mantic": ["delta"],
+          "lunar": ["delta"],
+          "jammy": ["delta"]
+        }
+      },
+      "windows": ["delta"]
+    }
+  },
+  {
+    "name": "pip",
+    "summary": "The PyPA recommended tool for installing Python packages.",
+    "uri": "https://pip.pypa.io/en/stable/",
+    "sources": {
+      "freebsd": {"common": "py39-pip"},
+      "linux": {
+        "alpine": {"common": "py-pip"},
+        "debian": {"common": "python3-pip"},
+        "gentoo": "dev-python/pip",
+        "ubuntu": {"common": "python3-pip"}
+      },
+      "windows": "#na"
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["pip"],
+        "13.2": ["pip-3.9"]
+      },
+      "linux": {
+        "alpine": {"common": ["pip", "pip3"]},
+        "debian": {
+          "common": ["pip3"],
+          "bullseye": ["pip"],
+          "bookworm": ["pip"],
+          "trixie": ["pip"],
+          "sid": ["pip"]
+        },
+        "gentoo": ["pip", "pip3"],
+        "ubuntu": {"common": ["pip", "pip3"]}
+      },
+      "windows": ["pip", "pip3"]
+    }
+  },
+  {
+    "name": "pre-commit",
+    "summary": "A framework for managing and maintaining multi-language pre-commit hooks.",
+    "uri": "https://pre-commit.com/",
+    "sources": {
+      "freebsd": {"common": "#pip"},
+      "linux": {
+        "alpine": {
+          "3.19": "#pip",
+          "3.18": "#pip",
+          "3.17": "#pip"
+        },
+        "debian": {
+          "buster": "#pip"
+        },
+        "ubuntu": {
+          "focal": "#pip"
+        }
+      },
+      "windows": "#pip"
+    }
+  },
+  {
+    "name": "python",
+    "summary": "The Python programming language.",
+    "uri": "https://python.org/",
+    "sources": {
+      "linux": {
+        "alpine": {"common": "python3"},
+        "debian": {
+          "buster": "python3",
+          "common": "python-is-python3"
+        },
+        "gentoo":  "dev-lang/python",
+        "ubuntu": {"common": "python-is-python3"}
+      },
+      "freebsd": {"common": "python39"}
+    },
+    "provides": {
+      "freebsd": {
+        "common": ["python3.9"]
+      },
+      "linux": {
+        "alpine": {"common": ["python", "python3"]},
+        "debian": {
+          "common": ["python3"],
+          "bullseye": ["python"],
+          "bookworm": ["python"],
+          "trixie": ["python"],
+          "sid": ["python"]
+        },
+        "gentoo": ["python", "python3"],
+        "ubuntu": {"common": ["python", "python3"]}
+      },
+      "windows": ["python", "python3"]
+    }
+  }
+]

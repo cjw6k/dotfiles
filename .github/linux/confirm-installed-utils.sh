@@ -1,7 +1,7 @@
 #!/usr/bin/env sh
 
-if [ $# -ne 2 ]; then
-  echo "usage: confirm-installed-utils.sh DISTRO VERSION"
+if [ $# -lt 1 ]; then
+  echo "usage: confirm-installed-utils.sh DISTRO [VERSION]"
   exit 1
 fi
 
@@ -14,7 +14,7 @@ if [ -d "/home/ci/.local/bin" ]; then
   export PATH="/home/ci/.local/bin:$PATH"
 fi
 
-partial=$(jq '.[] | select(.personal != true)' /home/ci/.config/dotfiles/utils.json)
+partial=$(jq -s '.[][]' /home/ci/.config/dotfiles/utils/standard.json /home/ci/.config/dotfiles/utils/dev/*.json)
 
 check () {
     ident=$(which "$1")
@@ -31,7 +31,7 @@ missed=0
 
 selection=$(echo "$partial" | jq -r '. | select(.provides == null) | .name')
 if [ $? -ne 0 ]; then
-  echo 'Failed parsing .[].provides from utils.json'
+  echo 'Failed parsing .[].provides from utils json'
   exit 1
 fi
 for i in $selection; do
@@ -43,7 +43,7 @@ done
 
 selection=$(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]')
 if [ $? -ne 0 ]; then
-  echo 'Failed parsing .[].provides.commmon from utils.json'
+  echo 'Failed parsing .[].provides.commmon from utils json'
   exit 1
 fi
 for i in $selection; do
@@ -55,7 +55,7 @@ done
 
 selection=$(echo "$partial" | jq -r '. | select(.provides.linux.common != null) | .provides.linux.common[]')
 if [ $? -ne 0 ]; then
-  echo 'Failed parsing .[].provides.linux.common from utils.json'
+  echo 'Failed parsing .[].provides.linux.common from utils json'
   exit 1
 fi
 for i in $selection; do
@@ -65,29 +65,43 @@ for i in $selection; do
   fi
 done
 
-selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]")
-if [ $? -ne 0 ]; then
-  echo "Failed parsing .[].provides.linux.\"$1\".common from utils.json"
-  exit 1
-fi
-for i in $selection; do
-  check "$i"
+if test -z "$2"; then
+  selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\" != null) | .provides.linux.\"$1\"[]")
   if [ $? -ne 0 ]; then
-    missed=$((missed + 1))
+    echo "Failed parsing .[].provides.linux.\"$1\" from utils json"
+    exit 1
   fi
-done
+  for i in $selection; do
+    check "$i"
+    if [ $? -ne 0 ]; then
+      missed=$((missed + 1))
+    fi
+  done
+else
+  selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".common != null) | .provides.linux.\"$1\".common[]")
+  if [ $? -ne 0 ]; then
+    echo "Failed parsing .[].provides.linux.\"$1\".common from utils json"
+    exit 1
+  fi
+  for i in $selection; do
+    check "$i"
+    if [ $? -ne 0 ]; then
+      missed=$((missed + 1))
+    fi
+  done
 
-selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]")
-if [ $? -ne 0 ]; then
-  echo "Failed parsing .[].provides.linux.\"$1\".\"$2\" from utils.json"
-  exit 1
-fi
-for i in $selection; do
-  check "$i"
+  selection=$(echo "$partial" | jq -r ". | select(.provides.linux.\"$1\".\"$2\" != null) | .provides.linux.\"$1\".\"$2\"[]")
   if [ $? -ne 0 ]; then
-    missed=$((missed + 1))
+    echo "Failed parsing .[].provides.linux.\"$1\".\"$2\" from utils json"
+    exit 1
   fi
-done
+  for i in $selection; do
+    check "$i"
+    if [ $? -ne 0 ]; then
+      missed=$((missed + 1))
+    fi
+  done
+fi
 
 if [ $missed -ne 0 ]; then
   echo "Required utilities are not present"

@@ -38,10 +38,21 @@ jobs:
             echo 'ci ALL=(ALL) NOPASSWD: ALL' > /usr/local/etc/sudoers.d/ci
 
             # init chezmoi
-            sudo DOTFILES_DEVTOOLS=true -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
+            sudo \
+              DOTFILES_DEVTOOLS=true \
+              DOTFILES_DEVTOOLS_C=true \
+              DOTFILES_DEVTOOLS_DOCKER=true \
+              DOTFILES_DEVTOOLS_EXTRA=true \
+              DOTFILES_DEVTOOLS_GO=true \
+              DOTFILES_DEVTOOLS_HASKELL=true \
+              DOTFILES_DEVTOOLS_JS=true \
+              DOTFILES_DEVTOOLS_K8S=true \
+              DOTFILES_DEVTOOLS_LUA=true \
+              DOTFILES_DEVTOOLS_PHP=true \
+              -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
             # confirm installed utils
-            sh .github/freebsd/confirm-installed-utils.sh
+            sh .github/freebsd/confirm-installed-utils.sh ${{ matrix.release }}
 
             # confirm ci user has fish shell
             test `tee </etc/passwd | grep ^ci: | grep -o '[^:]*$'` = `which fish`

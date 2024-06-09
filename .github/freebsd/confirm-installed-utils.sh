@@ -1,5 +1,10 @@
 #!/usr/bin/env sh
 
+if [ $# -ne 1 ]; then
+  echo "usage: confirm-installed-utils.sh VERSION"
+  exit 1
+fi
+
 which jq >> /dev/null
 if [ $? -ne 0 ]; then
   exit 1
@@ -9,7 +14,7 @@ if [ -d "/home/ci/.local/bin" ]; then
   export PATH="/home/ci/.local/bin:$PATH"
 fi
 
-partial=$(jq '.[] | select(.personal != true)' /home/ci/.config/dotfiles/utils.json)
+partial=$(jq -s '.[][]' /home/ci/.config/dotfiles/utils/standard.json /home/ci/.config/dotfiles/utils/dev/*.json)
 
 check () {
     ident=$(which "$1")
@@ -32,6 +37,13 @@ for i in $(echo "$partial" | jq -r '. | select(.provides == null) | .name'); do
 done
 
 for i in $(echo "$partial" | jq -r '. | select(.provides.common != null) | .provides.common[]'); do
+  check "$i"
+  if [ $? -ne 0 ]; then
+    missed=$((missed + 1))
+  fi
+done
+
+for i in $(echo "$partial" | jq -r ". | select(.provides.freebsd.\"$1\" != null) | .provides.freebsd.\"$1\"[]"); do
   check "$i"
   if [ $? -ne 0 ]; then
     missed=$((missed + 1))

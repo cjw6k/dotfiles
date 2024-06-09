@@ -1,21 +1,45 @@
 # ~/.config/dotfiles/utils.json hash:
-# {{ include "private_dot_config/dotfiles/utils.json" | sha256sum }}
+# {{ include "private_dot_config/dotfiles/utils/standard.json" | sha256sum }}
 
-$skipInstall = @("#builtin", "#custom", "#na")
+$utils = @()
+foreach ($util in Get-Content '~/.config/dotfiles/utils/standard.json' | ConvertFrom-Json) {
+    $utils += $util
+}
 
-$utils = Get-Content '~/.config/dotfiles/utils.json' `
-  | ConvertFrom-Json `
-  | Where-Object {$_.personal -eq $null}
-  | Where-Object {$_.devtools -eq $null}
+{{ if .is.devtools -}}
+{{ range $file := glob (print .chezmoi.sourceDir "/private_dot_config/dotfiles/utils/dev/*.json") -}}
+# {{ $file }} hash:
+# {{ include $file | sha256sum }}
+{{- end }}
 
+foreach ($file in Get-ChildItem '~/.config/dotfiles/utils/dev/*.json') {
+    foreach ($util in Get-Content $file | ConvertFrom-Json) {
+        $utils += $util
+    }
+}
+{{ end }}
+
+$skipInstall = @("#na", "#builtin", "#script")
 $toInstall = @()
+$toInstallWithPip = @()
 foreach ($util in $utils) {
-  $name = $util.install.windows ?? $util.install.common ?? $util.name
-  if ($name -in $skipInstall) {
-    continue
-  }
+    $name = $util.sources.windows ?? $util.sources.common ?? $util.name
+    if ($name -in $skipInstall) {
+        continue
+    }
 
-  $toInstall += $name
+    if ($name -eq "#pip") {
+        $toInstallWithPip += $util.name
+        continue
+    }
+
+    if ($name.StartsWith("#")) {
+        continue
+    }
+
+    $toInstall += $name
 }
 
 scoop install @toInstall
+
+pip install @toInstallWithPip

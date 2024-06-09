@@ -1,0 +1,12 @@
+[
+  {
+    "name": "shellcheck",
+    "summary": "Shell script static analysis tool.",
+    "uri": "https://www.shellcheck.net/",
+    "sources": {
+      "common": "#na",
+      "linux": {"gentoo": "#script"}
+    },
+    "provides": {"linux": {"gentoo": ["shellcheck"]}}
+  }
+]
