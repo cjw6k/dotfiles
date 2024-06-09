@@ -52,7 +52,7 @@ jobs:
       - name: enable install binary packages feature
         run: |
           echo 'FEATURES="buildpkg binpkg-signing binpkg-request-signature getbinpkg"' >> /etc/portage/make.conf
-          echo 'BINPKG_GPG_SIGNING_GPG_HOME=/home/runner/.gnupg' >> /etc/portage/make.conf
+          echo 'BINPKG_GPG_SIGNING_GPG_HOME=/github/home/.gnupg' >> /etc/portage/make.conf
           keyid=$(gpg --list-keys --keyid-format=long | grep ^pub | sed -e 's/^[^/]*\///' -e 's/\s.*'//)
           fingerprint=$(gpg --list-keys | grep '^\s' | sed 's/\s*//')
           echo "BINPKG_GPG_SIGNING_KEY=0x$keyid" >> /etc/portage/make.conf
