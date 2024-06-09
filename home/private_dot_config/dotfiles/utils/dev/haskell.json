@@ -1,5 +1,15 @@
 [
   {
+    "name": "cabal",
+    "summary": "A system for building and packaging Haskell libraries and programs.",
+    "uri": "https://www.haskell.org/cabal/"
+  },
+  {
+    "name": "ghc",
+    "summary": "A compiler and interactive environment for the Haskell functional programming language.",
+    "uri": "https://www.haskell.org/ghc/"
+  },
+  {
     "name": "shellcheck",
     "summary": "Shell script static analysis tool.",
     "uri": "https://www.shellcheck.net/",
