@@ -13,6 +13,7 @@
 {{- $devtoolsK8s := false -}}{{/* true if this machine should have development tools for kubernetes */}}
 {{- $devtoolsLua := false -}}{{/* true if this machine should have development tools lua */}}
 {{- $devtoolsPhp := false -}}{{/* true if this machine should have development tools php */}}
+{{- $devtoolsRuby := false -}}{{/* true if this machine should have development tools ruby */}}
 {{- $wsl := false -}}{{/* true if this machine is a WSL distro */}}
 
 {{/* personalization */}}
@@ -53,6 +54,7 @@
 {{      $devtoolsK8s = true }}
 {{      $devtoolsLua = true }}
 {{      $devtoolsPhp = true }}
+{{      $devtoolsRuby = true }}
 {{-  else -}}
 {{     if or (empty (env "DOTFILES_DEVTOOLS_C")) (not (has (env "DOTFILES_DEVTOOLS_C") (list "0" "1" "true" "false"))) -}}
 {{       if stdinIsATTY -}}
@@ -117,6 +119,13 @@
 {{-    else -}}
 {{-      $devtoolsPhp  = has (env "DOTFILES_DEVTOOLS_PHP") (list "1" "true") -}}
 {{-    end -}}
+{{     if or (empty (env "DOTFILES_DEVTOOLS_RUBY")) (not (has (env "DOTFILES_DEVTOOLS_RUBY") (list "0" "1" "true" "false"))) -}}
+{{       if stdinIsATTY -}}
+{{-        $devtoolsRuby = promptBoolOnce . "is.devtoolsRuby" "Should this machine have development tools for ruby" false -}}
+{{-      end -}}
+{{-    else -}}
+{{-      $devtoolsRuby  = has (env "DOTFILES_DEVTOOLS_RUBY") (list "1" "true") -}}
+{{-    end -}}
 {{-  end -}}
 {{- end -}}
 
@@ -145,6 +154,7 @@
     devtoolsK8s = {{ $devtoolsK8s }}
     devtoolsLua = {{ $devtoolsLua }}
     devtoolsPhp = {{ $devtoolsPhp }}
+    devtoolsRuby = {{ $devtoolsRuby }}
     wsl = {{ $wsl }}
 
 [data.user.git]

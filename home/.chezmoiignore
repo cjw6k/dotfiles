@@ -84,5 +84,9 @@ lib.sh
 .config/dotfiles/utils/dev/php.json
 .chezmoiscripts/**/50-install_dev_php-*
 {{     end }}
+{{     if not .is.devtoolsRuby }}
+.config/dotfiles/utils/dev/ruby.json
+.chezmoiscripts/**/50-install_dev_ruby-*
+{{     end }}
 {{   end }}
 {{ end -}}
