@@ -7,7 +7,7 @@
   },
   {
     "name": "rust",
-    "summary": "A language empowering everyone\nto build reliable and efficient software.",
+    "summary": "A language empowering everyone to build reliable and efficient software.",
     "uri": "https://github.com/rust-lang/rust",
     "sources": {
       "linux": {
