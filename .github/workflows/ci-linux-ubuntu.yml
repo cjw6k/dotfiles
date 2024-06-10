@@ -33,5 +33,6 @@ jobs:
       dotfiles_devtools_js: true
       dotfiles_devtools_k8s: true
       dotfiles_devtools_lua: true
+      dotfiles_devtools_perl: true
       dotfiles_devtools_php: true
       dotfiles_devtools_ruby: true
