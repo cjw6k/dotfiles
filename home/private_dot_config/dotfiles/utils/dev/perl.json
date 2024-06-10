@@ -3,6 +3,7 @@
     "name": "perl",
     "summary": "The Perl programming language.",
     "uri": "https://github.com/Perl/perl5",
+    "sources": {"freebsd": {"common": "perl5"}},
     "provides": {"common": ["perl", "perldoc"]}
   }
 ]
