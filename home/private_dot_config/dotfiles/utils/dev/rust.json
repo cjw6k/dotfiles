@@ -5,6 +5,7 @@
     "uri": "https://github.com/rust-lang/cargo",
     "sources": {
       "freebsd": {"common": "#na"},
+      "linux": {"gentoo": "#na"},
       "windows": "#na"
     },
     "provides": {
