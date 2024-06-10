@@ -36,3 +36,4 @@ jobs:
       dotfiles_devtools_perl: true
       dotfiles_devtools_php: true
       dotfiles_devtools_ruby: true
+      dotfiles_devtools_rust: true

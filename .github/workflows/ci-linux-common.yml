@@ -85,6 +85,11 @@ on:
         type: boolean
         default: false
 
+      dotfiles_devtools_rust:
+        required: false
+        type: boolean
+        default: false
+
 jobs:
   linux:
     runs-on: ubuntu-latest
@@ -120,6 +125,7 @@ jobs:
             DOTFILES_DEVTOOLS_PERL=${{ inputs.dotfiles_devtools_perl }} \
             DOTFILES_DEVTOOLS_PHP=${{ inputs.dotfiles_devtools_php }} \
             DOTFILES_DEVTOOLS_RUBY=${{ inputs.dotfiles_devtools_ruby }} \
+            DOTFILES_DEVTOOLS_RUST=${{ inputs.dotfiles_devtools_rust }} \
             -iu ci ${{ steps.init-dotfiles-command.outputs.command}} --branch "$BRANCH"
 
       - name: verify utilities are present
