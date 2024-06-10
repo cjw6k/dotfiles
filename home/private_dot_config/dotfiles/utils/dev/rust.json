@@ -3,7 +3,13 @@
     "name": "cargo",
     "summary": "The Rust package manager.",
     "uri": "https://github.com/rust-lang/cargo",
-    "sources": {"windows": "#na"}
+    "sources": {
+      "freebsd": {"common": "#na"},
+      "windows": "#na"
+    },
+    "provides": {
+      "linux": {"common": ["cargo"]}
+    }
   },
   {
     "name": "rust",
