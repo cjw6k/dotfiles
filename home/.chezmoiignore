@@ -56,6 +56,10 @@ lib.sh
 .config/dotfiles/utils/dev/docker.json
 .chezmoiscripts/**/50-install_dev_docker-*
 {{     end }}
+{{     if not .is.devtoolsElixir }}
+.config/dotfiles/utils/dev/elixir.json
+.chezmoiscripts/**/50-install_dev_elixir-*
+{{     end }}
 {{     if not .is.devtoolsErlang }}
 .config/dotfiles/utils/dev/erlang.json
 .chezmoiscripts/**/50-install_dev_erlang-*

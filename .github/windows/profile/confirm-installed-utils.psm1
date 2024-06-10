@@ -3,7 +3,8 @@ function Confirm-InstalledUtils {
     "$env:USERPROFILE\scoop\shims",
     "$env:USERPROFILE\scoop\apps\python\current\Scripts",
     "$env:USERPROFILE\scoop\apps\yarn\current\global\node_modules\.bin",
-    "$env:USERPROFILE\scoop\apps\yarn\current\bin"
+    "$env:USERPROFILE\scoop\apps\yarn\current\bin",
+    "$env:USERPROFILE\scoop\apps\elixir\current\bin"
   )
   foreach ($pathAddition in $pathAdditions) {
     if ([System.IO.Directory]::Exists($pathAddition)) {
