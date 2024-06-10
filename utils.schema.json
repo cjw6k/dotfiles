@@ -52,7 +52,7 @@
     },
     "Package": {
       "type": "string",
-      "pattern": "^[\\w\\-.]*\\w$"
+      "pattern": "^[\\w\\-./]*\\w$"
     },
     "CustomInstallationMethod": {"enum": ["#na", "#script", "#builtin", "#pip"]},
     "FreeBSDInstallationSource": {
@@ -92,7 +92,7 @@
             {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
           ]
         },
-        "gentoo": {"$ref": "#/$defs/GentooInstallationSource"},
+        "gentoo": {"$ref": "#/$defs/InstallationSource"},
         "ubuntu": {
           "allOf": [
             {"$ref": "#/$defs/Ubuntu"},
@@ -125,16 +125,6 @@
         "buster": {}
       },
       "additionalProperties": false
-    },
-    "GentooInstallationSource": {
-      "oneOf": [
-        {"$ref": "#/$defs/GentooPackage"},
-        {"$ref": "#/$defs/CustomInstallationMethod"}
-      ]
-    },
-    "GentooPackage": {
-      "type": "string",
-      "pattern": "^[\\w\\-./]*\\w$"
     },
     "Ubuntu": {
       "type": "object",

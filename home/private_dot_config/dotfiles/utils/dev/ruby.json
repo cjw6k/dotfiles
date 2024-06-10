@@ -1,5 +1,16 @@
 [
   {
+    "name": "gem",
+    "summary": "Library packaging and distribution for Ruby.",
+    "uri": "https://github.com/rubygems/rubygems",
+    "sources": {
+      "freebsd": {"common": "devel/ruby-gems"},
+      "linux": {"common": "#na"},
+      "windows": "#na"
+    },
+    "provides": {"freebsd": {"common": ["gem"]}}
+  },
+  {
     "name": "ruby",
     "summary": "The Ruby programming language.",
     "uri": "https://github.com/ruby/ruby",
