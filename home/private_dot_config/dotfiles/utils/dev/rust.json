@@ -1,0 +1,13 @@
+[
+  {
+    "name": "cargo",
+    "summary": "The Rust package manager.",
+    "uri": "https://github.com/rust-lang/cargo"
+  },
+  {
+    "name": "rust",
+    "summary": "A language empowering everyone\nto build reliable and efficient software.",
+    "uri": "https://github.com/rust-lang/rust",
+    "provides": {"common": ["rustc", "rustdoc"]}
+  }
+]
