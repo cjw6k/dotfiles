@@ -8,7 +8,13 @@
     "name": "rust",
     "summary": "A language empowering everyone\nto build reliable and efficient software.",
     "uri": "https://github.com/rust-lang/rust",
-    "sources": {"linux": {"gentoo": "rust-bin"}},
+    "sources": {
+      "linux": {
+        "debian": {"common": "rustc"},
+        "gentoo": "rust-bin",
+        "ubuntu": {"common": "rustc"}
+      }
+    },
     "provides": {"common": ["rustc", "rustdoc"]}
   }
 ]
