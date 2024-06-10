@@ -53,6 +53,7 @@ jobs:
               DOTFILES_DEVTOOLS_PERL=true \
               DOTFILES_DEVTOOLS_PHP=true \
               DOTFILES_DEVTOOLS_RUBY=true \
+              DOTFILES_DEVTOOLS_RUST=true \
               -iu ci chezmoi init --apply cjw6k --branch "$BRANCH"
 
             # confirm installed utils

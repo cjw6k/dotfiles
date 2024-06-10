@@ -100,5 +100,9 @@ lib.sh
 .config/dotfiles/utils/dev/ruby.json
 .chezmoiscripts/**/50-install_dev_ruby-*
 {{     end }}
+{{     if not .is.devtoolsRust }}
+.config/dotfiles/utils/dev/rust.json
+.chezmoiscripts/**/50-install_dev_rust-*
+{{     end }}
 {{   end }}
 {{ end -}}
