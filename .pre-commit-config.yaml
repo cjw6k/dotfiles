@@ -12,7 +12,7 @@ repos:
       - id: check-json
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.18.3
+    rev: v8.18.4
     hooks:
       - id: gitleaks
 
@@ -27,7 +27,7 @@ repos:
       - id: hadolint
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.28.4
+    rev: 0.28.5
     hooks:
       - id: check-metaschema
         files: '\.schema\.json$'
