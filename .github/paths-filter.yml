@@ -167,12 +167,17 @@ ci-any:
 
 #
 # sources that are copied to the user home directory by chezmoi on apply
-#
+# note: dorny/paths-filter@v3 returns a counter-intuitive result when using the non-matching ! to exclude paths. The
+#       below is true when no file in any of the excluded paths have changed. It seems that it must have something to
+#       exclude, otherwise it returns true, and that is not good. Since this doesn't work as expected, we need to list
+#       every path specifically, and this is fragile. See https://github.com/dorny/paths-filter/issues/184.
+#       - home
+#       - !home/.chezmoiscripts/** <-- returns true if nothing in there has changed and been excluded
 dotfiles-sources: &dotfiles-sources
-  - 'home/**'
-  - '!home/.chezmoiscripts/**'
-  - '!home/.chezmoi.toml.tmpl'
-  - '!home/.chezmoiignore'
+  - 'home/Documents/**'
+  - 'home/dot_local/**'
+  - 'home/private_dot_config/**'
+  - 'home/private_dot_ssh/**'
 
 #
 # files used in building the final images
@@ -193,8 +198,3 @@ build-debian-and-ubuntu:
   - *ci-ubuntu
   - '.github/apt.Dockerfile'
   - '.github/workflows/build-debian-and-ubuntu.yml'
-
-build-gentoo:
-  - *ci-gentoo
-  - '.github/portage.Dockerfile'
-  - '.github/workflows/build-gentoo.yml'
