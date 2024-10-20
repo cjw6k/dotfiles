@@ -16,7 +16,10 @@
     "name": "ghc",
     "summary": "A compiler and interactive environment for the Haskell functional programming language.",
     "uri": "https://www.haskell.org/ghc/",
-    "sources": {"windows": "haskell"},
+    "sources": {
+      "linux": {"gentoo": "#script"},
+      "windows": "haskell"
+    },
     "provides": {
       "common": ["ghc"],
       "windows": ["ghci", "ghc-pkg", "haddock", "hp2ps", "hpc", "hsc2hs", "runghc"]
