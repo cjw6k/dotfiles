@@ -66,8 +66,7 @@
       "properties": {
         "common": {},
         "14.0": {},
-        "13.3": {},
-        "13.2": {}
+        "13.3": {}
       },
       "additionalProperties": false
     },
