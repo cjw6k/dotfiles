@@ -1,11 +1,22 @@
 #!/usr/bin/env sh
 
-if [ ! -f /etc/portage/package.use/dev-php/composer ]; then
-  if [ ! -d /etc/portage/package.use/dev-php ]; then
-    sudo mkdir -p /etc/portage/package.use/dev-php
-  fi
+# see https://getcomposer.org/doc/faqs/how-to-install-composer-programmatically.md
 
-  echo '>=dev-lang/php-8.2.18 curl' | sudo tee -a /etc/portage/package.use/dev-php/composer
+EXPECTED_CHECKSUM="$(php -r 'copy("https://composer.github.io/installer.sig", "php://stdout");')"
+php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
+ACTUAL_CHECKSUM="$(php -r "echo hash_file('sha384', 'composer-setup.php');")"
+
+if [ "$EXPECTED_CHECKSUM" != "$ACTUAL_CHECKSUM" ]
+then
+    >&2 echo 'ERROR: Invalid installer checksum'
+    rm composer-setup.php
+    exit 1
 fi
 
-sudo emerge -n dev-php/composer
+php composer-setup.php --quiet
+RESULT=$?
+if [ -f composer.phar ]; then
+  mv composer.phar ~/.local/bin/composer
+fi
+rm composer-setup.php
+exit $RESULT

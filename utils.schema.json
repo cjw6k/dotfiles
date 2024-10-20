@@ -65,10 +65,8 @@
       "type": "object",
       "properties": {
         "common": {},
-        "14.0": {},
         "13.4": {},
-        "13.3": {},
-        "13.2": {}
+        "13.3": {}
       },
       "additionalProperties": false
     },
@@ -122,8 +120,7 @@
         "sid": {},
         "trixie": {},
         "bookworm": {},
-        "bullseye": {},
-        "buster": {}
+        "bullseye": {}
       },
       "additionalProperties": false
     },
