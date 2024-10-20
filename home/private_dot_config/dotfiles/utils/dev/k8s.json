@@ -34,10 +34,7 @@
           "3.18": "#script",
           "3.17": "#script"
         },
-        "debian": {
-          "common": "kubernetes-client",
-          "buster": "#script"
-        },
+        "debian": {"common": "kubernetes-client"},
         "ubuntu": {"common": "#script"}
       }
     }

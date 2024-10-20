@@ -15,7 +15,7 @@ jobs:
     uses: ./.github/workflows/build-common.yml
     strategy:
       matrix:
-        tag: ['sid', 'trixie', 'bookworm', 'bullseye', 'buster']
+        tag: ['sid', 'trixie', 'bookworm', 'bullseye']
 
     with:
       dockerfile: apt

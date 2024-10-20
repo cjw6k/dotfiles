@@ -42,10 +42,6 @@ fi
 utils=
 pip_utils linux debian "{{ .chezmoi.osRelease.versionCodename }}"
 if test -n "$utils"; then
-{{- if eq .chezmoi.osRelease.versionCodename "buster" }}
-  pip3 install $utils
-{{- else }}
   pip install $utils
-{{- end }}
 fi
 {{- end }}

@@ -119,8 +119,7 @@
         "sid": {},
         "trixie": {},
         "bookworm": {},
-        "bullseye": {},
-        "buster": {}
+        "bullseye": {}
       },
       "additionalProperties": false
     },
