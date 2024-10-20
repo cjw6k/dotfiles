@@ -22,8 +22,12 @@
           "3.19": ["php", "php82"],
           "3.18": ["php", "php81"],
           "3.17": ["php", "php81"]
-        }
-      }
+        },
+        "debian": {"common": ["php"]},
+        "gentoo": ["php"],
+        "ubuntu": {"common": ["php"]}
+      },
+      "windows": ["php"]
     }
   }
 ]
