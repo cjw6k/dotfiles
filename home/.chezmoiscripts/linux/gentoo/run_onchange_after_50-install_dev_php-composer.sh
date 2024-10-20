@@ -15,5 +15,8 @@ fi
 
 php composer-setup.php --quiet
 RESULT=$?
+if [ -f composer.phar ]; then
+  mv composer.phar ~/.local/bin/
+fi
 rm composer-setup.php
 exit $RESULT

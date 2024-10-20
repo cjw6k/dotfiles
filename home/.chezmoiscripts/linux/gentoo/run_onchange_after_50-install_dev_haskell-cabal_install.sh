@@ -7,3 +7,5 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-haskell/cabal-install ]; then
 fi
 
 echo '=dev-haskell/cabal-install-3.6.2.0-r1' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/cabal-install
+
+sudo emerge -n dev-haskell/cabal-install
