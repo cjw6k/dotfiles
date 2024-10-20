@@ -21,15 +21,5 @@
       "common": ["ghc"],
       "windows": ["ghci", "ghc-pkg", "haddock", "hp2ps", "hpc", "hsc2hs", "runghc"]
     }
-  },
-  {
-    "name": "shellcheck",
-    "summary": "Shell script static analysis tool.",
-    "uri": "https://www.shellcheck.net/",
-    "sources": {
-      "common": "#na",
-      "linux": {"gentoo": "#script"}
-    },
-    "provides": {"linux": {"gentoo": ["shellcheck"]}}
   }
 ]
