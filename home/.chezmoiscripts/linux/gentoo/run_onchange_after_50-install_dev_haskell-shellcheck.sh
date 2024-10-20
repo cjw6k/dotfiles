@@ -18,6 +18,7 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
   echo '=dev-haskell/regex-tdfa-1.3.2.2 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/regex-tdfa
   echo '=dev-haskell/fgl-5.8.1.1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/fgl
   echo '=dev-haskell/regex-base-0.94.0.2 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/regex-base
+  echo '=dev-haskell/text-1.2.5.0-r1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/text
 fi
 
 sudo emerge -n dev-util/shellcheck
