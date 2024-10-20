@@ -20,6 +20,7 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
   echo '=dev-haskell/regex-base-0.94.0.2 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/regex-base
   echo '=dev-haskell/text-1.2.5.0-r1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/text
   echo '=dev-haskell/random-1.2.1.1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/random
+  echo '=dev-haskell/splitmix-0.1.0.4 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/splitmix
 fi
 
 sudo emerge -n dev-util/shellcheck
