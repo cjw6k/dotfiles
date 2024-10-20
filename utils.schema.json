@@ -92,6 +92,12 @@
             {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
           ]
         },
+        "devuan": {
+          "allOf": [
+            {"$ref": "#/$defs/Devuan"},
+            {"$ref": "#/$defs/OperatingSystemEditionInstallationSource"}
+          ]
+        },
         "gentoo": {"$ref": "#/$defs/InstallationSource"},
         "ubuntu": {
           "allOf": [
@@ -123,6 +129,18 @@
         "bookworm": {},
         "bullseye": {},
         "buster": {}
+      },
+      "additionalProperties": false
+    },
+    "Devuan": {
+      "type": "object",
+      "properties": {
+        "common": {},
+        "ceres": {},
+        "excalibur": {},
+        "daedalus": {},
+        "chimaera": {},
+        "beowulf": {}
       },
       "additionalProperties": false
     },
@@ -161,6 +179,12 @@
         "debian": {
           "allOf": [
             {"$ref": "#/$defs/Debian"},
+            {"$ref": "#/$defs/OperatingSystemEditionSoftware"}
+          ]
+        },
+        "devuan": {
+          "allOf": [
+            {"$ref": "#/$defs/Devuan"},
             {"$ref": "#/$defs/OperatingSystemEditionSoftware"}
           ]
         },
