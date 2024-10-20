@@ -16,6 +16,11 @@ ci-build-debian: &ci-build-debian
   - '.github/apt.Dockerfile'
   - '.github/workflows/ci-build-debian.yml'
 
+ci-build-devuan: &ci-build-devuan
+  - *ci-build-common
+  - '.github/apt.Dockerfile'
+  - '.github/workflows/ci-build-devuan.yml'
+
 ci-build-gentoo: &ci-build-gentoo
   - '.github/portage.Dockerfile'
   - '.github/workflows/ci-build-gentoo.yml'
@@ -53,6 +58,9 @@ dotfiles-scripts-alpine: &dotfiles-scripts-alpine
 dotfiles-scripts-debian: &dotfiles-scripts-debian
   - 'home/.chezmoiscripts/linux/debian/**'
 
+dotfiles-scripts-devuan: &dotfiles-scripts-devuan
+  - 'home/.chezmoiscripts/linux/devuan/**'
+
 dotfiles-scripts-gentoo: &dotfiles-scripts-gentoo
   - 'home/.chezmoiscripts/linux/gentoo/**'
 
@@ -88,6 +96,12 @@ test-debian: &test-debian
   - '.github/workflows/ci-linux-common.yml'
   - '.github/workflows/ci-linux-debian.yml'
 
+test-devuan: &test-devuan
+  - *test-common
+  - '.github/linux/*'
+  - '.github/workflows/ci-linux-common.yml'
+  - '.github/workflows/ci-linux-devuan.yml'
+
 test-gentoo: &test-gentoo
   - *test-common
   - '.github/linux/*'
@@ -108,6 +122,7 @@ test-any:
   - *test-freebsd
   - *test-alpine
   - *test-debian
+  - *test-devuan
   - *test-gentoo
   - *test-ubuntu
   - *test-windows
@@ -138,6 +153,13 @@ ci-debian: &ci-debian
   - *ci-build-debian
   - *test-debian
 
+ci-devuan: &ci-devuan
+  - *dotfiles-core
+  - *dotfiles-scripts-devuan
+  - *dotfiles-scripts-linux-common
+  - *ci-build-devuan
+  - *test-devuan
+
 ci-gentoo: &ci-gentoo
   - *dotfiles-core
   - *dotfiles-scripts-gentoo
@@ -161,6 +183,7 @@ ci-any:
   - *ci-freebsd
   - *ci-alpine
   - *ci-debian
+  - *ci-devuan
   - *ci-gentoo
   - *ci-ubuntu
   - *ci-windows
@@ -192,9 +215,10 @@ build-alpine:
   - '.github/apk.Dockerfile'
   - '.github/workflows/build-alpine.yml'
 
-build-debian-and-ubuntu:
+build-debian-devuan-and-ubuntu:
   - *build-common
   - *ci-debian
+  - *ci-devuan
   - *ci-ubuntu
   - '.github/apt.Dockerfile'
-  - '.github/workflows/build-debian-and-ubuntu.yml'
+  - '.github/workflows/build-debian-devuan-and-ubuntu.yml'
