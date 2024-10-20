@@ -17,7 +17,7 @@ jobs:
     uses: ./.github/workflows/ci-linux-common.yml
     strategy:
       matrix:
-        tag: ['noble', 'mantic', 'lunar', 'jammy', 'focal']
+        tag: ['oracular', 'noble', 'mantic', 'lunar', 'jammy', 'focal']
 
     with:
       distro: ubuntu

@@ -24,6 +24,7 @@
         "gentoo": ["lua", "lua5.4", "luac", "luac5.4"],
         "ubuntu": {
           "common": ["lua", "luac"],
+          "oracular": ["lua5.4", "luac5.4"],
           "noble": ["lua5.4", "luac5.4"],
           "mantic": ["lua5.4", "luac5.4"],
           "lunar": ["lua5.4", "luac5.4"],

@@ -26,7 +26,7 @@ jobs:
     uses: ./.github/workflows/build-common.yml
     strategy:
       matrix:
-        tag: ['noble', 'mantic', 'lunar', 'jammy', 'focal']
+        tag: ['oracular', 'noble', 'mantic', 'lunar', 'jammy', 'focal']
 
     with:
       dockerfile: apt
