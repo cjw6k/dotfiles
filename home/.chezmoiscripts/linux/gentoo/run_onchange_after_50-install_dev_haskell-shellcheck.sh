@@ -14,6 +14,7 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
   echo '=dev-haskell/aeson-2.0.3.0 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/aeson
   echo '=dev-haskell/diff-0.4.1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/diff
   echo '=dev-haskell/parsec-3.1.15.0-r1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/parsec
+  echo '=dev-haskell/quickcheck-2.14.3 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/quickcheck
 fi
 
 sudo emerge -n dev-util/shellcheck
