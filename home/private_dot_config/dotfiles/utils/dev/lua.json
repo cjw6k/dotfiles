@@ -6,10 +6,7 @@
     "sources": {
       "freebsd": {"common": "lua54"},
       "linux": {
-        "debian": {
-          "common": "lua5.4",
-          "buster": "lua5.3"
-        },
+        "debian": {"common": "lua5.4"},
         "gentoo": "dev-lang/lua",
         "ubuntu": {
           "common": "lua5.4",
