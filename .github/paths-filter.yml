@@ -198,3 +198,23 @@ build-debian-and-ubuntu:
   - *ci-ubuntu
   - '.github/apt.Dockerfile'
   - '.github/workflows/build-debian-and-ubuntu.yml'
+
+#
+# documentation sources
+#
+documentation-sources: &documentation-sources
+  - 'docs/**'
+
+documentation-targets: &documentation-targets
+  - 'home/private_dot_config/dotfiles/utils/standard.json'
+  - 'home/private_dot_config/dotfiles/utils/personal.json'
+  - 'home/private_dot_config/dotfiles/utils/dev/**'
+
+documentation-build-defs: &documentation-build-defs
+  - '.github/docs.Dockerfile'
+  - '.github/workflows/docs.yml'
+
+build-docs:
+  - *documentation-sources
+  - *documentation-targets
+  - *documentation-build-defs
