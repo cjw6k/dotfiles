@@ -7,7 +7,7 @@
       "freebsd": {"common": "hs-cabal-install"},
       "linux": {
         "debian": {"common": "cabal-install"},
-        "gentoo": "cabal-install",
+        "gentoo": "#script",
         "ubuntu": {"common": "cabal-install"}
       }
     }
