@@ -8,8 +8,7 @@
       "linux": {
         "debian": {
           "common": "7zip",
-          "bullseye": "p7zip",
-          "buster": "p7zip"
+          "bullseye": "p7zip"
         },
         "gentoo": "app-arch/p7zip",
         "ubuntu": {
@@ -27,8 +26,7 @@
           "sid": ["7z", "7za", "7zr"],
           "trixie": ["7z", "7za", "7zr"],
           "bookworm": ["7zz"],
-          "bullseye": ["7zr"],
-          "buster": ["7zr"]
+          "bullseye": ["7zr"]
         },
         "gentoo": ["7z", "7za", "7zr"],
         "ubuntu": {

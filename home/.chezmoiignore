@@ -75,6 +75,7 @@ lib.sh
 {{     if not .is.devtoolsHaskell }}
 .config/dotfiles/utils/dev/haskell.json
 .chezmoiscripts/**/50-install_dev_haskell-*
+.chezmoiscripts/**/51-install_dev_haskell-*
 {{     end }}
 {{     if not .is.devtoolsJs }}
 .config/dotfiles/utils/dev/js.json

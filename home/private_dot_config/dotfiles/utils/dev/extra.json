@@ -21,7 +21,10 @@
     "name": "gource",
     "summary": "Renders an animated tree diagram of Git, SVN, Mercurial and Bazaar repositories.",
     "uri": "https://gource.io/",
-    "sources": {"linux": {"gentoo": "#script"}}
+    "sources": {
+      "freebsd": {"common": "#na"},
+      "linux": {"gentoo": "#script"}
+    }
   },
   {
     "name": "hexyl",
@@ -35,10 +38,7 @@
     "uri": "https://github.com/sharkdp/hyperfine/",
     "sources": {
       "linux": {
-        "debian": {
-          "bullseye": "#script",
-          "buster": "#script"
-        },
+        "debian": {"bullseye": "#script"},
         "ubuntu": {
           "jammy": "#script",
           "focal": "#script"
@@ -72,16 +72,7 @@
     "uri": "https://www.shellcheck.net/",
     "sources": {
       "freebsd": {"common": "hs-ShellCheck"},
-      "linux": {"gentoo": "#na"}
-    },
-    "provides": {
-      "freebsd": {"common": ["shellcheck"]},
-      "linux": {
-        "alpine": {"common": ["shellcheck"]},
-        "debian": {"common": ["shellcheck"]},
-        "ubuntu": {"common": ["shellcheck"]}
-      },
-      "windows": ["shellcheck"]
+      "linux": {"gentoo": "dev-util/shellcheck-bin"}
     }
   },
   {
@@ -90,10 +81,7 @@
     "uri": "https://github.com/mvdan/sh/blob/master/cmd/shfmt/shfmt.1.scd",
     "sources": {
       "linux": {
-        "debian": {
-          "bullseye": "#script",
-          "buster": "#script"
-        },
+        "debian": {"bullseye": "#script"},
         "gentoo": "#script",
         "ubuntu": {"focal": "#script"}
       }
