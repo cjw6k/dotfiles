@@ -65,8 +65,7 @@
       "type": "object",
       "properties": {
         "common": {},
-        "13.3": {},
-        "13.2": {}
+        "13.3": {}
       },
       "additionalProperties": false
     },
