@@ -64,7 +64,7 @@ RUN pip install --no-cache-dir --upgrade pip==${PIP_VERSION} \
 
 WORKDIR /docs
 
-CMD ["sphinx-build", "-M", "html", ".", "_build"]
+CMD ["sphinx-build", "-M", "html", "source", "_build"]
 
 ###
 ### plantuml
