@@ -9,7 +9,6 @@ ARG PYTHON_HASH=sha256:c38ead8bcf521573dad837d7ecfdebbc87792202e89953ba8b2b83a9c
 # configs
 ARG GID=1000
 ARG UID=1000
-ARG WORKDIR=/opt/docs
 
 # apk
 ARG FONT_DEJAVU_VERSION=2.37-r5
@@ -62,7 +61,7 @@ RUN pip install --no-cache-dir --upgrade pip==${PIP_VERSION} \
       pillow==${PILLOW_VERSION} \
       sphinx==${SPHINX_VERSION}
 
-WORKDIR /docs
+WORKDIR /opt/docs
 
 CMD ["sphinx-build", "-M", "html", "source", "_build"]
 
