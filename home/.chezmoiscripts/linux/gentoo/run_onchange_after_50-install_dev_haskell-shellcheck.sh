@@ -5,8 +5,14 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
     sudo mkdir -p /etc/portage/package.accept_keywords/dev-util
   fi
 
-  echo '=dev-haskell/aeson-2.0.3.0 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/aeson
   echo '=dev-util/shellcheck-0.9.0-r2 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-util/shellcheck
+
+  if [ ! -d /etc/portage/package.accept_keywords/dev-haskell ]; then
+    sudo mkdir -p /etc/portage/package.accept_keywords/dev-haskell
+  fi
+
+  echo '=dev-haskell/aeson-2.0.3.0 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/aeson
+
 fi
 
 sudo emerge -n dev-util/shellcheck
