@@ -43,7 +43,7 @@
     "summary": "The PyPA recommended tool for installing Python packages.",
     "uri": "https://pip.pypa.io/en/stable/",
     "sources": {
-      "freebsd": {"common": "py39-pip"},
+      "freebsd": {"common": "py311-pip"},
       "linux": {
         "alpine": {"common": "py-pip"},
         "debian": {"common": "python3-pip"},
@@ -55,7 +55,7 @@
     "provides": {
       "freebsd": {
         "common": ["pip"],
-        "13.2": ["pip-3.9"]
+        "13.2": ["pip-3.11"]
       },
       "linux": {
         "alpine": {"common": ["pip", "pip3"]},
@@ -108,11 +108,11 @@
         "gentoo":  "dev-lang/python",
         "ubuntu": {"common": "python-is-python3"}
       },
-      "freebsd": {"common": "python39"}
+      "freebsd": {"common": "python"}
     },
     "provides": {
       "freebsd": {
-        "common": ["python3.9"]
+        "common": ["python"]
       },
       "linux": {
         "alpine": {"common": ["python", "python3"]},
