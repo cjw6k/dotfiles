@@ -16,16 +16,18 @@ jobs:
     outputs:
       ci-build-alpine: ${{ steps.filter.outputs.ci-build-alpine }}
       ci-build-debian: ${{ steps.filter.outputs.ci-build-debian }}
+      ci-build-devuan: ${{ steps.filter.outputs.ci-build-devuan }}
       ci-build-ubuntu: ${{ steps.filter.outputs.ci-build-ubuntu }}
       ci-freebsd: ${{ steps.filter.outputs.ci-freebsd }}
       ci-debian: ${{ steps.filter.outputs.ci-debian }}
+      ci-devuan: ${{ steps.filter.outputs.ci-devuan }}
       ci-gentoo: ${{ steps.filter.outputs.ci-gentoo }}
       ci-ubuntu: ${{ steps.filter.outputs.ci-ubuntu }}
       ci-windows: ${{ steps.filter.outputs.ci-windows }}
       ci-any: ${{ steps.filter.outputs.ci-any }}
       dotfiles-sources: ${{ steps.filter.outputs.dotfiles-sources }}
       build-alpine: ${{ steps.filter.outputs.build-alpine }}
-      build-debian-and-ubuntu: ${{ steps.filter.outputs.build-debian-and-ubuntu }}
+      build-debian-devuan-and-ubuntu: ${{ steps.filter.outputs.build-debian-devuan-and-ubuntu }}
 
     steps:
       - uses: actions/checkout@v4
@@ -45,6 +47,13 @@ jobs:
     needs: paths-filter
     if: ${{ needs.paths-filter.outputs.ci-build-debian == 'true' }}
     uses: ./.github/workflows/ci-build-debian.yml
+    permissions:
+      packages: write
+
+  ci-build-devuan:
+    needs: paths-filter
+    if: ${{ needs.paths-filter.outputs.ci-build-devuan == 'true' }}
+    uses: ./.github/workflows/ci-build-devuan.yml
     permissions:
       packages: write
 
@@ -89,6 +98,18 @@ jobs:
     uses: ./.github/workflows/ci-linux-debian.yml
     with:
       suffix: ${{ needs.paths-filter.outputs.ci-build-debian == 'true' && format('-{0}', github.sha) || ''}}
+
+  ci-devuan:
+    needs: [paths-filter, ci-alpine, ci-build-devuan]
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.ci-devuan == 'true'
+
+    uses: ./.github/workflows/ci-linux-devuan.yml
+    with:
+      suffix: ${{ needs.paths-filter.outputs.ci-build-devuan == 'true' && format('-{0}', github.sha) || ''}}
 
   ci-gentoo:
     needs: [paths-filter, ci-alpine]
@@ -140,16 +161,16 @@ jobs:
     permissions:
       packages: write
 
-  build-debian-and-ubuntu:
-    needs: [paths-filter, ci-debian, ci-ubuntu]
+  build-debian-devuan-and-ubuntu:
+    needs: [paths-filter, ci-debian, ci-devuan, ci-ubuntu]
     if: |
       github.event_name == 'push'
       && github.ref_name == 'main'
       && !cancelled()
       && !contains(needs.*.result, 'failed')
       && !contains(needs.*.result, 'cancelled')
-      && needs.paths-filter.outputs.build-debian-and-ubuntu == 'true'
+      && needs.paths-filter.outputs.build-debian-devuan-and-ubuntu == 'true'
 
-    uses: ./.github/workflows/build-debian-and-ubuntu.yml
+    uses: ./.github/workflows/build-debian-devuan-and-ubuntu.yml
     permissions:
       packages: write

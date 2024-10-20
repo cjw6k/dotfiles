@@ -1,0 +1,23 @@
+name: Build CI Images - Devuan
+on:
+  workflow_dispatch:
+  workflow_call:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-devuan
+  cancel-in-progress: true
+
+permissions:
+  packages: write
+
+jobs:
+  call-build-ci-common:
+    uses: ./.github/workflows/ci-build-common.yml
+    strategy:
+      matrix:
+        tag: ['ceres', 'excalibur', 'daedalus', 'chimaera', 'beowulf']
+
+    with:
+      dockerfile: apt
+      image: devuan
+      tag: ${{ matrix.tag }}

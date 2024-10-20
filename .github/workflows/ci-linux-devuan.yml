@@ -1,0 +1,39 @@
+name: CI - Devuan
+run-name: CI / Linux / Devuan on ${{ github.head_ref || github.ref_name }}
+on:
+  workflow_dispatch:
+  workflow_call:
+    inputs:
+      suffix:
+        required: false
+        type: string
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}-devuan
+  cancel-in-progress: true
+
+jobs:
+  call-common-linux:
+    uses: ./.github/workflows/ci-linux-common.yml
+    strategy:
+      matrix:
+        tag: ['ceres', 'excalibur', 'daedalus', 'chimaera', 'beowulf']
+
+    with:
+      distro: devuan
+      tag: ${{ matrix.tag }}
+      suffix: ${{ inputs.suffix }}
+      dotfiles_devtools_c: true
+      dotfiles_devtools_docker: true
+      dotfiles_devtools_elixir: true
+      dotfiles_devtools_erlang: true
+      dotfiles_devtools_extra: true
+      dotfiles_devtools_go: true
+      dotfiles_devtools_haskell: true
+      dotfiles_devtools_js: true
+      dotfiles_devtools_k8s: true
+      dotfiles_devtools_lua: true
+      dotfiles_devtools_perl: true
+      dotfiles_devtools_php: true
+      dotfiles_devtools_ruby: true
+      dotfiles_devtools_rust: true

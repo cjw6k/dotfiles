@@ -1,10 +1,10 @@
-name: Build Final Images - Debian & Ubuntu
+name: Build Final Images - Debian, Devuan, and Ubuntu
 on:
   workflow_dispatch:
   workflow_call:
 
 concurrency:
-  group: ${{ github.workflow }}-${{ github.ref }}-debian-and-ubuntu
+  group: ${{ github.workflow }}-${{ github.ref }}-debian-devuan-and-ubuntu
   cancel-in-progress: true
 
 permissions:
@@ -20,6 +20,17 @@ jobs:
     with:
       dockerfile: apt
       image: debian
+      tag: ${{ matrix.tag }}
+
+  call-build-common-devuan:
+    uses: ./.github/workflows/build-common.yml
+    strategy:
+      matrix:
+        tag: ['ceres', 'excalibur', 'daedalus', 'chimaera', 'beowulf']
+
+    with:
+      dockerfile: apt
+      image: devuan
       tag: ${{ matrix.tag }}
 
   call-build-common-ubuntu:
