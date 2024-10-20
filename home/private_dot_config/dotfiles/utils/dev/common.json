@@ -53,10 +53,7 @@
       "windows": "#na"
     },
     "provides": {
-      "freebsd": {
-        "common": ["pip"],
-        "13.2": ["pip-3.11"]
-      },
+      "freebsd": {"common": ["pip"]},
       "linux": {
         "alpine": {"common": ["pip", "pip3"]},
         "debian": {
