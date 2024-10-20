@@ -21,6 +21,12 @@ if [ ! -f /etc/portage/package.accept_keywords/dev-util/shellcheck ]; then
   echo '=dev-haskell/text-1.2.5.0-r1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/text
   echo '=dev-haskell/random-1.2.1.1 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/random
   echo '=dev-haskell/splitmix-0.1.0.4 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-haskell/splitmix
+
+  if [ ! -d /etc/portage/package.accept_keywords/dev-lang ]; then
+    sudo mkdir -p /etc/portage/package.accept_keywords/dev-lang
+  fi
+
+  echo '=dev-lang/ghc-9.2.8 ~amd64' | sudo tee -a /etc/portage/package.accept_keywords/dev-lang/ghc
 fi
 
 sudo emerge -n dev-util/shellcheck
