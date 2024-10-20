@@ -8,8 +8,7 @@
       "linux": {
         "debian": {
           "common": "#script",
-          "bullseye": "#na",
-          "buster": "#na"
+          "bullseye": "#na"
         },
         "gentoo": "dev-util/git-delta",
         "ubuntu": {
@@ -84,9 +83,6 @@
           "3.18": "#pip",
           "3.17": "#pip"
         },
-        "debian": {
-          "buster": "#pip"
-        },
         "ubuntu": {
           "focal": "#pip"
         }
@@ -101,10 +97,7 @@
     "sources": {
       "linux": {
         "alpine": {"common": "python3"},
-        "debian": {
-          "buster": "python3",
-          "common": "python-is-python3"
-        },
+        "debian": {"common": "python-is-python3"},
         "gentoo":  "dev-lang/python",
         "ubuntu": {"common": "python-is-python3"}
       },

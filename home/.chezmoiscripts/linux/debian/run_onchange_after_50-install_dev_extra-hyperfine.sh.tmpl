@@ -1,6 +1,6 @@
 #!/usr/bin/env sh
 
-{{ if eq .chezmoi.osRelease.versionCodename "buster" "bullseye" }}
+{{ if eq .chezmoi.osRelease.versionCodename "bullseye" }}
 curl -sLO https://github.com/sharkdp/hyperfine/releases/download/v1.18.0/hyperfine-v1.18.0-x86_64-unknown-linux-gnu.tar.gz \
   && tar xzf hyperfine-v1.18.0-x86_64-unknown-linux-gnu.tar.gz hyperfine-v1.18.0-x86_64-unknown-linux-gnu/hyperfine \
   && mv hyperfine-v1.18.0-x86_64-unknown-linux-gnu/hyperfine ~/.local/bin \
