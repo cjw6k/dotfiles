@@ -51,7 +51,7 @@ jobs:
             --label "org.opencontainers.image.description=sphinx for $DOTFILES_REPO"
 
       - name: build docs
-        run: docker run -v ./docs:/opt/docs dotfiles:sphinx
+        run: docker run -v ${{ github.workspace }}/docs:/opt/docs dotfiles:sphinx
 
       - name: setup-pages
         uses: actions/configure-pages@v5
