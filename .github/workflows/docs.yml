@@ -81,7 +81,7 @@ jobs:
       - name: upload page artifacts
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./docs/_build
+          path: ./docs/_build/html
 
   deploy:
     needs: build
