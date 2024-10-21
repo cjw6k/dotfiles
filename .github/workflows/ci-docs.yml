@@ -37,6 +37,12 @@ jobs:
       && needs.paths-filter.outputs.build-docs == 'true'
 
     steps:
+      - name: who's in charge around here
+        id: whoami
+        run: |
+          echo "uid=$(id -u)" >> "$GITHUB_OUTPUT"
+          echo "gid=$(id -g)" >> "$GITHUB_OUTPUT"
+
       - name: checkout
         uses: actions/checkout@v4
 
@@ -56,6 +62,8 @@ jobs:
           build-args: |
             OWNER=${{ github.repository_owner }}
             REPO=${{ github.repository }}
+            UID=${{ steps.whoami.outputs.uid }}
+            GID=${{ steps.whoami.outputs.gid }}
 
           labels: |
             org.opencontainers.image.source=${{ github.repository }}
