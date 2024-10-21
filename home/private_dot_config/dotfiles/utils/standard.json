@@ -30,6 +30,7 @@
         },
         "gentoo": ["7z", "7za", "7zr"],
         "ubuntu": {
+          "oracular": ["7z", "7za", "7zr"],
           "noble": ["7z", "7za", "7zr"],
           "mantic": ["7zz"],
           "lunar": ["7zz"],

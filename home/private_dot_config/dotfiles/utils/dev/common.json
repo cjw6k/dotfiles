@@ -28,6 +28,7 @@
         },
         "gentoo": ["delta"],
         "ubuntu": {
+          "oracular": ["delta"],
           "noble": ["delta"],
           "mantic": ["delta"],
           "lunar": ["delta"],

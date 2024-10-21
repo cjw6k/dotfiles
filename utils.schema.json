@@ -129,6 +129,7 @@
       "type": "object",
       "properties": {
         "common": {},
+        "oracular": {},
         "noble": {},
         "mantic": {},
         "lunar": {},
