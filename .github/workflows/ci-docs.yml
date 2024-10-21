@@ -46,6 +46,7 @@ jobs:
       - name: build sphinx
         uses: docker/build-push-action@v6
         with:
+          file: ./.github/docs.Dockerfile
           push: false
           target: docs
           tags: dotfiles:sphinx
