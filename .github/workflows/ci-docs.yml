@@ -64,7 +64,7 @@ jobs:
       - name: build docs
         run: |
           docker run \
-            -v ./docs/sources:/opt/docs/sources \
+            -v ./docs/source:/opt/docs/source \
             -v ${{ runner.temp }}/docs:/opt/docs/_build \
             dotfiles:sphinx
 
