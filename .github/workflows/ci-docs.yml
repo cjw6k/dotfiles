@@ -60,24 +60,17 @@ jobs:
             org.opencontainers.image.source=${{ github.repository }}
             org.opencontainers.image.description=sphinx for ${{ github.repository }}
 
-#
-#
-#        run: |
-#          docker build - < .github/docs.Dockerfile \
-#            --build-arg OWNER="$DOTFILES_OWNER" \
-#            --build-arg REPO="$DOTFILES_REPO" \
-#            --target docs \
-#            --tag "dotfiles:sphinx" \
-#            --label "org.opencontainers.image.source=https://github.com/$DOTFILES_REPO" \
-#            --label "org.opencontainers.image.description=sphinx for $DOTFILES_REPO"
+      - name: build docs
+        run: |
+          docker run \
+            -v ./docs/sources:/opt/docs/sources \
+            -v ${{ runner.temp }}/docs:/opt/docs/_build \
+            dotfiles:sphinx
 
-#      - name: build docs
-#        run: docker run -v ${{ github.workspace }}/docs:/opt/docs:z dotfiles:sphinx
-#
-#      - name: setup-pages
-#        uses: actions/configure-pages@v5
-#
-#      - name: upload page artifacts
-#        uses: actions/upload-pages-artifact@v3
-#        with:
-#          path: ./docs/_build
+      - name: setup-pages
+        uses: actions/configure-pages@v5
+
+      - name: upload page artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ${{ runner.temp }}/docs
