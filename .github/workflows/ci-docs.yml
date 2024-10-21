@@ -48,6 +48,7 @@ jobs:
         with:
           file: ./.github/docs.Dockerfile
           push: false
+          load: true
           target: docs
           tags: dotfiles:sphinx
           cache-from: type=gha
