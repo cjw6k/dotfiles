@@ -7,10 +7,6 @@ concurrency:
   group: ${{ github.workflow }}-${{ github.ref }}
   cancel-in-progress: true
 
-env:
-  DOTFILES_OWNER: ${{ github.repository_owner }}
-  DOTFILES_REPO: ${{ github.repository }}
-
 jobs:
   paths-filter:
     runs-on: ubuntu-latest
@@ -37,7 +33,7 @@ jobs:
       && needs.paths-filter.outputs.build-docs == 'true'
 
     steps:
-      - name: who's in charge around here
+      - name: Read UID and GID
         id: whoami
         run: |
           echo "uid=$(id -u)" >> "$GITHUB_OUTPUT"
@@ -75,9 +71,6 @@ jobs:
             -v ./docs/source:/opt/docs/source \
             -v ./docs/_build:/opt/docs/_build \
             dotfiles:sphinx
-
-      - name: setup-pages
-        uses: actions/configure-pages@v5
 
       - name: upload page artifacts
         uses: actions/upload-pages-artifact@v3
