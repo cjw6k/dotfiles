@@ -1,0 +1,78 @@
+name: Build Docs
+on:
+  workflow_dispatch:
+  pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  paths-filter:
+    runs-on: ubuntu-latest
+    outputs:
+      documentation-sources: ${{ steps.filter.outputs.documentation-sources }}
+      documentation-targets: ${{ steps.filter.outputs.documentation-targets }}
+      documentation-build-defs: ${{ steps.filter.outputs.documentation-build-defs }}
+      build-docs: ${{ steps.filter.outputs.build-docs }}
+
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@v3
+        id: filter
+        with:
+          filters: '.github/paths-filter.yml'
+
+  build:
+    runs-on: ubuntu-latest
+    needs: [paths-filter]
+    if: |
+      !cancelled()
+      && !contains(needs.*.result, 'failed')
+      && !contains(needs.*.result, 'cancelled')
+      && needs.paths-filter.outputs.build-docs == 'true'
+
+    steps:
+      - name: Read UID and GID
+        id: whoami
+        run: |
+          echo "uid=$(id -u)" >> "$GITHUB_OUTPUT"
+          echo "gid=$(id -g)" >> "$GITHUB_OUTPUT"
+
+      - name: checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: build sphinx
+        uses: docker/build-push-action@v6
+        with:
+          file: ./.github/docs.Dockerfile
+          push: false
+          load: true
+          target: docs
+          tags: dotfiles:sphinx
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+          build-args: |
+            OWNER=${{ github.repository_owner }}
+            REPO=${{ github.repository }}
+            UID=${{ steps.whoami.outputs.uid }}
+            GID=${{ steps.whoami.outputs.gid }}
+
+          labels: |
+            org.opencontainers.image.source=${{ github.repository }}
+            org.opencontainers.image.description=sphinx for ${{ github.repository }}
+
+      - name: build docs
+        run: |
+          docker run \
+            -v ./docs/source:/opt/docs/source \
+            -v ./docs/_build:/opt/docs/_build \
+            dotfiles:sphinx
+
+      - name: upload page artifacts
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./docs/_build
