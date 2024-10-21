@@ -65,7 +65,6 @@ jobs:
         run: |
           docker run \
             -v ./docs/source:/opt/docs/source \
-            -v ./docs/_build:/opt/docs/_build:rw \
             dotfiles:sphinx
 
       - name: setup-pages
