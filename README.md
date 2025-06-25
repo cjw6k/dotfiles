@@ -5,13 +5,15 @@ cjw6k's dotfiles, managed with [chezmoi](https://github.com/twpayne/chezmoi).
 ## !! WIP !!
 I have published dotfiles in a few iterations over many years. I'm making a fresh start. These are not yet in use, not ready for use, and are incomplete. I'm using a public repo at this early stage to greatly simplify the build out. These dotfiles will remain public.
 
-## Background
-* I have been at this computerin' thing for more than 25 years.
-* I do admin, ops, networks, hardware, and software.
-* I do not do ai, crypto, or mobile.
-* I am working on cloud in my free time.
+## Professional Background
+* Training: electronics engineering technology.
+* Daily Work: admin, ops, networks, cloud, and software.
+* Pursuit: llm.
+* Known Unknowns: crypto, and mobile.
+
+## Working Stack
 * I use Windows 11 as my main workstation, and on a laptop.
-* I use Linux: alpine, gentoo, debian, and ubuntu. In Docker, WSL2, VM, VPS, and on bare metal.
+* I use Linux: alpine, gentoo, debian, and ubuntu. In K8s, Docker, WSL2, VM, VPS, and on bare metal.
 * I use BSD.
 * I do not use macOS. I will someday.
 
