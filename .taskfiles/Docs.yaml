@@ -9,8 +9,7 @@ tasks:
 
   build-sphinx:
     internal: true
-    status:
-      - docker image -q dotfiles:sphinx 2> /dev/null
+    # status: todo: make it always build after it's been deleted and when sources change
     sources:
       - ./.github/docs.Dockerfile
     cmds:
