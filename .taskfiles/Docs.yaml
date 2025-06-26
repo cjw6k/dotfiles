@@ -1,0 +1,23 @@
+version: '3'
+
+tasks:
+  default:
+    desc: Build the docs
+    cmds:
+      - task: build-sphinx
+      - docker run --rm -v ./docs/:/opt/docs dotfiles:sphinx {{ .CLI_ARGS }}
+
+  build-sphinx:
+    internal: true
+    status:
+      - docker image -q dotfiles:sphinx 2> /dev/null
+    sources:
+      - ./.github/docs.Dockerfile
+    cmds:
+      - docker build -f ./.github/docs.Dockerfile . -t dotfiles:sphinx
+
+  clean:
+    desc: Build the docs from a clean start
+    cmds:
+      - task: build-sphinx
+      - docker run --rm -v ./docs/:/opt/docs dotfiles:sphinx sphinx-build --fresh-env --builder html source _build
