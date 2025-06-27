@@ -1,11 +1,17 @@
 version: '3'
 
+vars:
+  TAG:
+    sh: echo ${TAG:-sphinx}
+
 tasks:
   default:
     desc: Build the docs
     cmds:
       - task: build-sphinx
-      - docker run --rm -v ./docs/:/opt/docs dotfiles:sphinx {{ .CLI_ARGS }}
+      - docker run --rm -v ./docs/:/opt/docs dotfiles:sphinx
+
+  build: docker build -f ./.github/docs.Dockerfile . -t dotfiles:{{.TAG}} {{.CLI_ARGS}}
 
   build-sphinx:
     internal: true
