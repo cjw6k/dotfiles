@@ -1,2 +1,29 @@
+name: config-ndst
+
 extends:
   - '@commitlint/config-conventional'
+
+rules:
+  type-enum:
+    - 2
+    - 'always'
+    - [
+        '⚙️',
+        'build',
+        'chore',
+        'ci',
+        'cd',
+        'deps',
+        'epic',
+        'infra',
+        'feat',
+        'role',
+        'story',
+        'fix',
+        'docs',
+        'style',
+        'refactor',
+        'perf',
+        'test',
+        'idea',
+      ]

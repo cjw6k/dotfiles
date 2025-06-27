@@ -9,7 +9,7 @@ I have published dotfiles in a few iterations over many years. I'm making a fres
 * Training: electronics engineering technology.
 * Daily Work: admin, ops, networks, cloud, and software.
 * Pursuit: llm.
-* Known Unknowns: crypto, and mobile.
+* Known Unknowns: crypto and mobile.
 
 ## Working Stack
 * I use Windows 11 as my main workstation, and on a laptop.
