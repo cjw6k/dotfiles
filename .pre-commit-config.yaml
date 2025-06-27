@@ -12,7 +12,7 @@ repos:
       - id: check-json
 
   - repo: https://github.com/zricethezav/gitleaks
-    rev: v8.25.1
+    rev: v8.27.2
     hooks:
       - id: gitleaks
 
@@ -27,13 +27,20 @@ repos:
       - id: hadolint
 
   - repo: https://github.com/python-jsonschema/check-jsonschema
-    rev: 0.33.0
+    rev: 0.33.1
     hooks:
       - id: check-metaschema
         files: '\.schema\.json$'
       - id: check-jsonschema
         files: ^home/private_dot_config/dotfiles/utils/.*\.json$
         args: ["--schemafile", "utils.schema.json"]
+
+  - repo: https://github.com/alessandrojcm/commitlint-pre-commit-hook
+    rev: v9.22.0
+    hooks:
+      - id: commitlint
+        additional_dependencies:
+          - "@commitlint/config-conventional"
 
 ci:
   autofix_commit_msg: "⚙ auto fixes [pre-commit.ci]"
