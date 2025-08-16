@@ -76,7 +76,7 @@ jobs:
           emerge dev-lang/rust-bin app-admin/sudo
 
       - name: checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: install chezmoi
         run: sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /usr/local/bin
