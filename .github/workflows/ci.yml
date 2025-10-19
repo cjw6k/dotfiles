@@ -28,7 +28,7 @@ jobs:
       build-debian-and-ubuntu: ${{ steps.filter.outputs.build-debian-and-ubuntu }}
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: dorny/paths-filter@v3
         id: filter
         with:
