@@ -27,11 +27,7 @@ USER ci
 WORKDIR /home/ci
 
 # hadolint ignore=DL3004
-RUN if [ "${SOURCE_TAG}" = "3.17" ]; then \
-      DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply --guess-repo-url=false "https://github.com/${REPO}.git"; \
-    else \
-      DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply "${OWNER}"; \
-    fi \
+RUN DOTFILES_DEVTOOLS=${DEVTOOLS} chezmoi init --apply "${OWNER}"; \
  && sudo rm -rf /var/cache/apk/*
 
 ENTRYPOINT ["/usr/bin/fish"]
